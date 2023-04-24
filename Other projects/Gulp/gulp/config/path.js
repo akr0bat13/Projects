@@ -5,17 +5,34 @@ const buildFolder = `./dist`
 const srcFolder = `./src`
 
 export const path = {
-    build: {
-        files: `${buildFolder}/files/`
-    },  //Объект путей к результатам
-    src: {
-        files: `${srcFolder}/files/**/*.*`,
-    },    //Объект путей к исходным результатам
-    watch: {files: `${srcFolder}/files/**/*.*`,
-    },    //Показываем за какими объектами мы смотрим,
-    clean: buildFolder,
-    buildFolder: buildFolder,
-    srcFolder: srcFolder,
-    rootFolder: rootFolder,
-    ftp: ''
+  build: {
+    js: `${buildFolder}/js/`,
+    css: `${buildFolder}/css/`,
+    images: `${buildFolder}/img/`,
+    fonts: `${buildFolder}/fonts/`,
+    html: `${buildFolder}/`,
+    files: `${buildFolder}/files/`,
+  },
+  src: {
+    js: `${srcFolder}/js/app.js`,
+    images: `${srcFolder}/img/**/*.{jpeg,jpg,png,gif,webp}`,
+    svg: `${srcFolder}/img/**/*.svg`,
+    scss: `${srcFolder}/scss/style.scss`,
+    html: `${srcFolder}/*.html`,
+    svgicons: `${buildFolder}/svgicons/*.svg`,
+    files: `${srcFolder}/files/**/*.*`,
+  },
+  watch: {
+    js: `${srcFolder}/**/*.js`,
+    scss: `${srcFolder}/**/*.scss`,
+    images: `${srcFolder}/img/**/*.{jpeg,jpg,png,gif,webp,svg,ico}`,
+    html: `${srcFolder}/**/*.html`,
+    files: `${srcFolder}/files/**/*.*`,
+    svgicons: `${buildFolder}/svgicons/*.svg`,
+  },
+  clean: buildFolder,
+  buildFolder: buildFolder,
+  srcFolder: srcFolder,
+  rootFolder: rootFolder,
+  ftp: `test`,
 }
