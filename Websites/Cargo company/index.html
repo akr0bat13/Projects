@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=1.0.0">		<!-- вопрос v пишется для того, чтобы при хостинге сайта он не использовал станую версию документа (короче после заливки при каждом патче -> меняй версию) -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
+	<link rel="manifest" href="assets/images/favicons/manifest.json">
+	<link rel="mask-icon" href="assets/images/favicons/safari-pinned-tab.svg" color="#004AF2">
+	<meta name="msapplication-TileColor" content="#004AF2">
+	<meta name="theme-color" content="#004AF2">
+
+    <title>TransLogistic</title>
+</head>
+<body>
+
+<header class="header" id="header">
+    <div class="container">
+        <div class="header_inner">
+
+            <a href="#" data-scroll="#intro">
+                <img class="image" src="assets/images/logo.svg" alt="#">
+            </a>
+
+            <nav class="nav" id="nav">
+                <a class="nav_link" href="#" data-scroll="#services">Services</a>
+                <a class="nav_link" href="#" data-scroll="#clients">Clients</a>
+                <a class="nav_link" href="#" data-scroll="#benefits">Benefits</a>
+                <a class="nav_link" href="#" data-scroll="#team">Team</a>
+                <a class="nav_link" href="#" data-scroll="#mission">Mission</a>
+                <a class="nav_link" href="text.html" data-scroll="#news">News</a>
+                <a class="nav_link" href="#" data-modal="#becomeClientModal">Contact Us</a>
+            </nav>
+
+            <button class="burger" type="button" id="navToggle">
+                <span class="burger__line">1</span>
+                <span class="burger__line">2</span>
+                <span class="burger__line">3</span>
+                <span class="burger__line">4</span>
+            </button>
+
+        </div>    <!-- header_inner -->
+    </div> <!-- container -->
+</header>
+
+    <!-- Intro -->
+
+<div class="intro" id="intro">
+
+    <div class="intro__slider" id="introSlider">
+
+        <div class="slider-item">
+            <div class="intro__slider-item" style="background-image: url(assets/images/slider/slide-1.jpg)"></div>
+        </div>
+
+        <div class="slider-item">
+            <div class="intro__slider-item" style="background-image: url(assets/images/slider/slide-2.jpg)"></div>
+        </div>
+
+        <div class="slider-item">
+            <div class="intro__slider-item" style="background-image: url(assets/images/slider/slide-3.jpg)"></div>
+        </div>
+
+        <div class="slider-item">
+            <div class="intro__slider-item" style="background-image: url(assets/images/slider/slide-4.jpg)"></div>
+        </div>
+
+
+<!-- 	Способ не очень
+        <div class="slider-item">
+            <img class="intro__slider-photo" src="assets/images/bg.jpg" alt="">
+        </div> -->
+
+    </div>    <!-- intro__slider -->
+
+    <div class="container">
+        <div class="intro__inner">
+            <div class="request-form request-form--intro" data-aos="fade-right">
+                <div class="request-form__header">
+                    <h3 class="request-form__title">Get Callback</h3>
+                    <div class="request-form__text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</div>
+                </div>
+
+                <div class="request-form_content">
+                    <form class="form" method="post">
+                        <div class="form__group">
+                            <input class="input input--user" type="text" placeholder="Your name">
+                        </div>
+
+                        <div class="form__group">
+                            <input class="input input--phone" type="phone" placeholder="Your phone">
+                        </div>
+
+                        <div class="form__group">
+                            <input class="input input--email" type="email" placeholder="Your e-mail">
+                        </div>
+                        <button class="btn btn-block btn--orange" type="submit" data-modal="#thanksModal">
+                            <span>Call me back</span>
+                        </button>
+                    </form>
+                </div>    <!-- request-form_content -->
+
+            </div>    <!-- request-form -->
+
+            <div class="intro__text" data-aos="fade-left">
+                <div class="intro__countries">USA, Europa, Asia</div>
+                <h1 class="intro__title">
+                    <span class="intro__title-amp">&amp;</span>
+                    Trans<br>Logistic
+                </h1>
+            </div>
+
+            <div class="intro__slider-arrows">
+                <button class="intro__slider-btn intro__slider-btn--prev" type="button" id="introSliderPrev">Prev</button>
+                <button class="intro__slider-btn intro__slider-btn--next" type="button" id="introSliderNext">Next</button>
+            </div>
+        </div>    <!-- intro__inner -->
+    </div>    <!-- container -->
+
+</div>    <!-- intro -->
+
+    <!-- Services -->
+
+<section class="section" id="services" data-scrollspy="services">
+    <div class="container">
+        <div class="services">
+
+            <h2 class="services-main__title">Services</h2>
+
+            <div class="services__item" data-aos="fade-down">
+                <h4 class="services__title">Ground shipping</h4>
+
+                <div class="services__text">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
+                </div>
+                <div class="services__footer">
+                    <a class="services__link" href="#">Learn more</a>
+                </div>
+            </div>    <!-- services__item -->
+
+            <div class="services__item" data-aos="fade-down" data-aos-delay="100">
+                <h4 class="services__title">Railway shipping</h4>
+
+                <div class="services__text">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</p>
+                </div>
+
+                <div class="services__footer">
+                    <a class="services__link" href="#">Learn more</a>
+                </div>
+            </div>    <!-- services__item -->
+
+            <div class="services__item" data-aos="fade-down" data-aos-delay="200">
+                <h4 class="services__title">Water shipping</h4>
+
+                <div class="services__text">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
+                </div>
+
+                <div class="services__footer">
+                    <a class="services__link" href="#">Learn more</a>
+                </div>
+            </div>    <!-- services__item -->
+
+            <div class="services__item" data-aos="fade-down" data-aos-delay="300">
+                <h4 class="services__title">Air shipping</h4>
+
+                <div class="services__text">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</p>
+                </div>
+
+                <div class="services__footer">
+                    <a class="services__link" href="#">Learn more</a>
+                </div>
+            </div>    <!-- services__item -->
+
+        </div>    <!-- services -->
+    </div>    <!-- container -->
+</section>
+
+    <!-- Our clients -->
+
+<section class="section section--map" id="clients" data-scrollspy="clients">
+    <div class="container">
+        <h5 class="section__title"><span>Our </span>clients</h5>
+
+        <div class="clients">
+            <div class="clients__logos">
+                <ul class="clients__list">
+                    <li data-aos="fade-right">
+                        <a href="#" target="_blank">
+                            <img class="img" src="assets/images/Clients/atica.svg" alt="#">
+                        </a>
+                    </li>
+
+                    <li data-aos="fade-right">
+                        <a href="#" target="_blank">
+                            <img class="img" src="assets/images/Clients/hex-lab.svg" alt="#">
+                        </a>
+                    </li>
+
+                    <li data-aos="fade-right">
+                        <a href="#" target="_blank">
+                            <img class="img" src="assets/images/Clients/amara.svg" alt="#">
+                        </a>
+                    </li>
+
+                    <li data-aos="fade-right">
+                        <a href="#" target="_blank">
+                            <img class="img" src="assets/images/Clients/muzica-2.svg" alt="#">
+                        </a>
+                    </li>
+
+                    <li data-aos="fade-right">
+                        <a href="#" target="_blank">
+                            <img class="img" src="assets/images/Clients/solaytic.svg" alt="#">
+                        </a>
+                    </li>
+
+                    <li data-aos="fade-right">
+                        <a href="#" target="_blank">
+                            <img class="img" src="assets/images/Clients/hexa.svg" alt="#">
+                        </a>
+                    </li>
+
+                    <li data-aos="fade-right">
+                        <a href="#" target="_blank">
+                            <img class="img" src="assets/images/Clients/utosia-2.svg" alt="#">
+                        </a>
+                    </li>
+
+                    <li data-aos="fade-right">
+                        <a href="#" target="_blank">
+                            <img class="img" src="assets/images/Clients/fox-hub.svg" alt="#">
+                        </a>
+                    </li>
+                </ul>
+            </div>    <!-- clients__logos -->
+
+            <div class="clients__reviews">
+                <div class="reviews" id="reviewsSlider">
+                	
+                    <div class="reviews__item">
+                        <div class="reviews__header">
+                            <img class="reviews__photo" src="https://via.placeholder.com/100" alt="#">
+                            <div class="reviews__name">John Smith</div>
+                            <div class="reviews__company">FOX Hub CEO</div>
+                        </div>
+
+                        <div class="reviews__content">
+                            <p>    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </p>
+                            <p>    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </p>
+                        </div>
+                    </div>    <!-- reviews__item -->
+
+                    <div class="reviews__item">
+                        <div class="reviews__header">
+                            <img class="reviews__photo" src="https://via.placeholder.com/100" alt="#">
+                            <div class="reviews__name">John Smith</div>
+                            <div class="reviews__company">FOX Hub CEO</div>
+                        </div>
+
+                        <div class="reviews__content">
+                            <p>    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </p>
+                            <p>    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </p>
+                        </div>
+                    </div>    <!-- reviews__item -->
+
+                </div>    <!-- reviews -->
+            </div>    <!-- clients__reviews -->
+        </div>    <!-- clients -->
+
+        <button class="btn btn--orange btn--shadow" data-modal="#becomeClientModal">
+            <span>Become a client</span>
+        </button>
+        <span class="clients-heart">we love our clients</span>
+
+    </div>    <!-- container -->
+</section>
+
+    <!-- Benefits -->
+
+<div class="section" id="benefits" data-scrollspy="benefits">
+    <div class="container">
+        <h2 class="section__title"><span>Our </span>benefits</h2>
+        <div class="benefits">
+            <div class="benefits__col">
+                <ul class="benefits-list">
+                    <li class="benefits-list__item" data-aos="fade-down" data-aos-anchor=".benefits">
+                        <h4 class="benefits-list__title">Safety</h4>
+                        <div class="benefits-list__text    ">
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
+                        </div>
+                    </li>
+
+                    <li class="benefits-list__item" data-aos="fade-down" data-aos-delay="100" data-aos-anchor=".benefits">
+                        <h4 class="benefits-list__title">High quality drivers</h4>
+                        <div class="benefits-list__text    ">
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
+                        </div>
+                    </li>
+
+                    <li class="benefits-list__item" data-aos="fade-down" data-aos-delay="200" data-aos-anchor=".benefits">
+                        <h4 class="benefits-list__title">Guarantee & Support 24/7</h4>
+                        <div class="benefits-list__text    ">
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
+                        </div>
+                    </li>
+
+                    <li class="benefits-list__item" data-aos="fade-down" data-aos-delay="300" data-aos-anchor=".benefits">
+                        <h4 class="benefits-list__title">Personal manager</h4>
+                        <div class="benefits-list__text    ">
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>    <!-- benefits__col -->
+
+            <div class="benefits__col" data-aos="fade-left">
+                <img class="img" src="assets/images/car.jpg" alt="#">
+            </div>
+
+        </div>    <!-- benefits -->
+    </div>    <!-- container -->
+</div>    <!-- section -->
+
+    <!-- Team -->
+
+<section class="section section--gray" id="team" data-scrollspy="team">
+    <div class="container">
+        <h2 class="section__title"><span>Our</span> team</h2>
+
+        <div class="team">
+            <div class="team__col">
+                <div class="team__item" data-aos="fade-in">
+                    <img class="team__photo img" src="assets/images/Team/manager.jpg" alt="#">
+                    <div class="team__name">John Smith</div>
+                    <div class="team__prof">Logistic manager - 8 years experience</div>
+
+                    <ul class="team__contacts">
+                        <li>
+                            <img class="team__contacts-icon" src="assets/images/mail_black.svg" alt="#">
+                            <a href="mailto:john@centerlogistic.com">john@centerlogistic.com</a>
+                        </li>
+
+                        <li>
+                            <img class="team__contacts-icon" src="assets/images/phone_black.svg" alt="#">
+                            <a href="tel:+987412512543">+987412512543</a>
+                        </li>
+                    </ul>
+
+                </div>    <!-- team__item -->
+            </div>    <!-- team__item -->
+
+            <div class="team__col">
+                <div class="team__item" data-aos="fade-down" data-aos-delay="100">
+                    <img class="team__photo img" src="assets/images/Team/engeneer.jpg" alt="#">
+                    <div class="team__name">Daniel Kore</div>
+                    <div class="team__prof">Software engineer</div>
+
+                    <ul class="team__contacts">
+                        <li>
+                            <img class="team__contacts-icon" src="assets/images/mail_black.svg" alt="#">
+                            <a href="mailto:daniel@centerlogistic.com">daniel@centerlogistic.com</a>
+                        </li>
+
+                        <li>
+                            <img class="team__contacts-icon" src="assets/images/phone_black.svg" alt="#">
+                            <a href="tel:+987423252253">+987423252253</a>
+                        </li>
+                    </ul>
+
+                </div>    <!-- team__item -->
+            </div>    <!-- team__item -->
+
+            <div class="team__col">
+                <div class="team__item" data-aos="fade-down" data-aos-delay="200">
+                    <img class="team__photo img" src="assets/images/Team/marketing.jpg" alt="#">
+                    <div class="team__name">Anna Filler</div>
+                    <div class="team__prof">Marketing specialist - 10 years experience</div>
+
+                    <ul class="team__contacts">
+                        <li>
+                            <img class="team__contacts-icon" src="assets/images/mail_black.svg" alt="#">
+                            <a href="mailto:anna@centerlogistic.com">anna@centerlogistic.com</a>
+                        </li>
+
+                        <li>
+                            <img class="team__contacts-icon" src="assets/images/phone_black.svg" alt="#">
+                            <a href="tel:+98735353456">+98735353456</a>
+                        </li>
+                    </ul>
+
+                </div>    <!-- team__item -->
+            </div>    <!-- team__item -->
+        </div>    <!-- team -->
+
+    </div>    <!-- container -->
+</section>
+
+    <!-- Mission -->
+
+<section class="section" id="mission" data-scrollspy="mission">
+    <div class="container">
+        <h2 class="mission-title">Our Mission</h2>
+        <div class="mission" data-aos="fade-up">
+            <h3 class="mission__title">To provide our customer qualified services according the international</h3>
+            <h4 class="mission__subtitle">Book your Cargo now & Your job just got a lot easier</h4>
+        </div>    <!-- mission -->
+
+        <div class="text-center">
+            <button class="btn btn--orange btn--shadow" type="button" data-modal="#becomeClientModal">
+                <span>Become a client</span>
+            </button>
+        </div>
+
+    </div>    <!-- container -->
+</section>
+
+    <!-- News -->
+
+<section class="section" id="news" data-scrollspy="news">
+    <div class="container">
+
+        <h2 class="section__title"><span>Interesting</span> to read</h2>
+
+        <div class="article">
+
+            <article class="article__item" data-aos="fade-in">
+
+                <h4 class="article__title">
+                    <a href="#">News title</a>
+                </h4>
+
+                <div class="article__text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+                <div class="article__date" datetime="2019-02-14 19:00">21 March, 2019</div>
+            </article> <!-- article__item -->
+
+            <article class="article__item" data-aos="fade-in" data-aos-delay="100">
+
+                <h4 class="article__title">
+                    <a href="#">News title</a>
+                </h4>
+
+                <div class="article__text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+                <div class="article__date" datetime="2019-02-14 19:00">21 March, 2019</div>
+            </article> <!-- article__item -->
+
+        </div>    <!-- article -->
+
+        <a class="btn btn--orange btn--shadow" href="blog.html">
+            <span>Visit blog</span>
+        </a>
+
+    </div>    <!-- container -->
+</section>
+
+    <!-- Footer -->
+
+<footer class="footer">
+    <div class="container">
+
+        <div class="footer__logo">
+            <img src="assets/images/logo-black.svg" alt="#">
+        </div>
+
+        <address class="footer__contacts">
+            <p>New York, Street, ZIP code</p>
+            <p>
+                Call Us: <a href="tel:+9948373123">+9948373123</a>  or
+                E-mail: <a href="mailto:hello@centerlogistic.com">hello@centerlogistic.com</a>
+            </p>
+        </address>
+
+        <nav class="footer_nav">
+            <a href="text2.html">Terms &amp; Contidions</a>
+            <a href="text.html">Privacy Policy</a>
+            <a href="blog.html">Our blog</a>
+        </nav>
+
+    </div>    <!-- container -->
+</footer>
+
+    <!-- Modals -->
+
+<div class="modal" id="becomeClientModal">
+    <div class="modal__inner">
+        <div class="modal__content">
+
+            <div class="modal__header">
+                <h4 class="modal__title"><p>Need to deliver your cargo?</p>
+                <p>We can help!</p></h4>
+
+                <div class="modal__text">
+                    <p>Fill a little form and we will call you back!</p>
+                </div>
+            </div>    <!-- modal__header -->
+
+            <form class="form" action="" method="post">
+                <div class="form__group">
+                    <input class="input input--dark input--user" type="text" placeholder="Your name">
+                </div>
+
+                <div class="form__group">
+                    <input class="input input--dark input--phone" type="phone" placeholder="Your phone">
+                </div>
+
+                <div class="form__group">
+                    <input class="input input--dark input--email" type="email" placeholder="Your e-mail">
+                </div>
+                <button class="btn btn-block btn--orange" type="submit" data-modal="#thanksModal" data-modal-close>
+                    <span>Call me back</span>
+                </button>
+            </form>
+
+            <div class="modal__footer">
+                <h4 class="modal__footer-title">Our contacts</h4>
+
+                <address class="modal__footer-address">
+                    <p>New York, Street, ZIP code</p>
+                    <p>Phone: +9948373123</p>
+                    <p>E-mail: hello@centerlogistic.com</p>
+
+                </address>
+            </div>
+
+            <button class="modal__close" type="button" data-modal-close>
+                <img src="assets/images/close.svg" alt="">
+            </button>
+
+        </div> <!-- modal__content -->
+    </div>    <!-- modal__inner -->
+</div>    <!-- modal -->
+
+    <!-- Modals -->
+
+<div class="modal" id="thanksModal">
+    <div class="modal__inner">
+        <div class="modal__content">
+
+            <div class="modal__header">
+                <img src="assets/images/tick.svg" alt="#">
+                <h4 class="modal__title"><p>Thanks for your request</p></h4>
+
+                <div class="modal__text">
+                    <p>We call you back as soon as possible!</p>
+                </div>
+            </div>    <!-- modal__header -->
+
+
+            <div class="modal__footer">
+                <h4 class="modal__footer-title">Our contacts</h4>
+
+                <address class="modal__footer-address">
+                    <p>New York, Street, ZIP code</p>
+                    <p>Phone: +9948373123</p>
+                    <p>E-mail: hello@centerlogistic.com</p>
+
+                </address>
+            </div>
+
+            <button class="modal__close" type="button" data-modal-close>
+                <img src="assets/images/close.svg" alt="">
+            </button>
+
+        </div> <!-- modal__content -->
+    </div>    <!-- modal__inner -->
+</div>    <!-- modal -->
+
+
+    <!-- JavaScript -->
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+<script src="assets/js/slick.js"></script>
+<script src="assets/js/aos.js"></script>
+<script src="assets/js/app.js?v=1.0.0"></script>
+
+
+
+</body>
+</html>
