@@ -1,0 +1,132 @@
+@import './colors';
+
+.testiomonials {
+  display: flex;
+  gap: 1rem;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.testimonials__item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  
+  width: 50%;
+
+  text-transform: uppercase;
+  color: white;
+}
+
+.section__title {
+  color: var(--orange);
+  font-weight: bold;
+}
+
+.white {
+  color: white;
+}
+
+.title-size {
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+.testimonials__info {
+  text-transform: none;
+  text-align: justify;
+  letter-spacing: 2px;
+  line-height: 40px;
+}
+
+.person__info span {
+  color: var(--orange);
+}
+
+.right-side {
+  position: relative;
+}
+
+.person__img {
+  position: absolute;
+  width: 17rem;
+  height: 20rem;
+  object-fit: cover;
+  top: 2rem;
+  right: 8rem;
+}
+
+.background__orange {
+  width: 17rem;
+  height: 20rem;
+  
+  
+  border: 2px solid orange;
+  background-color: transparent;
+  
+  position: absolute;
+  right: 9rem;
+  top: 0.9rem;
+}
+
+.background__snd {
+  width: 17rem;
+  height: 19rem;
+
+  position: absolute;
+  top: 4rem;
+  right: 7rem;
+
+  background: var(--planCard);
+}
+
+.arrows {
+  display: flex;
+  gap: 1rem;
+
+  position: absolute;
+  bottom: 1rem;
+  left: 3rem;
+}
+
+.arrows img {
+  width: 1.5rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .testiomonials {
+    flex-direction: column;
+  }
+
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .background__orange,
+  .background__snd {
+    position: relative;
+    display: none;
+  }
+
+  .person__img {
+    position: relative;
+    top: 0;
+    right: 0;
+    align-self: center;
+  }
+
+  .arrows {
+    display: block;
+    bottom: -3rem;
+    left: 0;
+  }
+
+  .arrows img {
+    padding: 1rem;
+  }
+}

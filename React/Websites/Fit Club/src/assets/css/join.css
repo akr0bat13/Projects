@@ -1,0 +1,82 @@
+@import "./colors";
+
+.join {
+  display: flex;
+  padding: 0 2rem;
+  gap: 10rem;
+}
+
+.join__item {
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  position: relative;
+
+  color: white;
+}
+
+.orange__line {
+  width: 10.5rem;
+  border: 2px solid var(--orange);
+  border-radius: 20%;
+
+  margin: -10px 0;
+
+  position: absolute;
+}
+
+.join__title {
+  display: flex;
+  gap: 1rem;
+}
+
+.join--right {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+} 
+ 
+.email__sending {
+  display: flex;
+  gap: 3rem;
+  background-color: grey;
+  padding: 1rem 2rem;
+} 
+
+ .emil__input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: black;
+}
+
+::placeholder {
+  color: var(--lightgray);
+}
+
+.btn--join {
+  background-color: var(--orange);
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .join {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .join__item {
+    font-size: x-large;
+    flex-direction: column;
+  }
+
+  .join--right {
+    padding: 2rem;
+  }
+
+  .emil__input {
+    width: 100%;
+  }
+}

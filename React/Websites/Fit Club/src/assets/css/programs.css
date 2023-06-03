@@ -1,0 +1,92 @@
+@import './colors';
+
+.programs {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.programs__title {
+  display: flex;
+  gap: 5rem;
+  justify-content: center;
+
+  font-weight: bold;
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-style: italic;
+
+  color: white;
+}
+
+
+ /* Categories */
+
+.programs__categories {
+  display: flex;
+  gap: 1rem;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 1rem;
+  justify-content: space-between;
+
+  background-color: gray;
+  color: white;
+}
+
+.category:hover {
+  background: var(--planCard);
+  cursor: pointer;
+}
+
+.category__image svg {
+  width: 2rem;
+  height: 2rem;
+
+  fill: white;
+}
+
+.category__title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.category__info {
+  font-size: .9rem;
+  line-height: 25px;
+}
+
+.join_us {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.join_us:hover {
+  text-decoration: underline;
+}
+
+.join_us img {
+  width: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .programs__title {
+    flex-direction: column;
+    gap: 1rem;
+    font-size: x-large;
+
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .programs__categories {
+    flex-direction: column;
+  }
+}

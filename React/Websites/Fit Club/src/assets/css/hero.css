@@ -1,0 +1,362 @@
+@import "./colors";
+/* Hero */
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  width: 10rem;
+  height: 3rem;
+}
+.header__menu {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  color: white;
+}
+
+.header__menu li {
+  cursor: pointer;
+}
+
+.header__menu li:hover {
+  color: var(--orange);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hero__left {
+  flex: 3;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+}
+
+.hero__city {
+  margin-top: 4rem;
+  background-color: #363d42;
+  border-radius: 4rem;
+  width: fit-content;
+  padding: 20px 13px;
+  text-transform: uppercase;
+  color: white;
+  display: flex;
+
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.hero__city div {
+  position: absolute;
+  background-color: var(--orange);
+  width: 5.4rem;
+  height: 80%;
+  left: 8px;
+  border-radius: 3rem;
+}
+
+.hero__city span {
+  z-index: 1;
+}
+
+.hero__right {
+  flex: 1;
+
+  position: relative;
+
+  background-color: var(--orange);
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  font-size: 4.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  color: white;
+  overflow: inherit;
+}
+
+.hero__info {
+  font-size: 1rem;
+  font-weight: 200;
+  text-transform: none;
+  letter-spacing: 1px;
+  width: 80%;
+}
+
+.figures {
+  display: flex;
+  gap: 2rem;
+}
+
+.figure__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.figure__number {
+  font-size: 2rem;
+
+  color: white;
+}
+
+.figure__text {
+  color: var(--gray);
+
+  text-transform: uppercase;
+}
+
+/* Buttons */
+
+.hero__buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  width: 8rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: white;
+  padding: .5rem;
+  font-weight: bold;
+  border: 4px solid transparent;
+  
+  transition: .3 all;
+}
+
+.btn-orange {
+  color: white;
+  background-color: var(--orange);
+}
+
+.btn-transp {
+  background-color: transparent;
+  border: 2px solid var(--orange);
+}
+
+.btn:hover {
+  cursor: pointer;
+
+}
+
+.hero__right button {
+  position: absolute;
+  right: 3rem;
+  top: 2rem;
+
+  color: black;
+}
+
+.heart-rate {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+  width: fit-content;
+  padding: 1rem;
+  align-items: start;
+  border-radius: 5px;
+
+  position: absolute;
+  right: 4rem;
+  top: 7rem;
+  
+  background-color: var(--darkGrey);
+}
+
+.heart__img {
+  width: 2rem;
+}
+
+.heart__text {
+  color: var(--gray);
+}
+
+.heart__number {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.hero__image {
+  position: absolute;
+  top: 10rem;
+  right: 8rem;
+  width: 23rem;
+}
+
+.hero__image__back {
+  position: absolute;
+  top: 4rem;
+  right: 20rem;
+  z-index: -1;
+  width: 15rem;
+}
+
+.calories {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  width: fit-content;
+
+  position: absolute;
+  top: 32rem;
+  right: 28rem;
+
+  background-color: var(--caloryCard);
+  border-radius: 5px;
+}
+
+.calories__img {
+  width: 3rem;
+}
+
+.calories__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calories__text {
+  color: var(--gray);
+}
+
+.calories__number {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.hero--blur {
+  width: 22rem;
+  height: 30rem;
+  left: 0;
+}
+
+@media (max-width: 900px) {
+  .hero__right {
+    display: none;
+  }
+
+  .navbar__div {
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+    background-color: var(--appColor);
+    padding: 1rem;
+    border-radius: 5px;
+    z-index: 1000;
+  }
+  
+  .navbar {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  /* header */
+
+  .header__menu {
+    position: fixed;
+    right: 2rem;
+    z-index: 1000;
+
+    flex-direction: column;
+    background-color: var(--appColor);
+    padding: 2rem;
+  } 
+
+
+  /* hero */
+
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero--blur {
+    width: 14rem;
+  }
+
+  .hero__city {
+    margin-top: 0;
+    font-size: small;
+    align-self: center;
+  }
+
+  .hero-text {
+    font-size: xx-large;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero__info {
+    font-size: small;
+    font-weight: 200;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .hero__buttons {
+    justify-content: center;
+  }
+
+  .figure__number {
+    font-size: large;
+  }
+
+  .figure__text {
+    font-size: small;
+  }
+
+  .hero__right {
+    position: relative;
+    background: none;
+  }
+
+  .heart-rate {
+    left: 1rem;
+    top: 2rem;
+  }
+
+  .calories {
+    position: relative;
+    top: 5rem;
+    left: 2rem;
+  }
+
+  .calories__img {
+    width: 2rem;
+  }
+
+  .calories__number {
+    color: white;
+    font-size: 1rem;
+  }
+
+  .hero__image {
+    position: relative;
+    width: 15rem;
+    left: 7rem;
+    top: 4rem;
+
+    align-self: center;
+  }
+
+  .hero__image__back {
+    width: 15rem;
+    left: 2rem;
+    top: 0;
+  }
+}

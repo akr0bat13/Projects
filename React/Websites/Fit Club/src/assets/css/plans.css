@@ -1,0 +1,101 @@
+@import "./colors.css";
+
+.plans {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: -4rem;
+  padding: 0 2rem;
+  gap: 4rem;
+
+  position: relative;
+}
+
+.plans__variants {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  width: 15rem;
+
+  background-color: var(--caloryCard);
+  color: white;
+}
+
+.plan:nth-child(2) {
+  background: var(--planCard);
+  transform: scale(1.1);
+}
+
+.plan:nth-child(2) svg {
+  fill: white;
+}
+
+.plan:nth-child(2) button {
+  color: var(--orange);
+}
+
+.plan svg {
+  fill: var(--orange);
+  width: 2rem;
+  height: 2rem;
+}
+
+.plan__name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.plan__price {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.feature img {
+  width: 1rem;
+}
+
+.benefits {
+  font-size: .8rem;
+}
+
+.plans--blur--first {
+  width: 32rem;
+  height: 23rem;
+  top: 6rem;
+  left: 0;
+}
+
+.plans--blur--second {
+  width: 32rem;
+  height: 23rem;
+  top: 10rem;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .plans__variants {
+    flex-direction: column;
+  }
+}
