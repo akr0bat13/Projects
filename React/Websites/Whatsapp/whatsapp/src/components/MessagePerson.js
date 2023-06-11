@@ -95,7 +95,8 @@ const MessagePerson = () => {
       <div className="chat_display">
         {messages.map((message, index) => (
           <ChatMessage key={index} message={message} />
-        ))}
+          ))}
+          <ChatMessage />
       </div>
 
       {/* chat input */}
