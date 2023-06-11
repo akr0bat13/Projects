@@ -16,6 +16,7 @@
   --header: #F7F7FC;
   --icons-color: #5f5f5f;
   --main-bgc: #d7dbd6;
+  --active-red: #b60b0b;
 }
 
 body {
@@ -116,23 +117,39 @@ ul, ol, li {
 }
 
 .sidebar_header {
-  height: 50px;
+  height: 100px;
+  width: 100%;
+  margin-top: 20px;
   padding: 5px 0 5px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.sidebar_header .sidebar_header_img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  padding: 0 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .sidebar_header .user_img {
   width: 40px;
   height: 40px;
   border-radius: 100%;
-  cursor: pointer;
+  margin-right: 30px;
 }
 .sidebar_header .sidebar_header_btn {
   display: -webkit-box;
@@ -142,6 +159,7 @@ ul, ol, li {
       -ms-flex-align: center;
           align-items: center;
   padding-right: 10px;
+  margin-bottom: 20px;
 }
 .sidebar_header .sidebar_header_btn svg {
   width: 30px;
@@ -432,6 +450,35 @@ button img {
   text-transform: uppercase;
   margin-bottom: 20px;
 }
+.login .input_form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 400px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.login .input_form label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.login .input_form input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  width: 400px;
+  font-size: 18px;
+  border: 2px solid var(--border-blue);
+}
 .login .login_btn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -443,5 +490,75 @@ button img {
   transition: all 0.2s linear;
 }
 .login .login_btn:hover {
+  background-color: var(--active-color);
+}
+
+.modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.modal .modal_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.modal .modal_input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  width: 200px;
+  height: 40px;
+  padding: 10px;
+  outline: none;
+  border: 2px solid var(--border-blue);
+  border-radius: 30px;
+  border-left: none;
+  background-color: white;
+  margin-bottom: 20px;
+}
+.modal .modal_buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 20px 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.modal .modal_buttons .btn_modal,
+.modal .modal_buttons .btn_cansel {
+  width: 60px;
+  height: 40px;
+  border-radius: 30px;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  margin: 10px;
+}
+.modal .modal_buttons .btn-cansel:hover {
+  background-color: var(--active-red);
+}
+.modal .modal_buttons .btn_modal:hover {
   background-color: var(--active-color);
 }

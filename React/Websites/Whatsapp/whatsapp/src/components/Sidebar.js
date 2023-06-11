@@ -1,38 +1,59 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { FaComment, FaSearch, FaSignOutAlt } from "react-icons/fa";
 import UserProfile from './UserProfile';
-import {people} from '../data'
+import { people } from '../data';
 import { useUserContext } from '../context/user_context';
+import Modal from './ModalWindow';
+import image from '../assets/images/user.svg'
 
 const Sidebar = () => {
-
-  const { logout, myUser } = useUserContext()
-  const [allUsers, setAllUsers] = useState(people)
-  const [searchInput, setSearchInput] = useState('')
+  const { myUser, setMyUser } = useUserContext();
+  const [allChats, setAllChats] = useState(people);
+  const [searchInput, setSearchInput] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [selectedChat, setSelectedChat] = useState(null);
 
   const handleSearch = (e) => {
-    setSearchInput(e.target.value)
-  }
+    setSearchInput(e.target.value);
+  };
 
-  useEffect(() => {
-    const filteredUsers = people.filter(user =>
-      user.name.toLowerCase().includes(searchInput.toLowerCase())
-    )
-    setAllUsers(filteredUsers)
-  }, [searchInput])
+  const handleCreateChat = (recipientNumber, recipientName) => {
+    const newChat = {
+      id: Math.floor(Math.random() * 10000),
+      name: recipientName,
+      icon: '',
+      lastMessage: '',
+      recipientNumber: recipientNumber,
+      messages: []
+    };
+    setAllChats([...allChats, newChat]);
+    setShowModal(false);
+  };
+
+  const handleChatClick = (chat) => {
+    setSelectedChat(chat);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('myUser');
+    setMyUser(null);
+  };
 
   return (
     <div className='sidebar'>
       {/* sidebar-header */}
       <div className="sidebar_header">
         <div className="sidebar_header_img">
-          <img className='user_img' src={myUser.picture} alt="user" />
+          <img className='user_img' src={image} alt="user" />
+          <div className="user_name">{`id: ${myUser.id}`}</div>
         </div>
+        <hr/>
         <div className="sidebar_header_btn">
-          <FaComment />
-          <FaSignOutAlt onClick={logout}/>
+          <FaComment onClick={() => setShowModal(true)} />
+          <FaSignOutAlt onClick={handleLogout} />
         </div>
       </div>
+
       {/* sidebar-search */}
       <div className="search">
         <div className="search_img">
@@ -40,17 +61,26 @@ const Sidebar = () => {
         </div>
         <input className='search_input' type="text" placeholder='Search or start a new chat' value={searchInput} onChange={handleSearch} />
       </div>
-      
+
       {/* sidebar-chatlist */}
       <div className="sidebar_chat_list">
-        {allUsers.map( (user) => {
-          return(
-            <UserProfile {...user} key={user.id} name={user.name} icon={user.icon}/>
-          )
-        })}
+        {allChats
+            .filter((chat) => chat.name.toLowerCase().includes(searchInput.toLowerCase()))
+            .map((chat) => {
+              return (
+                <UserProfile {...chat} key={chat.id} name={chat.name} icon={chat.icon} onClick={() => handleChatClick(chat)} />
+              );
+            })
+        }
       </div>
-    </div>
-  )
-}
 
-export default Sidebar
+      {/* modal */}
+      {showModal && (
+        <Modal title="Create new chat" onClose={() => setShowModal(false)} onSubmit={handleCreateChat} />
+      )}
+      
+    </div>
+  );
+};
+
+export default Sidebar;

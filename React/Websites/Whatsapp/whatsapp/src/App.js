@@ -2,13 +2,11 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import HomePage from './components/HomePage'
 import ChatPage from './components/ChatPage'
 import Login from './pages/Login';
-import MessagePerson from './components/MessagePerson';
 import { useUserContext } from './context/user_context';
-import { useState } from 'react';
 
 function App() {
 
-const { loginWithRedirect, myUser} = useUserContext()
+const { myUser} = useUserContext()
 
   return (
       <Router>
@@ -20,7 +18,7 @@ const { loginWithRedirect, myUser} = useUserContext()
           </Routes>
           ) : 
           (
-            <Login loginWithRedirect={loginWithRedirect} />
+            <Login />
           )
           }
           

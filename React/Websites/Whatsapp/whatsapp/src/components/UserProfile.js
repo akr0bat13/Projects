@@ -12,7 +12,7 @@ const UserProfile = ({id, name, icon}) => {
   return (
     <div className='user_profile' key={id} onClick={handleClick}>
       {/* img */}
-      <img src={icon} alt="avatar" />
+      <img src={icon ? icon : image} alt="avatar" />
       {/* name */}
       <p className='user_name'>{name}</p>
     </div>
