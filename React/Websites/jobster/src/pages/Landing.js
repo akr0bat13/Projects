@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import main from '../assets/images/main.svg';
-import Wrapper from '../assets/wrappers/LandingPage.js'
-import {Logo} from '../components'
+import Wrapper from '../assets/wrappers/LandingPage';
+import { Logo } from '../components';
+import { Link } from 'react-router-dom';
 const Landing = () => {
   return (
     <Wrapper>
@@ -19,7 +19,7 @@ const Landing = () => {
             fixie raclette taxidermy craft beer. Brunch bitters synth, VHS
             crucifix heirloom meggings bicycle rights.
           </p>
-          <Link className='btn btn-hero' to='/register'>
+          <Link to='/register' className='btn btn-hero'>
             Login/Register
           </Link>
         </div>
