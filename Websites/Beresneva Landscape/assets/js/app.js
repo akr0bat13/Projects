@@ -5,19 +5,6 @@ $(function() {
 	$(document).ready(function(){
 		// let header = $("#header")
 
-		var body = $("body");
-		/*
-		body.fadeIn(600);
-		$(document).on("click", "a:not([href^='#']):not([href^='tel']):not([href^='mailto'])", function(e) {
-			e.preventDefault();
-		  	$("body").fadeOut(600);
-		  	var self = this;
-		  	setTimeout(function () {
-		   	window.location.href = $(self).attr("href");
-	  		}, 600);
-	 	});
-		*/
-
 		// AOS 	https://github.com/michalsnik/aos
 		// =========================================
 
@@ -201,30 +188,29 @@ $(function() {
 	  speed: 1000
 	});
 
-	$('#introSliderPrev').on('click', function(){
-		introSlider.slick('slickPrev')
-	});
-
-	$('#introSliderNext').on('click', function(){
-		introSlider.slick('slickNext')
-	});
-
 	// Slider on projects
 
 	var swiper = new Swiper('.projects', {
 		effect: 'coverflow',
-		grabCursor: false,
+		grabCursor: true,
 		centeredSlides: true,
 		slidesPerView: 'auto',
 		// loop: true,
-		mousewheel: true,
+		mousewheel: false,
 		coverflowEffect: {
 			rotate: 20,
 			stretch: 0,
 			depth: 200,
 			modifier: 1,
 			slideShadows: false,
+		},		
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
 		},
+		thumbs: {
+			swiper: galleryThumbs
+		}
 	});
 	
 	var swiper_2 = new Swiper('.sert', {
