@@ -1,0 +1,19 @@
+// Green
+$green: #223e07;
+$light_green: #699f35;
+$gradient: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+$dark_green: #477b14;
+
+// Grey
+$grey: #454545;
+
+// Black
+$black: #000;
+
+// Header
+$header_gradient: linear-gradient(
+  to bottom,
+  rgba(159, 159, 159, 1) 0%,
+  rgba(0, 0, 0, 0) 100%
+);
+$header_active: rgba(255, 255, 255, 0.8);
