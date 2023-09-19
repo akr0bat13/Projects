@@ -1,7 +1,16 @@
 <div class="hello">hello</div>
-<hr />
-<img src="{{ img }}" alt="" />
-<hr />
-<app-post></app-post>
-<app-post2></app-post2>
-<app-post3></app-post3>
+
+<button (click)="backgroundToggle = !backgroundToggle">Toggle</button>
+
+<p
+  [ngClass]="{
+    red: backgroundToggle,
+    blue: !backgroundToggle
+  }"
+>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, ratione.
+</p>
+
+<p [class.red]="backgroundToggle" [class.blue]="!backgroundToggle">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, ab.
+</p>

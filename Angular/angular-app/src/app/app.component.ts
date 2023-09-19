@@ -6,11 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Dynamic title';
-
-  constructor() {
-    setTimeout(() => {
-      this.title = 'reworked';
-    }, 3000);
-  }
+  backgroundToggle = false;
 }

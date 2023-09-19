@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PostCompoment } from './post/post.component';
 import { Post2Component } from './post2/post2.component';
