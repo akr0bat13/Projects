@@ -1,0 +1,59 @@
+@import '../../vars.scss';
+
+.project {
+  display: flex;
+}
+
+.project.reverse {
+  flex-direction: row-reverse;
+}
+
+.project-item {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 50%;
+  &.text-info {
+    padding: 20px;
+  }
+}
+
+.project-title {
+  font-size: 32px;
+}
+
+.project-year {
+  font-family: Montserrat;
+  font-size: 24px;
+}
+
+.project-info {
+  font-family: Montserrat;
+  font-size: 18px;
+}
+
+.project-detailed {
+  font-family: Montserrat;
+  font-size: 16px;
+  position: relative;
+  width: 100px;
+  transition: all 0.3s ease-out;
+
+  &:after {
+    content: '';
+    width: 20px;
+    height: 3px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: $black;
+  }
+
+  &:hover {
+    color: $green;
+    &:after {
+      width: 100%;
+      background-color: $green;
+    }
+  }
+}

@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { introLinks, links, logoIcon, mediaLinks } from '../utils/constants'
+import { introLinks, links, logoIcon, mediaLinks } from '../../utils/constants'
 
-import '../assets/scss/Header.scss'
-import Modal from './Modal'
+import Modal from '../Modal/Modal'
+import './Header.scss'
 
 const Header = () => {
   const location = useLocation()
   const [activeLink, setActiveLink] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleLinkClick = (link) => {
+  const handleLinkClick = (link: any) => {
     setActiveLink(link)
     if (link === 'Контакты') {
       setIsModalOpen(true)

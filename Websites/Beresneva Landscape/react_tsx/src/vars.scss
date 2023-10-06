@@ -12,16 +12,9 @@ $grey-light: #a3a2a2;
 $black: #000;
 
 // Header
-
-// $header_gradient: linear-gradient(
-//   180deg,
-//   rgba(117, 117, 117, 0.2) 0%,
-//   rgba(250, 250, 250, 0.2) 100%
-// );
 $header_gradient: linear-gradient(
   to bottom,
-  rgba(159, 159, 159, 1) 0,
+  rgba(159, 159, 159, 1) 0%,
   rgba(0, 0, 0, 0) 100%
 );
-
 $header_active: rgba(255, 255, 255, 0.8);

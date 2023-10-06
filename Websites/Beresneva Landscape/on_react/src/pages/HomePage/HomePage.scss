@@ -1,0 +1,44 @@
+@import '../../vars.scss';
+
+.container-index {
+  max-width: 1190px;
+  min-height: 600px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.beresneva-img {
+  width: 70%;
+}
+
+.landscape-img {
+  width: 50%;
+}
+
+.button {
+  padding: 15px 20px;
+  text-decoration: none;
+  background-color: $grey-light;
+  border: none;
+  cursor: pointer;
+  font-size: 28px;
+  font-family: inherit;
+  border-radius: 20px;
+
+  transition: background-color 0.3s linear;
+
+  &:hover {
+    background-color: $grey;
+  }
+}
