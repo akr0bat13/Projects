@@ -1,0 +1,13 @@
+.sert-items {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.sert-item {
+  max-width: 370px;
+  img {
+    width: 100%;
+  }
+}
