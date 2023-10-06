@@ -16,7 +16,6 @@ const ProjectItem = ({ img, title, year, text, index, id }) => {
         <Link className="project-detailed" to={`/projects/${id}`}>
           Подробнее
         </Link>
-        {/* <div className="project-detailed">Подробнее</div> */}
       </div>
       <div className="project-item">
         <img src={img} alt="" />

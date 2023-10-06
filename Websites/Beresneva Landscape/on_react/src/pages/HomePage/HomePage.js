@@ -4,7 +4,7 @@ import Header from '../../components/Header/Header'
 import { indexPage } from '../../utils/indexPage'
 import './HomePage.scss'
 
-const HomePageTry = () => {
+const HomePage = () => {
   const { beresneva, landscape } = indexPage
   return (
     <>
@@ -21,4 +21,4 @@ const HomePageTry = () => {
     </>
   )
 }
-export default HomePageTry
+export default HomePage

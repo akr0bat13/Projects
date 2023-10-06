@@ -20,7 +20,7 @@ export const videos = [
   {
     id: 4,
     link: 'https://www.youtube.com/embed/oP6lWU-DG-A',
-    title: 'Проект "От 16 и старше"',
+    title: 'Проект "До 16 и старше"',
     year: '2020',
   },
   {

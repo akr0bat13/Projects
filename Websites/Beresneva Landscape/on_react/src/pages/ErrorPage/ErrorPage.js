@@ -6,7 +6,7 @@ import error from '../../assets/images/icons/Error.svg'
 
 const Error = () => {
   return (
-    <div className="container">
+    <div className="error-container">
       <div className="error-page">
         <img className="error-image" src={error} alt="not found" />
         <h3 className="error-title">Страница не найдена!</h3>

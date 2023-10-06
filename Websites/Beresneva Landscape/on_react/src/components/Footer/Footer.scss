@@ -23,33 +23,34 @@
 }
 
 .footer__contacts {
-  font-family: 'Exo 2', sans-serif;
+  display: flex;
+  gap: 30px;
+
   font-size: 17px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 90px;
   font-style: normal;
-  margin: 0 auto;
-
-  display: flex;
 }
 
-.footer__contacts__tel {
-  /* font-size: 14px; */
-  padding-left: 30px;
+.mobile-link {
+  position: relative;
 }
 
-.footer__contacts a {
-  padding: 0 30px;
+.mobile-link::before {
+  content: '';
+  height: 1px;
+  width: 0;
+  background-color: #000;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 
-  text-decoration: none;
-
-  color: #000;
-
-  transition: underline 0.1s linear;
+  transition: all 0.3s linear;
 }
-
-.footer__contacts a:hover {
-  text-decoration: underline;
+.mobile-link:hover {
+  &::before {
+    width: 100%;
+  }
 }
 
 .media__link {

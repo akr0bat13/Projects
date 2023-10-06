@@ -3,7 +3,16 @@ import image from '../assets/images/author.jpg'
 export const aboutInfo = {
   image: image,
   title: 'Ландшафтный дизайнер',
-  text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.  Reprehenderit temporibus deleniti illo sint distinctio delectus  ex error, suscipit dolore architecto sequi?',
+  text: 'Руководитель ландшафтного бюро, практикующий ландшафтный дизайнер, действующий профессиональный консультант и лектор, преподаватель, спикер, участник и победитель международных ландшафтных фестивалей.',
+  specialization: [
+    'Уход за садом',
+    'Покупка загородной недвижимости. На что стоит обратить внимание перед покупкой',
+    'Фестивальные сады',
+    'Психология в ландшафте. Как заработать и не сойти с ума',
+    'Организация рабочего процесса на объекте',
+    'Частные сады с историей. Тонкости работы в старых садах',
+  ],
+
   name: 'Марина',
   lastName: 'Береснева',
 }

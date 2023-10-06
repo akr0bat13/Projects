@@ -9,31 +9,37 @@ function Footer() {
 
   return (
     <footer className="footer">
-      <div className="footer__content">
-        <div className="copyright">
-          <div className="copyright__symvol">&copy;</div>
-          <div className="copyright__year">{copyrightDate}</div>
-        </div>
-        <address className="footer__contacts">
-          <div className="footer__contacts__tel">
-            <a href={`tel:${phone}`}>{phone}</a>
+      <div className="container">
+        <div className="footer__content">
+          <div className="copyright">
+            <div className="copyright__symvol">&copy;</div>
+            <div className="copyright__year">{copyrightDate}</div>
           </div>
-          <div>
-            <a href={`mailto:${mail}`}>{mail}</a>
-          </div>
-        </address>
-        <div className="media media--footer">
-          {mediaLinks.map((media) => {
-            if (location.pathname === '/') {
-              return null
-            }
-            const { icon, link } = media
-            return (
-              <a className="media__link" href={link}>
-                <img className="image" src={icon} alt="#" />
+          <address className="footer__contacts">
+            <div>
+              <a className="mobile-link" href={`tel:${phone}`}>
+                {phone}
               </a>
-            )
-          })}
+            </div>
+            <div>
+              <a className="mobile-link" href={`mailto:${mail}`}>
+                {mail}
+              </a>
+            </div>
+          </address>
+          <div className="media media--footer">
+            {mediaLinks.map((media) => {
+              if (location.pathname === '/') {
+                return null
+              }
+              const { icon, link } = media
+              return (
+                <a className="media__link" href={link}>
+                  <img className="image" src={icon} alt="#" />
+                </a>
+              )
+            })}
+          </div>
         </div>
       </div>
     </footer>
