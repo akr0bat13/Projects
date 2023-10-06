@@ -27,9 +27,25 @@
   font-size: 24px;
 }
 
+.project-title.right,
+.project-year.right {
+  text-align: right;
+}
+
 .project-info {
+  display: flex;
   font-family: Montserrat;
   font-size: 18px;
+}
+
+.project-info.right {
+  justify-content: end;
+}
+
+.project-link {
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .project-detailed {
