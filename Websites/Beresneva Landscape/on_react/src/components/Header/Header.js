@@ -52,14 +52,12 @@ const Header = () => {
               const { id, text, url } = link
               return (
                 <Link
-                  className={`nav_link ${activeLink === id ? 'active' : ''} ${
-                    location.pathname === '/' ? 'nav_link--index' : ''
-                  }`}
+                  className={`nav_link ${activeLink === text ? 'active' : ''}`}
                   key={id}
                   onClick={() => handleLinkClick(text)}
                   to={url}
                 >
-                  {text}
+                  <div className="link-text">{text}</div>
                 </Link>
               )
             })}

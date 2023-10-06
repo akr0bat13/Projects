@@ -9,14 +9,16 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <div className="container-index">
-        <div className="logo">
-          <img className="beresneva-img" src={beresneva} alt="" />
-          <img className="landscape-img" src={landscape} alt="" />
+      <div className="center">
+        <div className="container-index">
+          <div className="logo">
+            <img className="beresneva-img" src={beresneva} alt="" />
+            <img className="landscape-img" src={landscape} alt="" />
+          </div>
+          <button className="button">
+            <Link to="/projects">Проекты</Link>
+          </button>
         </div>
-        <button className="button">
-          <Link to="/projects">Проекты</Link>
-        </button>
       </div>
     </>
   )

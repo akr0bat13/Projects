@@ -1,0 +1,13 @@
+.sertificates {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  .sert-title {
+    padding-top: 40px;
+    font-size: 32px;
+  }
+}

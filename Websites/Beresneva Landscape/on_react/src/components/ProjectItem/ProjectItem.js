@@ -10,12 +10,16 @@ const ProjectItem = ({ img, title, year, text, index, id }) => {
   return (
     <div className={`project ${isOdd ? 'reverse' : ''}`}>
       <div className="project-item text-info">
-        <div className="project-title">{title}</div>
-        <div className="project-year">{year}</div>
-        <div className="project-info">{truncatedText}...</div>
-        <Link className="project-detailed" to={`/projects/${id}`}>
-          Подробнее
-        </Link>
+        <div className={`project-title ${isOdd ? 'right' : ''}`}>{title}</div>
+        <div className={`project-year ${isOdd ? 'right' : ''}`}>{year}</div>
+        <div className={`project-info ${isOdd ? 'right' : ''}`}>
+          {truncatedText}...
+        </div>
+        <div className="project-link">
+          <Link className="project-detailed" to={`/projects/${id}`}>
+            Подробнее
+          </Link>
+        </div>
       </div>
       <div className="project-item">
         <img src={img} alt="" />
