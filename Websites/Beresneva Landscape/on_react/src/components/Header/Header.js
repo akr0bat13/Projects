@@ -5,21 +5,21 @@ import { links, logoIcon, mediaLinks } from '../../utils/constants'
 import Modal from '../Modal/Modal'
 import './Header.scss'
 
-const Header = () => {
+const Header = ({ openModal }) => {
   const location = useLocation()
   const [activeLink, setActiveLink] = useState('')
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  // const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleLinkClick = (link) => {
     setActiveLink(link)
     if (link === 'Контакты') {
-      setIsModalOpen(true)
+      openModal()
     }
   }
 
-  const closeModal = () => {
-    setIsModalOpen(false)
-  }
+  // const closeModal = () => {
+  //   setIsModalOpen(false)
+  // }
 
   return (
     <header className="header">
@@ -77,7 +77,6 @@ const Header = () => {
           )}
         </div>
       </div>
-      {isModalOpen && <Modal closeModal={closeModal} />}
     </header>
   )
   // }

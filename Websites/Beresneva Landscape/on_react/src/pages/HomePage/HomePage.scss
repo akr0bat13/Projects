@@ -25,26 +25,73 @@
 }
 
 .beresneva-img {
-  width: 70%;
+  width: 100%;
 }
 
 .landscape-img {
-  width: 50%;
+  width: 80%;
 }
 
 .button {
-  padding: 15px 20px;
-  text-decoration: none;
-  background-color: $grey-light;
-  border: none;
-  cursor: pointer;
-  font-size: 28px;
   font-family: inherit;
-  border-radius: 20px;
+  height: 80px;
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background-color: $grey-bg;
+  transition: all 0.1s ease-in-out;
+}
 
-  transition: background-color 0.3s linear;
+.button:hover {
+  // box-shadow: 0.5px 0.5px 150px #252525;
+  border: 3px solid $black;
+}
 
-  &:hover {
-    background-color: $grey;
-  }
+.type1::after {
+  content: 'Подробнее';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 200px;
+  font-size: 1.2rem;
+
+  font-weight: 300;
+  background-color: $grey-bg;
+  color: $black;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translateY(100px);
+  transition: all 0.3s ease-in-out;
+}
+
+.type1::before {
+  content: 'Проекты';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  width: 200px;
+
+  height: 80px;
+  background-color: $dark-green;
+  color: $grey-bg;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translateY(0px) scale(1.2);
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.type1:hover::after {
+  transform: translateY(0) scale(1.2);
+}
+
+.type1:hover::before {
+  transform: translateY(-50px) scale(0) rotate(120deg);
 }

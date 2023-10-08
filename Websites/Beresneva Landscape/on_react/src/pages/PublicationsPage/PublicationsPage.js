@@ -1,13 +1,11 @@
 import React from 'react'
 import Footer from '../../components/Footer/Footer'
-import Header from '../../components/Header/Header'
 import { videos } from '../../utils/publications'
 import './Publications.scss'
 
 const Publications = () => {
   return (
     <>
-      <Header />
       <div class="container">
         <div className="projects">
           <div class="publications">
