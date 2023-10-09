@@ -1,0 +1,14 @@
+.project-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &-title {
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+
+  &-value {
+    font-size: 18px;
+  }
+}

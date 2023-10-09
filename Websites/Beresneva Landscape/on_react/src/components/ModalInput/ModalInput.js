@@ -1,7 +1,8 @@
+// ModalInput.jsx
 import React from 'react'
 import './ModalInput.scss'
 
-const ModalInput = ({ title, icon }) => {
+const ModalInput = ({ title, icon, onChange }) => {
   return (
     <div className="input-container">
       <div className="input-icon">
@@ -12,6 +13,7 @@ const ModalInput = ({ title, icon }) => {
         type="text"
         name="name"
         placeholder={title}
+        onChange={onChange}
       />
     </div>
   )

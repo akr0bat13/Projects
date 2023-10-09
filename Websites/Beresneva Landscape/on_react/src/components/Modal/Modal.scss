@@ -1,3 +1,5 @@
+@import '../../vars.scss';
+
 .modal {
   position: fixed;
   top: 0;
@@ -8,7 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* Убедитесь, что значение z-index достаточно высокое */
+  z-index: 9999;
 }
 
 .modal-content {
@@ -16,6 +18,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
   background-color: #fff;
   padding: 20px;
   border-radius: 4px;
@@ -33,6 +36,13 @@
   border: none;
   cursor: pointer;
   transition: transform 0.3s;
+}
+
+.title-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-title {
@@ -56,4 +66,36 @@
 .modal-content form {
   display: flex;
   flex-direction: column;
+}
+
+.form-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+
+  font-family: inherit;
+  font-size: 24px;
+
+  background-color: $dark-green;
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.suptitle-content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #707070;
+}
+
+.modal-suptitile {
+  font-size: 18px;
 }

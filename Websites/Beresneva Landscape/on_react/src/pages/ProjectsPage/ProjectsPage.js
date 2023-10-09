@@ -10,16 +10,9 @@ const ProjectsPage = () => {
       <div className="container">
         <div className="projects">
           {projects.map((project, index) => {
-            const { img, title, year, text, id } = project
+            // const { img, title, year, text, id } = project
             return (
-              <ProjectItem
-                id={id}
-                img={img}
-                title={title}
-                year={year}
-                text={text}
-                index={index}
-              />
+              <ProjectItem key={project.id} index={index} project={project} />
             )
           })}
         </div>

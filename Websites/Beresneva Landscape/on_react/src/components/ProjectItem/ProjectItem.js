@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './ProjectsItem.scss'
 
-const ProjectItem = ({ img, title, year, text, index, id }) => {
+const ProjectItem = ({ index, project }) => {
+  const { text, title, image, year, id } = project
   const words = text.split(' ')
   const truncatedText = words.slice(0, 30).join(' ')
   const isOdd = index % 2 !== 0
@@ -15,6 +16,11 @@ const ProjectItem = ({ img, title, year, text, index, id }) => {
         <div className={`project-info ${isOdd ? 'right' : ''}`}>
           {truncatedText}...
         </div>
+        {/* <div className="project-link">
+          <a className="project-detailed" href={`/projects/${id}`}>
+            Подробнее
+          </a>
+        </div> */}
         <div className="project-link">
           <Link className="project-detailed" to={`/projects/${id}`}>
             Подробнее
@@ -22,7 +28,7 @@ const ProjectItem = ({ img, title, year, text, index, id }) => {
         </div>
       </div>
       <div className="project-item">
-        <img src={img} alt="" />
+        <img src={image} alt="" />
       </div>
     </div>
   )

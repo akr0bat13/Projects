@@ -17,22 +17,24 @@ function App() {
 
   const openModal = () => {
     setIsModalOpen(true)
+    document.body.classList.add('no-scroll')
   }
 
   const closeModal = () => {
     setIsModalOpen(false)
+    document.body.classList.remove('no-scroll')
   }
   return (
     <div className="App">
       <Router>
         <Header openModal={openModal} />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/projects" element={<Projects />} />
           <Route path="/projects/:id" element={<SingleProject />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/sertificates" element={<Sertificates />} />
-          <Route path="/publications" element={<Publications />} />
+          <Route exact path="/about" element={<About />} />
+          <Route exact path="/sertificates" element={<Sertificates />} />
+          <Route exact path="/publications" element={<Publications />} />
           <Route path="*" element={<Error />} />
         </Routes>
         {isModalOpen && <Modal closeModal={closeModal} />}

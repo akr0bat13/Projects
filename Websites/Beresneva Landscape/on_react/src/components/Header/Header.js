@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { links, logoIcon, mediaLinks } from '../../utils/constants'
 
-import Modal from '../Modal/Modal'
 import './Header.scss'
 
 const Header = ({ openModal }) => {
   const location = useLocation()
   const [activeLink, setActiveLink] = useState('')
-  // const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const handleLinkClick = (link) => {
     setActiveLink(link)
@@ -17,12 +16,26 @@ const Header = ({ openModal }) => {
     }
   }
 
-  // const closeModal = () => {
-  //   setIsModalOpen(false)
-  // }
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset
+
+      setIsScrolled(scrollTop > 0)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  useEffect(() => {
+    setActiveLink(location.pathname)
+  }, [location.pathname])
 
   return (
-    <header className="header">
+    <header className={`header ${isScrolled ? 'dark' : ''}`}>
       <div className="header-container">
         <div
           className={`${
@@ -33,11 +46,7 @@ const Header = ({ openModal }) => {
             <Link to="/">
               <img
                 className="beresneva-logo"
-                src={
-                  location.pathname === '/'
-                    ? logoIcon.logo_white
-                    : logoIcon.logo
-                }
+                src={logoIcon.logo}
                 alt="Beresneva Landscape"
               />
             </Link>
@@ -45,19 +54,21 @@ const Header = ({ openModal }) => {
 
           <ul className="nav">
             {links.map((link) => {
-              // if (location.pathname === '/' && link.text === 'Сертификаты') {
-              //   return null
-              // }
-
               const { id, text, url } = link
               return (
                 <Link
-                  className={`nav_link ${activeLink === text ? 'active' : ''}`}
+                  className={`nav_link `}
                   key={id}
                   onClick={() => handleLinkClick(text)}
                   to={url}
                 >
-                  <div className="link-text">{text}</div>
+                  <div
+                    className={`link-text ${
+                      activeLink === text ? 'active' : ''
+                    }`}
+                  >
+                    {text}
+                  </div>
                 </Link>
               )
             })}

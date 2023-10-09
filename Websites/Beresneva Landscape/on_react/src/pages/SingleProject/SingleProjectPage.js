@@ -1,25 +1,73 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import SingleProjectItem from '../../components/SingleProjectItem/SingleProjectItem'
 import { projects } from '../../utils/projects/projects'
+import Error from '../ErrorPage/ErrorPage'
 
-const SinglePage = ({ match }) => {
-  const { id } = match.params
+import './SingleProjectPage.scss'
+
+const SingleProject = () => {
+  const id = window.location.pathname.replace('/projects/', '')
   const project = projects.find((project) => project.id === id)
+  const { image, title, year, text, designers, location, photograps } = project
 
   if (!project) {
-    return <div>Проект не найден</div>
+    return <Error />
   }
 
+  const params = [
+    {
+      title: 'Реализация',
+      constant: year,
+    },
+    {
+      title: 'Дизайнеры',
+      constant: designers,
+    },
+    {
+      title: 'Местоположение',
+      constant: location,
+    },
+    {
+      title: 'Фотографы',
+      constant: photograps,
+    },
+  ]
+
+  const paragraphs = text.split('\n')
+
   return (
-    <div>
-      <h2>{project.title}</h2>
-      <p>Год: {project.year}</p>
-      <p>Дизайнеры: {project.designers}</p>
-      <p>Координаты: {project.coordinates}</p>
-      <p>Фотографы: {project.photographs}</p>
-      <p>{project.text}</p>
-      <img src={project.img} alt={project.title} />
+    <div className="projects">
+      <div className="container">
+        <div className="single-project">
+          <div className="single-project-subcontent">
+            <div className="single-project-info">
+              <h1>{title}</h1>
+              <SingleProjectItem
+                params={params}
+                year={year}
+                designers={designers}
+                location={location}
+                photograps={photograps}
+              />
+            </div>
+            <div className="single-project-slider">
+              <img src={image} alt="" />
+            </div>
+          </div>
+          <div className="single-project-content">
+            {paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+          <div className="project-link">
+            <Link className="project-return" to="/projects">
+              Вернуться к проектам
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
-
-export default SinglePage
+export default SingleProject
