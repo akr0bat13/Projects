@@ -27,7 +27,7 @@ function Footer() {
               </a>
             </div>
           </address>
-          <div className="media media--footer">
+          <div className="media--footer">
             {mediaLinks.map((media) => {
               if (location.pathname === '/') {
                 return null

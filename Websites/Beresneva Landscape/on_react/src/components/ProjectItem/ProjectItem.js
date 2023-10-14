@@ -16,11 +16,6 @@ const ProjectItem = ({ index, project }) => {
         <div className={`project-info ${isOdd ? 'right' : ''}`}>
           {truncatedText}...
         </div>
-        {/* <div className="project-link">
-          <a className="project-detailed" href={`/projects/${id}`}>
-            Подробнее
-          </a>
-        </div> */}
         <div className="project-link">
           <Link className="project-detailed" to={`/projects/${id}`}>
             Подробнее

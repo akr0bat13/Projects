@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Modal from './components/Modal/Modal'
+import Sidebar from './components/Sidebar/Sidebar'
 import {
   About,
   Error,
@@ -28,6 +29,7 @@ function App() {
     <div className="App">
       <Router>
         <Header openModal={openModal} />
+        <Sidebar />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/projects" element={<Projects />} />

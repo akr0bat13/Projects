@@ -2,7 +2,7 @@
 
 .footer {
   margin-top: auto;
-  height: 90px;
+  padding: 10px 0;
 
   background-color: #a3a2a2;
 }
@@ -60,4 +60,18 @@
 
 .media__link:last-child {
   padding-right: 0;
+}
+
+@media screen and (max-width: 800px) {
+  .footer {
+    padding: 20px 0;
+  }
+
+  .footer__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
 }

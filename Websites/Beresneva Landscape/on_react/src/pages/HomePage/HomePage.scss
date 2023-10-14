@@ -3,6 +3,7 @@
 .container-index {
   max-width: 1190px;
   min-height: 600px;
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,7 +18,7 @@
   width: 100%;
 }
 
-.logo {
+.logo-index {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +26,7 @@
 }
 
 .beresneva-img {
-  width: 100%;
+  width: 90%;
 }
 
 .landscape-img {
@@ -46,7 +47,6 @@
 }
 
 .button:hover {
-  // box-shadow: 0.5px 0.5px 150px #252525;
   border: 3px solid $black;
 }
 
@@ -94,4 +94,20 @@
 
 .type1:hover::before {
   transform: translateY(-50px) scale(0) rotate(120deg);
+}
+
+.home-link {
+  display: flex;
+  color: $grey-bg;
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .button,
+  .type1::after,
+  .type1::before {
+    height: 60px;
+    width: 150px;
+    font-size: 1rem;
+  }
 }

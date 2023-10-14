@@ -1,20 +1,11 @@
 import whatsAppWhite from '../assets/images/icons/Whatsapp-white.svg'
-import closeIcon from '../assets/images/icons/close.svg'
-import instagram from '../assets/images/icons/instagram.svg'
 import logo from '../assets/images/icons/logo.svg'
-import logoWhite from '../assets/images/icons/logo_white.svg'
-import mail from '../assets/images/icons/mail.svg'
-import person from '../assets/images/icons/person.svg'
-import phone from '../assets/images/icons/phone.svg'
 import telegramWhite from '../assets/images/icons/telegram-white.svg'
 import telegram from '../assets/images/icons/telegram.svg'
-import tick from '../assets/images/icons/tick.svg'
-import vk from '../assets/images/icons/vk.svg'
 import whatsApp from '../assets/images/icons/whatsApp.svg'
 
 export const logoIcon = {
   logo: logo,
-  logo_white: logoWhite,
 }
 
 export const links = [
@@ -25,7 +16,7 @@ export const links = [
   },
   {
     id: 2,
-    text: 'О нас',
+    text: 'Обо мне',
     url: '/about',
   },
   {

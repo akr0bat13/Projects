@@ -2,3 +2,12 @@
   display: block;
   padding: 100px 0;
 }
+
+@media screen and (max-width: 800px) {
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 70px 0;
+  }
+}

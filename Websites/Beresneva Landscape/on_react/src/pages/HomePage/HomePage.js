@@ -9,13 +9,11 @@ const HomePage = () => {
     <>
       <div className="center">
         <div className="container-index">
-          <div className="logo">
+          <div className="logo-index">
             <img className="beresneva-img" src={beresneva} alt="" />
             <img className="landscape-img" src={landscape} alt="" />
           </div>
-          <button className="button type1">
-            <Link to="/projects"></Link>
-          </button>
+          <Link className="button type1" to="/projects" />
         </div>
       </div>
     </>

@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SingleProjectItem from '../../components/SingleProjectItem/SingleProjectItem'
+import Slider from '../../components/Slider/Slider'
 import { projects } from '../../utils/projects/projects'
+import { slides } from '../../utils/projects/slider'
 import Error from '../ErrorPage/ErrorPage'
 
 import './SingleProjectPage.scss'
@@ -34,6 +36,8 @@ const SingleProject = () => {
     },
   ]
 
+  const projectSlides = slides.find((slide) => slide.id === id)
+
   const paragraphs = text.split('\n')
 
   return (
@@ -52,7 +56,8 @@ const SingleProject = () => {
               />
             </div>
             <div className="single-project-slider">
-              <img src={image} alt="" />
+              {/* <img src={image} alt="" /> */}
+              <Slider slides={projectSlides.image} />
             </div>
           </div>
           <div className="single-project-content">
