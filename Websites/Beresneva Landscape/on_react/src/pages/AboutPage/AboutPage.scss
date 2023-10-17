@@ -55,3 +55,20 @@
     }
   }
 }
+
+@media screen and (max-width: 800px) {
+  .author {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .author-item {
+    order: 2;
+    gap: 20px;
+  }
+
+  .author-item.photo {
+    order: 1;
+    width: 100%;
+  }
+}

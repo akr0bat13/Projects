@@ -67,3 +67,28 @@
     }
   }
 }
+
+@media screen and (max-width: 800px) {
+  .single-project-subcontent {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .single-project-info {
+    width: 100%;
+    order: 2;
+  }
+
+  .single-project-slider {
+    width: 100%;
+    order: 1;
+  }
+
+  .single-project-info h1 {
+    font-size: 24px;
+  }
+
+  .project-items-title {
+    font-size: 18px;
+  }
+}

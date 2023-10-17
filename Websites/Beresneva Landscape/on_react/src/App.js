@@ -29,7 +29,7 @@ function App() {
     <div className="App">
       <Router>
         <Header openModal={openModal} />
-        <Sidebar />
+        <Sidebar openModal={openModal} />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/projects" element={<Projects />} />

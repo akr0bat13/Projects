@@ -11,7 +11,7 @@ export const logoIcon = {
 export const links = [
   {
     id: 1,
-    text: 'Проекты',
+    text: 'Сады',
     url: '/projects',
   },
   {
@@ -35,31 +35,17 @@ export const links = [
   },
 ]
 
-export const introLinks = [
-  {
-    id: 1,
-
-    icon: telegramWhite,
-    link: 'https://vk.com/al_im.php',
-  },
-  {
-    id: 2,
-    icon: whatsAppWhite,
-    link: 'https://vk.com/al_im.php',
-  },
-]
-
 export const mediaLinks = [
   {
     id: 1,
 
     icon: telegram,
-    link: 'https://vk.com/al_im.php',
+    link: 'tg://resolve?domain=zelenka06',
   },
   {
     id: 2,
     icon: whatsApp,
-    link: 'https://vk.com/al_im.php',
+    link: 'whatsapp://send?phone=+79262289926',
   },
 ]
 

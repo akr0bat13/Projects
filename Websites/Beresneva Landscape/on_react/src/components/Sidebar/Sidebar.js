@@ -5,16 +5,23 @@ import { Link } from 'react-router-dom'
 import { links, logoIcon } from '../../utils/constants'
 import './Sidebar.scss'
 
-const Sidebar = () => {
+const Sidebar = ({ openModal }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
-  const closeModal = () => {
+  const closeSidebar = () => {
     setIsSidebarOpen(false)
   }
 
-  const openModal = () => {
+  const openSidebar = () => {
     setIsSidebarOpen(true)
+  }
+
+  const handleLinkClick = (link) => {
+    closeSidebar()
+    if (link === 'Контакты') {
+      openModal()
+    }
   }
 
   useEffect(() => {
@@ -34,7 +41,7 @@ const Sidebar = () => {
   return (
     <>
       <div className={`burger-menu ${isScrolled ? 'active' : ''}`}>
-        <RxHamburgerMenu onClick={openModal} />
+        <RxHamburgerMenu onClick={openSidebar} />
       </div>
       <aside
         className={`${isSidebarOpen ? 'sidebar show-sidebar' : 'sidebar'}`}
@@ -45,10 +52,10 @@ const Sidebar = () => {
               className="beresneva-logo"
               src={logoIcon.logo}
               alt="Beresneva Landscape"
-              onClick={closeModal}
+              onClick={closeSidebar}
             />
           </Link>
-          <button className="close-btn" onClick={closeModal}>
+          <button className="close-btn" onClick={closeSidebar}>
             <FaTimes />
           </button>
         </div>
@@ -56,7 +63,7 @@ const Sidebar = () => {
           {links.map(({ id, text, url }) => {
             return (
               <li key={id}>
-                <Link to={url} onClick={closeModal}>
+                <Link to={url} onClick={() => handleLinkClick(text)}>
                   {text}
                 </Link>
               </li>

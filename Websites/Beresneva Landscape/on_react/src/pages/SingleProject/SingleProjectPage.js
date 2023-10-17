@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Footer from '../../components/Footer/Footer'
 import SingleProjectItem from '../../components/SingleProjectItem/SingleProjectItem'
 import Slider from '../../components/Slider/Slider'
 import { projects } from '../../utils/projects/projects'
 import { slides } from '../../utils/projects/slider'
 import Error from '../ErrorPage/ErrorPage'
-
 import './SingleProjectPage.scss'
 
 const SingleProject = () => {
@@ -41,38 +41,41 @@ const SingleProject = () => {
   const paragraphs = text.split('\n')
 
   return (
-    <div className="projects">
-      <div className="container">
-        <div className="single-project">
-          <div className="single-project-subcontent">
-            <div className="single-project-info">
-              <h1>{title}</h1>
-              <SingleProjectItem
-                params={params}
-                year={year}
-                designers={designers}
-                location={location}
-                photograps={photograps}
-              />
+    <>
+      <div className="projects">
+        <div className="container">
+          <div className="single-project">
+            <div className="single-project-subcontent">
+              <div className="single-project-info">
+                <h1>{title}</h1>
+                <SingleProjectItem
+                  params={params}
+                  year={year}
+                  designers={designers}
+                  location={location}
+                  photograps={photograps}
+                />
+              </div>
+              <div className="single-project-slider">
+                {/* <img src={image} alt="" /> */}
+                <Slider slides={projectSlides.image} />
+              </div>
             </div>
-            <div className="single-project-slider">
-              {/* <img src={image} alt="" /> */}
-              <Slider slides={projectSlides.image} />
+            <div className="single-project-content">
+              {paragraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </div>
-          </div>
-          <div className="single-project-content">
-            {paragraphs.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
-          </div>
-          <div className="project-link">
-            <Link className="project-return" to="/projects">
-              Вернуться к проектам
-            </Link>
+            <div className="project-link">
+              <Link className="project-return" to="/projects">
+                Вернуться к проектам
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   )
 }
 export default SingleProject
