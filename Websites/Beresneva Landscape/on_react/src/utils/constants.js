@@ -29,10 +29,10 @@ export const links = [
     text: 'Сертификаты',
     url: '/sertificates',
   },
-  {
-    id: 5,
-    text: 'Контакты',
-  },
+  // {
+  //   id: 5,
+  //   text: 'Контакты',
+  // },
 ]
 
 export const mediaLinks = [

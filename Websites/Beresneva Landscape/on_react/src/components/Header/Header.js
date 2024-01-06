@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import { links, logoIcon, mediaLinks } from '../../utils/constants'
 
 import './Header.scss'
@@ -56,7 +56,7 @@ const Header = ({ openModal }) => {
             {links.map((link) => {
               const { id, text, url } = link
               return (
-                <Link
+                <NavLink
                   className={`nav_link `}
                   key={id}
                   onClick={() => handleLinkClick(text)}
@@ -69,7 +69,7 @@ const Header = ({ openModal }) => {
                   >
                     {text}
                   </div>
-                </Link>
+                </NavLink>
               )
             })}
           </ul>
