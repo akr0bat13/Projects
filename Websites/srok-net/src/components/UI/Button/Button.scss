@@ -1,0 +1,33 @@
+@import 'src/vars.scss';
+
+.icon-button {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.75px;
+    color: $text-white;
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+    padding: 10px;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.button-primary {
+    background-color: $blue-primary-active;
+}
+
+.button-secondary {
+    border: 1px solid $background;
+}
+
+// .button-disabled {
+//     color: $text-secondary;
+//     background-color: $grey-container-disabled;
+//     cursor: default;
+// }

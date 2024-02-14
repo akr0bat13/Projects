@@ -1,0 +1,32 @@
+@import '../../../vars.scss';
+
+.input-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    font-size: 16px;
+
+    .input-container-label {
+        cursor: pointer;
+    }
+
+    .input-container-field-error {
+        border: 1px solid $error;
+        border-radius: 10px;
+    }
+
+    .input-container-field-message {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        text-align: center;
+    }
+}

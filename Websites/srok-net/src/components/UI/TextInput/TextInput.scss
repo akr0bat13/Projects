@@ -1,0 +1,91 @@
+@import "../../../vars.scss";
+
+.text-input:focus-visible {
+    outline: none;
+}
+
+.text-input-wrapper {
+    width: 100%;
+    padding: 5px 10px;
+    background: $background;
+    border: 1px solid $blue-primary-active;
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+
+    .text-input {
+        box-sizing: border-box;
+        font-family: inherit;
+        width: 100%;
+        border: none;
+        background-color: transparent;
+        font-style: normal;
+        font-size: 16px;
+        line-height: 16px;
+        letter-spacing: 0.75px;
+        color: $blue-primary-active;
+        padding: 5px 10px 5px 0px;
+        &-disabled {
+            color: $grey-container-disabled;
+        }
+    }
+
+    .text-input-icons-wrapper {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .text-input-icons-wrapper-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .text-input-icon {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: $text-black;
+    transition: background-color 5000s ease-in-out 0s;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+// @media screen and (min-width:1920px) {
+//     .text-input-wrapper {
+//         padding: 10px 15px;
+
+//         .text-input {
+//             font-size: 24px;
+//         }
+//     }
+
+// }

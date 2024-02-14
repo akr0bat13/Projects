@@ -1,12 +1,12 @@
 // Colors
 $black-primary: #171821;
-$black-background: #23242c;
-$black-table-content: #292b37;
-$black-secondary: #1b1b1c;
-$black-divider: #202022;
+$background: #fff;
+// $black-table-content: #292b37;
+// $black-secondary: #1b1b1c;
+// $black-divider: #202022;
 
-$blue-primary-hover: #173945;
-$blue-primary-active: #16bfd6;
+// $blue-primary-hover: #0C64C5;
+$blue-primary-active: #0C64C5;
 
 $grey-container-background: #404752;
 $grey-container-disabled: #67686d;
@@ -16,25 +16,16 @@ $grey-primary: #262629;
 $grey-hovered: #2d2d30;
 $grey-pressed: #333337;
 
-$success: #1ed694;
-$warning: #ffcd05;
-$error: #ff3e3e;
-$info: #00a3ff;
+// Status
+$success: #1ED694;
+$warning: #FFCD05;
+$error: #FF3E3E;
+$info: #00A3FF;
 
-$text-primary: #fafafa;
-$text-secondary: #adadb7;
-// Dark colors
+$text-white: #fff;
+$text-black: #000;
 
-$color-dark-black-3: #1e1e1e;
-$color-dark-black-4: #222323;
-$color-dark-black-5: #171717;
-$color-dark-black-6: #1b1a1a;
-$color-dark-black-7: #2a2a2a;
-$color-dark-black-8: #212325;
-$color-dark-black-9: #272c2c;
-$color-dark-black-10: #33383a;
-$color-dark-black-11: #3b4147;
-
+// Z-index
 $z-index-back: -1;
 $z-index-default: 1;
 $z-index-low: 2;

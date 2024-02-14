@@ -3,13 +3,16 @@ import React from "react";
 import Header from "../Header";
 
 import DynamicComponents from "./components/DynamicComponents";
+import "./MainLayout.scss";
 
 const MainLayout = () => {
   return (
-    <div className="main">
+    <>
       <Header />
-      <DynamicComponents />
-    </div>
+      <div className="container">
+        <DynamicComponents />
+      </div>
+    </>
   );
 };
 

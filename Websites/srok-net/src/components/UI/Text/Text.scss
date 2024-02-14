@@ -1,0 +1,33 @@
+@import "src/vars.scss";
+
+.text-root {
+  color: $text-black;
+  font-family: 'Montserrat Medium';
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+}
+
+.text-small-variant {
+  font-size: 14px;
+}
+
+.text-middle-variant {
+  font-size: 16px;
+}
+
+.text-large-variant {
+  font-size: 18px;
+}
+
+.text-heading-variant {
+  font-size: 32px;
+}
+
+.color-primary {
+  color: $blue-primary-active;
+}
+
+.color-white {
+  color: $text-white;
+}
