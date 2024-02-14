@@ -1,0 +1,40 @@
+.App {
+  width: 1200px;
+}
+
+.post {
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.post-content {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  display: flex;
+  border: 1px solid green;
+  font-size: 14px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  gap: 10px;
+}
+
+.page {
+  padding: 10px;
+  border: 1px solid teal;
+  cursor: pointer;
+}
+
+.page-current {
+  border: 2px solid orange;
+}
