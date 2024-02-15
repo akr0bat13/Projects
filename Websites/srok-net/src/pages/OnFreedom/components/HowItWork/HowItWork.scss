@@ -1,0 +1,18 @@
+@import 'src/vars.scss';
+
+.how-it-work-wrapper {
+  display: flex;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid $blue-primary-active;
+  gap: 20px;
+  margin-top: 40px;
+  padding: 5px 25px; 
+}
+
+.how-it-work-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}

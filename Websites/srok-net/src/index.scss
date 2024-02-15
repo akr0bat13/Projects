@@ -4,7 +4,7 @@
 @font-face {
   font-family: 'Montserrat Regular';
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   src: url(assets/fonts/Montserrat-Regular.ttf);
 }
 
@@ -29,13 +29,6 @@
   src: url(assets/fonts/Montserrat-Bold.ttf);
 }
 
-@font-face {
-  font-family: 'Sofachrome';
-  font-style: italic;
-  font-weight: 400;
-  src: url(assets/fonts/sofachrome_rg_it.ttf);
-}
-
 #root {
  width: 100vw;
 }
@@ -47,7 +40,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   background-color: $background;
-  font-size: 14px;
+  font-size: 16px;
   font-family: 'Montserrat Regular', sans-serif;
   height: 100%;
   min-height: 100vh;

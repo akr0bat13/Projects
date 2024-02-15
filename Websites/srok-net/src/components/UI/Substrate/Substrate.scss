@@ -1,0 +1,40 @@
+@import "../../../vars.scss";
+
+.substrate-root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+
+  .substrate-content {
+    box-sizing: border-box;
+
+    .substrate-child {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    p {
+      margin: 0
+    }
+  }
+
+  .substrate-dropdown {
+    box-sizing: border-box;
+    padding: 10px 0;
+  }
+
+  .substrate-background {
+    background: $background;
+  }
+
+  .substrate-round {
+    border-radius: 3px;
+  }
+}
+
+.substrate-fill-height {
+  flex: 1;
+}

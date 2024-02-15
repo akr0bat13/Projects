@@ -18,3 +18,8 @@ header {
 .nav-links .active {
   font-family: 'Montserrat Bold', sans-serif;
 }
+
+.header-buttons {
+  display: flex;
+  gap: 20px;
+}

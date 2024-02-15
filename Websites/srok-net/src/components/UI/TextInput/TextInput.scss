@@ -27,6 +27,11 @@
         letter-spacing: 0.75px;
         color: $blue-primary-active;
         padding: 5px 10px 5px 0px;
+
+        &::placeholder {
+            color: $blue-primary-secondary;
+        }
+
         &-disabled {
             color: $grey-container-disabled;
         }

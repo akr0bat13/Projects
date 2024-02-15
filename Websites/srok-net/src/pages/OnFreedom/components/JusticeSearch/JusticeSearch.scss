@@ -1,0 +1,30 @@
+@import 'src/vars.scss';
+
+.search-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 0 60px;
+
+  gap: 30px;
+
+  width: 100%;
+
+  background-color: $blue-primary-active;
+  border-radius: 3px;
+
+  position: relative;
+}
+
+.search-container {
+  display: flex;
+  gap: 40px;
+  position: absolute;
+  bottom: -40px;
+  background-color: $background;
+  border-radius: 3px;
+  box-shadow: $shadow;
+  padding: 15px 40px;
+}
+

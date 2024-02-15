@@ -1,5 +1,6 @@
 import cn from "classnames";
 import { FC } from "react";
+import "./Text.scss";
 
 import { TextProps } from "./utils/types/text.types";
 

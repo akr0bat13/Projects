@@ -8,6 +8,8 @@ import ContactUs from "./pages/ContactUs";
 import Explanations from "./pages/Explanations";
 import ForLoyers from "./pages/ForLoyers";
 import MainPage from "./pages/MainPage";
+import OnFreedom from "./pages/OnFreedom/OnFreedom";
+import Profile from "./pages/Profile";
 
 const Loadable =
   (Component: React.LazyExoticComponent<FC>) =>
@@ -51,6 +53,14 @@ export const routes: RouteObject[] = [
       {
         path: "contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "freedom",
+        element: <OnFreedom />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
       {
         path: "*",

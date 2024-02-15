@@ -13,7 +13,7 @@ type TError = {
 
 export interface InputContainerProps {
   children: ReactNode;
-  label: string;
+  label?: string;
   fieldStyles?: CSSProperties;
   labelStyles?: CSSProperties;
   styleConteiner?: CSSProperties;

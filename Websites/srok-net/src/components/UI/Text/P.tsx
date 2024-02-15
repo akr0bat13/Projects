@@ -14,6 +14,7 @@ export const P: FC<TextProps> = (props) => {
         "text-middle-variant": variant === "md",
         "text-large-variant": variant === "lg",
         "color-primary": color === "blue",
+        "color-white": color === "white",
       })}
       style={sx}
       {...rest}
