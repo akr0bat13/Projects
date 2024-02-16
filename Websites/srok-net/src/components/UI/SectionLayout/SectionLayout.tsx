@@ -12,7 +12,7 @@ interface SectionLayoutProps {
 
 export const SectionLayout: FC<SectionLayoutProps> = ({ title, children }) => {
   return (
-    <Substrate sx={{ padding: "30px" }}>
+    <Substrate sx={{ padding: "30px 0" }}>
       <div className="section-layout-root">
         <H color="blue" variant="hd">
           {title}

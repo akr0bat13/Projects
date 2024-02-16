@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./JusticeSearch.scss";
 
 import { Button } from "src/components/UI/Button/Button";
@@ -6,21 +6,12 @@ import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 
-interface IInputProps {
-  state: string;
-  part: string;
-}
+import { useOnFreedom } from "../../hooks/useOnFreedom";
 
 const JusticeSearch = () => {
-  const [inputValue, setInputValue] = useState<IInputProps>({
-    state: "",
-    part: "",
-  });
+  const { buttonSearchProps, inputSearchValue } = useOnFreedom();
 
-  const searchSubmit = () => {
-    console.log(inputValue);
-  };
-
+  const { onClick, label, color } = buttonSearchProps;
   return (
     <div className="search-wrapper">
       <H variant="hd" color="white">
@@ -30,21 +21,16 @@ const JusticeSearch = () => {
         Узнайте какое наказание ожидать
       </P>
       <div className="search-container">
-        <TextInput
-          value={inputValue.state}
-          onChange={(event) =>
-            setInputValue({ ...inputValue, state: event.target.value })
-          }
-          placeholder="Введите статью"
-        />
-        <TextInput
-          value={inputValue.part}
-          onChange={(event) =>
-            setInputValue({ ...inputValue, part: event.target.value })
-          }
-          placeholder="Введите часть"
-        />
-        <Button onClick={searchSubmit} label="Узнать" color="primary" />
+        {inputSearchValue.map((input) => (
+          <TextInput
+            key={input.id}
+            value={input.value}
+            onChange={input.onChange}
+            placeholder={input.placeholder}
+          />
+        ))}
+
+        <Button onClick={onClick} label={label} color={color} />
       </div>
     </div>
   );

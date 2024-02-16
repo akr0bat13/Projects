@@ -1,12 +1,16 @@
 import React from "react";
 
 import Question from "src/assets/images/question.svg";
-import Br from "src/components/UI/Br";
 import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
+
+import { useOnFreedom } from "../../hooks/useOnFreedom";
 import "./HowItWork.scss";
 
 const HowItWork = () => {
+  const { howItWorkContent } = useOnFreedom();
+  const { title, content } = howItWorkContent;
+
   return (
     <div className="how-it-work-wrapper">
       <div className="how-it-work-image">
@@ -14,14 +18,9 @@ const HowItWork = () => {
       </div>
       <div className="how-it-work-content">
         <H variant="hd" color="blue">
-          Как это работает?
+          {title}
         </H>
-        <P variant="md">
-          С помощью искусственного интеллекта мы провели анализ уголовных дел из
-          открытых источников. <Br /> На основе анализа мы подготовили отчеты,
-          которые помогают людям понять фактическую информацию о том, какое
-          наказание выносится по статье
-        </P>
+        <P variant="md">{content}</P>
       </div>
     </div>
   );

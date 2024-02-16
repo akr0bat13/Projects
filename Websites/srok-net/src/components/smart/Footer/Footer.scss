@@ -1,0 +1,25 @@
+@import 'src/vars.scss';
+
+footer {
+  background-color: $blue-primary-active;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+
+.footer-seo {
+  font-size: 14px;
+  color: $blue-primary-secondary;
+}
+
+.footer-mail:hover {
+  text-decoration: underline;
+}
+
+.footer-media {
+  display: flex;
+  gap: 20px;
+}
