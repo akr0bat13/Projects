@@ -27,8 +27,8 @@
     border: 1px solid $background;
 }
 
-// .button-disabled {
-//     color: $text-secondary;
-//     background-color: $grey-container-disabled;
-//     cursor: default;
-// }
+.button-disabled {
+    color: $text-white;
+    background-color: $button-disabled;
+    cursor: default;
+}

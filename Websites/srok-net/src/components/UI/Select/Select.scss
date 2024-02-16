@@ -2,7 +2,7 @@
 
 .select-container {
   position: relative;
-  min-width: 180px;
+  min-width: 200px;
 
   .select-options {
     position: absolute;
@@ -68,15 +68,17 @@
       cursor: pointer;
     }
 
- .select-disabled,
- .select-disabled:hover {
-  background-color: $grey-pressed;
-  color: $text-black;
-  .selected-option,
-  .select-arrow {
-    cursor: default;
+    
+    &-disabled,
+    &-disabled:hover {
+       background-color: $grey-container-disabled;
+       color: $blue-primary-secondary;
+       cursor: default;
+       .selected-option,
+       .select-arrow {
+         cursor: default;
+       }
   }
-}
 
 .selected-option {
   width: 100%;

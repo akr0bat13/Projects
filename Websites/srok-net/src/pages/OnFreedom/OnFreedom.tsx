@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { SectionLayout } from "src/components/UI/SectionLayout/SectionLayout";
 
 import HowItWork from "./components/HowItWork";
 import JusticeSearch from "./components/JusticeSearch";
 import SearchResults from "./components/SearchResults";
+import { useOnFreedom } from "./hooks/useOnFreedom";
 
 const OnFreedom = () => {
+  const { searchResult } = useOnFreedom();
+  const [result, setResult] = useState<boolean>(false);
+
   return (
     <SectionLayout title="На свободу">
-      <JusticeSearch />
+      <JusticeSearch setResult={setResult} />
       <HowItWork />
-      <SearchResults />
+      {result &&
+        searchResult.map((component) => (
+          <SearchResults key={component.title} {...component} />
+        ))}
     </SectionLayout>
   );
 };

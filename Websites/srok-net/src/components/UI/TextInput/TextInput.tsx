@@ -52,10 +52,9 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
   const isIcon = isInfo || isSearch || isPassword || isLock;
   return (
     <div
-      className={cn(
-        "text-input-wrapper",
-        disabled && "text-input-wrapper-disabled"
-      )}
+      className={cn("text-input-wrapper", {
+        "text-input-wrapper-disabled": disabled,
+      })}
       style={sx}
     >
       <input

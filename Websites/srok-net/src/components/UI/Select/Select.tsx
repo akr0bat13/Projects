@@ -39,7 +39,7 @@ export function Select<T>(props: ISelectProps<T>) {
     <div className="select-container" style={{ width }} aria-label={ariaLabel}>
       <div
         className={cn("select-wrapper", {
-          "select-disabled": disabled,
+          "select-wrapper-disabled": disabled,
         })}
         onClick={() => !disabled && setShowOptions(!showOptions)}
       >

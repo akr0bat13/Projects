@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Br from "src/components/UI/Br";
 import { ButtonProps } from "src/components/UI/Button/Button";
 import { TOption } from "src/components/UI/Select/Select";
+import { textColor } from "src/components/UI/Text/utils/types/text.types";
 
 export interface IInputProps {
   state: string;
@@ -21,28 +22,29 @@ export interface IHowItWorkContent {
   content: React.ReactNode;
 }
 
-// export interface ISearchResult {
-//   title: string;
-//   components: [
-//     {
-//       title: string,
+interface IComponent {
+  label: string;
+  color: textColor;
+  isSelect?: boolean;
+  disabled?: boolean;
+}
 
-//     }
-//   ];
-// }
-
+export interface ISearchResult {
+  title: string;
+  components: IComponent[];
+  disabled?: boolean;
+}
 export const useOnFreedom = () => {
+  const [selectValue, setSelectValue] = useState<TOption>({
+    value: "",
+    label: "",
+  });
   const [inputValue, setInputValue] = useState<IInputProps>({
     state: "",
     part: "",
   });
 
-  const searchSubmit = () => {
-    console.log(inputValue);
-  };
-
   const buttonSearchProps: ButtonProps = {
-    onClick: searchSubmit,
     label: "Узнать",
     color: "primary",
   };
@@ -76,19 +78,55 @@ export const useOnFreedom = () => {
     ),
   };
 
-  const searchResult = {
-    title: "Какой в приговор выносят по ЭТОЙ СТАТЬЕ в твоем городе?",
-    components: [
-      {
-        label: "Выберите город",
-        color: "blue",
-      },
-      {
-        label: "Срок",
-        color: "blue",
-      },
-    ],
-  };
+  const searchResult: ISearchResult[] = [
+    {
+      title: "Какой приговор выносят в твоем городе?",
+      components: [
+        {
+          label: "Выберите город",
+          color: "blue",
+          isSelect: true,
+        },
+        {
+          label: "Срок",
+          color: "blue",
+          disabled: true,
+        },
+      ],
+    },
+    {
+      title: "Какой приговор выносят в выбранном суде?",
+      components: [
+        {
+          label: "Выберите город",
+          color: "blue",
+          isSelect: true,
+        },
+        {
+          label: "Срок",
+          color: "blue",
+          disabled: true,
+        },
+      ],
+      disabled: true,
+    },
+    {
+      title: "Какой приговор выносят конкретный судья?",
+      components: [
+        {
+          label: "Выберите город",
+          color: "blue",
+          isSelect: true,
+        },
+        {
+          label: "Срок",
+          color: "blue",
+          disabled: true,
+        },
+      ],
+      disabled: true,
+    },
+  ];
 
   const options: TOption[] = [
     { value: "Москва", label: "Москва" },
@@ -97,11 +135,19 @@ export const useOnFreedom = () => {
     { value: "Магадан", label: "Магадан" },
   ];
 
+  const handleClick = () => {
+    console.log(selectValue);
+  };
+
   return {
     buttonSearchProps,
     inputSearchValue,
     howItWorkContent,
     searchResult,
     options,
+    selectValue,
+    setSelectValue,
+    handleClick,
+    inputValue,
   };
 };

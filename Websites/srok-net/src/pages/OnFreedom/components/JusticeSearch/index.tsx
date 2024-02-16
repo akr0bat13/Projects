@@ -8,10 +8,17 @@ import { TextInput } from "src/components/UI/TextInput/TextInput";
 
 import { useOnFreedom } from "../../hooks/useOnFreedom";
 
-const JusticeSearch = () => {
-  const { buttonSearchProps, inputSearchValue } = useOnFreedom();
+const JusticeSearch = ({ setResult }: any) => {
+  const { buttonSearchProps, inputSearchValue, inputValue } = useOnFreedom();
 
-  const { onClick, label, color } = buttonSearchProps;
+  const searchSubmit = () => {
+    if (inputValue.part && inputValue.state) {
+      setResult(true);
+      console.log(inputValue.state);
+    }
+  };
+
+  const { label, color } = buttonSearchProps;
   return (
     <div className="search-wrapper">
       <H variant="hd" color="white">
@@ -30,7 +37,7 @@ const JusticeSearch = () => {
           />
         ))}
 
-        <Button onClick={onClick} label={label} color={color} />
+        <Button onClick={searchSubmit} label={label} color={color} />
       </div>
     </div>
   );
