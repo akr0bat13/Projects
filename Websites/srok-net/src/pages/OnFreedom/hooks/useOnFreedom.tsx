@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Br from "src/components/UI/Br";
 import { ButtonProps } from "src/components/UI/Button/Button";
+import { TOption } from "src/components/UI/Select/Select";
 
 export interface IInputProps {
   state: string;
@@ -19,6 +20,16 @@ export interface IHowItWorkContent {
   title: string;
   content: React.ReactNode;
 }
+
+// export interface ISearchResult {
+//   title: string;
+//   components: [
+//     {
+//       title: string,
+
+//     }
+//   ];
+// }
 
 export const useOnFreedom = () => {
   const [inputValue, setInputValue] = useState<IInputProps>({
@@ -65,9 +76,32 @@ export const useOnFreedom = () => {
     ),
   };
 
+  const searchResult = {
+    title: "Какой в приговор выносят по ЭТОЙ СТАТЬЕ в твоем городе?",
+    components: [
+      {
+        label: "Выберите город",
+        color: "blue",
+      },
+      {
+        label: "Срок",
+        color: "blue",
+      },
+    ],
+  };
+
+  const options: TOption[] = [
+    { value: "Москва", label: "Москва" },
+    { value: "Питер", label: "Питер" },
+    { value: "Владимир", label: "Владимир" },
+    { value: "Магадан", label: "Магадан" },
+  ];
+
   return {
     buttonSearchProps,
     inputSearchValue,
     howItWorkContent,
+    searchResult,
+    options,
   };
 };

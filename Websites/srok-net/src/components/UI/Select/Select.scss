@@ -1,0 +1,98 @@
+@import '../../../vars.scss';
+
+.select-container {
+  position: relative;
+  min-width: 180px;
+
+  .select-options {
+    position: absolute;
+    top: 120%;
+    max-height: 150px;
+    overflow-y: scroll;
+    left: 0;
+    width: 100%;
+    background-color: $background;
+    border: 1px solid $blue-primary-active;
+    color: $blue-primary-active;
+    border-radius: 3px;
+    z-index: $z-index-high;
+
+    .option {
+      padding: 10px;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+        &:first-child {
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+        }
+        &:last-child {
+          border-bottom-left-radius: 3px;
+          border-bottom-right-radius: 3px;
+        }
+
+        &:hover {
+          background-color: $blue-primary-secondary;
+          color: $text-white;
+          overflow: hidden;
+        }
+
+        &.active-option {
+          background-color: $blue-primary-active;
+          color: $background;
+        }
+    }
+  }
+}
+
+.select-wrapper {
+  display: flex;
+  font-size: 16px;
+  font-family: inherit;
+  background-color: $background;
+  border: 1px solid $blue-primary-secondary;
+  color: $blue-primary-active;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 10px 35px 10px 12px;
+
+  position: relative;
+
+  transition: all .2s linear;
+
+    &:hover {
+      // background-color: $blue-primary-secondary;
+      // color: $text-white;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+ .select-disabled,
+ .select-disabled:hover {
+  background-color: $grey-pressed;
+  color: $text-black;
+  .selected-option,
+  .select-arrow {
+    cursor: default;
+  }
+}
+
+.selected-option {
+  width: 100%;
+  text-overflow: ellipsis;
+  border-radius: 3px;
+  transition: all .2s linear;
+}
+
+.select-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+}

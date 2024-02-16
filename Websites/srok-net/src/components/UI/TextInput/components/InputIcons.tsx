@@ -1,9 +1,11 @@
 // import { CircularProgress } from "@mui/material";
-import cn from "classnames";
 import { FC } from "react";
+
+import LockIcon from "src/components/icons/LockIcon";
 
 interface InputIconsProps {
   isInfo?: boolean;
+  isLock?: boolean;
   handleClickTrigger: (arg1?: "inc" | "dec" | React.MouseEvent) => void;
   infoHandler?(): void;
   showIconTestId?: string;
@@ -11,28 +13,32 @@ interface InputIconsProps {
   isSearch?: boolean;
   isSearchLoading?: boolean;
   isPassword?: boolean;
-  isLunField?: boolean;
   isShow: boolean;
 }
 
 export const InputIcons: FC<InputIconsProps> = ({
   handleClickTrigger,
   isInfo,
+  isLock,
   infoHandler,
   infoIconTestId,
   showIconTestId,
   isSearch,
   isSearchLoading,
   isPassword,
-  isLunField,
   isShow,
 }) => {
   return (
-    <div
-      className={cn("text-input-icons-wrapper", {
-        "text-input-icons-wrapper-column": isLunField,
-      })}
-    >
+    <div className="text-input-icons-wrapper">
+      {isLock && (
+        <button
+          onClick={infoHandler}
+          className="text-input-icon"
+          data-testid={infoIconTestId}
+        >
+          <LockIcon />
+        </button>
+      )}
       {/* {isInfo && (
         <button
           onClick={infoHandler}
@@ -61,24 +67,7 @@ export const InputIcons: FC<InputIconsProps> = ({
           {isShow ? <HideIcon /> : <ShowIcon />}
         </button>
       )}
-      {isLunField && (
-        <>
-          <button
-            className="text-input-icon"
-            onClick={() => handleClickTrigger("inc")}
-            data-testid={showIconTestId}
-          >
-            <UpArrow fill={"#ADADB7"} width={10} height={6} />
-          </button>
-          <button
-            className="text-input-icon"
-            onClick={() => handleClickTrigger("dec")}
-            data-testid={showIconTestId}
-          >
-            <DownArrow fill={"#ADADB7"} width={10} height={6} />
-          </button>
-        </>
-      )} */}
+      */}
     </div>
   );
 };

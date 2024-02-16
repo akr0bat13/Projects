@@ -1,4 +1,4 @@
-@import "../../../vars.scss";
+@import "src/vars.scss";
 
 .text-input:focus-visible {
     outline: none;
@@ -14,6 +14,11 @@
     display: flex;
     align-items: stretch;
     justify-content: stretch;
+
+    &-disabled {
+        background: $grey-container-disabled;
+    }
+
 
     .text-input {
         box-sizing: border-box;
@@ -33,7 +38,8 @@
         }
 
         &-disabled {
-            color: $grey-container-disabled;
+            background-color: $grey-container-disabled;
+
         }
     }
 
@@ -82,15 +88,3 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
     -moz-appearance: textfield;
 }
-
-
-// @media screen and (min-width:1920px) {
-//     .text-input-wrapper {
-//         padding: 10px 15px;
-
-//         .text-input {
-//             font-size: 24px;
-//         }
-//     }
-
-// }

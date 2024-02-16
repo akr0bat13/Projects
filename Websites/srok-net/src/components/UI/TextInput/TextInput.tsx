@@ -16,27 +16,25 @@ interface TextInputProps
   > {
   isPassword?: boolean;
   isInfo?: boolean;
+  isLock?: boolean;
   infoHandler?(): void;
   isSearch?: boolean;
   isSearchLoading?: boolean;
   showIconTestId?: string;
   infoIconTestId?: string;
-  isLunField?: boolean;
   sx?: CSSProperties;
-  valueTriggerHandler?: (type: "inc" | "dec") => void; //need to remove logic
 }
 
 export const TextInput: React.FC<TextInputProps> = (props) => {
   const {
     isPassword,
     isInfo,
+    isLock,
     infoHandler,
     isSearch,
     isSearchLoading,
     showIconTestId,
     infoIconTestId,
-    isLunField,
-    valueTriggerHandler,
     sx,
     disabled,
     ...rest
@@ -48,18 +46,18 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
   const selectedIconHandler = (
     operation: "inc" | "dec" | React.MouseEvent | undefined
   ) => {
-    if (!isLunField) {
-      return handleClickTrigger();
-    } else {
-      if (operation === "inc" || operation === "dec") {
-        if (valueTriggerHandler) valueTriggerHandler(operation);
-      }
-    }
+    return handleClickTrigger();
   };
 
-  const isIcon = isInfo || isSearch || isPassword || isLunField;
+  const isIcon = isInfo || isSearch || isPassword || isLock;
   return (
-    <div className="text-input-wrapper" style={sx}>
+    <div
+      className={cn(
+        "text-input-wrapper",
+        disabled && "text-input-wrapper-disabled"
+      )}
+      style={sx}
+    >
       <input
         className={cn("text-input", disabled && "text-input-disabled")}
         type={isPassword ? (isShow ? "text" : "password") : "text"} //need to refactor too
@@ -73,10 +71,10 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
           infoHandler={infoHandler}
           infoIconTestId={infoIconTestId}
           isInfo={isInfo}
+          isLock={isLock}
           isPassword={isPassword}
           isSearch={isSearch}
           isSearchLoading={isSearchLoading}
-          isLunField={isLunField}
           showIconTestId={showIconTestId}
         />
       )}
