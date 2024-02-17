@@ -30,7 +30,7 @@ const JusticeSearch = ({ setResult }: any) => {
       <div className="search-container">
         {inputSearchValue.map((input) => (
           <TextInput
-            key={input.id}
+            key={input.placeholder}
             value={input.value}
             onChange={input.onChange}
             placeholder={input.placeholder}

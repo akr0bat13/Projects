@@ -1,0 +1,28 @@
+@import 'src/vars.scss';
+
+.contact-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  &-title {
+    display: flex;
+    text-align: center;
+  }
+
+  .contact-form-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-form-button {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+
+}
