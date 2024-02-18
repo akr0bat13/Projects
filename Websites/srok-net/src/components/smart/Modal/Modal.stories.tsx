@@ -1,6 +1,6 @@
+import { Button } from "@mui/material";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { CSSProperties, useState } from "react";
-import { Button } from "@mui/material";
 import dedent from "ts-dedent";
 
 import Modal from "./index";
@@ -85,7 +85,6 @@ const argsValues = {
 
 ModalWithHeader.args = {
   ...argsValues,
-  Header: <SomeHeader />,
   active: true,
   setActive: () => null,
   children: <SomeChild />,
@@ -106,12 +105,7 @@ export const ModalAnimation = () => {
       <Button variant={"contained"} onClick={() => setModal(!modal)}>
         Toggle Modal
       </Button>
-      <Modal
-        {...argsValues}
-        Header={<SomeHeader />}
-        active={modal}
-        setActive={setModal}
-      >
+      <Modal {...argsValues} active={modal} setActive={setModal}>
         <SomeChild />
       </Modal>
     </>

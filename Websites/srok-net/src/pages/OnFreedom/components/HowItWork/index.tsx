@@ -20,7 +20,7 @@ const HowItWork = () => {
         <H variant="hd" color="blue">
           {title}
         </H>
-        <P variant="md">{content}</P>
+        <P variant="sm">{content}</P>
       </div>
     </div>
   );

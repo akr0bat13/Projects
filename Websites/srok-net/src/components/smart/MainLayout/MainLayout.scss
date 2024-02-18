@@ -4,3 +4,7 @@
   margin: 0 auto;
   padding: 0 15px;
 }
+
+.content-wrapper {
+  min-height: calc(100vh - 180px);
+}

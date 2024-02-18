@@ -10,8 +10,9 @@ import { H } from "src/components/UI/Text/H";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import ContactForm from "src/components/smart/ContactForm";
 import Modal from "src/components/smart/Modal";
+import { ISearchResult } from "src/utils/types/OnFreedom.types";
 
-import { ISearchResult, useOnFreedom } from "../../hooks/useOnFreedom";
+import { useOnFreedom } from "../../hooks/useOnFreedom";
 
 const SearchResults: FC<ISearchResult> = (component) => {
   const { title, components, disabled } = component;

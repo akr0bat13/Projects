@@ -14,7 +14,7 @@ const JusticeSearch = ({ setResult }: any) => {
   const searchSubmit = () => {
     if (inputValue.part && inputValue.state) {
       setResult(true);
-      console.log(inputValue.state);
+      console.log(inputValue);
     }
   };
 
@@ -24,7 +24,7 @@ const JusticeSearch = ({ setResult }: any) => {
       <H variant="hd" color="white">
         Правосудие без иллюзий
       </H>
-      <P variant="lg" color="white">
+      <P variant="md" color="white">
         Узнайте какое наказание ожидать
       </P>
       <div className="search-container">

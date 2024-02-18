@@ -5,11 +5,19 @@ import { Checkbox } from "src/components/UI/Checkbox/Checkbox";
 import { H } from "src/components/UI/Text/H";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import LogoIcon from "src/components/icons/LogoIcon";
-import { IForms } from "src/pages/OnFreedom/hooks/useOnFreedom";
+import { useOnFreedom } from "src/pages/OnFreedom/hooks/useOnFreedom";
+import { IForms } from "src/utils/types/OnFreedom.types";
 import "./ContactForm.scss";
 
 const ContactForm = (props: IForms) => {
+  const { setShowModal } = useOnFreedom();
   const { title, inputsContent } = props;
+
+  const handleSubmit = () => {
+    setShowModal(false);
+    console.log("inputFormsValue", inputsContent);
+  };
+
   return (
     <div className="contact-form-wrapper">
       <LogoIcon />
@@ -31,7 +39,7 @@ const ContactForm = (props: IForms) => {
       </div>
       <Checkbox label="Я соглашаюсь с политикой конфиденциальности персональных данных" />
       <div className="contact-form-button">
-        <Button label="Получить отчет" color="primary" />
+        <Button label="Получить отчет" color="primary" onClick={handleSubmit} />
       </div>
     </div>
   );
