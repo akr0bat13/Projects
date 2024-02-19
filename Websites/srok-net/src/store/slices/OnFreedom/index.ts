@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { TOption } from "src/components/UI/Select/Select";
-import { IInputProps, OnFreedomState } from "src/utils/types/OnFreedom.types";
+import { OnFreedomState } from "src/utils/types/OnFreedom.types";
 
 // import { IForms } from "src/utils/types/OnFreedom.types";
 
@@ -18,17 +18,20 @@ const inputSearchValue = {
 const initialState: OnFreedomState = {
   inputsValue: inputSearchValue,
   selectedCity: {
-    label: "Москва",
-    value: "Москва",
+    label: "",
+    value: "",
   },
 };
 
 const slice = createSlice({
-  name: "createPoolMaster",
+  name: "createOnFreedom",
   initialState,
   reducers: {
-    updateOnFreedomInputs: (state, action: PayloadAction<IInputProps>) => {
-      state.inputsValue = action.payload;
+    updateOnFreedomInputState: (state, action: PayloadAction<string>) => {
+      state.inputsValue.state = action.payload;
+    },
+    updateOnFreedomInputPart: (state, action: PayloadAction<string>) => {
+      state.inputsValue.part = action.payload;
     },
     updateSelectedCity: (state, action: PayloadAction<TOption>) => {
       state.selectedCity = action.payload;
@@ -36,6 +39,10 @@ const slice = createSlice({
   },
 });
 
-export const { updateOnFreedomInputs, updateSelectedCity } = slice.actions;
+export const {
+  updateOnFreedomInputPart,
+  updateOnFreedomInputState,
+  updateSelectedCity,
+} = slice.actions;
 
 export const { reducer } = slice;

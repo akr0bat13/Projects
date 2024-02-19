@@ -5,16 +5,18 @@ import { Button } from "src/components/UI/Button/Button";
 import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
+import { useSelector } from "src/store";
+import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 
 import { useOnFreedom } from "../../hooks/useOnFreedom";
 
 const JusticeSearch = ({ setResult }: any) => {
-  const { buttonSearchProps, inputSearchValue, inputValue } = useOnFreedom();
+  const { buttonSearchProps, inputSearchValue } = useOnFreedom();
+  const { part, state } = useSelector(onFreedomInput);
 
   const searchSubmit = () => {
-    if (inputValue.part && inputValue.state) {
+    if (part && state) {
       setResult(true);
-      console.log(inputValue);
     }
   };
 

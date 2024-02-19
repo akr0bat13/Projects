@@ -3,12 +3,10 @@ import { RouteObject } from "react-router";
 
 import LoadingScreen from "./components/smart/LoadingScreen";
 import AboutUs from "./pages/AboutUs";
-import Calculation from "./pages/Calculation";
 import ContactUs from "./pages/ContactUs";
-import Explanations from "./pages/Explanations";
-import ForLoyers from "./pages/ForLoyers";
+import Information from "./pages/Information";
 import MainPage from "./pages/MainPage";
-import OnFreedom from "./pages/OnFreedom/OnFreedom";
+import OnFreedom from "./pages/OnFreedom";
 import Profile from "./pages/Profile";
 
 const Loadable =
@@ -35,16 +33,8 @@ export const routes: RouteObject[] = [
         element: <MainPage />,
       },
       {
-        path: "calculation",
-        element: <Calculation />,
-      },
-      {
-        path: "for-loyers",
-        element: <ForLoyers />,
-      },
-      {
-        path: "explanations",
-        element: <Explanations />,
+        path: "information",
+        element: <Information />,
       },
       {
         path: "about-us",

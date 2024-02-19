@@ -1,27 +1,25 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 import Br from "src/components/UI/Br";
 import { ButtonProps } from "src/components/UI/Button/Button";
 import { TOption } from "src/components/UI/Select/Select";
 import { IModal } from "src/components/smart/Modal";
+import { useDispatch, useSelector } from "src/store";
+import {
+  updateOnFreedomInputPart,
+  updateOnFreedomInputState,
+} from "src/store/slices/OnFreedom";
+import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import {
   IForms,
   IHowItWorkContent,
   IInputFormProps,
-  IInputProps,
   IInputSearchValue,
   ISearchResult,
 } from "src/utils/types/OnFreedom.types";
 
 export const useOnFreedom = () => {
-  const [selectValue, setSelectValue] = useState<TOption>({
-    value: "",
-    label: "",
-  });
-  const [inputValue, setInputValue] = useState<IInputProps>({
-    state: "",
-    part: "",
-  });
+  const dispatch = useDispatch();
 
   const [inputFormValue, setInputFormValue] = useState<IInputFormProps>({
     value1: "",
@@ -30,23 +28,31 @@ export const useOnFreedom = () => {
     value4: "",
   });
 
+  const { part, state } = useSelector(onFreedomInput);
+
   const buttonSearchProps: ButtonProps = {
     label: "Узнать",
     color: "primary",
   };
   const [showModal, setShowModal] = useState(false);
 
+  const inputSearchHandlerPart = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(updateOnFreedomInputPart(event.target.value));
+  };
+
+  const inputSearchHandlerState = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(updateOnFreedomInputState(event.target.value));
+  };
+
   const inputSearchValue: IInputSearchValue[] = [
     {
-      value: inputValue.state,
-      onChange: (event) =>
-        setInputValue({ ...inputValue, state: event.target.value }),
+      value: state,
+      onChange: inputSearchHandlerState,
       placeholder: "Введите статью",
     },
     {
-      value: inputValue.part,
-      onChange: (event) =>
-        setInputValue({ ...inputValue, part: event.target.value }),
+      value: part,
+      onChange: inputSearchHandlerPart,
       placeholder: "Введите часть",
     },
   ];
@@ -95,7 +101,7 @@ export const useOnFreedom = () => {
 
   const searchResult: ISearchResult[] = [
     {
-      title: "Какой приговор выносят в твоем городе?",
+      title: `Какой в приговор выносят по ${state}.${part} в твоем городе?`,
       components: [
         {
           label: "Выберите город",
@@ -110,7 +116,7 @@ export const useOnFreedom = () => {
       ],
     },
     {
-      title: "Какой приговор выносят в выбранном суде?",
+      title: `Какой в приговор выносят по ${state}.${part} в выбранном суде?`,
       components: [
         {
           label: "Выберите город",
@@ -126,7 +132,7 @@ export const useOnFreedom = () => {
       disabled: true,
     },
     {
-      title: "Какой приговор выносят конкретный судья?",
+      title: `Какой в приговор выносят по ${state}.${part} конкретный судья?`,
       components: [
         {
           label: "Выберите город",
@@ -150,11 +156,6 @@ export const useOnFreedom = () => {
     { value: "Магадан", label: "Магадан" },
   ];
 
-  const handleClick = () => {
-    console.log("selectValue", selectValue);
-    setShowModal(!showModal);
-  };
-
   const showModalSettings: IModal = {
     active: showModal,
     setActive: setShowModal,
@@ -166,10 +167,6 @@ export const useOnFreedom = () => {
     howItWorkContent,
     searchResult,
     options,
-    selectValue,
-    setSelectValue,
-    handleClick,
-    inputValue,
     showModalSettings,
     inputFormsValue,
     setShowModal,
