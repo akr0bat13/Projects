@@ -1,6 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { ChangeEvent, useState } from "react";
 
-import Br from "src/components/UI/Br";
 import { ButtonProps } from "src/components/UI/Button/Button";
 import { TOption } from "src/components/UI/Select/Select";
 import { IModal } from "src/components/smart/Modal";
@@ -12,7 +12,6 @@ import {
 import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import {
   IForms,
-  IHowItWorkContent,
   IInputFormProps,
   IInputSearchValue,
   ISearchResult,
@@ -87,18 +86,6 @@ export const useOnFreedom = () => {
     ],
   };
 
-  const howItWorkContent: IHowItWorkContent = {
-    title: "Как это работает?",
-    content: (
-      <React.Fragment>
-        С помощью искусственного интеллекта мы провели анализ уголовных дел из
-        открытых источников. <Br />
-        На основе анализа мы подготовили отчеты, которые помогают людям понять
-        фактическую информацию о том, какое наказание выносится по статье
-      </React.Fragment>
-    ),
-  };
-
   const searchResult: ISearchResult[] = [
     {
       title: `Какой в приговор выносят по ${state}.${part} в твоем городе?`,
@@ -164,7 +151,6 @@ export const useOnFreedom = () => {
   return {
     buttonSearchProps,
     inputSearchValue,
-    howItWorkContent,
     searchResult,
     options,
     showModalSettings,

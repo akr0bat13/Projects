@@ -4,12 +4,12 @@ import Question from "src/assets/images/question.svg";
 import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
 
-import { useOnFreedom } from "../../hooks/useOnFreedom";
-import "./HowItWork.scss";
+import { useHowItWorks } from "./hooks/useHowItWorks";
+import "./HowItWorks.scss";
 
-const HowItWork = () => {
-  const { howItWorkContent } = useOnFreedom();
-  const { title, content } = howItWorkContent;
+const HowItWorks = () => {
+  const { howItWorksContent } = useHowItWorks();
+  const { title, content } = howItWorksContent;
 
   return (
     <div className="how-it-work-wrapper">
@@ -26,4 +26,4 @@ const HowItWork = () => {
   );
 };
 
-export default HowItWork;
+export default HowItWorks;

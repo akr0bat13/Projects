@@ -30,11 +30,6 @@ export interface IForms {
   inputsContent: IInputFormsValue[];
 }
 
-export interface IHowItWorkContent {
-  title: string;
-  content: React.ReactNode;
-}
-
 interface IComponent {
   label: string;
   color: textColor;
