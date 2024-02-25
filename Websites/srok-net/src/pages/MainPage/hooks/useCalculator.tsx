@@ -1,15 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 import { ButtonProps } from "src/components/UI/Button/Button";
+import AddIcon from "src/components/icons/AddIcon";
+import RemoveIcon from "src/components/icons/RemoveIcon";
 import { useDispatch, useSelector } from "src/store";
 import {
+  addChargeArticleAction,
+  removeChargeArticleAction,
   updateCalculatorComesInToForse,
   updateCalculatorSentenceMonth,
   updateCalculatorSentenceYear,
   updateCalculatorVerdictDate,
-  updateChargeArticle,
 } from "src/store/slices/MainPage";
 import { calculatorValues } from "src/store/slices/MainPage/calculator.selectors";
 import { IChargeArticleProps } from "src/utils/types/Calculator.types";
@@ -17,8 +20,19 @@ import { IChargeArticleProps } from "src/utils/types/Calculator.types";
 export const useCalculator = () => {
   const dispatch = useDispatch();
 
-  const { verdictDate, sentence, chargeArticle, comesInToForse } =
-    useSelector(calculatorValues);
+  const { sentence } = useSelector(calculatorValues);
+
+  const [chargeArticleValue, setChargeArticleValue] = useState<
+    IChargeArticleProps[]
+  >([
+    {
+      id: 1,
+      part: "",
+      state: "",
+      episodesNumber: 0,
+      icon: <AddIcon />,
+    },
+  ]);
 
   const buttonSearchProps: ButtonProps = {
     label: "Показать",
@@ -34,6 +48,7 @@ export const useCalculator = () => {
   // ) => {
   //   dispatch(updateCalculatorComesInToForse(event.target.value));
   // };
+
   const inputCalculatorSentenceYear = (
     event: ChangeEvent<HTMLInputElement>
   ) => {
@@ -45,20 +60,20 @@ export const useCalculator = () => {
     dispatch(updateCalculatorSentenceMonth(event.target.value));
   };
 
-  const inputCalculatorChargeArticle =
-    (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
-      const updatedChargeArticle = [...chargeArticle];
-      updatedChargeArticle[index] = {
-        ...updatedChargeArticle[index],
-        [event.target.name]: event.target.value,
-      };
-      dispatch(
-        updateChargeArticle({
-          index,
-          chargeArticle: updatedChargeArticle[index],
-        })
-      );
-    };
+  // const inputCalculatorChargeArticle =
+  //   (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
+  //     const updatedChargeArticle = [...chargeArticle];
+  //     updatedChargeArticle[index] = {
+  //       ...updatedChargeArticle[index],
+  //       [event.target.name]: event.target.value,
+  //     };
+  //     dispatch(
+  //       updateChargeArticle({
+  //         index,
+  //         chargeArticle: updatedChargeArticle[index],
+  //       })
+  //     );
+  //   };
 
   // const inputDatesValue = [
   // {
@@ -101,22 +116,23 @@ export const useCalculator = () => {
   // })),
   // ];
 
-  const chargeArticleValue: IChargeArticleProps[] = [
-    {
-      id: 1,
+  const removeChargeArticle = (id: number) => {
+    setChargeArticleValue(
+      chargeArticleValue.filter((article) => article.id !== id)
+    );
+    dispatch(removeChargeArticleAction(id));
+  };
+  const addChargeArticle = () => {
+    const newArticle: IChargeArticleProps = {
+      id: chargeArticleValue.length + 1,
       part: "",
       state: "",
       episodesNumber: 0,
-      isActive: true,
-    },
-    {
-      id: 2,
-      part: "",
-      state: "",
-      episodesNumber: 0,
-      isActive: false,
-    },
-  ];
+      icon: <RemoveIcon />,
+    };
+    setChargeArticleValue([...chargeArticleValue, newArticle]);
+    dispatch(addChargeArticleAction(newArticle));
+  };
 
   const inputsentenceValue = [
     {
@@ -133,8 +149,9 @@ export const useCalculator = () => {
 
   return {
     buttonSearchProps,
-    // inputDatesValue,
     inputsentenceValue,
     chargeArticleValue,
+    addChargeArticle,
+    removeChargeArticle,
   };
 };

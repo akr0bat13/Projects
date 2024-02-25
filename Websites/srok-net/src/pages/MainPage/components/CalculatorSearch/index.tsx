@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
 import { Button } from "src/components/UI/Button/Button";
+import { Checkbox } from "src/components/UI/Checkbox/Checkbox";
+import { DatePicker, DateRange } from "src/components/UI/DatePicker/DatePicker";
+import { InputContainer } from "src/components/UI/InputContainer/InputContainer";
 import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
-import "./CalculatorSearch.scss";
-// import { useSelector } from "src/store";
-import { Checkbox } from "src/components/UI/Checkbox/Checkbox";
-import { DatePicker, DateRange } from "src/components/UI/DatePicker/DatePicker";
 import AddIcon from "src/components/icons/AddIcon";
 import RemoveIcon from "src/components/icons/RemoveIcon";
+import "./CalculatorSearch.scss";
 
 import { useCalculator } from "../../hooks/useCalculator";
 
@@ -19,6 +19,8 @@ const CalculatorSearch = ({ setResult }: any) => {
     // inputDatesValue,
     inputsentenceValue,
     chargeArticleValue,
+    addChargeArticle,
+    removeChargeArticle,
   } = useCalculator();
   // const { part, state } = useSelector(onFreedomInput);
 
@@ -47,59 +49,67 @@ const CalculatorSearch = ({ setResult }: any) => {
           dates={dates}
           onChange={setDates}
           sx={{
-            gap: 30,
+            gap: 20,
           }}
         />
-        {/* <div className="calculator-container-item">
-          {inputDatesValue.map((date) => (
-            <TextInput
-              key={date.placeholder}
-              value={date.value}
-              onChange={date.onChange}
-              placeholder={date.placeholder}
-            />
-          ))}
-        </div> */}
         <div className="calculator-container-item">
           {chargeArticleValue.map((article) => {
-            const { id, episodesNumber, isActive, part, state } = article;
+            const { id, episodesNumber, part, state } = article;
             return (
               <div key={id} className="calculator-container-sentence">
-                <TextInput
-                  value={state}
-                  placeholder="Статья"
-                  disabled={!isActive}
+                <InputContainer label="Статья">
+                  <TextInput value={state} />
+                </InputContainer>
+
+                <InputContainer label="Часть">
+                  <TextInput value={part} />
+                </InputContainer>
+
+                <InputContainer label="Кол-во эпизодов">
+                  <TextInput value={episodesNumber} />
+                </InputContainer>
+                <Button
+                  onClick={() => removeChargeArticle(id)}
+                  icon={<RemoveIcon />}
+                  sx={{ padding: 0 }}
                 />
-                <TextInput
-                  value={part}
-                  placeholder="Часть"
-                  disabled={!isActive}
+                <Button
+                  onClick={addChargeArticle}
+                  icon={<AddIcon />}
+                  sx={{ padding: 0 }}
                 />
-                <TextInput
-                  value={episodesNumber}
-                  placeholder="Кол-во эпизодов"
-                  disabled={!isActive}
-                />
-                <div className="calculator-container-add-button">
-                  {isActive ? (
-                    <AddIcon />
-                  ) : (
-                    <RemoveIcon fill={isActive ? undefined : "#B0B0B0"} />
-                  )}
-                </div>
               </div>
             );
           })}
+          {chargeArticleValue.length === 1 && (
+            <div className="calculator-container-sentence">
+              <InputContainer label="Статья">
+                <TextInput disabled={true} />
+              </InputContainer>
+              <InputContainer label="Часть">
+                <TextInput disabled={true} />
+              </InputContainer>
+              <InputContainer label="Кол-во эпизодов">
+                <TextInput disabled={true} />
+              </InputContainer>
+              <Button
+                icon={<RemoveIcon fill="#B0B0B0" />}
+                sx={{ padding: 0 }}
+              />
+              <Button
+                onClick={addChargeArticle}
+                icon={<AddIcon fill="#B0B0B0" />}
+                sx={{ padding: 0 }}
+              />
+            </div>
+          )}
         </div>
         <div className="calculator-container-item">
           <div className="calculator-container-sentence">
             {inputsentenceValue.map((date) => (
-              <TextInput
-                key={date.placeholder}
-                value={date.value}
-                onChange={date.onChange}
-                placeholder={date.placeholder}
-              />
+              <InputContainer key={date.placeholder} label={date.placeholder}>
+                <TextInput value={date.value} onChange={date.onChange} />
+              </InputContainer>
             ))}
           </div>
           <div className="calculator-container-buttons">

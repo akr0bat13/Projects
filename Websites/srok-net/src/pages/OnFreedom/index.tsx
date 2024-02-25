@@ -14,11 +14,11 @@ const OnFreedom = () => {
   return (
     <SectionLayout title="На свободу">
       <JusticeSearch setResult={setResult} />
-      <HowItWorks />
       {result &&
         searchResult.map((component) => (
           <SearchResults key={component.title} {...component} />
         ))}
+      <HowItWorks />
     </SectionLayout>
   );
 };

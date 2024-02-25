@@ -17,7 +17,6 @@ const chargeArticleValue: IChargeArticleProps[] = [
     part: "",
     state: "",
     episodesNumber: 0,
-    isActive: true,
   },
 ];
 
@@ -50,33 +49,46 @@ const slice = createSlice({
     updateCalculatorSentenceMonth: (state, action: PayloadAction<string>) => {
       state.sentence.month = action.payload;
     },
-    updateChargeArticle: (
+    updateChargeArticleState: (
       state,
-      action: PayloadAction<{
-        index: number;
-        chargeArticle: IChargeArticleProps;
-      }>
+      action: PayloadAction<{ id: number; newState: string }>
     ) => {
-      const { index, chargeArticle } = action.payload;
-      state.chargeArticle[index] = chargeArticle;
+      state.chargeArticle = state.chargeArticle.map((article) =>
+        article.id === action.payload.id
+          ? { ...article, state: action.payload.newState }
+          : article
+      );
     },
-
-    // addChargeArticle: (state) => {
-    //   if (state.chargeArticle.length === 0) {
-    //     state.chargeArticle.push(chargeArticleValue);
-    //   } else {
-    //     const newChargeArticle: IChargeArticleProps = {
-    //       state: "",
-    //       part: "",
-    //       episodesNumber: 0,
-    //     };
-    //     state.chargeArticle.push(newChargeArticle);
-    //   }
-    // },
-
-    removeChargeArticle: (state, action: PayloadAction<number>) => {
-      const index = action.payload;
-      state.chargeArticle.splice(index, 1);
+    updateChargeArticlePart: (
+      state,
+      action: PayloadAction<{ id: number; newPart: string }>
+    ) => {
+      state.chargeArticle = state.chargeArticle.map((article) =>
+        article.id === action.payload.id
+          ? { ...article, part: action.payload.newPart }
+          : article
+      );
+    },
+    updateChargeArticleEpisodesNumber: (
+      state,
+      action: PayloadAction<{ id: number; newEpisodesNumber: number }>
+    ) => {
+      state.chargeArticle = state.chargeArticle.map((article) =>
+        article.id === action.payload.id
+          ? { ...article, episodesNumber: action.payload.newEpisodesNumber }
+          : article
+      );
+    },
+    addChargeArticleAction: (
+      state,
+      action: PayloadAction<IChargeArticleProps>
+    ) => {
+      state.chargeArticle.push(action.payload);
+    },
+    removeChargeArticleAction: (state, action: PayloadAction<number>) => {
+      state.chargeArticle = state.chargeArticle.filter(
+        (article) => article.id !== action.payload
+      );
     },
   },
 });
@@ -86,9 +98,11 @@ export const {
   updateCalculatorComesInToForse,
   updateCalculatorSentenceYear,
   updateCalculatorSentenceMonth,
-  updateChargeArticle,
-  removeChargeArticle,
-  // addChargeArticle,
+  addChargeArticleAction,
+  updateChargeArticleEpisodesNumber,
+  updateChargeArticlePart,
+  updateChargeArticleState,
+  removeChargeArticleAction,
 } = slice.actions;
 
 export const { reducer } = slice;

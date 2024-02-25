@@ -19,6 +19,8 @@ import {
   updateCalculatorComesInToForse,
   updateCalculatorVerdictDate,
 } from "src/store/slices/MainPage";
+
+import { InputContainer } from "../InputContainer/InputContainer";
 import "./DatePicker.scss";
 
 export type DateRange = {
@@ -84,36 +86,40 @@ export const DatePicker: FC<IDatePickerProps> = ({ onChange, dates, sx }) => {
   );
   return (
     <div className="datepicker-wrapper" style={sx}>
-      <ReactDatePicker
-        selected={selectedDates.verdictDate}
-        startDate={selectedDates.verdictDate}
-        endDate={selectedDates.comesInToForse}
-        onMonthChange={onMonthChange}
-        onSelect={resetSetIsNotCurrentMonth}
-        onChange={inputCalculatorVerdictDate}
-        placeholderText={t("Дата приговора")}
-        calendarClassName={cn("date-picker", {
-          "not-current-month": isNotCurrentDate,
-        })}
-        dateFormat="dd.MM.yyyy"
-        isClearable={!!selectedDates.verdictDate}
-      />
-      <ReactDatePicker
-        selected={selectedDates.comesInToForse}
-        startDate={selectedDates.verdictDate}
-        endDate={selectedDates.comesInToForse}
-        minDate={selectedDates.verdictDate}
-        onMonthChange={onMonthChange}
-        onSelect={resetSetIsNotCurrentMonth}
-        onChange={inputCalculatorComesInToForse}
-        placeholderText={t("Вступает в силу")}
-        calendarClassName={cn("date-picker", {
-          "not-current-month": isNotCurrentDate,
-        })}
-        dateFormat="dd.MM.yyyy"
-        className="test"
-        isClearable={!!selectedDates.comesInToForse}
-      />
+      <InputContainer label="Дата приговора">
+        <ReactDatePicker
+          selected={selectedDates.verdictDate}
+          startDate={selectedDates.verdictDate}
+          endDate={selectedDates.comesInToForse}
+          onMonthChange={onMonthChange}
+          onSelect={resetSetIsNotCurrentMonth}
+          onChange={inputCalculatorVerdictDate}
+          placeholderText={t("Дата приговора")}
+          calendarClassName={cn("date-picker", {
+            "not-current-month": isNotCurrentDate,
+          })}
+          dateFormat="dd.MM.yyyy"
+          isClearable={!!selectedDates.verdictDate}
+        />
+      </InputContainer>
+      <InputContainer label="Вступает в силу">
+        <ReactDatePicker
+          selected={selectedDates.comesInToForse}
+          startDate={selectedDates.verdictDate}
+          endDate={selectedDates.comesInToForse}
+          minDate={selectedDates.verdictDate}
+          onMonthChange={onMonthChange}
+          onSelect={resetSetIsNotCurrentMonth}
+          onChange={inputCalculatorComesInToForse}
+          placeholderText={t("Вступает в силу")}
+          calendarClassName={cn("date-picker", {
+            "not-current-month": isNotCurrentDate,
+          })}
+          dateFormat="dd.MM.yyyy"
+          className="test"
+          isClearable={!!selectedDates.comesInToForse}
+        />
+      </InputContainer>
     </div>
   );
 };

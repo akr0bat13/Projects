@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface ISentenceProps {
   year: string;
   month: string;
@@ -8,7 +10,8 @@ export interface IChargeArticleProps {
   state: string;
   part: string;
   episodesNumber: number;
-  isActive: boolean;
+  icon?: ReactNode;
+  onClick?: (id: number) => void;
 }
 
 export interface ICalculatorState {
