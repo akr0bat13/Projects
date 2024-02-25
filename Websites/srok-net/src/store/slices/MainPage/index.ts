@@ -11,34 +11,44 @@ const sentenceValue: ISentenceProps = {
   month: "",
 };
 
-const chargeArticleValue: IChargeArticleProps = {
-  state: "",
-  part: "",
-  episodesNumber: 0,
-};
+const chargeArticleValue: IChargeArticleProps[] = [
+  {
+    id: 1,
+    part: "",
+    state: "",
+    episodesNumber: 0,
+    isActive: true,
+  },
+];
 
 const initialState: ICalculatorState = {
-  verdictDate: "",
-  comesInToForse: "",
+  verdictDate: null,
+  comesInToForse: null,
   sentence: sentenceValue,
-  chargeArticle: [chargeArticleValue],
+  chargeArticle: chargeArticleValue,
 };
 
 const slice = createSlice({
   name: "createCalculator",
   initialState,
   reducers: {
-    updateCalculatorVerdictDate: (state, action: PayloadAction<string>) => {
-      state.verdictDate = action.payload;
-    },
-    updateCalculatorComesInToForse: (state, action: PayloadAction<string>) => {
-      state.verdictDate = action.payload;
-    },
-    updateCalculatorSentenceValue: (
+    updateCalculatorVerdictDate: (
       state,
-      action: PayloadAction<ISentenceProps>
+      action: PayloadAction<Date | null>
     ) => {
-      state.sentence = { ...state.sentence, ...action.payload };
+      state.verdictDate = action.payload;
+    },
+    updateCalculatorComesInToForse: (
+      state,
+      action: PayloadAction<Date | null>
+    ) => {
+      state.comesInToForse = action.payload;
+    },
+    updateCalculatorSentenceYear: (state, action: PayloadAction<string>) => {
+      state.sentence.year = action.payload;
+    },
+    updateCalculatorSentenceMonth: (state, action: PayloadAction<string>) => {
+      state.sentence.month = action.payload;
     },
     updateChargeArticle: (
       state,
@@ -51,18 +61,18 @@ const slice = createSlice({
       state.chargeArticle[index] = chargeArticle;
     },
 
-    addChargeArticle: (state) => {
-      if (state.chargeArticle.length === 0) {
-        state.chargeArticle.push(chargeArticleValue);
-      } else {
-        const newChargeArticle: IChargeArticleProps = {
-          state: "",
-          part: "",
-          episodesNumber: 0,
-        };
-        state.chargeArticle.push(newChargeArticle);
-      }
-    },
+    // addChargeArticle: (state) => {
+    //   if (state.chargeArticle.length === 0) {
+    //     state.chargeArticle.push(chargeArticleValue);
+    //   } else {
+    //     const newChargeArticle: IChargeArticleProps = {
+    //       state: "",
+    //       part: "",
+    //       episodesNumber: 0,
+    //     };
+    //     state.chargeArticle.push(newChargeArticle);
+    //   }
+    // },
 
     removeChargeArticle: (state, action: PayloadAction<number>) => {
       const index = action.payload;
@@ -74,10 +84,11 @@ const slice = createSlice({
 export const {
   updateCalculatorVerdictDate,
   updateCalculatorComesInToForse,
-  updateCalculatorSentenceValue,
+  updateCalculatorSentenceYear,
+  updateCalculatorSentenceMonth,
   updateChargeArticle,
   removeChargeArticle,
-  addChargeArticle,
+  // addChargeArticle,
 } = slice.actions;
 
 export const { reducer } = slice;

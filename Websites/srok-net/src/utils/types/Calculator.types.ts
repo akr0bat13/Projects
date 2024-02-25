@@ -4,14 +4,16 @@ export interface ISentenceProps {
 }
 
 export interface IChargeArticleProps {
+  id: number;
   state: string;
   part: string;
   episodesNumber: number;
+  isActive: boolean;
 }
 
 export interface ICalculatorState {
-  verdictDate: string;
-  comesInToForse: string;
-  sentence: ISentenceProps;
+  verdictDate: Date | null;
+  comesInToForse: Date | null;
   chargeArticle: IChargeArticleProps[];
+  sentence: ISentenceProps;
 }

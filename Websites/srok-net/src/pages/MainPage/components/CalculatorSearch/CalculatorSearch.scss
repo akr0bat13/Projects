@@ -17,14 +17,39 @@
   position: relative;
 }
 
-.search-container {
+.calculator-container {
   display: flex;
-  gap: 40px;
+  gap: 20px;
   position: absolute;
   bottom: -40px;
   background-color: $background;
   border-radius: 3px;
   box-shadow: $shadow;
   padding: 15px 40px;
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &-sentence {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+  }
+
+  &-add-button {
+    display: flex;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+  }
+
+  &-buttons {
+    display: flex;
+    gap: 20px;
+  }
 }
 
