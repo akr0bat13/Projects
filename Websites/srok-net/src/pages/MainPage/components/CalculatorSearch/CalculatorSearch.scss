@@ -38,6 +38,13 @@
     gap: 20px;
     align-items: center;
 
+    &-buttons {
+      display: flex;
+      align-items: end;
+      height: 100%;
+      gap: 10px;
+    }
+
   }
 
   &-add-button {

@@ -1,21 +1,27 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import React, { ChangeEvent, useState } from "react";
 
 import { ButtonProps } from "src/components/UI/Button/Button";
-import AddIcon from "src/components/icons/AddIcon";
 import RemoveIcon from "src/components/icons/RemoveIcon";
 import { useDispatch, useSelector } from "src/store";
 import {
   addChargeArticleAction,
   removeChargeArticleAction,
-  updateCalculatorComesInToForse,
   updateCalculatorSentenceMonth,
   updateCalculatorSentenceYear,
-  updateCalculatorVerdictDate,
+  updateChargeArticleAction,
 } from "src/store/slices/MainPage";
 import { calculatorValues } from "src/store/slices/MainPage/calculator.selectors";
 import { IChargeArticleProps } from "src/utils/types/Calculator.types";
+
+type ActionMap = {
+  [key: string]: {
+    action: ActionCreatorWithPayload<{ id: number; newState: string }, string>;
+    field: string;
+  };
+};
 
 export const useCalculator = () => {
   const dispatch = useDispatch();
@@ -27,10 +33,9 @@ export const useCalculator = () => {
   >([
     {
       id: 1,
-      part: "",
       state: "",
-      episodesNumber: 0,
-      icon: <AddIcon />,
+      part: "",
+      episodesNumber: "",
     },
   ]);
 
@@ -38,16 +43,6 @@ export const useCalculator = () => {
     label: "Показать",
     color: "primary",
   };
-
-  // const inputCalculatorVerdictDate = (event: ChangeEvent<HTMLInputElement>) => {
-  //   dispatch(updateCalculatorVerdictDate(event.target.value));
-  // };
-
-  // const inputCalculatorComesInToForse = (
-  //   event: ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   dispatch(updateCalculatorComesInToForse(event.target.value));
-  // };
 
   const inputCalculatorSentenceYear = (
     event: ChangeEvent<HTMLInputElement>
@@ -60,62 +55,6 @@ export const useCalculator = () => {
     dispatch(updateCalculatorSentenceMonth(event.target.value));
   };
 
-  // const inputCalculatorChargeArticle =
-  //   (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
-  //     const updatedChargeArticle = [...chargeArticle];
-  //     updatedChargeArticle[index] = {
-  //       ...updatedChargeArticle[index],
-  //       [event.target.name]: event.target.value,
-  //     };
-  //     dispatch(
-  //       updateChargeArticle({
-  //         index,
-  //         chargeArticle: updatedChargeArticle[index],
-  //       })
-  //     );
-  //   };
-
-  // const inputDatesValue = [
-  // {
-  //   value: verdictDate,
-  //   onChange: inputCalculatorVerdictDate,
-  //   placeholder: "Дата приговора",
-  // },
-  // {
-  //   value: comesInToForse,
-  //   onChange: inputCalculatorComesInToForse,
-  //   placeholder: "Вступает в силу",
-  // },
-  // {
-  //   value: sentence.year,
-  //   onChange: inputCalculatorSentenceYear,
-  //   placeholder: "Год",
-  // },
-  // {
-  //   value: sentence.month,
-  //   onChange: inputCalculatorSentenceMonth,
-  //   placeholder: "Месяц",
-  // },
-  // ...chargeArticle.map((item, index) => ({
-  //   value: item.state,
-  //   onChange: inputCalculatorChargeArticle(index),
-  //   name: "state",
-  //   placeholder: "Состояние",
-  // })),
-  // ...chargeArticle.map((item, index) => ({
-  //   value: item.part,
-  //   onChange: inputCalculatorChargeArticle(index),
-  //   name: "part",
-  //   placeholder: "Часть",
-  // })),
-  // ...chargeArticle.map((item, index) => ({
-  //   value: item.episodesNumber,
-  //   onChange: inputCalculatorChargeArticle(index),
-  //   name: "episodesNumber",
-  //   placeholder: "Количество эпизодов",
-  // })),
-  // ];
-
   const removeChargeArticle = (id: number) => {
     setChargeArticleValue(
       chargeArticleValue.filter((article) => article.id !== id)
@@ -125,13 +64,30 @@ export const useCalculator = () => {
   const addChargeArticle = () => {
     const newArticle: IChargeArticleProps = {
       id: chargeArticleValue.length + 1,
-      part: "",
       state: "",
-      episodesNumber: 0,
-      icon: <RemoveIcon />,
+      part: "",
+      episodesNumber: "",
     };
     setChargeArticleValue([...chargeArticleValue, newArticle]);
     dispatch(addChargeArticleAction(newArticle));
+  };
+
+  const setChargeArticleState = (
+    id: number,
+    field: string,
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const newState = event.target.value;
+
+    dispatch(
+      updateChargeArticleAction({ id, newState: { [field]: newState } })
+    );
+
+    setChargeArticleValue((prevState) =>
+      prevState.map((item) =>
+        item.id === id ? { ...item, [field]: newState } : item
+      )
+    );
   };
 
   const inputsentenceValue = [
@@ -153,5 +109,6 @@ export const useCalculator = () => {
     chargeArticleValue,
     addChargeArticle,
     removeChargeArticle,
+    setChargeArticleState,
   };
 };

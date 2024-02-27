@@ -9,9 +9,8 @@ export interface IChargeArticleProps {
   id: number;
   state: string;
   part: string;
-  episodesNumber: number;
+  episodesNumber: string;
   icon?: ReactNode;
-  onClick?: (id: number) => void;
 }
 
 export interface ICalculatorState {

@@ -14,9 +14,9 @@ const sentenceValue: ISentenceProps = {
 const chargeArticleValue: IChargeArticleProps[] = [
   {
     id: 1,
-    part: "",
     state: "",
-    episodesNumber: 0,
+    part: "",
+    episodesNumber: "",
   },
 ];
 
@@ -49,36 +49,7 @@ const slice = createSlice({
     updateCalculatorSentenceMonth: (state, action: PayloadAction<string>) => {
       state.sentence.month = action.payload;
     },
-    updateChargeArticleState: (
-      state,
-      action: PayloadAction<{ id: number; newState: string }>
-    ) => {
-      state.chargeArticle = state.chargeArticle.map((article) =>
-        article.id === action.payload.id
-          ? { ...article, state: action.payload.newState }
-          : article
-      );
-    },
-    updateChargeArticlePart: (
-      state,
-      action: PayloadAction<{ id: number; newPart: string }>
-    ) => {
-      state.chargeArticle = state.chargeArticle.map((article) =>
-        article.id === action.payload.id
-          ? { ...article, part: action.payload.newPart }
-          : article
-      );
-    },
-    updateChargeArticleEpisodesNumber: (
-      state,
-      action: PayloadAction<{ id: number; newEpisodesNumber: number }>
-    ) => {
-      state.chargeArticle = state.chargeArticle.map((article) =>
-        article.id === action.payload.id
-          ? { ...article, episodesNumber: action.payload.newEpisodesNumber }
-          : article
-      );
-    },
+
     addChargeArticleAction: (
       state,
       action: PayloadAction<IChargeArticleProps>
@@ -86,9 +57,43 @@ const slice = createSlice({
       state.chargeArticle.push(action.payload);
     },
     removeChargeArticleAction: (state, action: PayloadAction<number>) => {
-      state.chargeArticle = state.chargeArticle.filter(
-        (article) => article.id !== action.payload
+      const updatedChargeArticle = (state.chargeArticle =
+        state.chargeArticle.filter((article) => article.id !== action.payload));
+      const updatedChargeArticleWithUpdatedIds = updatedChargeArticle.map(
+        (article, index) => ({
+          ...article,
+          id: index + 1,
+        })
       );
+
+      state.chargeArticle = updatedChargeArticleWithUpdatedIds;
+    },
+
+    updateChargeArticleAction: (
+      state,
+      action: PayloadAction<{
+        id: number;
+        newState: {
+          state?: string;
+          part?: string;
+          episodesNumber?: string;
+        };
+      }>
+    ) => {
+      const updatedChargeArticle = state.chargeArticle.map((article) => {
+        if (article.id === action.payload.id) {
+          return {
+            ...article,
+            ...action.payload.newState,
+          };
+        }
+        return article;
+      });
+
+      return {
+        ...state,
+        chargeArticle: updatedChargeArticle,
+      };
     },
   },
 });
@@ -99,10 +104,8 @@ export const {
   updateCalculatorSentenceYear,
   updateCalculatorSentenceMonth,
   addChargeArticleAction,
-  updateChargeArticleEpisodesNumber,
-  updateChargeArticlePart,
-  updateChargeArticleState,
   removeChargeArticleAction,
+  updateChargeArticleAction,
 } = slice.actions;
 
 export const { reducer } = slice;

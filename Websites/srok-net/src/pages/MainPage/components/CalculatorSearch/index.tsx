@@ -21,6 +21,7 @@ const CalculatorSearch = ({ setResult }: any) => {
     chargeArticleValue,
     addChargeArticle,
     removeChargeArticle,
+    setChargeArticleState,
   } = useCalculator();
   // const { part, state } = useSelector(onFreedomInput);
 
@@ -36,6 +37,7 @@ const CalculatorSearch = ({ setResult }: any) => {
     verdictDate: null,
     comesInToForse: null,
   });
+
   return (
     <div className="search-wrapper">
       <H variant="hd" color="white">
@@ -58,26 +60,50 @@ const CalculatorSearch = ({ setResult }: any) => {
             return (
               <div key={id} className="calculator-container-sentence">
                 <InputContainer label="Статья">
-                  <TextInput value={state} />
+                  <TextInput
+                    value={state}
+                    onChange={(event) =>
+                      setChargeArticleState(id, "state", event)
+                    }
+                  />
                 </InputContainer>
-
                 <InputContainer label="Часть">
-                  <TextInput value={part} />
+                  <TextInput
+                    value={part}
+                    onChange={(event) =>
+                      setChargeArticleState(id, "part", event)
+                    }
+                  />
                 </InputContainer>
 
                 <InputContainer label="Кол-во эпизодов">
-                  <TextInput value={episodesNumber} />
+                  <TextInput
+                    value={episodesNumber}
+                    onChange={(event) =>
+                      setChargeArticleState(id, "episodesNumber", event)
+                    }
+                  />
                 </InputContainer>
-                <Button
-                  onClick={() => removeChargeArticle(id)}
-                  icon={<RemoveIcon />}
-                  sx={{ padding: 0 }}
-                />
-                <Button
-                  onClick={addChargeArticle}
-                  icon={<AddIcon />}
-                  sx={{ padding: 0 }}
-                />
+                <div className="calculator-container-sentence-buttons">
+                  <Button
+                    onClick={() => removeChargeArticle(id)}
+                    icon={
+                      <RemoveIcon
+                        fill={
+                          id === 1 && chargeArticleValue.length === 1
+                            ? "#B0B0B0"
+                            : undefined
+                        }
+                      />
+                    }
+                    sx={{ padding: 0 }}
+                  />
+                  <Button
+                    onClick={addChargeArticle}
+                    icon={<AddIcon />}
+                    sx={{ padding: 0 }}
+                  />
+                </div>
               </div>
             );
           })}
@@ -92,15 +118,17 @@ const CalculatorSearch = ({ setResult }: any) => {
               <InputContainer label="Кол-во эпизодов">
                 <TextInput disabled={true} />
               </InputContainer>
-              <Button
-                icon={<RemoveIcon fill="#B0B0B0" />}
-                sx={{ padding: 0 }}
-              />
-              <Button
-                onClick={addChargeArticle}
-                icon={<AddIcon fill="#B0B0B0" />}
-                sx={{ padding: 0 }}
-              />
+              <div className="calculator-container-sentence-buttons">
+                <Button
+                  icon={<RemoveIcon fill="#B0B0B0" />}
+                  sx={{ padding: 0 }}
+                />
+                <Button
+                  onClick={addChargeArticle}
+                  icon={<AddIcon fill="#B0B0B0" />}
+                  sx={{ padding: 0 }}
+                />
+              </div>
             </div>
           )}
         </div>
