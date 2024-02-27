@@ -90,6 +90,27 @@ export const useCalculator = () => {
     );
   };
 
+  const disabledComponent = [
+    {
+      label: "Статья",
+      color: "disabled",
+      styleWrapper: 90,
+      disabled: true,
+    },
+    {
+      label: "Часть",
+      color: "disabled",
+      styleWrapper: 90,
+      disabled: true,
+    },
+    {
+      label: "Кол-во эпизодов",
+      color: "disabled",
+      styleWrapper: 145,
+      disabled: true,
+    },
+  ];
+
   const inputsentenceValue = [
     {
       value: sentence.year,
@@ -114,5 +135,6 @@ export const useCalculator = () => {
     addChargeArticle,
     removeChargeArticle,
     setChargeArticleState,
+    disabledComponent,
   };
 };

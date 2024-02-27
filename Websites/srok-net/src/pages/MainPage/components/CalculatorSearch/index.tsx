@@ -8,21 +8,13 @@ import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
 import { textColor } from "src/components/UI/Text/utils/types/text.types";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
-import AddIcon from "src/components/icons/AddIcon";
-import RemoveIcon from "src/components/icons/RemoveIcon";
 import "./CalculatorSearch.scss";
 
 import { useCalculator } from "../../hooks/useCalculator";
+import ArticleValueItem from "../ArticleValueItem";
 
 const CalculatorSearch = ({ setResult }: any) => {
-  const {
-    buttonSearchProps,
-    inputsentenceValue,
-    chargeArticleValue,
-    addChargeArticle,
-    removeChargeArticle,
-    setChargeArticleState,
-  } = useCalculator();
+  const { buttonSearchProps, inputsentenceValue } = useCalculator();
 
   const searchSubmit = () => {
     setResult(true);
@@ -52,108 +44,9 @@ const CalculatorSearch = ({ setResult }: any) => {
           }}
           styleWrapper={{ width: 190 }}
         />
-        <div className="calculator-container-item calculator-article-value">
-          {chargeArticleValue.map((article) => {
-            const { id, episodesNumber, part, state } = article;
-            return (
-              <div key={id} className="calculator-container-article-value">
-                <InputContainer
-                  label="Статья"
-                  color="blue"
-                  styleWrapper={{ width: "90px" }}
-                >
-                  <TextInput
-                    value={state}
-                    onChange={(event) =>
-                      setChargeArticleState(id, "state", event)
-                    }
-                  />
-                </InputContainer>
-                <InputContainer
-                  label="Часть"
-                  color="blue"
-                  styleWrapper={{ width: "90px" }}
-                >
-                  <TextInput
-                    value={part}
-                    onChange={(event) =>
-                      setChargeArticleState(id, "part", event)
-                    }
-                  />
-                </InputContainer>
 
-                <InputContainer
-                  label="Кол-во эпизодов"
-                  color="blue"
-                  styleWrapper={{ width: "145px" }}
-                >
-                  <TextInput
-                    value={episodesNumber}
-                    onChange={(event) =>
-                      setChargeArticleState(id, "episodesNumber", event)
-                    }
-                  />
-                </InputContainer>
-                <div className="calculator-container-article-value-buttons">
-                  <Button
-                    onClick={() => removeChargeArticle(id)}
-                    icon={
-                      <RemoveIcon
-                        fill={
-                          id === 1 && chargeArticleValue.length === 1
-                            ? "#B0B0B0"
-                            : undefined
-                        }
-                      />
-                    }
-                    sx={{ padding: 0 }}
-                  />
-                  <Button
-                    onClick={addChargeArticle}
-                    icon={<AddIcon />}
-                    sx={{ padding: 0 }}
-                  />
-                </div>
-              </div>
-            );
-          })}
-          {chargeArticleValue.length === 1 && (
-            <div className="calculator-container-article-value">
-              <InputContainer
-                label="Статья"
-                color="disabled"
-                styleWrapper={{ width: "90px" }}
-              >
-                <TextInput disabled={true} />
-              </InputContainer>
-              <InputContainer
-                label="Часть"
-                color="disabled"
-                styleWrapper={{ width: "90px" }}
-              >
-                <TextInput disabled={true} />
-              </InputContainer>
-              <InputContainer
-                label="Кол-во эпизодов"
-                color="disabled"
-                styleWrapper={{ width: "145px" }}
-              >
-                <TextInput disabled={true} />
-              </InputContainer>
-              <div className="calculator-container-article-value-buttons">
-                <Button
-                  icon={<RemoveIcon fill="#B0B0B0" />}
-                  sx={{ padding: 0 }}
-                />
-                <Button
-                  onClick={addChargeArticle}
-                  icon={<AddIcon fill="#B0B0B0" />}
-                  sx={{ padding: 0 }}
-                />
-              </div>
-            </div>
-          )}
-        </div>
+        <ArticleValueItem />
+
         <div className="calculator-container-item">
           <div className="calculator-container-sentence">
             {inputsentenceValue.map((date) => (
