@@ -1,0 +1,13 @@
+@import '/src/vars.scss';
+
+.result-wrapper {
+  display: flex;
+  margin-top: 100px;
+}
+
+.filtration-component-wrapper {
+  width: 30%;
+  border: 1px solid $blue-primary-active;
+  border-radius: 5px;
+  padding: 20px 15px;
+}

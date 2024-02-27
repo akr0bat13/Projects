@@ -16,6 +16,7 @@ export const H: FC<TextProps> = (props) => {
         "text-heading-variant": variant === "hd",
         "color-primary": color === "blue",
         "color-white": color === "white",
+        "color-disabled": color === "disabled",
       })}
       style={sx}
       {...rest}

@@ -95,11 +95,15 @@ export const useCalculator = () => {
       value: sentence.year,
       onChange: inputCalculatorSentenceYear,
       placeholder: "Срок (лет)",
+      color: "blue",
+      width: 90,
     },
     {
       value: sentence.month,
       onChange: inputCalculatorSentenceMonth,
       placeholder: "Срок (месяцев)",
+      color: "blue",
+      width: 150,
     },
   ];
 

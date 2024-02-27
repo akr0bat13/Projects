@@ -71,6 +71,10 @@
   top:12px;
 }
 
+.react-datepicker__close-icon {
+  display: none;
+}
+
 
 .not-current-month {
   .react-datepicker__day.react-datepicker__day--keyboard-selected {

@@ -1,11 +1,11 @@
 @import 'src/vars.scss';
 
-.search-wrapper {
+.calculator-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 25px 0 60px;
+  padding: 25px 0 120px;
 
   gap: 30px;
 
@@ -21,7 +21,7 @@
   display: flex;
   gap: 20px;
   position: absolute;
-  bottom: -40px;
+  bottom: -90px;
   background-color: $background;
   border-radius: 3px;
   box-shadow: $shadow;
@@ -30,10 +30,20 @@
   &-item {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
   }
 
   &-sentence {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // gap: 20px;
+  }
+  &-sentence > *:last-child {
+    margin-right: 0;
+  }
+
+  &-article-value {
     display: flex;
     gap: 20px;
     align-items: center;
@@ -47,6 +57,13 @@
 
   }
 
+  .calculator-article-value {
+    max-height: 155px;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding-right: 5px;
+  }
+
   &-add-button {
     display: flex;
     cursor: pointer;
@@ -56,6 +73,9 @@
 
   &-buttons {
     display: flex;
+    padding-top: 30px;
+    align-items: center;
+    height: 100%;
     gap: 20px;
   }
 }

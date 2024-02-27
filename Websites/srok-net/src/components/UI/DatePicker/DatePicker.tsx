@@ -32,12 +32,18 @@ interface IDatePickerProps {
   onChange: (dates: DateRange) => void;
   dates: DateRange;
   sx?: CSSProperties;
+  styleWrapper?: CSSProperties;
 }
 
 registerLocale("ru", ru);
 setDefaultLocale("ru");
 
-export const DatePicker: FC<IDatePickerProps> = ({ onChange, dates, sx }) => {
+export const DatePicker: FC<IDatePickerProps> = ({
+  onChange,
+  dates,
+  sx,
+  styleWrapper,
+}) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -86,7 +92,11 @@ export const DatePicker: FC<IDatePickerProps> = ({ onChange, dates, sx }) => {
   );
   return (
     <div className="datepicker-wrapper" style={sx}>
-      <InputContainer label="Дата приговора">
+      <InputContainer
+        label="Дата приговора"
+        color="blue"
+        styleWrapper={styleWrapper}
+      >
         <ReactDatePicker
           selected={selectedDates.verdictDate}
           startDate={selectedDates.verdictDate}
@@ -102,7 +112,11 @@ export const DatePicker: FC<IDatePickerProps> = ({ onChange, dates, sx }) => {
           isClearable={!!selectedDates.verdictDate}
         />
       </InputContainer>
-      <InputContainer label="Вступает в силу">
+      <InputContainer
+        label="Вступает в силу"
+        color="blue"
+        styleWrapper={styleWrapper}
+      >
         <ReactDatePicker
           selected={selectedDates.comesInToForse}
           startDate={selectedDates.verdictDate}
