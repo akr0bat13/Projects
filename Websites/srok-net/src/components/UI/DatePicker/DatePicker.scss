@@ -7,21 +7,35 @@
   min-width: 180px;
 }
 
-.react-datepicker__input-container input {
-  font-family: "Montserrat", sans-serif;
-  background-color: $background;
-  border: 1px solid $blue-primary-active;
-  color: $blue-primary-active;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 400;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  word-wrap: break-word;
-  text-align:center;
-  text-overflow: ellipsis;
-}
+.react-datepicker__input-container{
+
+  position: relative;
+  svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5px;
+  }
+
+  input {
+    font-family: "Montserrat", sans-serif;
+    background-color: $background;
+    border: 1px solid $blue-primary-active;
+    color: $blue-primary-active;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    text-align:start;
+    text-overflow: ellipsis;
+
+    
+  }
+} 
+  
 .react-datepicker__close-icon {
   right: -30px;
 }

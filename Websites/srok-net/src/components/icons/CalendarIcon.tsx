@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { IconType } from "./types/icon.types";
 
-const DownArrowIcon: FC<IconType> = (props) => {
+const CalendarIcon: FC<IconType> = (props) => {
   const { fill } = props;
   return (
     <svg
@@ -26,4 +26,4 @@ const DownArrowIcon: FC<IconType> = (props) => {
   );
 };
 
-export default DownArrowIcon;
+export default CalendarIcon;

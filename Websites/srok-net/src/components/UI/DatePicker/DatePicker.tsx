@@ -14,6 +14,7 @@ import ReactDatePicker, {
 import "react-datepicker/dist/react-datepicker.css";
 import { useTranslation } from "react-i18next";
 
+import CalendarIcon from "src/components/icons/CalendarIcon";
 import { useDispatch } from "src/store";
 import {
   updateCalculatorComesInToForse,
@@ -110,6 +111,8 @@ export const DatePicker: FC<IDatePickerProps> = ({
           })}
           dateFormat="dd.MM.yyyy"
           isClearable={!!selectedDates.verdictDate}
+          showIcon
+          icon={<CalendarIcon />}
         />
       </InputContainer>
       <InputContainer
@@ -132,6 +135,8 @@ export const DatePicker: FC<IDatePickerProps> = ({
           dateFormat="dd.MM.yyyy"
           className="test"
           isClearable={!!selectedDates.comesInToForse}
+          showIcon
+          icon={<CalendarIcon />}
         />
       </InputContainer>
     </div>
