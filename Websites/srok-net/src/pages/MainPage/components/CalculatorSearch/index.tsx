@@ -9,7 +9,7 @@ import { P } from "src/components/UI/Text/P";
 import { textColor } from "src/components/UI/Text/utils/types/text.types";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import { useSelector } from "src/store";
-import { calculatorValues } from "src/store/slices/MainPage/calculator.selectors";
+import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
 import "./CalculatorSearch.scss";
 
 import { useCalculator } from "../../hooks/useCalculator";
@@ -25,7 +25,7 @@ const CalculatorSearch = ({ setResult }: any) => {
 
   const { label, color } = buttonSearchProps;
 
-  const { verdictDate, comesInToForse } = useSelector(calculatorValues);
+  const { verdictDate, comesInToForse } = useSelector(calculatorSearchValues);
 
   const [dates, setDates] = useState<DateRange>({
     verdictDate,

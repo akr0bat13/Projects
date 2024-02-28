@@ -4,7 +4,7 @@ import {
   ICalculatorState,
   IChargeArticleProps,
   ISentenceProps,
-} from "src/utils/types/Calculator.types";
+} from "src/utils/types/CalculatorSearch.types";
 
 const sentenceValue: ISentenceProps = {
   year: "",
@@ -29,7 +29,7 @@ const initialState: ICalculatorState = {
 };
 
 const slice = createSlice({
-  name: "createCalculator",
+  name: "createCalculatorSearch",
   initialState,
   reducers: {
     updateCalculatorVerdictDate: (

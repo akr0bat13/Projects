@@ -1,10 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import { ButtonProps } from "src/components/UI/Button/Button";
-import RemoveIcon from "src/components/icons/RemoveIcon";
 import { useDispatch, useSelector } from "src/store";
 import {
   addChargeArticleAction,
@@ -13,21 +9,14 @@ import {
   updateCalculatorSentenceYear,
   updateChargeArticleAction,
   updateConviction,
-} from "src/store/slices/MainPage";
-import { calculatorValues } from "src/store/slices/MainPage/calculator.selectors";
-import { IChargeArticleProps } from "src/utils/types/Calculator.types";
-
-type ActionMap = {
-  [key: string]: {
-    action: ActionCreatorWithPayload<{ id: number; newState: string }, string>;
-    field: string;
-  };
-};
+} from "src/store/slices/CalculatorSearch";
+import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
+import { IChargeArticleProps } from "src/utils/types/CalculatorSearch.types";
 
 export const useCalculator = () => {
   const dispatch = useDispatch();
 
-  const { sentence } = useSelector(calculatorValues);
+  const { sentence } = useSelector(calculatorSearchValues);
 
   const [chargeArticleValue, setChargeArticleValue] = useState<
     IChargeArticleProps[]

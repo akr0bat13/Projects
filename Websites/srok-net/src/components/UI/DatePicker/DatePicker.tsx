@@ -19,7 +19,7 @@ import { useDispatch } from "src/store";
 import {
   updateCalculatorComesInToForse,
   updateCalculatorVerdictDate,
-} from "src/store/slices/MainPage";
+} from "src/store/slices/CalculatorSearch";
 
 import { InputContainer } from "../InputContainer/InputContainer";
 import "./DatePicker.scss";
