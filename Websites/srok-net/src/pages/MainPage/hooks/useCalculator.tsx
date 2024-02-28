@@ -12,6 +12,7 @@ import {
   updateCalculatorSentenceMonth,
   updateCalculatorSentenceYear,
   updateChargeArticleAction,
+  updateConviction,
 } from "src/store/slices/MainPage";
 import { calculatorValues } from "src/store/slices/MainPage/calculator.selectors";
 import { IChargeArticleProps } from "src/utils/types/Calculator.types";
@@ -56,11 +57,14 @@ export const useCalculator = () => {
   };
 
   const removeChargeArticle = (id: number) => {
-    setChargeArticleValue(
-      chargeArticleValue.filter((article) => article.id !== id)
-    );
-    dispatch(removeChargeArticleAction(id));
+    if (chargeArticleValue.length !== 1) {
+      setChargeArticleValue(
+        chargeArticleValue.filter((article) => article.id !== id)
+      );
+      dispatch(removeChargeArticleAction(id));
+    }
   };
+
   const addChargeArticle = () => {
     const newArticle: IChargeArticleProps = {
       id: chargeArticleValue.length + 1,
@@ -88,6 +92,10 @@ export const useCalculator = () => {
         item.id === id ? { ...item, [field]: newState } : item
       )
     );
+  };
+
+  const convictionHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(updateConviction(event.target.checked));
   };
 
   const disabledComponent = [
@@ -136,5 +144,6 @@ export const useCalculator = () => {
     removeChargeArticle,
     setChargeArticleState,
     disabledComponent,
+    convictionHandler,
   };
 };

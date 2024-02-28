@@ -31,6 +31,7 @@
   border: 1px solid $blue-primary-active;
   border-radius: 0.25em;
   transition: all 0.25s;
+  cursor: pointer;
 }
 
 .checkbox-wrapper input:checked ~ .checkmark {

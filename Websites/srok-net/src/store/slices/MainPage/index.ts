@@ -25,6 +25,7 @@ const initialState: ICalculatorState = {
   comesInToForse: null,
   sentence: sentenceValue,
   chargeArticle: chargeArticleValue,
+  conviction: false,
 };
 
 const slice = createSlice({
@@ -95,6 +96,10 @@ const slice = createSlice({
         chargeArticle: updatedChargeArticle,
       };
     },
+
+    updateConviction: (state, action: PayloadAction<boolean>) => {
+      state.conviction = action.payload;
+    },
   },
 });
 
@@ -106,6 +111,7 @@ export const {
   addChargeArticleAction,
   removeChargeArticleAction,
   updateChargeArticleAction,
+  updateConviction,
 } = slice.actions;
 
 export const { reducer } = slice;

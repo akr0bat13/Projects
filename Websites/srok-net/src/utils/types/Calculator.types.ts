@@ -18,4 +18,5 @@ export interface ICalculatorState {
   comesInToForse: Date | null;
   chargeArticle: IChargeArticleProps[];
   sentence: ISentenceProps;
+  conviction: boolean;
 }

@@ -8,13 +8,16 @@ import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
 import { textColor } from "src/components/UI/Text/utils/types/text.types";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
+import { useSelector } from "src/store";
+import { calculatorValues } from "src/store/slices/MainPage/calculator.selectors";
 import "./CalculatorSearch.scss";
 
 import { useCalculator } from "../../hooks/useCalculator";
 import ArticleValueItem from "../ArticleValueItem";
 
 const CalculatorSearch = ({ setResult }: any) => {
-  const { buttonSearchProps, inputsentenceValue } = useCalculator();
+  const { buttonSearchProps, inputsentenceValue, convictionHandler } =
+    useCalculator();
 
   const searchSubmit = () => {
     setResult(true);
@@ -22,9 +25,11 @@ const CalculatorSearch = ({ setResult }: any) => {
 
   const { label, color } = buttonSearchProps;
 
+  const { verdictDate, comesInToForse } = useSelector(calculatorValues);
+
   const [dates, setDates] = useState<DateRange>({
-    verdictDate: null,
-    comesInToForse: null,
+    verdictDate,
+    comesInToForse,
   });
 
   return (
@@ -61,7 +66,11 @@ const CalculatorSearch = ({ setResult }: any) => {
             ))}
           </div>
           <div className="calculator-container-buttons">
-            <Checkbox label="Судимости" sx={{ color: "#0C64C5" }} />
+            <Checkbox
+              label="Судимости"
+              onChange={convictionHandler}
+              sx={{ color: "#0C64C5" }}
+            />
             <Button label={label} color={color} onClick={searchSubmit} />
           </div>
         </div>
