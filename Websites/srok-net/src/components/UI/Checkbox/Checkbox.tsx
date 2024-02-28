@@ -12,7 +12,7 @@ export interface CheckboxProps
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  label: string;
+  label?: string;
   name?: string;
   sx?: CSSProperties;
   bgColor?: string;

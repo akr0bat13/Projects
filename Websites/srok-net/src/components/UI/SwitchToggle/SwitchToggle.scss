@@ -1,0 +1,90 @@
+@import "../../../vars.scss";
+
+.switch-toggle-root {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.switch-toggle {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+
+    &-title {
+        font-style: normal;
+        font-weight: 45;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.75px;
+        color: $text-black;
+        &-disabled {
+            color: $button-disabled;
+        }
+    }
+}
+
+.switch-toggle-spin {
+    display: flex;
+    width: 40px;
+    justify-content: center;
+}
+
+
+.switch-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    border-radius: 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $background;
+    border: 1px solid $blue-primary-active;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 5px;
+    bottom: 3px;
+    border-radius: 20px;
+    background-color: $blue-primary-active;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+
+
+
+input:checked+.slider {
+    background-color: $blue-primary-active;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px $blue-primary-active;
+}
+
+input:disabled+.slider {
+    background-color: $button-disabled;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+    background-color: $background;
+
+}

@@ -6,8 +6,27 @@
 }
 
 .filtration-component-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   width: 30%;
   border: 1px solid $blue-primary-active;
   border-radius: 5px;
   padding: 20px 15px;
+}
+
+.filtration-component-item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.filtration-preventive-measure-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.apilation-title {
+  display: flex;
+  justify-content: space-between;
 }

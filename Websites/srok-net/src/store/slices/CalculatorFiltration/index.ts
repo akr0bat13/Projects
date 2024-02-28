@@ -3,13 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   IApilationProps,
   ICalculatorFiltrationState,
-  IPreventiveMeasureProps,
-  IPunishmentTypeProps,
+  IFiltrationCheckBoxProps,
 } from "src/utils/types/CalculatorFiltration.types";
 
 import {} from "src/utils/types/CalculatorSearch.types";
 
-const preventiveMeasure: IPreventiveMeasureProps[] = [
+const preventiveMeasure: IFiltrationCheckBoxProps[] = [
   {
     title: "Домашний арест",
     value: false,
@@ -31,14 +30,32 @@ const apilation: IApilationProps = {
   detention: "",
 };
 
-const punishmentType: IPunishmentTypeProps = {
-  settlementsColony: false,
-  generalRegimeColony: false,
-  maximumSecurityColony: false,
-  specialRegimeColony: false,
-  forcedLabor: false,
-  prison: false,
-};
+const punishmentType: IFiltrationCheckBoxProps[] = [
+  {
+    title: "Колония поселения",
+    value: false,
+  },
+  {
+    title: "Колония общего режима",
+    value: false,
+  },
+  {
+    title: "Колония строгого режима",
+    value: false,
+  },
+  {
+    title: "Колония особого режима",
+    value: false,
+  },
+  {
+    title: "Принудительные трудовые работы",
+    value: false,
+  },
+  {
+    title: "Тюрьма",
+    value: false,
+  },
+];
 
 const initialState: ICalculatorFiltrationState = {
   preventiveMeasure,

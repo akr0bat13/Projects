@@ -1,4 +1,4 @@
-export interface IPreventiveMeasureProps {
+export interface IFiltrationCheckBoxProps {
   title: string;
   value: boolean;
 }
@@ -20,7 +20,7 @@ export interface IPunishmentTypeProps {
 }
 
 export interface ICalculatorFiltrationState {
-  preventiveMeasure: IPreventiveMeasureProps[];
+  preventiveMeasure: IFiltrationCheckBoxProps[];
   apilation: IApilationProps;
-  punishmentType: IPunishmentTypeProps;
+  punishmentType: IFiltrationCheckBoxProps[];
 }
