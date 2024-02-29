@@ -26,8 +26,14 @@ const options: TOption[] = [
 ];
 
 const Apilation = () => {
-  const { active, showApilation, apilation, inputCalculatorApilationDate } =
-    useFiltrationComponent();
+  const {
+    active,
+    showApilation,
+    apilationProps,
+    inputCalculatorApilationDate,
+    inputApilationMonth,
+    inputApilationYear,
+  } = useFiltrationComponent();
 
   return (
     <div className="filtration-component-item">
@@ -44,16 +50,16 @@ const Apilation = () => {
             labelStyles={{ fontSize: 18 }}
             fieldStyles={{ display: "flex", gap: 20 }}
           >
-            <TextInput placeholder="Лет" />
-            <TextInput placeholder="Месяцев" />
+            <TextInput placeholder="Лет" onChange={inputApilationYear} />
+            <TextInput placeholder="Месяцев" onChange={inputApilationMonth} />
           </InputContainer>
           <ReactDatePicker
-            selected={apilation}
+            selected={apilationProps.apilationDate}
             onChange={inputCalculatorApilationDate}
             placeholderText="Дата аппеляции"
             dateFormat="dd.MM.yyyy"
-            isClearable={!!apilation}
-            showIcon={!apilation}
+            isClearable={!!apilationProps.apilationDate}
+            showIcon={!apilationProps.apilationDate}
             icon={<CalendarIcon />}
           />
           <Select options={options} placeholder="Содержание под стражей" />

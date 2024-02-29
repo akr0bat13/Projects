@@ -90,6 +90,12 @@ const slice = createSlice({
     updateApilationDate: (state, action: PayloadAction<Date | null>) => {
       state.apilation.apilationDate = action.payload;
     },
+    updateApilationYear: (state, action: PayloadAction<string>) => {
+      state.apilation.years = action.payload;
+    },
+    updateApilationMonth: (state, action: PayloadAction<string>) => {
+      state.apilation.month = action.payload;
+    },
   },
 });
 
@@ -97,6 +103,8 @@ export const {
   togglePreventiveMeasure,
   togglePunishmentType,
   updateApilationDate,
+  updateApilationMonth,
+  updateApilationYear,
 } = slice.actions;
 
 export const { reducer } = slice;
