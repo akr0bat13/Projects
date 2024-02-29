@@ -86,7 +86,13 @@
 }
 
 .react-datepicker__close-icon {
-  display: none;
+  position: absolute;
+  top: 0;
+  right: 5px;
+
+  &::after {
+    background-color: $blue-primary-active;
+  }
 }
 
 

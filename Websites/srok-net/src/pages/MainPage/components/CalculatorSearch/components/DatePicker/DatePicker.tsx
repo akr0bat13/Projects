@@ -21,7 +21,7 @@ import {
   updateCalculatorVerdictDate,
 } from "src/store/slices/CalculatorSearch";
 
-import { InputContainer } from "../InputContainer/InputContainer";
+import { InputContainer } from "../../../../../../components/UI/InputContainer/InputContainer";
 import "./DatePicker.scss";
 
 export type DateRange = {
@@ -111,7 +111,7 @@ export const DatePicker: FC<IDatePickerProps> = ({
           })}
           dateFormat="dd.MM.yyyy"
           isClearable={!!selectedDates.verdictDate}
-          showIcon
+          showIcon={!selectedDates.verdictDate}
           icon={<CalendarIcon />}
         />
       </InputContainer>
@@ -135,7 +135,7 @@ export const DatePicker: FC<IDatePickerProps> = ({
           dateFormat="dd.MM.yyyy"
           className="test"
           isClearable={!!selectedDates.comesInToForse}
-          showIcon
+          showIcon={!selectedDates.comesInToForse}
           icon={<CalendarIcon />}
         />
       </InputContainer>

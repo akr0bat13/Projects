@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import { Button } from "src/components/UI/Button/Button";
 import { Checkbox } from "src/components/UI/Checkbox/Checkbox";
-import { DatePicker, DateRange } from "src/components/UI/DatePicker/DatePicker";
 import { InputContainer } from "src/components/UI/InputContainer/InputContainer";
 import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
@@ -14,6 +13,8 @@ import "./CalculatorSearch.scss";
 
 import { useCalculator } from "../../hooks/useCalculator";
 import ArticleValueItem from "../ArticleValueItem";
+
+import { DatePicker, DateRange } from "./components/DatePicker/DatePicker";
 
 const CalculatorSearch = ({ setResult }: any) => {
   const { buttonSearchProps, inputsentenceValue, convictionHandler } =

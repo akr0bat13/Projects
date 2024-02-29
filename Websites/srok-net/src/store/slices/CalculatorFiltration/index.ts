@@ -87,9 +87,16 @@ const slice = createSlice({
         type.value = value;
       }
     },
+    updateApilationDate: (state, action: PayloadAction<Date | null>) => {
+      state.apilation.apilationDate = action.payload;
+    },
   },
 });
 
-export const { togglePreventiveMeasure, togglePunishmentType } = slice.actions;
+export const {
+  togglePreventiveMeasure,
+  togglePunishmentType,
+  updateApilationDate,
+} = slice.actions;
 
 export const { reducer } = slice;
