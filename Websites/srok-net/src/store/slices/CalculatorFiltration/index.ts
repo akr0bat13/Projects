@@ -6,8 +6,6 @@ import {
   IFiltrationCheckBoxProps,
 } from "src/utils/types/CalculatorFiltration.types";
 
-import {} from "src/utils/types/CalculatorSearch.types";
-
 const preventiveMeasure: IFiltrationCheckBoxProps[] = [
   {
     title: "Домашний арест",
@@ -64,15 +62,34 @@ const initialState: ICalculatorFiltrationState = {
 };
 
 const slice = createSlice({
-  name: "createCalculatorSearch",
+  name: "createCalculatorFiltration",
   initialState,
   reducers: {
-    updateApilationYears: (state, action: PayloadAction<string>) => {
-      state.apilation.years = action.payload;
+    togglePreventiveMeasure: (
+      state,
+      action: PayloadAction<{ title: string; value: boolean }>
+    ) => {
+      const { title, value } = action.payload;
+      const measure = state.preventiveMeasure.find(
+        (item) => item.title === title
+      );
+      if (measure) {
+        measure.value = value;
+      }
+    },
+    togglePunishmentType: (
+      state,
+      action: PayloadAction<{ title: string; value: boolean }>
+    ) => {
+      const { title, value } = action.payload;
+      const type = state.punishmentType.find((item) => item.title === title);
+      if (type) {
+        type.value = value;
+      }
     },
   },
 });
 
-export const { updateApilationYears } = slice.actions;
+export const { togglePreventiveMeasure, togglePunishmentType } = slice.actions;
 
 export const { reducer } = slice;
