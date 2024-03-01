@@ -96,6 +96,9 @@ const slice = createSlice({
     updateApilationMonth: (state, action: PayloadAction<string>) => {
       state.apilation.month = action.payload;
     },
+    updateApilationDetention: (state, action: PayloadAction<string>) => {
+      state.apilation.detention = action.payload;
+    },
   },
 });
 
@@ -105,6 +108,7 @@ export const {
   updateApilationDate,
   updateApilationMonth,
   updateApilationYear,
+  updateApilationDetention,
 } = slice.actions;
 
 export const { reducer } = slice;

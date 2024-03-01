@@ -1,15 +1,32 @@
 import { ChangeEvent, useState } from "react";
 
+import { TOption } from "src/components/UI/Select/Select";
 import { useDispatch, useSelector } from "src/store";
 import {
   togglePreventiveMeasure,
   togglePunishmentType,
   updateApilationDate,
+  updateApilationDetention,
   updateApilationMonth,
   updateApilationYear,
 } from "src/store/slices/CalculatorFiltration";
 import { calculatorFiltrationApilation } from "src/store/slices/CalculatorFiltration/calculatorFiltration.selectors";
 import { IApilationProps } from "src/utils/types/CalculatorFiltration.types";
+
+const options: TOption[] = [
+  {
+    label: "value1",
+    value: "value1",
+  },
+  {
+    label: "value2",
+    value: "value2",
+  },
+  {
+    label: "value3",
+    value: "value3",
+  },
+];
 
 export const useFiltrationComponent = () => {
   const dispatch = useDispatch();
@@ -23,6 +40,11 @@ export const useFiltrationComponent = () => {
     month,
     apilationDate,
     detention,
+  });
+
+  const [apilationSelect, setApilationSelect] = useState<TOption>({
+    value: "",
+    label: "",
   });
 
   const handlePreventiveMeasureChange = (
@@ -60,6 +82,11 @@ export const useFiltrationComponent = () => {
     dispatch(updateApilationMonth(event.target.value));
   };
 
+  const apilationSelectHandler = (elem: TOption<string>) => {
+    setApilationSelect(elem);
+    dispatch(updateApilationDetention(elem.value));
+  };
+
   return {
     handlePreventiveMeasureChange,
     handlePunishmentChange,
@@ -69,5 +96,8 @@ export const useFiltrationComponent = () => {
     apilationProps,
     inputApilationYear,
     inputApilationMonth,
+    apilationSelectHandler,
+    apilationSelect,
+    options,
   };
 };
