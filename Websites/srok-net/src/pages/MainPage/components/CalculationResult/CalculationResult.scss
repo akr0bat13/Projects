@@ -13,6 +13,7 @@
   border: 1px solid $blue-primary-active;
   border-radius: 5px;
   padding: 20px 15px;
+  box-shadow: $shadow;
 }
 
 .filtration-component-item {
@@ -29,4 +30,51 @@
 .apilation-title {
   display: flex;
   justify-content: space-between;
+}
+
+.view-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-left: 30px;
+  width: 100%;
+}
+
+.reuslt-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $blue-primary-active;
+  border-radius: 5px;
+  box-shadow: $shadow;
+}
+
+.reuslt-info {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+.reuslt-info-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $blue-primary-active;
+  border-radius: 5px;
+  padding: 10px;
+  gap: 10px;
+  width: calc(50% - 20px);
+  flex-wrap: wrap;
+
+  &-text {
+    color: $blue-primary-secondary;
+
+    span {
+      color: $black-primary;
+    }
+  }
 }

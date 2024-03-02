@@ -77,15 +77,33 @@ const slice = createSlice({
         measure.value = value;
       }
     },
+    // togglePunishmentType: (
+    //   state,
+    //   action: PayloadAction<{ title: string; value: boolean }>
+    // ) => {
+    //   const { title, value } = action.payload;
+    //   const type = state.punishmentType.find((item) => item.title === title);
+    //   if (type) {
+    //     type.value = value;
+    //   }
+    // },
     togglePunishmentType: (
       state,
       action: PayloadAction<{ title: string; value: boolean }>
     ) => {
       const { title, value } = action.payload;
-      const type = state.punishmentType.find((item) => item.title === title);
-      if (type) {
-        type.value = value;
-      }
+
+      const updatedPunishmentType = state.punishmentType.map((item) => {
+        if (item.title === title) {
+          return { ...item, value };
+        }
+        return { ...item, value: false };
+      });
+
+      return {
+        ...state,
+        punishmentType: updatedPunishmentType,
+      };
     },
     updateApilationDate: (state, action: PayloadAction<Date | null>) => {
       state.apilation.apilationDate = action.payload;

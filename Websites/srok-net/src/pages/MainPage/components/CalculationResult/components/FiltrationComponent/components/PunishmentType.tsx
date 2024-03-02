@@ -22,6 +22,7 @@ const PunishmentType = () => {
           <div key={title} className="filtration-preventive-measure-item">
             <P variant="md">{title}</P>
             <Checkbox
+              checked={item.value}
               onChange={(event) => handlePunishmentChange(event, title)}
             />
           </div>
