@@ -10,6 +10,7 @@
   flex-direction: column;
   gap: 20px;
   width: 30%;
+  height: 100%;
   border: 1px solid $blue-primary-active;
   border-radius: 5px;
   padding: 20px 15px;
@@ -40,7 +41,7 @@
   width: 100%;
 }
 
-.reuslt-content-wrapper {
+.result-content-wrapper {
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -52,7 +53,7 @@
   box-shadow: $shadow;
 }
 
-.reuslt-info {
+.result-info {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -60,7 +61,7 @@
   gap: 30px;
 }
 
-.reuslt-info-item {
+.result-info-item {
   display: flex;
   flex-direction: column;
   border: 1px solid $blue-primary-active;
@@ -76,5 +77,23 @@
     span {
       color: $black-primary;
     }
+  }
+}
+
+.state-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+  align-items: start;
+  justify-content: center;
+  border: 1px solid $blue-primary-active;
+  border-radius: 5px;
+  box-shadow: $shadow;
+}
+
+.state-content-item {
+  span {
+    font-weight: 700;
   }
 }

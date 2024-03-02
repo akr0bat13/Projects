@@ -1,4 +1,4 @@
-import { ResultComponent } from "../utils/ViewContent.types";
+import { ResultComponent, StateComponent } from "../utils/ViewContent.types";
 
 export const useViewContent = () => {
   const mockResultData: ResultComponent[] = [
@@ -33,5 +33,14 @@ export const useViewContent = () => {
       fromApilation: 868,
     },
   ];
-  return { mockResultData };
+
+  const mockStateResult: StateComponent = {
+    state: 159,
+    part: 4,
+    title: "Мошенничество",
+    severity: "Тяжелое",
+    punishment:
+      "наказывается лишением свободы на срок до десяти лет, со штрафом в размере до одного миллиона рублей или в размере заработной платы или иного дохода осужденного за период до трех лет либо без такового и с ограничением свободы на срок до двух лет либо без такового.",
+  };
+  return { mockResultData, mockStateResult };
 };
