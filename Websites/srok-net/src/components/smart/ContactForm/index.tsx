@@ -2,6 +2,7 @@ import React from "react";
 
 import { Button } from "src/components/UI/Button/Button";
 import { Checkbox } from "src/components/UI/Checkbox/Checkbox";
+import { InputContainer } from "src/components/UI/InputContainer/InputContainer";
 import { H } from "src/components/UI/Text/H";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import LogoIcon from "src/components/icons/LogoIcon";
@@ -28,12 +29,9 @@ const ContactForm = (props: IForms) => {
         {inputsContent.map((input) => {
           const { onChange, placeholder, value } = input;
           return (
-            <TextInput
-              key={placeholder}
-              placeholder={placeholder}
-              value={value}
-              onChange={onChange}
-            />
+            <InputContainer key={placeholder} label={placeholder} color="blue">
+              <TextInput value={value} onChange={onChange} />
+            </InputContainer>
           );
         })}
       </div>

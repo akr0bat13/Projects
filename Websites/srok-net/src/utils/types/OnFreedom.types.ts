@@ -1,5 +1,4 @@
 import { TOption } from "src/components/UI/Select/Select";
-import { textColor } from "src/components/UI/Text/utils/types/text.types";
 
 export interface IInputProps {
   state: string;
@@ -32,7 +31,6 @@ export interface IForms {
 
 interface IComponent {
   label: string;
-  color: textColor;
   isSelect?: boolean;
   disabled?: boolean;
 }

@@ -72,7 +72,8 @@
     &-disabled,
     &-disabled:hover {
        background-color: $grey-container-disabled;
-       color: $blue-primary-secondary;
+       color: $button-disabled;
+       border-color: $button-disabled;
        cursor: default;
        .selected-option,
        .select-arrow {

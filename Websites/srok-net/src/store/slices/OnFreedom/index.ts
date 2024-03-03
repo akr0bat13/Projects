@@ -18,8 +18,8 @@ const inputSearchValue = {
 const initialState: OnFreedomState = {
   inputsValue: inputSearchValue,
   selectedCity: {
-    label: "",
-    value: "",
+    label: "Москва",
+    value: "Москва",
   },
 };
 

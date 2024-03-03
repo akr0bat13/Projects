@@ -92,12 +92,10 @@ export const useOnFreedom = () => {
       components: [
         {
           label: "Выберите город",
-          color: "blue",
           isSelect: true,
         },
         {
           label: "Срок",
-          color: "blue",
           disabled: true,
         },
       ],
@@ -107,12 +105,11 @@ export const useOnFreedom = () => {
       components: [
         {
           label: "Выберите город",
-          color: "blue",
           isSelect: true,
+          disabled: true,
         },
         {
           label: "Срок",
-          color: "blue",
           disabled: true,
         },
       ],
@@ -123,12 +120,11 @@ export const useOnFreedom = () => {
       components: [
         {
           label: "Выберите город",
-          color: "blue",
           isSelect: true,
+          disabled: true,
         },
         {
           label: "Срок",
-          color: "blue",
           disabled: true,
         },
       ],

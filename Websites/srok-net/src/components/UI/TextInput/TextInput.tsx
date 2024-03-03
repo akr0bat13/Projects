@@ -23,6 +23,7 @@ interface TextInputProps
   showIconTestId?: string;
   infoIconTestId?: string;
   sx?: CSSProperties;
+  error?: boolean;
 }
 
 export const TextInput: React.FC<TextInputProps> = (props) => {
@@ -37,6 +38,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
     infoIconTestId,
     sx,
     disabled,
+    error,
     ...rest
   } = props;
 
@@ -54,6 +56,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
     <div
       className={cn("text-input-wrapper", {
         "text-input-wrapper-disabled": disabled,
+        "text-input-wrapper-error": error,
       })}
       style={sx}
     >
@@ -75,6 +78,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
           isSearch={isSearch}
           isSearchLoading={isSearchLoading}
           showIconTestId={showIconTestId}
+          disabled={disabled}
         />
       )}
     </div>

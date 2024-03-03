@@ -47,7 +47,11 @@ export function Select<T>(props: ISelectProps<T>) {
           {value?.label || placeholder || defaultPlaceholder}
         </div>
         <div className="select-arrow">
-          {showOptions ? <UpArrow /> : <DownArrow />}
+          {showOptions ? (
+            <UpArrow />
+          ) : (
+            <DownArrow fill={disabled ? "#B0B0B0" : undefined} />
+          )}
         </div>
       </div>
 

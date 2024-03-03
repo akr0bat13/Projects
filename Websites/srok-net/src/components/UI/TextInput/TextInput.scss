@@ -20,6 +20,10 @@
         border-color: $button-disabled;
     }
 
+    &-error {
+    border: 1px solid $error;
+    }
+
 
     .text-input {
         box-sizing: border-box;

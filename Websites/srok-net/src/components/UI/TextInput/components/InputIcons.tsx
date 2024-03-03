@@ -14,6 +14,7 @@ interface InputIconsProps {
   isSearchLoading?: boolean;
   isPassword?: boolean;
   isShow: boolean;
+  disabled?: boolean;
 }
 
 export const InputIcons: FC<InputIconsProps> = ({
@@ -27,6 +28,7 @@ export const InputIcons: FC<InputIconsProps> = ({
   isSearchLoading,
   isPassword,
   isShow,
+  disabled,
 }) => {
   return (
     <div className="text-input-icons-wrapper">
@@ -36,7 +38,7 @@ export const InputIcons: FC<InputIconsProps> = ({
           className="text-input-icon"
           data-testid={infoIconTestId}
         >
-          <LockIcon />
+          <LockIcon fill={disabled ? "#B0B0B0" : undefined} />
         </button>
       )}
       {/* {isInfo && (

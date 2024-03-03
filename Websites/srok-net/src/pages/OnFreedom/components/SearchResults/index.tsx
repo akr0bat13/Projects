@@ -1,5 +1,5 @@
 import cn from "classnames";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import "./SearchResults.scss";
 
 import Book from "src/assets/images/book.svg";
@@ -10,9 +10,9 @@ import { H } from "src/components/UI/Text/H";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import ContactForm from "src/components/smart/ContactForm";
 import Modal from "src/components/smart/Modal";
-import { useDispatch } from "src/store";
+import { useDispatch, useSelector } from "src/store";
 import { updateSelectedCity } from "src/store/slices/OnFreedom";
-// import { selectedCity } from "src/store/slices/OnFreedom/onFreedom.selectors";
+import { selectedCity } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import { ISearchResult } from "src/utils/types/OnFreedom.types";
 
 import { useOnFreedom } from "../../hooks/useOnFreedom";
@@ -22,18 +22,29 @@ const SearchResults: FC<ISearchResult> = (component) => {
 
   const dispatch = useDispatch();
 
+  const { label, value } = useSelector(selectedCity);
+
   const [selectValue, setSelectValue] = useState<TOption>({
-    value: "",
-    label: "",
+    value,
+    label,
   });
+  const [cityError, setCityError] = useState<boolean>(false);
 
   const { options, showModalSettings, inputFormsValue, setShowModal } =
     useOnFreedom();
+  const isCorrectCity = selectValue.value !== "Москва";
+
+  useEffect(() => {
+    if (isCorrectCity) {
+      setCityError(true);
+      console.log(selectValue.value);
+    } else {
+      setCityError(false);
+    }
+  }, [selectValue]);
 
   const handleChangeCity = (elem: TOption) => {
     setSelectValue(elem);
-    console.log("selectValue", selectValue);
-
     dispatch(updateSelectedCity(elem));
   };
 
@@ -42,10 +53,6 @@ const SearchResults: FC<ISearchResult> = (component) => {
       setShowModal(true);
     }
   };
-
-  // useEffect(() => {
-  //   handleChangeCity(selectValue);
-  // }, [selectValue]);
 
   return (
     <>
@@ -56,15 +63,20 @@ const SearchResults: FC<ISearchResult> = (component) => {
       >
         <img src={Book} alt="" />
         <div className="search-results-content">
-          <H variant="lg" color="blue">
+          <H variant="lg" color={disabled ? "disabled" : "blue"}>
             {title}
           </H>
           <div className="search-results-inputs">
-            {components.map((item) => (
+            {components.map((item, index) => (
               <InputContainer
                 key={item.label}
                 label={item.label}
-                color={item.color}
+                color={item.disabled ? "disabled" : "blue"}
+                errors={{
+                  isError: index === 0 ? cityError : false,
+                  level: "error",
+                  message: "Доступно только в Москве",
+                }}
               >
                 {item.isSelect ? (
                   <Select
@@ -85,7 +97,7 @@ const SearchResults: FC<ISearchResult> = (component) => {
           <Button
             label="Купить"
             color="primary"
-            disabled={disabled}
+            disabled={cityError || disabled}
             onClick={handleClick}
           />
         </div>

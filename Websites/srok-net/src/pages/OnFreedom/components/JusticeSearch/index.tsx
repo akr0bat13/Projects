@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./JusticeSearch.scss";
 
 import { Button } from "src/components/UI/Button/Button";
+import { InputContainer } from "src/components/UI/InputContainer/InputContainer";
 import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
@@ -13,11 +14,29 @@ import { useOnFreedom } from "../../hooks/useOnFreedom";
 const JusticeSearch = ({ setResult }: any) => {
   const { buttonSearchProps, inputSearchValue } = useOnFreedom();
   const { part, state } = useSelector(onFreedomInput);
+  const [fieldStateError, setStateFieldError] = useState<boolean>(false);
+  const [fielPartError, setFielPartError] = useState<boolean>(false);
+
+  const isButtonDisabled = part && state;
+
+  useEffect(() => {
+    if (part.length > 2) {
+      setFielPartError(true);
+    } else {
+      setFielPartError(false);
+    }
+  }, [part]);
+
+  useEffect(() => {
+    if (state.length > 2) {
+      setStateFieldError(true);
+    } else {
+      setStateFieldError(false);
+    }
+  }, [state]);
 
   const searchSubmit = () => {
-    if (part && state) {
-      setResult(true);
-    }
+    if (isButtonDisabled) setResult(true);
   };
 
   const { label, color } = buttonSearchProps;
@@ -30,16 +49,35 @@ const JusticeSearch = ({ setResult }: any) => {
         Узнайте какое наказание ожидать
       </P>
       <div className="search-container">
-        {inputSearchValue.map((input) => (
-          <TextInput
+        {inputSearchValue.map((input, index) => (
+          <InputContainer
             key={input.placeholder}
-            value={input.value}
-            onChange={input.onChange}
-            placeholder={input.placeholder}
-          />
+            label={input.placeholder}
+            color="blue"
+            errors={{
+              isError: index === 0 ? fieldStateError : fielPartError,
+              level: "error",
+              message:
+                index === 0
+                  ? "Укажите статью правильно"
+                  : "Укажите часть правильно",
+            }}
+          >
+            <TextInput
+              value={input.value}
+              onChange={input.onChange}
+              error={index === 0 ? fieldStateError : fielPartError}
+            />
+          </InputContainer>
         ))}
-
-        <Button onClick={searchSubmit} label={label} color={color} />
+        <div className="search-container-button">
+          <Button
+            onClick={searchSubmit}
+            label={label}
+            color={color}
+            disabled={!isButtonDisabled}
+          />
+        </div>
       </div>
     </div>
   );
