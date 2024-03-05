@@ -1,0 +1,81 @@
+@import '../../../vars.scss';
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: fit-content;
+    max-width: 100%;
+}
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.radio-option-input {
+    box-sizing: border-box;
+    position: relative;
+    appearance: none;
+    outline: 2px solid $grey-container-background;
+    outline-offset: 2px;
+    height: 7px;
+    width: 7px;
+    border-radius: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+
+.radio-option-input::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+    outline: 0 solid $grey-container-background;
+    background-color:$grey-container-background;
+    opacity: 0;
+    transition: outline-width 100ms ease-out, opacity 50ms ease-in-out, outline-color 100ms ease-in-out;
+}
+
+
+
+.radio-option-input:hover::after {
+    outline-width: 10px;
+    opacity: 0.12;
+}
+
+.radio-option-input:active::after {
+    outline-width: calc(var(--base) * 1.25);
+    opacity: 0.18;
+}
+
+.radio-option-input:checked {
+    background-color: $blue-primary-active;
+}
+
+
+.radio-option-label {
+    font-style: normal;
+    font-weight: 45;
+    line-height: 16px;
+    letter-spacing: 0.75px;
+    color: $text-black;
+    font-size: 14px;
+    position: relative;
+    cursor: pointer;
+}
+
+
+.radio-option-input:disabled {
+    opacity: 0.4;
+    cursor: auto;
+}
+
+.radio-option-input:disabled::after {
+    display: none;
+}
+
+.radio-option-input:disabled + .radio-option-label {
+    opacity: 0.4;
+    cursor: auto;
+}

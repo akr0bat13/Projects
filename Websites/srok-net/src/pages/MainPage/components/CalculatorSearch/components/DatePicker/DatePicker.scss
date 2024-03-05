@@ -91,7 +91,10 @@
   right: 5px;
 
   &::after {
-    background-color: $blue-primary-active;
+    background-color: transparent;
+    background-image: url('../../../../../../assets/images/removeIcon.svg');
+    padding: 3px;
+    content: '';   
   }
 }
 

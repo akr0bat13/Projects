@@ -11,8 +11,12 @@ import {
 } from "src/store/slices/OnFreedom";
 import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import {
+  updateOnFreedomModalPeriodic,
+  updateOnFreedomModalUseInform,
+} from "src/store/slices/OnFreedomForm";
+import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
+import {
   IForms,
-  IInputFormProps,
   IInputSearchValue,
   ISearchResult,
 } from "src/utils/types/OnFreedom.types";
@@ -20,14 +24,8 @@ import {
 export const useOnFreedom = () => {
   const dispatch = useDispatch();
 
-  const [inputFormValue, setInputFormValue] = useState<IInputFormProps>({
-    value1: "",
-    value2: "",
-    value3: "",
-    value4: "",
-  });
-
   const { part, state } = useSelector(onFreedomInput);
+  const { modalInputs } = useSelector(onFreedomModal);
 
   const buttonSearchProps: ButtonProps = {
     label: "Узнать",
@@ -43,6 +41,12 @@ export const useOnFreedom = () => {
     dispatch(updateOnFreedomInputState(event.target.value));
   };
 
+  const inputModalUseInform = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(updateOnFreedomModalUseInform(event.target.value));
+  };
+  const inputModalPeriodic = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(updateOnFreedomModalPeriodic(event.target.value));
+  };
   const inputSearchValue: IInputSearchValue[] = [
     {
       value: state,
@@ -57,31 +61,18 @@ export const useOnFreedom = () => {
   ];
 
   const inputFormsValue: IForms = {
-    title: "Введите почту и ответьте на вопросы для получения отчета",
+    title: "Ответьте на вопросы для получения отчета",
     inputsContent: [
       {
-        value: inputFormValue.value1,
-        onChange: (event) =>
-          setInputFormValue({ ...inputFormValue, value1: event.target.value }),
-        placeholder: "Введите почту",
+        value: modalInputs.useInform,
+        onChange: inputModalUseInform,
+        placeholder:
+          "⁠Как Вы будете использовать информацию из данного отчета?",
       },
       {
-        value: inputFormValue.value2,
-        onChange: (event) =>
-          setInputFormValue({ ...inputFormValue, value2: event.target.value }),
-        placeholder: "Вопрос 1",
-      },
-      {
-        value: inputFormValue.value3,
-        onChange: (event) =>
-          setInputFormValue({ ...inputFormValue, value3: event.target.value }),
-        placeholder: "Вопрос 2",
-      },
-      {
-        value: inputFormValue.value4,
-        onChange: (event) =>
-          setInputFormValue({ ...inputFormValue, value4: event.target.value }),
-        placeholder: "Вопрос 3",
+        value: modalInputs.periodic,
+        onChange: inputModalPeriodic,
+        placeholder: "Нужно ли Вам регулярно пользоваться такими отчетами?",
       },
     ],
   };
