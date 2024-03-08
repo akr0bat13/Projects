@@ -1,12 +1,9 @@
 import { ComponentMeta } from "@storybook/react";
-import dedent from "ts-dedent";
 import React, { ChangeEvent, useState } from "react";
-import { useTranslation } from "react-i18next";
+import dedent from "ts-dedent";
 
-import { displayGroupType } from "src/sections/Access/pages/AccessGroups/utils/helpers/helpers";
-
-import { RadioOptions } from "./utils/types/types";
 import { Radio } from "./Radio";
+import { RadioOptions } from "./utils/types/types";
 
 const describe = dedent`
 <br>
@@ -33,26 +30,25 @@ const componentWrapperStyles: React.CSSProperties = {
   flexDirection: "column",
   padding: "20px 50px",
   height: "50vw",
-  background: "#000",
+  background: "#fafafa",
   gap: 10,
 };
 
 export const RadioStory = () => {
-  const { t } = useTranslation();
   const [type, setType] = useState("file");
 
   const radio_options: RadioOptions = {
-    ipv4: {
+    value1: {
       value: "file",
-      label: t(displayGroupType("file")),
+      label: "file",
     },
-    fc: {
-      value: "block/fc",
-      label: t(displayGroupType("block/fc")),
+    value2: {
+      value: "file1",
+      label: "file1",
     },
-    iscsi: {
-      value: "block/iscsi",
-      label: t(displayGroupType("block/iscsi")),
+    value3: {
+      value: "file2",
+      label: "file2",
     },
   };
 

@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 30%;
+  min-width: 370px;
   height: 100%;
   border: 1px solid $blue-primary-active;
   border-radius: 5px;
@@ -24,6 +24,11 @@
 }
 
 .filtration-preventive-measure-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.filtration-preventive-title {
   display: flex;
   justify-content: space-between;
 }

@@ -1,3 +1,15 @@
+export interface IFiltrationDate {
+  id: number;
+  start: Date | null;
+  end: Date | null;
+}
+
+export interface IFiltrationSelectProps {
+  title: string;
+  isActive: boolean;
+  values: IFiltrationDate[];
+}
+
 export interface IFiltrationCheckBoxProps {
   title: string;
   value: boolean;
@@ -20,7 +32,9 @@ export interface IPunishmentTypeProps {
 }
 
 export interface ICalculatorFiltrationState {
-  preventiveMeasure: IFiltrationCheckBoxProps[];
+  homeArrest: IFiltrationSelectProps;
+  timeUnderArrest: IFiltrationSelectProps;
+  rejectingCurrentDoings: IFiltrationSelectProps;
   apilation: IApilationProps;
   punishmentType: IFiltrationCheckBoxProps[];
 }

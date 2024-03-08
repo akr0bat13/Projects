@@ -4,22 +4,43 @@ import {
   IApilationProps,
   ICalculatorFiltrationState,
   IFiltrationCheckBoxProps,
+  IFiltrationDate,
+  IFiltrationSelectProps,
 } from "src/utils/types/CalculatorFiltration.types";
 
-const preventiveMeasure: IFiltrationCheckBoxProps[] = [
-  {
-    title: "Домашний арест",
-    value: false,
-  },
-  {
-    title: "Срок содержания под стражей",
-    value: false,
-  },
-  {
-    title: "Запрет определенных действий",
-    value: false,
-  },
-];
+const homeArrest: IFiltrationSelectProps = {
+  title: "Домашний арест",
+  isActive: false,
+  values: [
+    {
+      id: 1,
+      start: null,
+      end: null,
+    },
+  ],
+};
+const timeUnderArrest: IFiltrationSelectProps = {
+  title: "Срок содержания под стражей",
+  isActive: false,
+  values: [
+    {
+      id: 1,
+      start: null,
+      end: null,
+    },
+  ],
+};
+const rejectingCurrentDoings: IFiltrationSelectProps = {
+  title: "Запрет определенных действий",
+  isActive: false,
+  values: [
+    {
+      id: 1,
+      start: null,
+      end: null,
+    },
+  ],
+};
 
 const apilation: IApilationProps = {
   years: "",
@@ -56,7 +77,9 @@ const punishmentType: IFiltrationCheckBoxProps[] = [
 ];
 
 const initialState: ICalculatorFiltrationState = {
-  preventiveMeasure,
+  homeArrest,
+  timeUnderArrest,
+  rejectingCurrentDoings,
   apilation,
   punishmentType,
 };
@@ -65,28 +88,15 @@ const slice = createSlice({
   name: "createCalculatorFiltration",
   initialState,
   reducers: {
-    togglePreventiveMeasure: (
-      state,
-      action: PayloadAction<{ title: string; value: boolean }>
-    ) => {
-      const { title, value } = action.payload;
-      const measure = state.preventiveMeasure.find(
-        (item) => item.title === title
-      );
-      if (measure) {
-        measure.value = value;
-      }
+    toggleHomeArrest: (state, action: PayloadAction<boolean>) => {
+      state.homeArrest.isActive = action.payload;
     },
-    // togglePunishmentType: (
-    //   state,
-    //   action: PayloadAction<{ title: string; value: boolean }>
-    // ) => {
-    //   const { title, value } = action.payload;
-    //   const type = state.punishmentType.find((item) => item.title === title);
-    //   if (type) {
-    //     type.value = value;
-    //   }
-    // },
+    toggleTimeUnderArrest: (state, action: PayloadAction<boolean>) => {
+      state.timeUnderArrest.isActive = action.payload;
+    },
+    toggleRejectingCurrentDoings: (state, action: PayloadAction<boolean>) => {
+      state.rejectingCurrentDoings.isActive = action.payload;
+    },
     togglePunishmentType: (
       state,
       action: PayloadAction<{ title: string; value: boolean }>
@@ -117,16 +127,69 @@ const slice = createSlice({
     updateApilationDetention: (state, action: PayloadAction<string>) => {
       state.apilation.detention = action.payload;
     },
+    removeHomeArrestValuesAction: (state, action: PayloadAction<number>) => {
+      const updatedArrestValues = (state.homeArrest.values =
+        state.homeArrest.values.filter((value) => value.id !== action.payload));
+      const updatedArrestValuesWithUpdatedIds = updatedArrestValues.map(
+        (value, index) => ({
+          ...value,
+          id: index + 1,
+        })
+      );
+
+      state.homeArrest.values = updatedArrestValuesWithUpdatedIds;
+    },
+
+    addHomeArrestValuesAction: (
+      state,
+      action: PayloadAction<IFiltrationDate>
+    ) => {
+      state.homeArrest.values.push(action.payload);
+    },
+
+    updateHomeArrestValues: (
+      state,
+      action: PayloadAction<{
+        id: number;
+        newState: {
+          start?: Date | null;
+          end?: Date | null;
+        };
+      }>
+    ) => {
+      const updateHomeArrest = state.homeArrest.values.map((value) => {
+        if (value.id === action.payload.id) {
+          return {
+            ...value,
+            ...action.payload.newState,
+          };
+        }
+        return value;
+      });
+
+      return {
+        ...state,
+        homeArrest: {
+          ...state.homeArrest,
+          values: updateHomeArrest,
+        },
+      };
+    },
   },
 });
 
 export const {
-  togglePreventiveMeasure,
   togglePunishmentType,
   updateApilationDate,
   updateApilationMonth,
   updateApilationYear,
   updateApilationDetention,
+  toggleHomeArrest,
+  toggleTimeUnderArrest,
+  toggleRejectingCurrentDoings,
+  updateHomeArrestValues,
+  addHomeArrestValuesAction,
+  removeHomeArrestValuesAction,
 } = slice.actions;
 
 export const { reducer } = slice;

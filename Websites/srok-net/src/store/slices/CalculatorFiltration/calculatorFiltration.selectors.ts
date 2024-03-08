@@ -9,5 +9,11 @@ export const calculatorFiltrationPunishment = (state: RootState) =>
 export const calculatorFiltrationApilation = (state: RootState) =>
   state.calculatorFiltration.apilation;
 
-export const calculatorFiltrationMeasure = (state: RootState) =>
-  state.calculatorFiltration.preventiveMeasure;
+export const calculatorHomeArrest = (state: RootState) =>
+  state.calculatorFiltration.homeArrest;
+
+export const calculatorTimeUnderArrest = (state: RootState) =>
+  state.calculatorFiltration.timeUnderArrest;
+
+export const calculatorRejectingCurrentDoings = (state: RootState) =>
+  state.calculatorFiltration.rejectingCurrentDoings;

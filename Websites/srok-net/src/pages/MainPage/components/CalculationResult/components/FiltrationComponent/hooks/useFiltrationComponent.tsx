@@ -1,17 +1,25 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, useState } from "react";
 
 import { TOption } from "src/components/UI/Select/Select";
 import { useDispatch, useSelector } from "src/store";
 import {
-  togglePreventiveMeasure,
+  addHomeArrestValuesAction,
+  removeHomeArrestValuesAction,
+  toggleHomeArrest,
   togglePunishmentType,
   updateApilationDate,
   updateApilationDetention,
   updateApilationMonth,
   updateApilationYear,
+  updateHomeArrestValues,
 } from "src/store/slices/CalculatorFiltration";
 import { calculatorFiltrationApilation } from "src/store/slices/CalculatorFiltration/calculatorFiltration.selectors";
-import { IApilationProps } from "src/utils/types/CalculatorFiltration.types";
+import { updateChargeArticleAction } from "src/store/slices/CalculatorSearch";
+import {
+  IApilationProps,
+  IFiltrationDate,
+} from "src/utils/types/CalculatorFiltration.types";
 
 const options: TOption[] = [
   {
@@ -33,6 +41,13 @@ export const useFiltrationComponent = () => {
   const { apilationDate, years, month, detention } = useSelector(
     calculatorFiltrationApilation
   );
+  const [homeArrestValues, setHomeArrestValues] = useState<IFiltrationDate[]>([
+    {
+      id: 1,
+      start: null,
+      end: null,
+    },
+  ]);
 
   const [active, setActive] = useState<boolean>(false);
   const [apilationProps, setApilationProps] = useState<IApilationProps>({
@@ -48,10 +63,9 @@ export const useFiltrationComponent = () => {
   });
 
   const handlePreventiveMeasureChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    title: string
+    event: ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch(togglePreventiveMeasure({ title, value: event.target.checked }));
+    dispatch(toggleHomeArrest(event.target.checked));
   };
 
   const handlePunishmentChange = (
@@ -87,6 +101,55 @@ export const useFiltrationComponent = () => {
     dispatch(updateApilationDetention(elem.value));
   };
 
+  const setChargeArticleState = (
+    id: number,
+    field: string,
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const newState = event.target.value;
+
+    dispatch(
+      updateChargeArticleAction({ id, newState: { [field]: newState } })
+    );
+
+    // setChargeArticleValue((prevState) =>
+    //   prevState.map((item) =>
+    //     item.id === id ? { ...item, [field]: newState } : item
+    //   )
+    // );
+  };
+
+  const addHomeArrestValue = () => {
+    const newArticle: IFiltrationDate = {
+      id: homeArrestValues.length + 1,
+      start: null,
+      end: null,
+    };
+    setHomeArrestValues([...homeArrestValues, newArticle]);
+    dispatch(addHomeArrestValuesAction(newArticle));
+  };
+
+  const setUpdateHomeArrestValues = (
+    id: number,
+    field: string,
+    date: Date | null
+  ) => {
+    setHomeArrestValues((prevState) =>
+      prevState.map((item) =>
+        item.id === id ? { ...item, [field]: date } : item
+      )
+    );
+    const newState = date ? date.toLocaleDateString("ru-RU") : "";
+    dispatch(updateHomeArrestValues({ id, newState: { [field]: newState } }));
+  };
+
+  const removeHomeArrestValue = (id: number) => {
+    if (homeArrestValues.length !== 1) {
+      setHomeArrestValues(homeArrestValues.filter((value) => value.id !== id));
+      dispatch(removeHomeArrestValuesAction(id));
+    }
+  };
+
   return {
     handlePreventiveMeasureChange,
     handlePunishmentChange,
@@ -99,5 +162,10 @@ export const useFiltrationComponent = () => {
     apilationSelectHandler,
     apilationSelect,
     options,
+    setChargeArticleState,
+    setUpdateHomeArrestValues,
+    homeArrestValues,
+    addHomeArrestValue,
+    removeHomeArrestValue,
   };
 };
