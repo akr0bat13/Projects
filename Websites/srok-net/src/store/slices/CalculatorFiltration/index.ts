@@ -89,13 +89,22 @@ const slice = createSlice({
   initialState,
   reducers: {
     toggleHomeArrest: (state, action: PayloadAction<boolean>) => {
-      state.homeArrest.isActive = action.payload;
+      state.homeArrest = {
+        ...homeArrest,
+        isActive: action.payload,
+      };
     },
     toggleTimeUnderArrest: (state, action: PayloadAction<boolean>) => {
-      state.timeUnderArrest.isActive = action.payload;
+      state.timeUnderArrest = {
+        ...timeUnderArrest,
+        isActive: action.payload,
+      };
     },
     toggleRejectingCurrentDoings: (state, action: PayloadAction<boolean>) => {
-      state.rejectingCurrentDoings.isActive = action.payload;
+      state.rejectingCurrentDoings = {
+        ...rejectingCurrentDoings,
+        isActive: action.payload,
+      };
     },
     togglePunishmentType: (
       state,
@@ -175,6 +184,113 @@ const slice = createSlice({
         },
       };
     },
+    removeTimeUnderArrestAction: (state, action: PayloadAction<number>) => {
+      const updatedTimeUnderArrest = (state.timeUnderArrest.values =
+        state.timeUnderArrest.values.filter(
+          (value) => value.id !== action.payload
+        ));
+      const updatedTimeUnderArrestWithUpdatedIds = updatedTimeUnderArrest.map(
+        (value, index) => ({
+          ...value,
+          id: index + 1,
+        })
+      );
+
+      state.timeUnderArrest.values = updatedTimeUnderArrestWithUpdatedIds;
+    },
+
+    addTimeUnderArrestAction: (
+      state,
+      action: PayloadAction<IFiltrationDate>
+    ) => {
+      state.timeUnderArrest.values.push(action.payload);
+    },
+
+    updateTimeUnderArrestValues: (
+      state,
+      action: PayloadAction<{
+        id: number;
+        newState: {
+          start?: Date | null;
+          end?: Date | null;
+        };
+      }>
+    ) => {
+      const updateTimeUnderArrest = state.timeUnderArrest.values.map(
+        (value) => {
+          if (value.id === action.payload.id) {
+            return {
+              ...value,
+              ...action.payload.newState,
+            };
+          }
+          return value;
+        }
+      );
+
+      return {
+        ...state,
+        timeUnderArrest: {
+          ...state.timeUnderArrest,
+          values: updateTimeUnderArrest,
+        },
+      };
+    },
+    removeRejectingCurrentDoingsAction: (
+      state,
+      action: PayloadAction<number>
+    ) => {
+      const rejectingCurrentDoings = (state.rejectingCurrentDoings.values =
+        state.rejectingCurrentDoings.values.filter(
+          (value) => value.id !== action.payload
+        ));
+      const updatedRejectingCurrentDoingsWithUpdatedIds =
+        rejectingCurrentDoings.map((value, index) => ({
+          ...value,
+          id: index + 1,
+        }));
+
+      state.rejectingCurrentDoings.values =
+        updatedRejectingCurrentDoingsWithUpdatedIds;
+    },
+
+    addRejectingCurrentDoingsAction: (
+      state,
+      action: PayloadAction<IFiltrationDate>
+    ) => {
+      state.rejectingCurrentDoings.values.push(action.payload);
+    },
+
+    updateRejectingCurrentDoingsValues: (
+      state,
+      action: PayloadAction<{
+        id: number;
+        newState: {
+          start?: Date | null;
+          end?: Date | null;
+        };
+      }>
+    ) => {
+      const rejectingDoings = state.rejectingCurrentDoings.values.map(
+        (value) => {
+          if (value.id === action.payload.id) {
+            return {
+              ...value,
+              ...action.payload.newState,
+            };
+          }
+          return value;
+        }
+      );
+
+      return {
+        ...state,
+        rejectingCurrentDoings: {
+          ...state.rejectingCurrentDoings,
+          values: rejectingDoings,
+        },
+      };
+    },
   },
 });
 
@@ -190,6 +306,12 @@ export const {
   updateHomeArrestValues,
   addHomeArrestValuesAction,
   removeHomeArrestValuesAction,
+  updateTimeUnderArrestValues,
+  removeTimeUnderArrestAction,
+  addTimeUnderArrestAction,
+  addRejectingCurrentDoingsAction,
+  removeRejectingCurrentDoingsAction,
+  updateRejectingCurrentDoingsValues,
 } = slice.actions;
 
 export const { reducer } = slice;

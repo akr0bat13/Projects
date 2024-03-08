@@ -12,18 +12,33 @@ import AddIcon from "src/components/icons/AddIcon";
 import CalendarIcon from "src/components/icons/CalendarIcon";
 import RemoveIcon from "src/components/icons/RemoveIcon";
 import { useSelector } from "src/store";
-import { calculatorHomeArrest } from "src/store/slices/CalculatorFiltration/calculatorFiltration.selectors";
+import {
+  calculatorHomeArrest,
+  calculatorRejectingCurrentDoings,
+  calculatorTimeUnderArrest,
+} from "src/store/slices/CalculatorFiltration/calculatorFiltration.selectors";
 
 import { useFiltrationComponent } from "../hooks/useFiltrationComponent";
 
+import FiltrationComponentItem from "./FiltrationComponentItem";
+
 const PreventiveMeasure = () => {
-  const { isActive, title, values } = useSelector(calculatorHomeArrest);
+  const { isActive: HomeArrestActive, title: HomeArrestTitle } =
+    useSelector(calculatorHomeArrest);
+  const { isActive: TimeUnderArrestActive, title: TimeUnderArrestTitle } =
+    useSelector(calculatorTimeUnderArrest);
+
+  const { isActive: RejectingDoingsActive, title: RejectingDoingsTitle } =
+    useSelector(calculatorRejectingCurrentDoings);
+
   const {
     handlePreventiveMeasureChange,
-    setUpdateHomeArrestValues,
+    setUpdateFiltrationComponentValue,
     homeArrestValues,
-    addHomeArrestValue,
-    removeHomeArrestValue,
+    addFiltrationComponentValue,
+    removeFiltrationComponentValue,
+    timeUnderArrest,
+    rejectingCurrentDoings,
   } = useFiltrationComponent();
 
   return (
@@ -31,113 +46,35 @@ const PreventiveMeasure = () => {
       <H variant="lg" color="blue">
         Мера пресечения
       </H>
-      <div className="filtration-preventive-measure-item">
-        <div className="filtration-preventive-title">
-          <P variant="md">{title}</P>
-          <SwitchToggle
-            onChange={(event) => handlePreventiveMeasureChange(event)}
-          />
-        </div>
-        {isActive && (
-          <div className="select-dates">
-            {homeArrestValues.map((item) => {
-              const { end, id, start } = item;
-              return (
-                <InputContainer key={id} label="Дата приговора" color="blue">
-                  <ReactDatePicker
-                    selected={start}
-                    startDate={start}
-                    // onMonthChange={onMonthChange}
-                    // onSelect={resetSetIsNotCurrentMonth}
-                    onChange={(date) =>
-                      setUpdateHomeArrestValues(id, "start", date)
-                    }
-                    placeholderText="Дата приговора"
-                    calendarClassName="date-picker"
-                    dateFormat="dd.MM.yyyy"
-                    isClearable={!!start}
-                    showIcon={!start}
-                    icon={<CalendarIcon />}
-                  />
-                  <ReactDatePicker
-                    selected={end}
-                    // onMonthChange={onMonthChange}
-                    // onSelect={resetSetIsNotCurrentMonth}
-                    onChange={(event) =>
-                      setUpdateHomeArrestValues(id, "end", event)
-                    }
-                    placeholderText="Дата приговора"
-                    calendarClassName="date-picker"
-                    dateFormat="dd.MM.yyyy"
-                    isClearable={!!end}
-                    showIcon={!end}
-                    icon={<CalendarIcon />}
-                  />
-                  <div className="calculator-container-article-value-buttons">
-                    <Button
-                      onClick={() => removeHomeArrestValue(id)}
-                      icon={
-                        <RemoveIcon
-                        // fill={
-                        //   id === 1 && chargeArticleValue.length === 1
-                        //     ? "#B0B0B0"
-                        //     : undefined
-                        // }
-                        />
-                      }
-                      sx={{ padding: 0 }}
-                    />
-                    <Button
-                      onClick={addHomeArrestValue}
-                      icon={<AddIcon />}
-                      sx={{ padding: 0 }}
-                    />
-                  </div>
-                </InputContainer>
-              );
-            })}
-          </div>
-        )}
-        {/* <div className="calculator-container-article-value-buttons">
-          <Button
-            onClick={() => removeChargeArticle(id)}
-            icon={<RemoveIcon />}
-            sx={{ padding: 0 }}
-          />
-          <Button
-            onClick={addChargeArticle}
-            icon={<AddIcon />}
-            sx={{ padding: 0 }}
-          />
-        </div> */}
-      </div>
-      {/* {preventiveMeasure.map((item) => {
-        const { title } = item;
-        return (
-          <div key={title} className="filtration-preventive-measure-item">
-            <P variant="md">{title}</P>
-            <SwitchToggle
-              onChange={(event) => handlePreventiveMeasureChange(event, title)}
-            />
-            <TextInput
-              value={part}
-              onChange={(event) => setChargeArticleState(id, "part", event)}
-            />
-            <div className="calculator-container-article-value-buttons">
-              <Button
-                onClick={() => removeChargeArticle(id)}
-                icon={<RemoveIcon />}
-                sx={{ padding: 0 }}
-              />
-              <Button
-                onClick={addChargeArticle}
-                icon={<AddIcon />}
-                sx={{ padding: 0 }}
-              />
-            </div>
-          </div>
-        );
-      })} */}
+      <FiltrationComponentItem
+        title={HomeArrestTitle}
+        active={HomeArrestActive}
+        values={homeArrestValues}
+        onToggleChange={handlePreventiveMeasureChange}
+        onValueChange={setUpdateFiltrationComponentValue}
+        onRemoveValue={removeFiltrationComponentValue}
+        onAddValue={addFiltrationComponentValue}
+      />
+
+      <FiltrationComponentItem
+        title={TimeUnderArrestTitle}
+        active={TimeUnderArrestActive}
+        values={timeUnderArrest}
+        onToggleChange={handlePreventiveMeasureChange}
+        onValueChange={setUpdateFiltrationComponentValue}
+        onRemoveValue={removeFiltrationComponentValue}
+        onAddValue={addFiltrationComponentValue}
+      />
+
+      <FiltrationComponentItem
+        title={RejectingDoingsTitle}
+        active={RejectingDoingsActive}
+        values={rejectingCurrentDoings}
+        onToggleChange={handlePreventiveMeasureChange}
+        onValueChange={setUpdateFiltrationComponentValue}
+        onRemoveValue={removeFiltrationComponentValue}
+        onAddValue={addFiltrationComponentValue}
+      />
     </div>
   );
 };

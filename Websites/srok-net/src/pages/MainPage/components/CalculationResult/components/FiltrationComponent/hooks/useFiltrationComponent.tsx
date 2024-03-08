@@ -5,14 +5,22 @@ import { TOption } from "src/components/UI/Select/Select";
 import { useDispatch, useSelector } from "src/store";
 import {
   addHomeArrestValuesAction,
+  addRejectingCurrentDoingsAction,
+  addTimeUnderArrestAction,
   removeHomeArrestValuesAction,
+  removeRejectingCurrentDoingsAction,
+  removeTimeUnderArrestAction,
   toggleHomeArrest,
   togglePunishmentType,
+  toggleRejectingCurrentDoings,
+  toggleTimeUnderArrest,
   updateApilationDate,
   updateApilationDetention,
   updateApilationMonth,
   updateApilationYear,
   updateHomeArrestValues,
+  updateRejectingCurrentDoingsValues,
+  updateTimeUnderArrestValues,
 } from "src/store/slices/CalculatorFiltration";
 import { calculatorFiltrationApilation } from "src/store/slices/CalculatorFiltration/calculatorFiltration.selectors";
 import { updateChargeArticleAction } from "src/store/slices/CalculatorSearch";
@@ -41,7 +49,26 @@ export const useFiltrationComponent = () => {
   const { apilationDate, years, month, detention } = useSelector(
     calculatorFiltrationApilation
   );
+
   const [homeArrestValues, setHomeArrestValues] = useState<IFiltrationDate[]>([
+    {
+      id: 1,
+      start: null,
+      end: null,
+    },
+  ]);
+
+  const [timeUnderArrest, setTimeUnderArrest] = useState<IFiltrationDate[]>([
+    {
+      id: 1,
+      start: null,
+      end: null,
+    },
+  ]);
+
+  const [rejectingCurrentDoings, setRejectingCurrentDoings] = useState<
+    IFiltrationDate[]
+  >([
     {
       id: 1,
       start: null,
@@ -63,9 +90,43 @@ export const useFiltrationComponent = () => {
   });
 
   const handlePreventiveMeasureChange = (
-    event: ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>,
+    title: string
   ) => {
-    dispatch(toggleHomeArrest(event.target.checked));
+    switch (title) {
+      case "Домашний арест":
+        dispatch(toggleHomeArrest(event.target.checked));
+        setHomeArrestValues([
+          {
+            id: 1,
+            start: null,
+            end: null,
+          },
+        ]);
+        break;
+      case "Срок содержания под стражей":
+        dispatch(toggleTimeUnderArrest(event.target.checked));
+        setTimeUnderArrest([
+          {
+            id: 1,
+            start: null,
+            end: null,
+          },
+        ]);
+        break;
+      case "Запрет определенных действий":
+        dispatch(toggleRejectingCurrentDoings(event.target.checked));
+        setRejectingCurrentDoings([
+          {
+            id: 1,
+            start: null,
+            end: null,
+          },
+        ]);
+        break;
+      default:
+        break;
+    }
   };
 
   const handlePunishmentChange = (
@@ -111,42 +172,119 @@ export const useFiltrationComponent = () => {
     dispatch(
       updateChargeArticleAction({ id, newState: { [field]: newState } })
     );
-
-    // setChargeArticleValue((prevState) =>
-    //   prevState.map((item) =>
-    //     item.id === id ? { ...item, [field]: newState } : item
-    //   )
-    // );
   };
 
-  const addHomeArrestValue = () => {
+  const addFiltrationComponentValue = (title: string) => {
     const newArticle: IFiltrationDate = {
       id: homeArrestValues.length + 1,
       start: null,
       end: null,
     };
-    setHomeArrestValues([...homeArrestValues, newArticle]);
-    dispatch(addHomeArrestValuesAction(newArticle));
+
+    const newArrest: IFiltrationDate = {
+      id: timeUnderArrest.length + 1,
+      start: null,
+      end: null,
+    };
+
+    const newDoing: IFiltrationDate = {
+      id: rejectingCurrentDoings.length + 1,
+      start: null,
+      end: null,
+    };
+
+    switch (title) {
+      case "Домашний арест":
+        setHomeArrestValues([...homeArrestValues, newArticle]);
+        dispatch(addHomeArrestValuesAction(newArticle));
+        break;
+      case "Срок содержания под стражей":
+        setTimeUnderArrest([...timeUnderArrest, newArrest]);
+        dispatch(addTimeUnderArrestAction(newArrest));
+        break;
+      case "Запрет определенных действий":
+        setRejectingCurrentDoings([...rejectingCurrentDoings, newDoing]);
+        dispatch(addRejectingCurrentDoingsAction(newDoing));
+        break;
+      default:
+        break;
+    }
   };
 
-  const setUpdateHomeArrestValues = (
+  const setUpdateFiltrationComponentValue = (
+    title: string,
     id: number,
     field: string,
     date: Date | null
   ) => {
-    setHomeArrestValues((prevState) =>
-      prevState.map((item) =>
-        item.id === id ? { ...item, [field]: date } : item
-      )
-    );
     const newState = date ? date.toLocaleDateString("ru-RU") : "";
-    dispatch(updateHomeArrestValues({ id, newState: { [field]: newState } }));
+    switch (title) {
+      case "Домашний арест":
+        setHomeArrestValues((prevState) =>
+          prevState.map((item) =>
+            item.id === id ? { ...item, [field]: date } : item
+          )
+        );
+        dispatch(
+          updateHomeArrestValues({ id, newState: { [field]: newState } })
+        );
+        break;
+      case "Срок содержания под стражей":
+        setTimeUnderArrest((prevState) =>
+          prevState.map((item) =>
+            item.id === id ? { ...item, [field]: date } : item
+          )
+        );
+        dispatch(
+          updateTimeUnderArrestValues({ id, newState: { [field]: newState } })
+        );
+        break;
+      case "Запрет определенных действий":
+        setRejectingCurrentDoings((prevState) =>
+          prevState.map((item) =>
+            item.id === id ? { ...item, [field]: date } : item
+          )
+        );
+        dispatch(
+          updateRejectingCurrentDoingsValues({
+            id,
+            newState: { [field]: newState },
+          })
+        );
+        break;
+      default:
+        break;
+    }
   };
 
-  const removeHomeArrestValue = (id: number) => {
-    if (homeArrestValues.length !== 1) {
-      setHomeArrestValues(homeArrestValues.filter((value) => value.id !== id));
-      dispatch(removeHomeArrestValuesAction(id));
+  const removeFiltrationComponentValue = (id: number, title: string) => {
+    switch (title) {
+      case "Домашний арест":
+        if (homeArrestValues.length !== 1) {
+          setHomeArrestValues(
+            homeArrestValues.filter((value) => value.id !== id)
+          );
+          dispatch(removeHomeArrestValuesAction(id));
+        }
+        break;
+      case "Срок содержания под стражей":
+        if (timeUnderArrest.length !== 1) {
+          setTimeUnderArrest(
+            timeUnderArrest.filter((value) => value.id !== id)
+          );
+          dispatch(removeTimeUnderArrestAction(id));
+        }
+        break;
+      case "Запрет определенных действий":
+        if (rejectingCurrentDoings.length !== 1) {
+          setRejectingCurrentDoings(
+            rejectingCurrentDoings.filter((value) => value.id !== id)
+          );
+          dispatch(removeRejectingCurrentDoingsAction(id));
+        }
+        break;
+      default:
+        break;
     }
   };
 
@@ -163,9 +301,11 @@ export const useFiltrationComponent = () => {
     apilationSelect,
     options,
     setChargeArticleState,
-    setUpdateHomeArrestValues,
+    setUpdateFiltrationComponentValue,
     homeArrestValues,
-    addHomeArrestValue,
-    removeHomeArrestValue,
+    addFiltrationComponentValue,
+    removeFiltrationComponentValue,
+    timeUnderArrest,
+    rejectingCurrentDoings,
   };
 };

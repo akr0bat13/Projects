@@ -102,3 +102,16 @@
     font-weight: 700;
   }
 }
+
+.select-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &-item {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
