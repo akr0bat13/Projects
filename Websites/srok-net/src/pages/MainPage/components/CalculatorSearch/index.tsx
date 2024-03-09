@@ -26,7 +26,6 @@ const CalculatorSearch = ({ setResult }: any) => {
     calculatorSearchValues
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const fieldsWritten: boolean =
     !!verdictDate &&
     !!comesInToForse &&
@@ -91,7 +90,7 @@ const CalculatorSearch = ({ setResult }: any) => {
               label={label}
               color={color}
               onClick={searchSubmit}
-              // disabled={!fieldsWritten}
+              disabled={!fieldsWritten}
             />
           </div>
         </div>
