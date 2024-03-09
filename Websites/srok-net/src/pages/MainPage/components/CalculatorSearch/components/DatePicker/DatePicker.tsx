@@ -22,7 +22,6 @@ export type DateRange = {
 };
 
 interface IDatePickerProps {
-  onChange: (dates: DateRange) => void;
   dates: DateRange;
   sx?: CSSProperties;
   styleWrapper?: CSSProperties;
@@ -32,7 +31,6 @@ registerLocale("ru", ru);
 setDefaultLocale("ru");
 
 export const DatePicker: FC<IDatePickerProps> = ({
-  onChange,
   dates,
   sx,
   styleWrapper,
@@ -43,13 +41,23 @@ export const DatePicker: FC<IDatePickerProps> = ({
     verdictDate: null,
     comesInToForse: null,
   });
+  const [minDatePickerDate, setMinDatePickerDate] = useState<Date | null>(null);
 
   useEffect(() => {
     setSelectedDates(dates);
   }, [dates]);
 
+  useEffect(() => {
+    if (selectedDates.verdictDate) {
+      const minDate = new Date(selectedDates.verdictDate);
+      minDate.setDate(minDate.getDate() + 14);
+      setMinDatePickerDate(minDate);
+    }
+  }, [selectedDates.verdictDate]);
+
   const inputCalculatorVerdictDate = (event: Date | null) => {
     const newDate = event ? event.toLocaleDateString("ru-RU") : "";
+
     setSelectedDates({ ...selectedDates, verdictDate: event });
     dispatch(updateCalculatorVerdictDate(newDate as unknown as Date));
   };
@@ -71,8 +79,8 @@ export const DatePicker: FC<IDatePickerProps> = ({
       >
         <ReactDatePicker
           selected={selectedDates.verdictDate}
-          startDate={selectedDates.verdictDate}
-          endDate={selectedDates.comesInToForse}
+          // startDate={selectedDates.verdictDate}
+          // endDate={selectedDates.comesInToForse}
           onChange={inputCalculatorVerdictDate}
           placeholderText="Дата приговора"
           calendarClassName="date-picker"
@@ -91,9 +99,9 @@ export const DatePicker: FC<IDatePickerProps> = ({
       >
         <ReactDatePicker
           selected={selectedDates.comesInToForse}
-          startDate={selectedDates.verdictDate}
-          endDate={selectedDates.comesInToForse}
-          minDate={selectedDates.verdictDate}
+          // startDate={selectedDates.verdictDate}
+          // endDate={selectedDates.comesInToForse}
+          minDate={minDatePickerDate}
           onChange={inputCalculatorComesInToForse}
           placeholderText="Вступает в силу"
           calendarClassName="date-picker"

@@ -42,6 +42,7 @@ const CalculatorSearch = ({ setResult }: any) => {
     setResult(true);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [dates, setDates] = useState<DateRange>({
     verdictDate,
     comesInToForse,
@@ -58,7 +59,6 @@ const CalculatorSearch = ({ setResult }: any) => {
       <div className="calculator-container">
         <DatePicker
           dates={dates}
-          onChange={setDates}
           sx={{
             gap: 10,
           }}
