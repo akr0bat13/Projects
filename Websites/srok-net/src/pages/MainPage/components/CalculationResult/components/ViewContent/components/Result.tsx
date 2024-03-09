@@ -7,6 +7,7 @@ import { useViewContent } from "../hooks/useViewContent";
 
 const Result = () => {
   const { mockResultData } = useViewContent();
+
   return (
     <div className="result-content-wrapper">
       <H variant="hd" color="blue">

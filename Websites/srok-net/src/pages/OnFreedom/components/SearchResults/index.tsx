@@ -32,7 +32,7 @@ const SearchResults: FC<ISearchResult> = (component) => {
 
   const { options, showModalSettings, inputFormsValue, setShowModal } =
     useOnFreedom();
-  const isCorrectCity = selectValue.value !== "Москва";
+  const isCorrectCity = selectValue.value !== 0;
 
   useEffect(() => {
     if (isCorrectCity) {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, useState } from "react";
 
 import { TOption } from "src/components/UI/Select/Select";
@@ -10,6 +9,7 @@ import {
   removeHomeArrestValuesAction,
   removeRejectingCurrentDoingsAction,
   removeTimeUnderArrestAction,
+  toggleApilationDate,
   toggleHomeArrest,
   togglePunishmentType,
   toggleRejectingCurrentDoings,
@@ -31,22 +31,29 @@ import {
 
 const options: TOption[] = [
   {
-    label: "value1",
-    value: "value1",
+    label: "Домашний арест",
+    value: 1,
   },
+
   {
-    label: "value2",
-    value: "value2",
+    label: "Содержание под стражей",
+    value: 2,
   },
+
   {
-    label: "value3",
-    value: "value3",
+    label: "Запрет определенных действий",
+    value: 3,
+  },
+
+  {
+    label: "Нет меры или другое",
+    value: 4,
   },
 ];
 
 export const useFiltrationComponent = () => {
   const dispatch = useDispatch();
-  const { apilationDate, years, month, detention } = useSelector(
+  const { apilationDate, years, month, detention, isActive } = useSelector(
     calculatorFiltrationApilation
   );
 
@@ -78,6 +85,7 @@ export const useFiltrationComponent = () => {
 
   const [active, setActive] = useState<boolean>(false);
   const [apilationProps, setApilationProps] = useState<IApilationProps>({
+    isActive,
     years,
     month,
     apilationDate,
@@ -85,7 +93,7 @@ export const useFiltrationComponent = () => {
   });
 
   const [apilationSelect, setApilationSelect] = useState<TOption>({
-    value: "",
+    value: null,
     label: "",
   });
 
@@ -129,6 +137,18 @@ export const useFiltrationComponent = () => {
     }
   };
 
+  const initialApilationValues: IApilationProps = {
+    years: "",
+    month: "",
+    apilationDate: null,
+    detention: null,
+  };
+
+  const handleApilationChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setApilationProps(initialApilationValues);
+    dispatch(toggleApilationDate(event.target.checked));
+  };
+
   const handlePunishmentChange = (
     event: ChangeEvent<HTMLInputElement>,
     title: string
@@ -143,6 +163,7 @@ export const useFiltrationComponent = () => {
   };
 
   const inputCalculatorApilationDate = (event: Date | null) => {
+    // const newDate = event ? event.toLocaleDateString("ru-RU") : "";
     setApilationProps({ ...apilationProps, apilationDate: event });
     dispatch(updateApilationDate(event));
   };
@@ -157,7 +178,7 @@ export const useFiltrationComponent = () => {
     dispatch(updateApilationMonth(event.target.value));
   };
 
-  const apilationSelectHandler = (elem: TOption<string>) => {
+  const apilationSelectHandler = (elem: TOption<number>) => {
     setApilationSelect(elem);
     dispatch(updateApilationDetention(elem.value));
   };
@@ -307,5 +328,6 @@ export const useFiltrationComponent = () => {
     removeFiltrationComponentValue,
     timeUnderArrest,
     rejectingCurrentDoings,
+    handleApilationChange,
   };
 };

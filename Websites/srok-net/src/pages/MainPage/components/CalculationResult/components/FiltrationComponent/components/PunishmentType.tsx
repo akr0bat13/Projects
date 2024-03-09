@@ -19,7 +19,7 @@ const PunishmentType = () => {
       {punishmentType.map((item) => {
         const { title } = item;
         return (
-          <div key={title} className="filtration-preventive-measure-item">
+          <div key={title} className="filtration-punishment-type-item">
             <P variant="md">{title}</P>
             <Checkbox
               checked={item.value}

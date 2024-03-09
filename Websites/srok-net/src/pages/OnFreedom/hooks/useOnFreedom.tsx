@@ -124,10 +124,10 @@ export const useOnFreedom = () => {
   ];
 
   const options: TOption[] = [
-    { value: "Москва", label: "Москва" },
-    { value: "Питер", label: "Питер" },
-    { value: "Владимир", label: "Владимир" },
-    { value: "Магадан", label: "Магадан" },
+    { value: 0, label: "Москва" },
+    { value: 1, label: "Питер" },
+    { value: 2, label: "Владимир" },
+    { value: 3, label: "Магадан" },
   ];
 
   const showModalSettings: IModal = {

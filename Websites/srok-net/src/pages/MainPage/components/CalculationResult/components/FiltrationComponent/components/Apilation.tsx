@@ -7,13 +7,13 @@ import { SwitchToggle } from "src/components/UI/SwitchToggle/SwitchToggle";
 import { H } from "src/components/UI/Text/H";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import CalendarIcon from "src/components/icons/CalendarIcon";
+import { useSelector } from "src/store";
+import { calculatorFiltrationApilation } from "src/store/slices/CalculatorFiltration/calculatorFiltration.selectors";
 
 import { useFiltrationComponent } from "../hooks/useFiltrationComponent";
 
 const Apilation = () => {
   const {
-    active,
-    showApilation,
     apilationProps,
     inputCalculatorApilationDate,
     inputApilationMonth,
@@ -21,7 +21,9 @@ const Apilation = () => {
     apilationSelect,
     apilationSelectHandler,
     options,
+    handleApilationChange,
   } = useFiltrationComponent();
+  const { isActive } = useSelector(calculatorFiltrationApilation);
 
   return (
     <div className="filtration-component-item">
@@ -29,9 +31,9 @@ const Apilation = () => {
         <H variant="lg" color="blue">
           Апеляция
         </H>
-        <SwitchToggle onChange={showApilation} />
+        <SwitchToggle onChange={handleApilationChange} />
       </div>
-      {active && (
+      {isActive && (
         <>
           <InputContainer
             label="Срок по аппеляции"

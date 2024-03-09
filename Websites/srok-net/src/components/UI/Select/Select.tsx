@@ -5,7 +5,7 @@ import DownArrow from "src/components/icons/DownArrowIcon";
 import UpArrow from "src/components/icons/UpArrowIcon";
 import "./Select.scss";
 
-export type TOption<T = string> = {
+export type TOption<T = number | null> = {
   value: T;
   label: string;
 };

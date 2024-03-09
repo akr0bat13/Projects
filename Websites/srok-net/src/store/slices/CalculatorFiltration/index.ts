@@ -43,10 +43,11 @@ const rejectingCurrentDoings: IFiltrationSelectProps = {
 };
 
 const apilation: IApilationProps = {
+  isActive: false,
   years: "",
   month: "",
   apilationDate: null,
-  detention: "",
+  detention: null,
 };
 
 const punishmentType: IFiltrationCheckBoxProps[] = [
@@ -124,6 +125,12 @@ const slice = createSlice({
         punishmentType: updatedPunishmentType,
       };
     },
+    toggleApilationDate: (state, action: PayloadAction<boolean>) => {
+      state.apilation = {
+        ...apilation,
+        isActive: action.payload,
+      };
+    },
     updateApilationDate: (state, action: PayloadAction<Date | null>) => {
       state.apilation.apilationDate = action.payload;
     },
@@ -133,7 +140,7 @@ const slice = createSlice({
     updateApilationMonth: (state, action: PayloadAction<string>) => {
       state.apilation.month = action.payload;
     },
-    updateApilationDetention: (state, action: PayloadAction<string>) => {
+    updateApilationDetention: (state, action: PayloadAction<number>) => {
       state.apilation.detention = action.payload;
     },
     removeHomeArrestValuesAction: (state, action: PayloadAction<number>) => {
@@ -312,6 +319,7 @@ export const {
   addRejectingCurrentDoingsAction,
   removeRejectingCurrentDoingsAction,
   updateRejectingCurrentDoingsValues,
+  toggleApilationDate,
 } = slice.actions;
 
 export const { reducer } = slice;

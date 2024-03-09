@@ -16,10 +16,11 @@ export interface IFiltrationCheckBoxProps {
 }
 
 export interface IApilationProps {
+  isActive?: boolean;
   years: string;
   month: string;
   apilationDate: Date | null;
-  detention: string;
+  detention: number | null;
 }
 
 export interface IPunishmentTypeProps {
