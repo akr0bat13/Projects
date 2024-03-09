@@ -46,7 +46,10 @@ const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
             const { end, id, start } = item;
             return (
               <div key={id} className="select-dates-item">
-                <InputContainer color="blue">
+                <InputContainer
+                  color="blue"
+                  fieldStyles={{ display: "flex", gap: 5 }}
+                >
                   <ReactDatePicker
                     selected={start}
                     startDate={start}
@@ -58,8 +61,6 @@ const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
                     showIcon={!start}
                     icon={<CalendarIcon />}
                   />
-                </InputContainer>
-                <InputContainer color="blue">
                   <ReactDatePicker
                     selected={end}
                     onChange={(event) => onValueChange(title, id, "end", event)}
