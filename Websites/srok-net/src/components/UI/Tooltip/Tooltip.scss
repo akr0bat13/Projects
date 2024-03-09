@@ -1,0 +1,57 @@
+@import "../../../vars.scss";
+
+.tooltip-main {
+    position: relative;
+    display: block;
+    width: fit-content;
+}
+
+.tooltip-pointer {
+    cursor: pointer;
+}
+
+.tooltip {
+    position: absolute;
+    color: $blue-primary-active;
+    z-index: $z-index-high;
+    display: block;
+
+    &-hidden {
+        display: none;
+    }
+
+    &-arrow {
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+
+    &-content {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.tooltip-main-conditional {
+    width: 100%;
+    cursor: unset;
+}
+
+.tooltip-non-conditional {
+    background-color: $background;
+    border: 1px solid $blue-primary-active;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.tooltip-conditional {
+    width: 100%;
+    left: 0;
+    top: calc(100% + 3px);
+    display: flex;
+    justify-content: center;
+}
+
+.tooltip-content-conditional {
+    width: 95%;
+}
