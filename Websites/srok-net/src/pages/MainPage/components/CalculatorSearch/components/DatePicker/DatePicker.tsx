@@ -1,18 +1,10 @@
-import cn from "classnames";
 import ru from "date-fns/locale/ru";
-import React, {
-  CSSProperties,
-  FC,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import React, { CSSProperties, FC, useEffect, useState } from "react";
 import ReactDatePicker, {
   registerLocale,
   setDefaultLocale,
 } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useTranslation } from "react-i18next";
 
 import CalendarIcon from "src/components/icons/CalendarIcon";
 import { useDispatch } from "src/store";
@@ -46,51 +38,28 @@ export const DatePicker: FC<IDatePickerProps> = ({
   styleWrapper,
 }) => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
 
   const [selectedDates, setSelectedDates] = useState<DateRange>({
     verdictDate: null,
     comesInToForse: null,
   });
 
-  const [isNotCurrentDate, setIsNotCurrentDate] = useState<boolean>(false);
-
   useEffect(() => {
     setSelectedDates(dates);
   }, [dates]);
 
   const inputCalculatorVerdictDate = (event: Date | null) => {
+    const newDate = event ? event.toLocaleDateString("ru-RU") : "";
     setSelectedDates({ ...selectedDates, verdictDate: event });
-    dispatch(updateCalculatorVerdictDate(event));
+    dispatch(updateCalculatorVerdictDate(newDate as unknown as Date));
   };
 
   const inputCalculatorComesInToForse = (event: Date | null) => {
+    const newDate = event ? event.toLocaleDateString("ru-RU") : "";
     setSelectedDates({ ...selectedDates, comesInToForse: event });
-    dispatch(updateCalculatorComesInToForse(event));
+    dispatch(updateCalculatorComesInToForse(newDate as unknown as Date));
   };
 
-  const onMonthChange = useCallback(
-    (displayed_date: Date) => {
-      const displayed_month = displayed_date.getMonth();
-      const selected_month = (
-        selectedDates.verdictDate || new Date()
-      ).getMonth();
-      const displayed_year = displayed_date.getFullYear();
-      const selected_year = (
-        selectedDates.verdictDate || new Date()
-      ).getFullYear();
-
-      setIsNotCurrentDate(
-        displayed_month !== selected_month || displayed_year !== selected_year
-      );
-    },
-    [selectedDates.verdictDate]
-  );
-
-  const resetSetIsNotCurrentMonth = useCallback(
-    () => setIsNotCurrentDate(false),
-    []
-  );
   return (
     <div className="datepicker-wrapper" style={sx}>
       <InputContainer
@@ -102,13 +71,9 @@ export const DatePicker: FC<IDatePickerProps> = ({
           selected={selectedDates.verdictDate}
           startDate={selectedDates.verdictDate}
           endDate={selectedDates.comesInToForse}
-          onMonthChange={onMonthChange}
-          onSelect={resetSetIsNotCurrentMonth}
           onChange={inputCalculatorVerdictDate}
-          placeholderText={t("Дата приговора")}
-          calendarClassName={cn("date-picker", {
-            "not-current-month": isNotCurrentDate,
-          })}
+          placeholderText="Дата приговора"
+          calendarClassName="date-picker"
           dateFormat="dd.MM.yyyy"
           isClearable={!!selectedDates.verdictDate}
           showIcon={!selectedDates.verdictDate}
@@ -125,15 +90,10 @@ export const DatePicker: FC<IDatePickerProps> = ({
           startDate={selectedDates.verdictDate}
           endDate={selectedDates.comesInToForse}
           minDate={selectedDates.verdictDate}
-          onMonthChange={onMonthChange}
-          onSelect={resetSetIsNotCurrentMonth}
           onChange={inputCalculatorComesInToForse}
-          placeholderText={t("Вступает в силу")}
-          calendarClassName={cn("date-picker", {
-            "not-current-month": isNotCurrentDate,
-          })}
+          placeholderText="Вступает в силу"
+          calendarClassName="date-picker"
           dateFormat="dd.MM.yyyy"
-          className="test"
           isClearable={!!selectedDates.comesInToForse}
           showIcon={!selectedDates.comesInToForse}
           icon={<CalendarIcon />}

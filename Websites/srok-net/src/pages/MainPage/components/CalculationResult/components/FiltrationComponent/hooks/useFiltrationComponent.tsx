@@ -163,9 +163,9 @@ export const useFiltrationComponent = () => {
   };
 
   const inputCalculatorApilationDate = (event: Date | null) => {
-    // const newDate = event ? event.toLocaleDateString("ru-RU") : "";
+    const newDate = event ? event.toLocaleDateString("ru-RU") : "";
     setApilationProps({ ...apilationProps, apilationDate: event });
-    dispatch(updateApilationDate(event));
+    dispatch(updateApilationDate(newDate as unknown as Date));
   };
 
   const inputApilationYear = (event: ChangeEvent<HTMLInputElement>) => {
