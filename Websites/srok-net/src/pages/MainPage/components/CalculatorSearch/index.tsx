@@ -20,13 +20,27 @@ const CalculatorSearch = ({ setResult }: any) => {
   const { buttonSearchProps, inputsentenceValue, convictionHandler } =
     useCalculator();
 
+  const { label, color } = buttonSearchProps;
+
+  const { verdictDate, comesInToForse, sentence, chargeArticle } = useSelector(
+    calculatorSearchValues
+  );
+
+  const fieldsWritten: boolean =
+    !!verdictDate &&
+    !!comesInToForse &&
+    !!sentence.month &&
+    !!sentence.year &&
+    chargeArticle.every(
+      (article) =>
+        article.state !== "" &&
+        article.part !== "" &&
+        article.episodesNumber !== ""
+    );
+
   const searchSubmit = () => {
     setResult(true);
   };
-
-  const { label, color } = buttonSearchProps;
-
-  const { verdictDate, comesInToForse } = useSelector(calculatorSearchValues);
 
   const [dates, setDates] = useState<DateRange>({
     verdictDate,
@@ -72,7 +86,12 @@ const CalculatorSearch = ({ setResult }: any) => {
               onChange={convictionHandler}
               sx={{ color: "#0C64C5" }}
             />
-            <Button label={label} color={color} onClick={searchSubmit} />
+            <Button
+              label={label}
+              color={color}
+              onClick={searchSubmit}
+              disabled={!fieldsWritten}
+            />
           </div>
         </div>
       </div>
