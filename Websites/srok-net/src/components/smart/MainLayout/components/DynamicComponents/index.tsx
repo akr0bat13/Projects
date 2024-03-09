@@ -16,9 +16,7 @@ const DynamicComponents: FC<ContentType> = ({ children }) => {
         "content-wrapper-none": isMobile,
       })}
     >
-      <div className="content-wrapper">
-        <div className="content">{<Outlet /> || children}</div>
-      </div>
+      <div className="content">{<Outlet /> || children}</div>
     </div>
   );
 };

@@ -3,6 +3,10 @@ export interface MenuData {
   icon?: JSX.Element;
 }
 
+export interface MenuItemData extends MenuData {
+  submenu: SubMenuProps[];
+}
+
 export interface NavItemData extends MenuData {
   // TODO убрать опциональность после того: как будут все ссылки
   link?: string;
@@ -18,25 +22,36 @@ export interface MenuClickableItem {
   onClose?(): void;
 }
 
-export interface MenuItemProps extends MenuData, MenuClickableItem {}
-
-export const menus: MenuData[] = [
+export interface MenuItemProps
+  extends MenuData,
+    SubMenuProps,
+    MenuClickableItem {}
+export const menuNav: SubMenuProps[] = [
   {
-    id: "System",
+    link: "/information",
+    id: "Information",
+  },
+  { link: "/about-us", id: "AboutUs" },
+  {
+    link: "/contact-us",
+    id: "ContactUs",
   },
   {
-    id: "information",
+    link: "/freedom",
+    id: "Freedom",
   },
   {
-    id: "about-us",
+    link: "/profile",
+    id: "Profile",
   },
   {
-    id: "contact-us",
-  },
-  {
-    id: "freedom",
-  },
-  {
-    id: "profile",
+    link: "/power",
+    id: "Power",
   },
 ];
+// export const menus: MenuItemData[] = [
+//   {
+//     id: "System",
+//     submenu: menuNav,
+//   },
+// ];

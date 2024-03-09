@@ -4,7 +4,7 @@ import "./Menu.scss";
 
 import { MenuItem } from "./components/MenuItem/MenuItem";
 import { getActiveMenuFromLocation } from "./components/MenuItem/utils/helpers/getActiveMenuFromLocation";
-import { menus } from "./utils/constants/constants";
+import { menuNav } from "./utils/constants/constants";
 
 export interface IMenuProps {
   onClose?(): void;
@@ -25,12 +25,13 @@ export const Menu: FC<IMenuProps> = ({ onClose }) => {
 
   return (
     <div className="menu-bar-wrapper">
-      {menus.map((menu) => (
+      {menuNav.map((item) => (
         <MenuItem
           parendId={null}
-          id={menu.id}
-          key={menu.id}
-          icon={menu.icon}
+          id={item.id}
+          key={item.id}
+          link={item.link}
+          icon={item.icon}
           onClick={onClick}
           activeItemId={activeItem}
           onClose={onClose}

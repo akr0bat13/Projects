@@ -1,3 +1,5 @@
+@import 'src/vars.scss';
+
 .container {
   max-width: 1230px;
   width: 100%;
@@ -7,4 +9,14 @@
 
 .content-wrapper {
   min-height: calc(100vh - 180px);
+}
+
+.content-wrapper-none {
+  display: none;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  background-color: $background;
 }
