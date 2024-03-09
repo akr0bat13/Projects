@@ -108,15 +108,25 @@
   flex-direction: column;
   gap: 5px;
 
-  &-item {
+  &-content {
     display: flex;
     gap: 5px;
     justify-content: space-between;
-    align-items: end;
+    align-items: start;
+  }
+
+  .select-dates-calendar {
+    display: flex;
+    gap: 5px;
   }
 }
 
 .filtration-punishment-type-item {
   display: flex;
   justify-content: space-between;
+}
+
+.calculator-container-select-dates-buttons {
+  display: flex;
+  gap: 5px;
 }
