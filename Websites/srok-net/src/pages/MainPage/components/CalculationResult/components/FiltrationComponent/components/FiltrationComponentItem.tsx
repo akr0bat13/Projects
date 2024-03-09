@@ -1,4 +1,4 @@
-import { parse, toDate } from "date-fns";
+import { parse, subDays, toDate } from "date-fns";
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import { useSelector } from "react-redux";
@@ -39,12 +39,15 @@ const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
 }) => {
   const { verdictDate } = useSelector(calculatorSearchValues);
   const [maxDatePickerDate, setMaxDatePickerDate] = useState<Date | null>(null);
+  const [minDatePickerDate, setMinDatePickerDate] = useState<Date | null>(null);
 
   useEffect(() => {
     if (verdictDate !== null) {
       const formattedDate = parse(`${verdictDate}`, "dd.MM.yyyy", new Date());
       const maxDate = toDate(formattedDate);
+      const minDate = subDays(formattedDate, 1);
       setMaxDatePickerDate(maxDate);
+      setMinDatePickerDate(minDate);
     }
   }, [verdictDate]);
 
@@ -108,7 +111,7 @@ const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
                         onValueChange(title, id, "start", date)
                       }
                       placeholderText="С"
-                      maxDate={maxDatePickerDate}
+                      maxDate={minDatePickerDate}
                       calendarClassName="date-picker"
                       dateFormat="dd.MM.yyyy"
                       isClearable={!!start}

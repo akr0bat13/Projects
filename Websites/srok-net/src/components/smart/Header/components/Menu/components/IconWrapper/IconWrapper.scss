@@ -1,0 +1,17 @@
+@import "src/vars.scss";
+
+.open-icon {
+    color: $blue-primary-active;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.closed-icon {
+    color: #ffffff;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,16 @@
+@import "../../../../../../../../../vars.scss";
+
+.nav-link {
+    display: flex;
+    padding: 10px 30px;
+    &-active {
+        background-color: $blue-primary-active;
+        p {
+            color: $black-primary;
+        }
+    }
+}
+
+.nav-link:not(.nav-link-active):hover {
+    background-color: $blue-primary-hover;
+}
