@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import "./Menu.scss";
 
 import { MenuItem } from "./components/MenuItem/MenuItem";
-import { getActiveMenuFromLocation } from "./components/MenuItem/utils/helpers/getActiveMenuFromLocation";
+// import { getActiveMenuFromLocation } from "./components/MenuItem/utils/helpers/getActiveMenuFromLocation";
 import { menuNav } from "./utils/constants/constants";
 
 export interface IMenuProps {
@@ -20,7 +20,7 @@ export const Menu: FC<IMenuProps> = ({ onClose }) => {
   };
 
   useEffect(() => {
-    setActiveItem(getActiveMenuFromLocation(location.pathname));
+    // setActiveItem(getActiveMenuFromLocation(location.pathname));
   }, [location.pathname]);
 
   return (

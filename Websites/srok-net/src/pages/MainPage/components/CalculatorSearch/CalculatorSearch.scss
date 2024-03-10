@@ -30,13 +30,14 @@
   &-item {
     display: flex;
     flex-direction: column;
-    gap: 23px;
+    gap: 11px;
   }
 
   &-sentence {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: 5px;
     // gap: 20px;
   }
   &-sentence > *:last-child {
@@ -46,6 +47,7 @@
   &-article-value {
     display: flex;
     gap: 20px;
+    padding-top: 6px;
     align-items: center;
 
     &-buttons {

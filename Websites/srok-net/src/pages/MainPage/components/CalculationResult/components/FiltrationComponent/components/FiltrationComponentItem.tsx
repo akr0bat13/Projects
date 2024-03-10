@@ -26,6 +26,7 @@ interface IFiltrationComponentItem {
   ) => void;
   onRemoveValue: (id: number, title: string) => void;
   onAddValue: (title: string) => void;
+  error: boolean;
 }
 
 const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
@@ -36,6 +37,7 @@ const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
   onValueChange,
   onRemoveValue,
   onAddValue,
+  error,
 }) => {
   const { verdictDate } = useSelector(calculatorSearchValues);
   const [maxDatePickerDate, setMaxDatePickerDate] = useState<Date | null>(null);
@@ -51,36 +53,36 @@ const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
     }
   }, [verdictDate]);
 
-  const [isDateOverlap, setIsDateOverlap] = useState(false);
+  // const [isDateOverlap, setIsDateOverlap] = useState(false);
 
-  useEffect(() => {
-    const checkDateOverlap = () => {
-      for (let i = 0; i < values.length; i++) {
-        const start1 = values[i].start;
-        const end1 = values[i].end;
+  // useEffect(() => {
+  //   const checkDateOverlap = () => {
+  //     for (let i = 0; i < values.length; i++) {
+  //       const start1 = values[i].start;
+  //       const end1 = values[i].end;
 
-        if (start1 === null || end1 === null) {
-          break;
-        }
-        for (let j = i + 1; j < values.length; j++) {
-          const start2 = values[j].start;
-          const end2 = values[j].end;
+  //       if (start1 === null || end1 === null) {
+  //         break;
+  //       }
+  //       for (let j = i + 1; j < values.length; j++) {
+  //         const start2 = values[j].start;
+  //         const end2 = values[j].end;
 
-          if (start2 === null || end2 === null) {
-            break;
-          }
+  //         if (start2 === null || end2 === null) {
+  //           break;
+  //         }
 
-          if (start1 <= end2 && end1 >= start2) {
-            setIsDateOverlap(true);
-            return;
-          }
-        }
-      }
-      setIsDateOverlap(false);
-    };
+  //         if (start1 <= end2 && end1 >= start2) {
+  //           setIsDateOverlap(true);
+  //           return;
+  //         }
+  //       }
+  //     }
+  //     setIsDateOverlap(false);
+  //   };
 
-    checkDateOverlap();
-  }, [values]);
+  //   checkDateOverlap();
+  // }, [values]);
 
   return (
     <div className="filtration-preventive-measure-item">
@@ -98,7 +100,7 @@ const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
                 color="blue"
                 // fieldStyles={{ display: "flex", gap: 5 }}
                 errors={{
-                  isError: isDateOverlap,
+                  isError: error,
                   level: "error",
                   message: "Периоды не должны пересекаться",
                 }}

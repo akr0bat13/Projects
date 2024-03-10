@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 
 import { Button } from "src/components/UI/Button/Button";
@@ -41,6 +41,44 @@ const PreventiveMeasure = () => {
     rejectingCurrentDoings,
   } = useFiltrationComponent();
 
+  const [isDateOverlap, setIsDateOverlap] = useState(false);
+
+  useEffect(() => {
+    const checkDateOverlap = () => {
+      const allValues = [
+        ...homeArrestValues,
+        ...timeUnderArrest,
+        ...rejectingCurrentDoings,
+      ];
+
+      for (let i = 0; i < allValues.length; i++) {
+        const start1 = allValues[i].start;
+        const end1 = allValues[i].end;
+
+        if (start1 === null || end1 === null) {
+          break;
+        }
+
+        for (let j = i + 1; j < allValues.length; j++) {
+          const start2 = allValues[j].start;
+          const end2 = allValues[j].end;
+
+          if (start2 === null || end2 === null) {
+            break;
+          }
+
+          if (start1 <= end2 && end1 >= start2) {
+            setIsDateOverlap(true);
+            return;
+          }
+        }
+      }
+
+      setIsDateOverlap(false);
+    };
+
+    checkDateOverlap();
+  }, [homeArrestValues, timeUnderArrest, rejectingCurrentDoings]);
   return (
     <div className="filtration-component-item">
       <H variant="lg" color="blue">
@@ -54,6 +92,7 @@ const PreventiveMeasure = () => {
         onValueChange={setUpdateFiltrationComponentValue}
         onRemoveValue={removeFiltrationComponentValue}
         onAddValue={addFiltrationComponentValue}
+        error={isDateOverlap}
       />
 
       <FiltrationComponentItem
@@ -64,6 +103,7 @@ const PreventiveMeasure = () => {
         onValueChange={setUpdateFiltrationComponentValue}
         onRemoveValue={removeFiltrationComponentValue}
         onAddValue={addFiltrationComponentValue}
+        error={isDateOverlap}
       />
 
       <FiltrationComponentItem
@@ -74,6 +114,7 @@ const PreventiveMeasure = () => {
         onValueChange={setUpdateFiltrationComponentValue}
         onRemoveValue={removeFiltrationComponentValue}
         onAddValue={addFiltrationComponentValue}
+        error={isDateOverlap}
       />
     </div>
   );
