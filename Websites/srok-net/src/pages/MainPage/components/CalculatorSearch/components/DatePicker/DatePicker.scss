@@ -1,5 +1,9 @@
 @import 'src/vars.scss';
 
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
 .datepicker-wrapper {
   display: flex;
   flex-direction: column;
@@ -31,6 +35,11 @@
     word-wrap: break-word;
     text-align:start;
     text-overflow: ellipsis;
+  }
+
+  .calculator-error {
+    border-color: $error;
+    color: $error;
   }
 } 
   

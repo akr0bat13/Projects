@@ -119,6 +119,7 @@ const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
                       isClearable={!!start}
                       showIcon={!start}
                       icon={<CalendarIcon />}
+                      className={error ? "calculator-error" : ""}
                     />
                     <ReactDatePicker
                       selected={end}
@@ -132,6 +133,7 @@ const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
                       isClearable={!!end}
                       showIcon={!end}
                       icon={<CalendarIcon />}
+                      className={error ? "calculator-error" : ""}
                     />
                   </div>
 

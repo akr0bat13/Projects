@@ -77,6 +77,8 @@
   flex-wrap: wrap;
 
   &-text {
+    display: flex;
+    gap: 5px;
     color: $blue-primary-secondary;
 
     span {

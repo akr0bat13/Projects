@@ -1,17 +1,16 @@
 import React from "react";
 
 import { useSelector } from "src/store";
-import { calculatorFiltrationApilation } from "src/store/slices/CalculatorFiltration/calculatorFiltration.selectors";
+import { showCalculatorFiltrationResult } from "src/store/slices/helperSlices/helperSlices";
 
 import Result from "./components/Result";
 import StateInfo from "./components/StateInfo";
 
 const ViewContent = () => {
-  const { isActive } = useSelector(calculatorFiltrationApilation);
-
+  const { showResult } = useSelector(showCalculatorFiltrationResult);
   return (
     <div className="view-content-wrapper">
-      {isActive && <Result />}
+      {showResult && <Result />}
       <StateInfo />
     </div>
   );

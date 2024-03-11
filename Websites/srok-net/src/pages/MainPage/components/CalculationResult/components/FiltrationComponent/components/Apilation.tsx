@@ -51,26 +51,36 @@ const Apilation = () => {
             label="Срок по аппеляции"
             labelStyles={{ fontSize: 18 }}
             fieldStyles={{ display: "flex", gap: 20 }}
+            hint={true}
+            hintText="Если срок неизвестен, то введите предположительный"
           >
             <TextInput placeholder="Лет" onChange={inputApilationYear} />
             <TextInput placeholder="Месяцев" onChange={inputApilationMonth} />
           </InputContainer>
-          <ReactDatePicker
-            selected={apilationProps.apilationDate}
-            onChange={inputCalculatorApilationDate}
-            placeholderText="Дата аппеляции"
-            dateFormat="dd.MM.yyyy"
-            minDate={minDatePickerDate}
-            isClearable={!!apilationProps.apilationDate}
-            showIcon={!apilationProps.apilationDate}
-            icon={<CalendarIcon />}
-          />
-          <Select
-            options={options}
-            value={apilationSelect}
-            handleChange={apilationSelectHandler}
-            placeholder="Содержание под стражей"
-          />
+          <InputContainer
+            label="Дата аппеляции"
+            hint={true}
+            fieldStyles={{ width: "100%" }}
+            hintText="Если дата неизвестна, то выберите предположительную"
+          >
+            <ReactDatePicker
+              selected={apilationProps.apilationDate}
+              onChange={inputCalculatorApilationDate}
+              dateFormat="dd.MM.yyyy"
+              minDate={minDatePickerDate}
+              isClearable={!!apilationProps.apilationDate}
+              showIcon={!apilationProps.apilationDate}
+              icon={<CalendarIcon />}
+            />
+          </InputContainer>
+          <InputContainer label="Мера пресечения">
+            <Select
+              options={options}
+              value={apilationSelect}
+              handleChange={apilationSelectHandler}
+              placeholder="Выберите меру пресечения"
+            />
+          </InputContainer>
         </>
       )}
     </div>
