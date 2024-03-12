@@ -25,4 +25,4 @@ interface Option {
   disabled?: boolean;
 }
 
-export type { RadioProps, RadioOption, RadioOptions, Option };
+export type { Option, RadioOption, RadioOptions, RadioProps };

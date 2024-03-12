@@ -11,6 +11,8 @@ import {
 } from "src/store/slices/OnFreedom";
 import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import {
+  updateOnFreedomModalAcceptTerms,
+  updateOnFreedomModalContactInfo,
   updateOnFreedomModalPeriodic,
   updateOnFreedomModalUseInform,
 } from "src/store/slices/OnFreedomForm";
@@ -44,9 +46,16 @@ export const useOnFreedom = () => {
   const inputModalUseInform = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateOnFreedomModalUseInform(event.target.value));
   };
+  const inputModalContactInfo = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(updateOnFreedomModalContactInfo(event.target.value));
+  };
   const inputModalPeriodic = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateOnFreedomModalPeriodic(event.target.value));
   };
+  const modalAcceptTerms = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(updateOnFreedomModalAcceptTerms(event.target.checked));
+  };
+
   const inputSearchValue: IInputSearchValue[] = [
     {
       value: state,
@@ -63,6 +72,11 @@ export const useOnFreedom = () => {
   const inputFormsValue: IForms = {
     title: "Ответьте на вопросы для получения отчета",
     inputsContent: [
+      {
+        value: modalInputs.contactInfo,
+        onChange: inputModalContactInfo,
+        placeholder: "Введите почту",
+      },
       {
         value: modalInputs.useInform,
         onChange: inputModalUseInform,
@@ -143,5 +157,6 @@ export const useOnFreedom = () => {
     showModalSettings,
     inputFormsValue,
     setShowModal,
+    modalAcceptTerms,
   };
 };
