@@ -25,4 +25,39 @@
     justify-content: end;
   }
 
+  .contact-form-textarea {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid $blue-primary-active;
+    border-radius: 5px;
+    height: 100px;
+    overflow-y: scroll;
+    
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.2;
+    color: $blue-primary-active;
+
+    resize: none;
+
+    &::placeholder {
+      color: $blue-primary-secondary;
+    }
+  }
+
+  .checkbox-modal-container {
+    display: flex;
+    gap: 10px;
+
+    .checkbox-text {
+      display: flex;
+      color: $blue-primary-active;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
 }

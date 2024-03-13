@@ -15,18 +15,22 @@ import {
   updateOnFreedomModalTextField,
   updateOnFreedomModalWillingToPay,
 } from "src/store/slices/OnFreedomForm";
-import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
+import {
+  onFreedomModal,
+  onFreedomModalPrice,
+} from "src/store/slices/OnFreedomForm/onFreedom.selectors";
 import { IForms } from "src/utils/types/OnFreedom.types";
 import "./ContactForm.scss";
 
 const ContactForm = (props: IForms) => {
   const dispatch = useDispatch();
   const { acceptTerms } = useSelector(onFreedomModal);
+  const { defaultPrice, willingToPay } = useSelector(onFreedomModalPrice);
   const { setShowModal, modalAcceptTerms } = useOnFreedom();
   const { title, inputsContent } = props;
-  const [defaultPrice, setDefaultPrice] = useState("1");
-  const [willingToPay, setWillingToPay] = useState("1");
-  const [extraSupport, setExtraSupport] = useState("1");
+  const [defaultPriceValue, setDefaultPriceValue] = useState(defaultPrice);
+  const [willingToPayValue, setWillingToPayValue] = useState(willingToPay);
+  const [extraSupport, setExtraSupport] = useState(1);
   const [textContent, setTextContent] = useState("");
 
   const handleSubmit = () => {
@@ -34,60 +38,60 @@ const ContactForm = (props: IForms) => {
   };
 
   const radio_options: RadioOptions = {
-    yes: {
-      value: "1",
+    1: {
+      value: 1,
       label: "Да",
     },
-    no: {
-      value: "2",
+    2: {
+      value: 2,
       label: "Нет",
     },
   };
   const radio_options2: RadioOptions = {
-    option1: {
-      value: "1",
+    1: {
+      value: 1,
       label: "500-1000",
     },
-    option2: {
-      value: "2",
+    2: {
+      value: 2,
       label: "1000-3000",
     },
-    option3: {
-      value: "3",
+    3: {
+      value: 3,
       label: "3000-5000",
     },
   };
   const radio_options3: RadioOptions = {
-    option1: {
-      value: "1",
-      label: "Нет",
+    1: {
+      value: 1,
+      label: "Не нужна",
     },
-    option2: {
-      value: "2",
+    2: {
+      value: 2,
       label: "Консультация адвоката",
     },
-    option3: {
-      value: "3",
+    3: {
+      value: 3,
       label: "Ведение вашего дела адвокатом",
     },
-    option4: {
-      value: "4",
+    4: {
+      value: 4,
       label: "Другое",
     },
   };
 
   const inputModalDefaultPrice = (event: ChangeEvent<HTMLInputElement>) => {
-    setDefaultPrice(event.target.value);
-    dispatch(updateOnFreedomModalDefaultPrice(event.target.value));
+    setDefaultPriceValue(parseInt(event.target.value));
+    dispatch(updateOnFreedomModalDefaultPrice(parseInt(event.target.value)));
   };
   const inputModalWillingToPay = (event: ChangeEvent<HTMLInputElement>) => {
-    setWillingToPay(event.target.value);
-    dispatch(updateOnFreedomModalWillingToPay(event.target.value));
+    setWillingToPayValue(parseInt(event.target.value));
+    dispatch(updateOnFreedomModalWillingToPay(parseInt(event.target.value)));
   };
 
   const inputModalExtraSupport = (event: ChangeEvent<HTMLInputElement>) => {
-    setExtraSupport(event.target.value);
-    dispatch(updateOnFreedomModalSupportVariants(event.target.value));
+    setExtraSupport(parseInt(event.target.value));
+    dispatch(updateOnFreedomModalSupportVariants(parseInt(event.target.value)));
   };
 
   const inputModalTextField = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -110,41 +114,62 @@ const ContactForm = (props: IForms) => {
             </InputContainer>
           );
         })}
-        <InputContainer label="Готовы купить отчет за 5000 рублей?">
+        <InputContainer
+          label="Готовы купить отчет за 5000 рублей?"
+          color="blue"
+        >
           <Radio
             options={radio_options}
             onChange={inputModalDefaultPrice}
-            selected={defaultPrice}
+            selected={defaultPriceValue}
           />
-          {defaultPrice === "2" && (
-            <InputContainer label="Сколько вы готовы заплатить?">
+          {defaultPrice === 2 && (
+            <InputContainer
+              label="Сколько вы готовы заплатить?"
+              color="blue"
+              styleWrapper={{ paddingLeft: 15, paddingTop: 10 }}
+            >
               <Radio
                 options={radio_options2}
                 onChange={inputModalWillingToPay}
-                selected={willingToPay}
+                selected={willingToPayValue}
               />
             </InputContainer>
           )}
         </InputContainer>
-        <InputContainer label="Какая дополнительная поддержка нужна по вашему делу?">
+        <InputContainer
+          label="Какая дополнительная поддержка нужна по вашему делу?"
+          color="blue"
+        >
           <Radio
             options={radio_options3}
             onChange={inputModalExtraSupport}
             selected={extraSupport}
           />
-          {extraSupport === "4" && (
-            <textarea name="text" onChange={inputModalTextField}>
+          {extraSupport === 4 && (
+            <textarea
+              className="contact-form-textarea"
+              name="text"
+              onChange={inputModalTextField}
+              placeholder="Опишите проблему"
+            >
               {textContent}
             </textarea>
-            // <TextInput value={textContent} onChange={inputModalTextField} />
           )}
         </InputContainer>
       </div>
-      <Checkbox
-        checked={acceptTerms}
-        onChange={modalAcceptTerms}
-        label="Я соглашаюсь с политикой конфиденциальности персональных данных"
-      />
+      <div className="checkbox-modal-container">
+        <Checkbox checked={acceptTerms} onChange={modalAcceptTerms} />
+        <a
+          className="checkbox-text"
+          href="src/assets/documents/React.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Я соглашаюсь c политикой конфиденциальности обработки персональных
+          данных
+        </a>
+      </div>
       <div className="contact-form-button">
         <Button label="Получить отчет" color="primary" onClick={handleSubmit} />
       </div>

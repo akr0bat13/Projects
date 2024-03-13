@@ -2,7 +2,7 @@ import { ChangeEvent, CSSProperties } from "react";
 
 interface RadioOption {
   label?: string;
-  value: string;
+  value: number;
   disabled?: boolean;
 }
 
@@ -14,14 +14,14 @@ interface RadioProps {
   name?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   options: RadioOptions;
-  selected?: string;
+  selected?: number;
   sx?: CSSProperties;
 }
 
 interface Option {
   id: string;
   label?: string;
-  value: string;
+  value: number;
   disabled?: boolean;
 }
 

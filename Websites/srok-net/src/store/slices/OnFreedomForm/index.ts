@@ -13,12 +13,12 @@ const inputModalValue: IOnFreedomModalInputs = {
   periodic: "",
 };
 const valuablePrice: IOnFreedomModalValuablePrice = {
-  defaultPrice: "1",
-  willingToPay: "1",
+  defaultPrice: 1,
+  willingToPay: 1,
 };
 
 const extraSupport: IOnFreedomModalExtraSupport = {
-  supportVariants: "1",
+  supportVariants: 1,
   textField: "",
 };
 
@@ -44,19 +44,19 @@ const slice = createSlice({
     },
     updateOnFreedomModalDefaultPrice: (
       state,
-      action: PayloadAction<string>
+      action: PayloadAction<number>
     ) => {
       state.valuablePrice.defaultPrice = action.payload;
     },
     updateOnFreedomModalWillingToPay: (
       state,
-      action: PayloadAction<string>
+      action: PayloadAction<number>
     ) => {
       state.valuablePrice.willingToPay = action.payload;
     },
     updateOnFreedomModalSupportVariants: (
       state,
-      action: PayloadAction<string>
+      action: PayloadAction<number>
     ) => {
       state.extraSupport.supportVariants = action.payload;
     },

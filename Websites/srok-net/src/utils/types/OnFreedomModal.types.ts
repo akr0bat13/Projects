@@ -4,11 +4,11 @@ export interface IOnFreedomModalInputs {
   periodic: string;
 }
 export interface IOnFreedomModalValuablePrice {
-  defaultPrice: string;
-  willingToPay: string;
+  defaultPrice: number;
+  willingToPay: number;
 }
 export interface IOnFreedomModalExtraSupport {
-  supportVariants: string;
+  supportVariants: number;
   textField: string;
 }
 

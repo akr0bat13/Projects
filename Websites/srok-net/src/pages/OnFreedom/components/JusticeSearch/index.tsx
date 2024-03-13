@@ -17,6 +17,7 @@ const JusticeSearch = ({ setResult }: any) => {
   const [fieldStateError, setStateFieldError] = useState<boolean>(false);
   const [fielPartError, setFielPartError] = useState<boolean>(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const isButtonDisabled = part && state;
 
   useEffect(() => {
@@ -36,7 +37,8 @@ const JusticeSearch = ({ setResult }: any) => {
   }, [state]);
 
   const searchSubmit = () => {
-    if (isButtonDisabled) setResult(true);
+    // if (isButtonDisabled) setResult(true);
+    setResult(true);
   };
 
   const { label, color } = buttonSearchProps;
@@ -75,7 +77,7 @@ const JusticeSearch = ({ setResult }: any) => {
             onClick={searchSubmit}
             label={label}
             color={color}
-            disabled={!isButtonDisabled}
+            // disabled={!isButtonDisabled}
           />
         </div>
       </div>

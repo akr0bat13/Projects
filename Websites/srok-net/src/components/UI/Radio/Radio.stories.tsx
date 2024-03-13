@@ -35,25 +35,25 @@ const componentWrapperStyles: React.CSSProperties = {
 };
 
 export const RadioStory = () => {
-  const [type, setType] = useState("file");
+  const [type, setType] = useState(1);
 
   const radio_options: RadioOptions = {
     value1: {
-      value: "file",
+      value: 1,
       label: "file",
     },
     value2: {
-      value: "file1",
+      value: 2,
       label: "file1",
     },
     value3: {
-      value: "file2",
+      value: 3,
       label: "file2",
     },
   };
 
   const ChangeType = (e: ChangeEvent<HTMLInputElement>) => {
-    setType(e.target.value);
+    setType(parseInt(e.target.value));
   };
 
   return (
