@@ -8,20 +8,17 @@ import { H } from "src/components/UI/Text/H";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import LogoIcon from "src/components/icons/LogoIcon";
 import { useOnFreedom } from "src/pages/OnFreedom/hooks/useOnFreedom";
-import { useSelector } from "src/store";
-import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
 import { IForms } from "src/utils/types/OnFreedom.types";
 import "./ContactForm.scss";
 
 const ContactForm = (props: IForms) => {
-  const { acceptTerms } = useSelector(onFreedomModal);
   const {
     setShowModal,
     modalAcceptTerms,
     inputModalDefaultPrice,
     agree_with_price,
     defaultPriceValue,
-    extraSupport,
+    extraSupportValue,
     need_another_help,
     your_price,
     willingToPayValue,
@@ -29,6 +26,7 @@ const ContactForm = (props: IForms) => {
     inputModalExtraSupport,
     inputModalTextField,
     textContent,
+    acceptTermsValue,
   } = useOnFreedom();
   const { title, inputsContent } = props;
 
@@ -81,9 +79,9 @@ const ContactForm = (props: IForms) => {
           <Radio
             options={need_another_help}
             onChange={inputModalExtraSupport}
-            selected={extraSupport}
+            selected={extraSupportValue}
           />
-          {extraSupport === 4 && (
+          {extraSupportValue === 4 && (
             <textarea
               className="contact-form-textarea"
               name="text"
@@ -96,7 +94,7 @@ const ContactForm = (props: IForms) => {
         </InputContainer>
       </div>
       <div className="checkbox-modal-container">
-        <Checkbox checked={acceptTerms} onChange={modalAcceptTerms} />
+        <Checkbox checked={acceptTermsValue} onChange={modalAcceptTerms} />
         <a
           className="checkbox-text"
           href="src/assets/documents/React.pdf"

@@ -21,11 +21,7 @@ import {
   updateOnFreedomModalUseInform,
   updateOnFreedomModalWillingToPay,
 } from "src/store/slices/OnFreedomForm";
-import {
-  onFreedomExtraSupport,
-  onFreedomModal,
-  onFreedomModalPrice,
-} from "src/store/slices/OnFreedomForm/onFreedom.selectors";
+import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
 import {
   IForms,
   IInputSearchValue,
@@ -36,15 +32,21 @@ export const useOnFreedom = () => {
   const dispatch = useDispatch();
 
   const { part, state } = useSelector(onFreedomInput);
-  const { modalInputs } = useSelector(onFreedomModal);
-  const { defaultPrice, willingToPay } = useSelector(onFreedomModalPrice);
-  const { supportVariants, textField } = useSelector(onFreedomExtraSupport);
+  const { modalInputs, acceptTerms, extraSupport, valuablePrice } =
+    useSelector(onFreedomModal);
 
   const [showModal, setShowModal] = useState(false);
-  const [defaultPriceValue, setDefaultPriceValue] = useState(defaultPrice);
-  const [willingToPayValue, setWillingToPayValue] = useState(willingToPay);
-  const [extraSupport, setExtraSupport] = useState(supportVariants);
-  const [textContent, setTextContent] = useState(textField);
+  const [defaultPriceValue, setDefaultPriceValue] = useState(
+    valuablePrice.defaultPrice
+  );
+  const [willingToPayValue, setWillingToPayValue] = useState(
+    valuablePrice.willingToPay
+  );
+  const [acceptTermsValue, setAcceptTermsValue] = useState(acceptTerms);
+  const [extraSupportValue, setExtraSupportValue] = useState(
+    extraSupport.supportVariants
+  );
+  const [textContent, setTextContent] = useState(extraSupport.textField);
 
   const inputSearchHandlerPart = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateOnFreedomInputPart(event.target.value));
@@ -67,6 +69,7 @@ export const useOnFreedom = () => {
   };
 
   const modalAcceptTerms = (event: ChangeEvent<HTMLInputElement>) => {
+    setAcceptTermsValue(event.target.checked);
     dispatch(updateOnFreedomModalAcceptTerms(event.target.checked));
   };
 
@@ -80,7 +83,7 @@ export const useOnFreedom = () => {
   };
 
   const inputModalExtraSupport = (event: ChangeEvent<HTMLInputElement>) => {
-    setExtraSupport(parseInt(event.target.value));
+    setExtraSupportValue(parseInt(event.target.value));
     dispatch(updateOnFreedomModalSupportVariants(parseInt(event.target.value)));
   };
 
@@ -183,43 +186,43 @@ export const useOnFreedom = () => {
   ];
 
   const agree_with_price: RadioOptions = {
-    1: {
+    agree_with_price1: {
       value: 1,
       label: "Да",
     },
-    2: {
+    agree_with_price2: {
       value: 2,
       label: "Нет",
     },
   };
   const your_price: RadioOptions = {
-    1: {
+    your_price1: {
       value: 1,
       label: "500-1000",
     },
-    2: {
+    your_price2: {
       value: 2,
       label: "1000-3000",
     },
-    3: {
+    your_price3: {
       value: 3,
       label: "3000-5000",
     },
   };
   const need_another_help: RadioOptions = {
-    1: {
+    need_another_help1: {
       value: 1,
       label: "Не нужна",
     },
-    2: {
+    need_another_help2: {
       value: 2,
       label: "Консультация адвоката",
     },
-    3: {
+    need_another_help3: {
       value: 3,
       label: "Ведение вашего дела адвокатом",
     },
-    4: {
+    need_another_help4: {
       value: 4,
       label: "Другое",
     },
@@ -241,7 +244,6 @@ export const useOnFreedom = () => {
     modalAcceptTerms,
     defaultPriceValue,
     willingToPayValue,
-    extraSupport,
     textContent,
     inputModalDefaultPrice,
     inputModalWillingToPay,
@@ -250,5 +252,7 @@ export const useOnFreedom = () => {
     agree_with_price,
     your_price,
     need_another_help,
+    extraSupportValue,
+    acceptTermsValue,
   };
 };
