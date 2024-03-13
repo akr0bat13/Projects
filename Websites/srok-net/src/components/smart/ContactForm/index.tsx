@@ -1,102 +1,39 @@
-import React, { ChangeEvent, useState } from "react";
+import React from "react";
 
 import { Button } from "src/components/UI/Button/Button";
 import { Checkbox } from "src/components/UI/Checkbox/Checkbox";
 import { InputContainer } from "src/components/UI/InputContainer/InputContainer";
-import { Radio, RadioOptions } from "src/components/UI/Radio";
+import { Radio } from "src/components/UI/Radio";
 import { H } from "src/components/UI/Text/H";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import LogoIcon from "src/components/icons/LogoIcon";
 import { useOnFreedom } from "src/pages/OnFreedom/hooks/useOnFreedom";
-import { useDispatch, useSelector } from "src/store";
-import {
-  updateOnFreedomModalDefaultPrice,
-  updateOnFreedomModalSupportVariants,
-  updateOnFreedomModalTextField,
-  updateOnFreedomModalWillingToPay,
-} from "src/store/slices/OnFreedomForm";
-import {
-  onFreedomModal,
-  onFreedomModalPrice,
-} from "src/store/slices/OnFreedomForm/onFreedom.selectors";
+import { useSelector } from "src/store";
+import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
 import { IForms } from "src/utils/types/OnFreedom.types";
 import "./ContactForm.scss";
 
 const ContactForm = (props: IForms) => {
-  const dispatch = useDispatch();
   const { acceptTerms } = useSelector(onFreedomModal);
-  const { defaultPrice, willingToPay } = useSelector(onFreedomModalPrice);
-  const { setShowModal, modalAcceptTerms } = useOnFreedom();
+  const {
+    setShowModal,
+    modalAcceptTerms,
+    inputModalDefaultPrice,
+    agree_with_price,
+    defaultPriceValue,
+    extraSupport,
+    need_another_help,
+    your_price,
+    willingToPayValue,
+    inputModalWillingToPay,
+    inputModalExtraSupport,
+    inputModalTextField,
+    textContent,
+  } = useOnFreedom();
   const { title, inputsContent } = props;
-  const [defaultPriceValue, setDefaultPriceValue] = useState(defaultPrice);
-  const [willingToPayValue, setWillingToPayValue] = useState(willingToPay);
-  const [extraSupport, setExtraSupport] = useState(1);
-  const [textContent, setTextContent] = useState("");
 
   const handleSubmit = () => {
     setShowModal(false);
-  };
-
-  const radio_options: RadioOptions = {
-    1: {
-      value: 1,
-      label: "Да",
-    },
-    2: {
-      value: 2,
-      label: "Нет",
-    },
-  };
-  const radio_options2: RadioOptions = {
-    1: {
-      value: 1,
-      label: "500-1000",
-    },
-    2: {
-      value: 2,
-      label: "1000-3000",
-    },
-    3: {
-      value: 3,
-      label: "3000-5000",
-    },
-  };
-  const radio_options3: RadioOptions = {
-    1: {
-      value: 1,
-      label: "Не нужна",
-    },
-    2: {
-      value: 2,
-      label: "Консультация адвоката",
-    },
-    3: {
-      value: 3,
-      label: "Ведение вашего дела адвокатом",
-    },
-    4: {
-      value: 4,
-      label: "Другое",
-    },
-  };
-
-  const inputModalDefaultPrice = (event: ChangeEvent<HTMLInputElement>) => {
-    setDefaultPriceValue(parseInt(event.target.value));
-    dispatch(updateOnFreedomModalDefaultPrice(parseInt(event.target.value)));
-  };
-  const inputModalWillingToPay = (event: ChangeEvent<HTMLInputElement>) => {
-    setWillingToPayValue(parseInt(event.target.value));
-    dispatch(updateOnFreedomModalWillingToPay(parseInt(event.target.value)));
-  };
-
-  const inputModalExtraSupport = (event: ChangeEvent<HTMLInputElement>) => {
-    setExtraSupport(parseInt(event.target.value));
-    dispatch(updateOnFreedomModalSupportVariants(parseInt(event.target.value)));
-  };
-
-  const inputModalTextField = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setTextContent(event.target.value);
-    dispatch(updateOnFreedomModalTextField(event.target.value));
   };
 
   return (
@@ -119,18 +56,18 @@ const ContactForm = (props: IForms) => {
           color="blue"
         >
           <Radio
-            options={radio_options}
+            options={agree_with_price}
             onChange={inputModalDefaultPrice}
             selected={defaultPriceValue}
           />
-          {defaultPrice === 2 && (
+          {defaultPriceValue === 2 && (
             <InputContainer
               label="Сколько вы готовы заплатить?"
               color="blue"
               styleWrapper={{ paddingLeft: 15, paddingTop: 10 }}
             >
               <Radio
-                options={radio_options2}
+                options={your_price}
                 onChange={inputModalWillingToPay}
                 selected={willingToPayValue}
               />
@@ -142,7 +79,7 @@ const ContactForm = (props: IForms) => {
           color="blue"
         >
           <Radio
-            options={radio_options3}
+            options={need_another_help}
             onChange={inputModalExtraSupport}
             selected={extraSupport}
           />

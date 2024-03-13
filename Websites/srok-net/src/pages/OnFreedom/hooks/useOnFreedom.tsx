@@ -2,6 +2,7 @@
 import React, { ChangeEvent, useState } from "react";
 
 import { ButtonProps } from "src/components/UI/Button/Button";
+import { RadioOptions } from "src/components/UI/Radio";
 import { TOption } from "src/components/UI/Select/Select";
 import { IModal } from "src/components/smart/Modal";
 import { useDispatch, useSelector } from "src/store";
@@ -13,10 +14,18 @@ import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import {
   updateOnFreedomModalAcceptTerms,
   updateOnFreedomModalContactInfo,
+  updateOnFreedomModalDefaultPrice,
   updateOnFreedomModalPeriodic,
+  updateOnFreedomModalSupportVariants,
+  updateOnFreedomModalTextField,
   updateOnFreedomModalUseInform,
+  updateOnFreedomModalWillingToPay,
 } from "src/store/slices/OnFreedomForm";
-import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
+import {
+  onFreedomExtraSupport,
+  onFreedomModal,
+  onFreedomModalPrice,
+} from "src/store/slices/OnFreedomForm/onFreedom.selectors";
 import {
   IForms,
   IInputSearchValue,
@@ -28,12 +37,14 @@ export const useOnFreedom = () => {
 
   const { part, state } = useSelector(onFreedomInput);
   const { modalInputs } = useSelector(onFreedomModal);
+  const { defaultPrice, willingToPay } = useSelector(onFreedomModalPrice);
+  const { supportVariants, textField } = useSelector(onFreedomExtraSupport);
 
-  const buttonSearchProps: ButtonProps = {
-    label: "Узнать",
-    color: "primary",
-  };
   const [showModal, setShowModal] = useState(false);
+  const [defaultPriceValue, setDefaultPriceValue] = useState(defaultPrice);
+  const [willingToPayValue, setWillingToPayValue] = useState(willingToPay);
+  const [extraSupport, setExtraSupport] = useState(supportVariants);
+  const [textContent, setTextContent] = useState(textField);
 
   const inputSearchHandlerPart = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateOnFreedomInputPart(event.target.value));
@@ -46,14 +57,41 @@ export const useOnFreedom = () => {
   const inputModalUseInform = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateOnFreedomModalUseInform(event.target.value));
   };
+
   const inputModalContactInfo = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateOnFreedomModalContactInfo(event.target.value));
   };
+
   const inputModalPeriodic = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateOnFreedomModalPeriodic(event.target.value));
   };
+
   const modalAcceptTerms = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateOnFreedomModalAcceptTerms(event.target.checked));
+  };
+
+  const inputModalDefaultPrice = (event: ChangeEvent<HTMLInputElement>) => {
+    setDefaultPriceValue(parseInt(event.target.value));
+    dispatch(updateOnFreedomModalDefaultPrice(parseInt(event.target.value)));
+  };
+  const inputModalWillingToPay = (event: ChangeEvent<HTMLInputElement>) => {
+    setWillingToPayValue(parseInt(event.target.value));
+    dispatch(updateOnFreedomModalWillingToPay(parseInt(event.target.value)));
+  };
+
+  const inputModalExtraSupport = (event: ChangeEvent<HTMLInputElement>) => {
+    setExtraSupport(parseInt(event.target.value));
+    dispatch(updateOnFreedomModalSupportVariants(parseInt(event.target.value)));
+  };
+
+  const inputModalTextField = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setTextContent(event.target.value);
+    dispatch(updateOnFreedomModalTextField(event.target.value));
+  };
+
+  const buttonSearchProps: ButtonProps = {
+    label: "Узнать",
+    color: "primary",
   };
 
   const inputSearchValue: IInputSearchValue[] = [
@@ -144,6 +182,49 @@ export const useOnFreedom = () => {
     { value: 3, label: "Магадан" },
   ];
 
+  const agree_with_price: RadioOptions = {
+    1: {
+      value: 1,
+      label: "Да",
+    },
+    2: {
+      value: 2,
+      label: "Нет",
+    },
+  };
+  const your_price: RadioOptions = {
+    1: {
+      value: 1,
+      label: "500-1000",
+    },
+    2: {
+      value: 2,
+      label: "1000-3000",
+    },
+    3: {
+      value: 3,
+      label: "3000-5000",
+    },
+  };
+  const need_another_help: RadioOptions = {
+    1: {
+      value: 1,
+      label: "Не нужна",
+    },
+    2: {
+      value: 2,
+      label: "Консультация адвоката",
+    },
+    3: {
+      value: 3,
+      label: "Ведение вашего дела адвокатом",
+    },
+    4: {
+      value: 4,
+      label: "Другое",
+    },
+  };
+
   const showModalSettings: IModal = {
     active: showModal,
     setActive: setShowModal,
@@ -158,5 +239,16 @@ export const useOnFreedom = () => {
     inputFormsValue,
     setShowModal,
     modalAcceptTerms,
+    defaultPriceValue,
+    willingToPayValue,
+    extraSupport,
+    textContent,
+    inputModalDefaultPrice,
+    inputModalWillingToPay,
+    inputModalExtraSupport,
+    inputModalTextField,
+    agree_with_price,
+    your_price,
+    need_another_help,
   };
 };
