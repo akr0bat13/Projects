@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 
+import AutoCompleteSelect from "src/components/UI/AutoCompleteSelect";
 import { Button } from "src/components/UI/Button/Button";
 import { InputContainer } from "src/components/UI/InputContainer/InputContainer";
 import { textColor } from "src/components/UI/Text/utils/types/text.types";
@@ -8,6 +9,7 @@ import AddIcon from "src/components/icons/AddIcon";
 import RemoveIcon from "src/components/icons/RemoveIcon";
 
 import { useCalculator } from "../../hooks/useCalculator";
+import { mockSectionActs } from "../../utils/mockSectionActs";
 
 const ArticleValueItem: FC = () => {
   const {
@@ -16,7 +18,13 @@ const ArticleValueItem: FC = () => {
     removeChargeArticle,
     setChargeArticleState,
     disabledComponent,
+    setChargeArticleOption,
   } = useCalculator();
+
+  const getMockSectionActsKeys = () => {
+    return Object.keys(mockSectionActs);
+  };
+  const options = getMockSectionActsKeys();
   return (
     <div className="calculator-container-item calculator-article-value">
       {chargeArticleValue.map((article) => {
@@ -28,9 +36,13 @@ const ArticleValueItem: FC = () => {
               color="blue"
               styleWrapper={{ width: "90px" }}
             >
-              <TextInput
-                value={state}
-                onChange={(event) => setChargeArticleState(id, "state", event)}
+              <AutoCompleteSelect
+                options={options}
+                inputValue={state}
+                id={id}
+                setState={setChargeArticleState}
+                setOption={setChargeArticleOption}
+                inputType="state"
               />
             </InputContainer>
             <InputContainer
@@ -38,9 +50,13 @@ const ArticleValueItem: FC = () => {
               color="blue"
               styleWrapper={{ width: "90px" }}
             >
-              <TextInput
-                value={part}
-                onChange={(event) => setChargeArticleState(id, "part", event)}
+              <AutoCompleteSelect
+                options={[]}
+                inputValue={part}
+                id={id}
+                setState={setChargeArticleState}
+                setOption={setChargeArticleOption}
+                inputType="state"
               />
             </InputContainer>
 

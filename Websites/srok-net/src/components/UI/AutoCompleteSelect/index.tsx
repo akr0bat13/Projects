@@ -1,4 +1,10 @@
-import React, { FC, useEffect, useState } from "react";
+import React, {
+  CSSProperties,
+  ChangeEvent,
+  FC,
+  useEffect,
+  useState,
+} from "react";
 
 import { Button } from "src/components/UI/Button/Button";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
@@ -7,32 +13,53 @@ import "./AutoCompleteSelect.scss";
 
 interface IAutoCompleteSelectProps {
   options: string[];
-  onSelect: (event: any) => void;
+  placeholder?: string;
+  styleWrapper?: CSSProperties;
+  inputValue: string;
+  setState?: (
+    id: number,
+    field: string,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
+  setOption?: (id: number, field: string, option: string) => void;
+  id?: number;
+  inputType?: string;
 }
 
 const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
   options,
-  onSelect,
+  placeholder,
+  styleWrapper,
+  inputValue,
+  setState,
+  id,
+  inputType,
+  setOption,
 }) => {
-  const [inputValue, setInputValue] = useState("");
   const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
   const [isOptionsVisible, setIsOptionsVisible] = useState(false);
   const [showNoResults, setShowNoResults] = useState(false);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setInputValue(value);
+    // setInputValue(value);
 
     const filtered = options.filter((option) =>
       option.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredOptions(filtered);
     setShowNoResults(false);
+    if (setState && id && inputType) {
+      setState(id, inputType, event);
+    }
   };
 
   const handleSelectOption = (option: string) => {
-    setInputValue(option);
-    onSelect(option);
+    // setInputValue(option);
+    // onSelect(option);
+    if (setOption && id && inputType) {
+      setOption(id, inputType, option);
+    }
     setFilteredOptions([]);
     setShowNoResults(false);
   };
@@ -57,14 +84,18 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
     inputValue.length >= 0 && filteredOptions.length >= 0 && isOptionsVisible;
 
   return (
-    <div className="auto-compolete-input-wrapper">
+    <div className="auto-compolete-input-wrapper" style={styleWrapper}>
       <TextInput
         value={inputValue}
         onChange={handleInputChange}
-        placeholder="Введите данные"
+        placeholder={placeholder}
       />
       <div className="auto-compolete-button">
-        <Button onClick={toggleOptionsVisibility} icon={<DownArrowIcon />} />
+        <Button
+          onClick={toggleOptionsVisibility}
+          icon={<DownArrowIcon />}
+          sx={{ padding: 8 }}
+        />
       </div>
       {shouldShowOptions && (
         <div className="auto-compolete-input-options">

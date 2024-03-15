@@ -76,6 +76,8 @@ const CalculatorSearch = ({ setResult }: any) => {
                 label={date.placeholder}
                 color={date.color as textColor}
                 styleWrapper={{ width: date.width }}
+                hint={true}
+                hintText={date.hintText}
               >
                 <TextInput value={date.value} onChange={date.onChange} />
               </InputContainer>
@@ -92,6 +94,7 @@ const CalculatorSearch = ({ setResult }: any) => {
               color={color}
               onClick={searchSubmit}
               disabled={!fieldsWritten}
+              sx={{ width: "100%" }}
             />
           </div>
         </div>

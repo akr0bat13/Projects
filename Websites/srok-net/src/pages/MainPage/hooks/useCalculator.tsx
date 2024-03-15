@@ -83,6 +83,24 @@ export const useCalculator = () => {
     );
   };
 
+  const setChargeArticleOption = (
+    id: number,
+    field: string,
+    option: string
+  ) => {
+    const newState = option;
+
+    dispatch(
+      updateChargeArticleAction({ id, newState: { [field]: newState } })
+    );
+
+    setChargeArticleValue((prevState) =>
+      prevState.map((item) =>
+        item.id === id ? { ...item, [field]: newState } : item
+      )
+    );
+  };
+
   const convictionHandler = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateConviction(event.target.checked));
   };
@@ -114,14 +132,16 @@ export const useCalculator = () => {
       onChange: inputCalculatorSentenceYear,
       placeholder: "Срок (лет)",
       color: "blue",
-      width: 90,
+      width: 110,
+      hintText: "Если срок только месяцы - то напишите 0",
     },
     {
       value: sentence.month,
       onChange: inputCalculatorSentenceMonth,
       placeholder: "Срок (месяцев)",
       color: "blue",
-      width: 150,
+      width: 160,
+      hintText: "Если срок только годы - то напишите 0",
     },
   ];
 
@@ -134,5 +154,6 @@ export const useCalculator = () => {
     setChargeArticleState,
     disabledComponent,
     convictionHandler,
+    setChargeArticleOption,
   };
 };
