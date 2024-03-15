@@ -1,0 +1,54 @@
+@import 'src/vars.scss';
+
+.auto-compolete-input-wrapper {
+  position: relative;
+  width: fit-content;
+}
+
+.auto-compolete-button {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.auto-compolete-input-options {
+  position: absolute;
+  top: 120%;
+  max-height: 150px;
+  overflow-y: scroll;
+  left: 0;
+  width: 100%;
+  background-color: $background;
+  border: 1px solid $blue-primary-active;
+  color: $blue-primary-active;
+  border-radius: 3px;
+  z-index: $z-index-high;
+}
+
+.auto-compolete-input-option {
+    padding: 10px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+      &:first-child {
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+      }
+      &:last-child {
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+      }
+
+      &:hover {
+        background-color: $blue-primary-secondary;
+        color: $text-white;
+        overflow: hidden;
+      }
+
+      &.active-option {
+        background-color: $blue-primary-active;
+        color: $background;
+      }
+}
