@@ -55,13 +55,12 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
   };
 
   const handleSelectOption = (option: string) => {
-    // setInputValue(option);
-    // onSelect(option);
     if (setOption && id && inputType) {
       setOption(id, inputType, option);
     }
     setFilteredOptions([]);
     setShowNoResults(false);
+    setIsOptionsVisible(false);
   };
 
   const toggleOptionsVisibility = () => {

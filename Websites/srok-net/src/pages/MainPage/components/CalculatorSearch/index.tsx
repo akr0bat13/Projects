@@ -9,6 +9,7 @@ import { textColor } from "src/components/UI/Text/utils/types/text.types";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import { useSelector } from "src/store";
 import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
+import { validateInputNumber } from "src/utils/helpers/common";
 import "./CalculatorSearch.scss";
 
 import { useCalculator } from "../../hooks/useCalculator";
@@ -49,6 +50,10 @@ const CalculatorSearch = ({ setResult }: any) => {
     comesInToForse,
   });
 
+  const isPeriodCorrectType = (value: string) => {
+    return validateInputNumber(value);
+  };
+
   return (
     <div className="calculator-wrapper">
       <H variant="hd" color="white">
@@ -78,6 +83,11 @@ const CalculatorSearch = ({ setResult }: any) => {
                 styleWrapper={{ width: date.width }}
                 hint={true}
                 hintText={date.hintText}
+                errors={{
+                  isError: !isPeriodCorrectType(date.value),
+                  level: "error",
+                  message: "Допустимы только цифры",
+                }}
               >
                 <TextInput value={date.value} onChange={date.onChange} />
               </InputContainer>

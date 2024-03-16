@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./JusticeSearch.scss";
 
 import { Button } from "src/components/UI/Button/Button";
@@ -8,36 +8,29 @@ import { P } from "src/components/UI/Text/P";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import { useSelector } from "src/store";
 import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
+import {
+  validateInputActState,
+  validateInputNumber,
+} from "src/utils/helpers/common";
 
 import { useOnFreedom } from "../../hooks/useOnFreedom";
 
 const JusticeSearch = ({ setResult }: any) => {
   const { buttonSearchProps, inputSearchValue } = useOnFreedom();
   const { part, state } = useSelector(onFreedomInput);
-  const [fieldStateError, setStateFieldError] = useState<boolean>(false);
-  const [fielPartError, setFielPartError] = useState<boolean>(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const isButtonDisabled = part && state;
 
-  useEffect(() => {
-    if (part.length > 2) {
-      setFielPartError(true);
-    } else {
-      setFielPartError(false);
-    }
-  }, [part]);
+  const checkPartValue = (part: string) => {
+    return validateInputNumber(part);
+  };
 
-  useEffect(() => {
-    if (state.length > 2) {
-      setStateFieldError(true);
-    } else {
-      setStateFieldError(false);
-    }
-  }, [state]);
+  const checkStateValue = (state: string) => {
+    return validateInputActState(state);
+  };
 
   const searchSubmit = () => {
-    // if (isButtonDisabled) setResult(true);
+    if (isButtonDisabled) setResult(true);
     setResult(true);
   };
 
@@ -57,7 +50,8 @@ const JusticeSearch = ({ setResult }: any) => {
             label={input.placeholder}
             color="blue"
             errors={{
-              isError: index === 0 ? fieldStateError : fielPartError,
+              isError:
+                index === 0 ? !checkStateValue(state) : !checkPartValue(part),
               level: "error",
               message:
                 index === 0
@@ -68,7 +62,9 @@ const JusticeSearch = ({ setResult }: any) => {
             <TextInput
               value={input.value}
               onChange={input.onChange}
-              error={index === 0 ? fieldStateError : fielPartError}
+              error={
+                index === 0 ? !checkStateValue(state) : !checkPartValue(part)
+              }
             />
           </InputContainer>
         ))}
@@ -77,7 +73,7 @@ const JusticeSearch = ({ setResult }: any) => {
             onClick={searchSubmit}
             label={label}
             color={color}
-            // disabled={!isButtonDisabled}
+            disabled={!isButtonDisabled}
           />
         </div>
       </div>
