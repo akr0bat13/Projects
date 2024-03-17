@@ -97,7 +97,7 @@ const ContactForm = (props: IForms) => {
         <Checkbox checked={acceptTermsValue} onChange={modalAcceptTerms} />
         <a
           className="checkbox-text"
-          href="src/assets/documents/React.pdf"
+          href="/PersonalData.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >

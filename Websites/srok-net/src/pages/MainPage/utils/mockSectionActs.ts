@@ -1,4 +1,8 @@
-export const mockSectionActs = {
+interface MockSectionActs {
+  [key: string]: number[];
+}
+
+export const mockSectionActs: MockSectionActs = {
   30: [1, 2, 3],
   105: [1, 2],
   106: [],

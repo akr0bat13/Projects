@@ -1,3 +1,4 @@
+import cn from "classnames";
 import React, {
   CSSProperties,
   ChangeEvent,
@@ -24,6 +25,8 @@ interface IAutoCompleteSelectProps {
   setOption?: (id: number, field: string, option: string) => void;
   id?: number;
   inputType?: string;
+  disabled?: boolean;
+  error?: boolean;
 }
 
 const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
@@ -34,6 +37,8 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
   setState,
   id,
   inputType,
+  disabled,
+  error,
   setOption,
 }) => {
   const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
@@ -42,7 +47,6 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    // setInputValue(value);
 
     const filtered = options.filter((option) =>
       option.toLowerCase().includes(value.toLowerCase())
@@ -83,17 +87,25 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
     inputValue.length >= 0 && filteredOptions.length >= 0 && isOptionsVisible;
 
   return (
-    <div className="auto-compolete-input-wrapper" style={styleWrapper}>
+    <div
+      className={cn("auto-compolete-input-wrapper", {
+        "auto-compolete-input-wrapper-disabled": disabled,
+        "auto-compolete-input-wrapper-error": error,
+      })}
+      style={styleWrapper}
+    >
       <TextInput
         value={inputValue}
         onChange={handleInputChange}
         placeholder={placeholder}
+        disabled={disabled}
       />
       <div className="auto-compolete-button">
         <Button
           onClick={toggleOptionsVisibility}
-          icon={<DownArrowIcon />}
-          sx={{ padding: 8 }}
+          icon={<DownArrowIcon fill={disabled ? "#B0B0B0" : undefined} />}
+          sx={{ padding: 0, height: "auto" }}
+          disabled={disabled}
         />
       </div>
       {shouldShowOptions && (

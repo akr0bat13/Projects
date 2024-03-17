@@ -3,13 +3,23 @@
 .auto-compolete-input-wrapper {
   position: relative;
   width: fit-content;
+
+  &-disabled {
+    background: $grey-container-disabled;
+    border-color: $button-disabled;
+  }
+
+  &-error {
+    border: 1px solid $error;
+  }
 }
 
 .auto-compolete-button {
   display: flex;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
 }
 
 .auto-compolete-input-options {

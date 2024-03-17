@@ -103,7 +103,7 @@ const CalculatorSearch = ({ setResult }: any) => {
               label={label}
               color={color}
               onClick={searchSubmit}
-              disabled={!fieldsWritten}
+              // disabled={!fieldsWritten}
               sx={{ width: "100%" }}
             />
           </div>

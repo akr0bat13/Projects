@@ -25,10 +25,15 @@ const ArticleValueItem: FC = () => {
     return Object.keys(mockSectionActs);
   };
   const options = getMockSectionActsKeys();
+
   return (
     <div className="calculator-container-item calculator-article-value">
       {chargeArticleValue.map((article) => {
         const { id, episodesNumber, part, state } = article;
+        let partOptions: string[] = [];
+        if (state in mockSectionActs) {
+          partOptions = mockSectionActs[state].map((value) => value.toString());
+        }
         return (
           <div key={id} className="calculator-container-article-value">
             <InputContainer
@@ -47,16 +52,17 @@ const ArticleValueItem: FC = () => {
             </InputContainer>
             <InputContainer
               label="Часть"
-              color="blue"
+              color={partOptions.length === 0 ? "disabled" : "blue"}
               styleWrapper={{ width: "90px" }}
             >
               <AutoCompleteSelect
-                options={[]}
+                options={partOptions}
                 inputValue={part}
                 id={id}
                 setState={setChargeArticleState}
                 setOption={setChargeArticleOption}
-                inputType="state"
+                inputType="part"
+                disabled={partOptions.length === 0}
               />
             </InputContainer>
 
