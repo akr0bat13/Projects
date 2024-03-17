@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 
 import { Button } from "src/components/UI/Button/Button";
@@ -44,10 +45,10 @@ const FiltrationComponent = () => {
   const rejectingCurrentDoingsActive = rejectingCurrentDoings.isActive;
 
   const buttonDisabled =
-    ((homeArrestActive && isValuesExisting(homeArrest.values)) ||
-      (timeUnderArrestActive && isValuesExisting(timeUnderArrest.values)) ||
-      (rejectingCurrentDoingsActive &&
-        isValuesExisting(rejectingCurrentDoings.values))) &&
+    // ((homeArrestActive && isValuesExisting(homeArrest.values)) ||
+    //   (timeUnderArrestActive && isValuesExisting(timeUnderArrest.values)) ||
+    //   (rejectingCurrentDoingsActive &&
+    //     isValuesExisting(rejectingCurrentDoings.values))) &&
     punishmentType.some((item) => item.value === true);
   return (
     <div className="filtration-component-wrapper">

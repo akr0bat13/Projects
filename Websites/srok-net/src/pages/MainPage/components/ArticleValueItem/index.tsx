@@ -48,6 +48,7 @@ const ArticleValueItem: FC = () => {
                 setState={setChargeArticleState}
                 setOption={setChargeArticleOption}
                 inputType="state"
+                optionsStyle={{ maxHeight: 74 }}
               />
             </InputContainer>
             <InputContainer

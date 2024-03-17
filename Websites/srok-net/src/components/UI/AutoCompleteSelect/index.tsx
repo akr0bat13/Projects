@@ -16,6 +16,7 @@ interface IAutoCompleteSelectProps {
   options: string[];
   placeholder?: string;
   styleWrapper?: CSSProperties;
+  optionsStyle?: CSSProperties;
   inputValue: string;
   setState?: (
     id: number,
@@ -23,6 +24,8 @@ interface IAutoCompleteSelectProps {
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
   setOption?: (id: number, field: string, option: string) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onOption?: (option: string) => void;
   id?: number;
   inputType?: string;
   disabled?: boolean;
@@ -40,6 +43,9 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
   disabled,
   error,
   setOption,
+  onChange,
+  onOption,
+  optionsStyle,
 }) => {
   const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
   const [isOptionsVisible, setIsOptionsVisible] = useState(false);
@@ -56,11 +62,17 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
     if (setState && id && inputType) {
       setState(id, inputType, event);
     }
+    if (onChange) {
+      onChange(event);
+    }
   };
 
   const handleSelectOption = (option: string) => {
     if (setOption && id && inputType) {
       setOption(id, inputType, option);
+    }
+    if (onOption) {
+      onOption(option);
     }
     setFilteredOptions([]);
     setShowNoResults(false);
@@ -109,7 +121,7 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
         />
       </div>
       {shouldShowOptions && (
-        <div className="auto-compolete-input-options">
+        <div className="auto-compolete-input-options" style={optionsStyle}>
           {showNoResults ? (
             <div className="auto-compolete-input-option">Такого нет</div>
           ) : (

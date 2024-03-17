@@ -52,8 +52,16 @@ export const useOnFreedom = () => {
     dispatch(updateOnFreedomInputPart(event.target.value));
   };
 
+  const inputSearchHandlerPartOption = (event: string) => {
+    dispatch(updateOnFreedomInputPart(event));
+  };
+
   const inputSearchHandlerState = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateOnFreedomInputState(event.target.value));
+  };
+
+  const inputSearchHandlerStateOption = (event: string) => {
+    dispatch(updateOnFreedomInputState(event));
   };
 
   const inputModalUseInform = (event: ChangeEvent<HTMLInputElement>) => {
@@ -254,5 +262,7 @@ export const useOnFreedom = () => {
     need_another_help,
     extraSupportValue,
     acceptTermsValue,
+    inputSearchHandlerPartOption,
+    inputSearchHandlerStateOption,
   };
 };
