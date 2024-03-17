@@ -1,4 +1,4 @@
-interface MockSectionActs {
+export interface MockSectionActs {
   [key: string]: number[];
 }
 

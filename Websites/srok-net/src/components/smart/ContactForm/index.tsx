@@ -81,7 +81,7 @@ const ContactForm = (props: IForms) => {
             onChange={inputModalExtraSupport}
             selected={extraSupportValue}
           />
-          {extraSupportValue === 4 && (
+          {extraSupportValue === 3 && (
             <textarea
               className="contact-form-textarea"
               name="text"

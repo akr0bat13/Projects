@@ -142,7 +142,7 @@ export const useOnFreedom = () => {
 
   const searchResult: ISearchResult[] = [
     {
-      title: `Какой в приговор выносят по ${state}.${part} в твоем городе?`,
+      title: `Какой в приговор выносят по статье ${state} части ${part} в твоем городе?`,
       components: [
         {
           label: "Выберите город",
@@ -155,7 +155,7 @@ export const useOnFreedom = () => {
       ],
     },
     {
-      title: `Какой в приговор выносят по ${state}.${part} в выбранном суде?`,
+      title: `Какой в приговор выносят по статье ${state} части ${part} в выбранном суде?`,
       components: [
         {
           label: "Выберите город",
@@ -170,7 +170,7 @@ export const useOnFreedom = () => {
       disabled: true,
     },
     {
-      title: `Какой в приговор выносят по ${state}.${part} конкретный судья?`,
+      title: `Какой в приговор выносят по статье ${state} части ${part} конкретный судья?`,
       components: [
         {
           label: "Выберите город",
@@ -220,18 +220,14 @@ export const useOnFreedom = () => {
   const need_another_help: RadioOptions = {
     need_another_help1: {
       value: 1,
-      label: "Не нужна",
+      label: "Консультация адвоката",
     },
     need_another_help2: {
       value: 2,
-      label: "Консультация адвоката",
+      label: "Ведение вашего дела адвокатом",
     },
     need_another_help3: {
       value: 3,
-      label: "Ведение вашего дела адвокатом",
-    },
-    need_another_help4: {
-      value: 4,
       label: "Другое",
     },
   };

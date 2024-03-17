@@ -6,7 +6,10 @@ import { Button } from "src/components/UI/Button/Button";
 import { InputContainer } from "src/components/UI/InputContainer/InputContainer";
 import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
-import { mockSectionActs } from "src/pages/MainPage/utils/mockSectionActs";
+import {
+  MockSectionActs,
+  mockSectionActs,
+} from "src/pages/MainPage/utils/mockSectionActs";
 import { useSelector } from "src/store";
 import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import {
@@ -25,7 +28,19 @@ const JusticeSearch = ({ setResult }: any) => {
   } = useOnFreedom();
   const { part, state } = useSelector(onFreedomInput);
 
-  const isButtonDisabled = part && state;
+  const calculateDisabled = (
+    part: string,
+    state: string,
+    mockSectionActs: MockSectionActs
+  ) => {
+    if (mockSectionActs[state] && mockSectionActs[state].length === 0) {
+      return false;
+    } else {
+      return !(part && state);
+    }
+  };
+
+  const isButtonDisabled = calculateDisabled(part, state, mockSectionActs);
 
   const checkPartValue = (part: string) => {
     return validateInputNumber(part);
@@ -36,8 +51,7 @@ const JusticeSearch = ({ setResult }: any) => {
   };
 
   const searchSubmit = () => {
-    if (isButtonDisabled) setResult(true);
-    setResult(true);
+    if (!isButtonDisabled) setResult(true);
   };
 
   const { label, color } = buttonSearchProps;
@@ -56,44 +70,46 @@ const JusticeSearch = ({ setResult }: any) => {
       </P>
       <div className="search-container">
         {inputSearchValue.map((input, index) => {
-          let partOptions: string[] = [];
-          if (state in mockSectionActs) {
-            partOptions = mockSectionActs[state].map((value) =>
-              value.toString()
-            );
-          }
+          const partOptions =
+            state in mockSectionActs ? mockSectionActs[state].map(String) : [];
+          const isFirstInput = index === 0;
+          const isFirstInputError = isFirstInput && !checkStateValue(state);
+          const isPartInputError = !isFirstInput && !checkPartValue(part);
+          const inputErrorLabel = isFirstInput
+            ? "Укажите статью правильно"
+            : "Укажите часть правильно";
+          const inputColor = isFirstInput
+            ? isFirstInputError
+              ? "disabled"
+              : "blue"
+            : partOptions.length === 0
+              ? "disabled"
+              : "blue";
+
+          const inputSearchHandlerOption = isFirstInput
+            ? inputSearchHandlerStateOption
+            : inputSearchHandlerPartOption;
+          const isButtonDisabled = isFirstInput
+            ? false
+            : partOptions.length === 0;
           return (
             <InputContainer
               key={input.placeholder}
               label={input.placeholder}
-              color={
-                index === 0
-                  ? "blue"
-                  : partOptions.length === 0
-                    ? "disabled"
-                    : "blue"
-              }
+              color={inputColor}
               errors={{
-                isError:
-                  index === 0 ? !checkStateValue(state) : !checkPartValue(part),
+                isError: isFirstInputError || isPartInputError,
                 level: "error",
-                message:
-                  index === 0
-                    ? "Укажите статью правильно"
-                    : "Укажите часть правильно",
+                message: inputErrorLabel,
               }}
             >
               <AutoCompleteSelect
-                options={index === 0 ? options : partOptions}
+                options={isFirstInput ? options : partOptions}
                 inputValue={input.value}
                 onChange={input.onChange}
-                onOption={
-                  index === 0
-                    ? inputSearchHandlerStateOption
-                    : inputSearchHandlerPartOption
-                }
+                onOption={inputSearchHandlerOption}
                 inputType="part"
-                disabled={index === 0 ? false : partOptions.length === 0}
+                disabled={isButtonDisabled}
               />
             </InputContainer>
           );
@@ -103,7 +119,7 @@ const JusticeSearch = ({ setResult }: any) => {
             onClick={searchSubmit}
             label={label}
             color={color}
-            disabled={!isButtonDisabled}
+            disabled={isButtonDisabled}
           />
         </div>
       </div>
