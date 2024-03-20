@@ -19,6 +19,7 @@ const FiltrationComponent = () => {
     timeUnderArrest,
     rejectingCurrentDoings,
     homeArrest,
+    apilation,
   } = useSelector(calculatorFiltrationValues);
 
   const emptyField: unknown = ""; //todo переделать
@@ -40,16 +41,59 @@ const FiltrationComponent = () => {
     dispatch(showCalculatorResult(true));
   };
 
-  const homeArrestActive = homeArrest.isActive;
-  const timeUnderArrestActive = timeUnderArrest.isActive;
-  const rejectingCurrentDoingsActive = rejectingCurrentDoings.isActive;
+  const checkButtonDisabled = () => {
+    const homeArrestActive = homeArrest.isActive;
+    const timeUnderArrestActive = timeUnderArrest.isActive;
+    const rejectingCurrentDoingsActive = rejectingCurrentDoings.isActive;
+    const apilationActive = apilation.isActive;
 
+    if (homeArrestActive && isValuesExisting(homeArrest.values)) {
+      const homeArrestValues = homeArrest.values[0];
+      if (homeArrestValues.start === null || homeArrestValues.end === null) {
+        return false;
+      }
+    }
+    if (timeUnderArrestActive && isValuesExisting(timeUnderArrest.values)) {
+      const timeUnderArrestValues = timeUnderArrest.values[0];
+      if (
+        timeUnderArrestValues.start === null ||
+        timeUnderArrestValues.end === null
+      ) {
+        return false;
+      }
+    }
+    if (
+      rejectingCurrentDoingsActive &&
+      isValuesExisting(rejectingCurrentDoings.values)
+    ) {
+      const rejectingCurrentDoingsValues = rejectingCurrentDoings.values[0];
+      if (
+        rejectingCurrentDoingsValues.start === null ||
+        rejectingCurrentDoingsValues.end === null
+      ) {
+        return false;
+      }
+    }
+
+    if (apilationActive) {
+      if (
+        apilation.years === "" ||
+        apilation.month === "" ||
+        apilation.apilationDate === null ||
+        apilation.detention === null
+      ) {
+        return false;
+      }
+    }
+
+    return true;
+  };
   const buttonDisabled =
     // ((homeArrestActive && isValuesExisting(homeArrest.values)) ||
     //   (timeUnderArrestActive && isValuesExisting(timeUnderArrest.values)) ||
     //   (rejectingCurrentDoingsActive &&
     //     isValuesExisting(rejectingCurrentDoings.values))) &&
-    punishmentType.some((item) => item.value === true);
+    checkButtonDisabled() && punishmentType.some((item) => item.value === true);
   return (
     <div className="filtration-component-wrapper">
       <PreventiveMeasure />

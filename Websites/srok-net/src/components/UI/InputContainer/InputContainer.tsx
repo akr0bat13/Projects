@@ -10,7 +10,7 @@ import { Tooltip } from "../Tooltip/Tooltip";
 
 type TError = {
   isError: boolean;
-  message: string;
+  message?: string;
   level: "error" | "warning" | "info";
 };
 

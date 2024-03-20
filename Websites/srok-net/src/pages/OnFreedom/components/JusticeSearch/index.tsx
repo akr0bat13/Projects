@@ -6,16 +6,14 @@ import { Button } from "src/components/UI/Button/Button";
 import { InputContainer } from "src/components/UI/InputContainer/InputContainer";
 import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
-import {
-  MockSectionActs,
-  mockSectionActs,
-} from "src/pages/MainPage/utils/mockSectionActs";
+import { mockSectionActs } from "src/pages/MainPage/utils/mockSectionActs";
 import { useSelector } from "src/store";
 import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import {
   validateInputActState,
   validateInputNumber,
 } from "src/utils/helpers/common";
+import { calculateDisabled } from "src/utils/helpers/common/calculateDisabled";
 
 import { useOnFreedom } from "../../hooks/useOnFreedom";
 
@@ -27,18 +25,6 @@ const JusticeSearch = ({ setResult }: any) => {
     inputSearchHandlerPartOption,
   } = useOnFreedom();
   const { part, state } = useSelector(onFreedomInput);
-
-  const calculateDisabled = (
-    part: string,
-    state: string,
-    mockSectionActs: MockSectionActs
-  ) => {
-    if (mockSectionActs[state] && mockSectionActs[state].length === 0) {
-      return false;
-    } else {
-      return !(part && state);
-    }
-  };
 
   const isButtonDisabled = calculateDisabled(part, state, mockSectionActs);
 

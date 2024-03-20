@@ -10,9 +10,11 @@ import { TextInput } from "src/components/UI/TextInput/TextInput";
 import { useSelector } from "src/store";
 import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
 import { validateInputNumber } from "src/utils/helpers/common";
+import { calculateDisabled } from "src/utils/helpers/common/calculateDisabled";
 import "./CalculatorSearch.scss";
 
 import { useCalculator } from "../../hooks/useCalculator";
+import { mockSectionActs } from "../../utils/mockSectionActs";
 import ArticleValueItem from "../ArticleValueItem";
 
 import { DatePicker, DateRange } from "./components/DatePicker/DatePicker";
@@ -27,19 +29,21 @@ const CalculatorSearch = ({ setResult }: any) => {
     calculatorSearchValues
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const fieldsWritten: boolean =
     !!verdictDate &&
     !!comesInToForse &&
     !!sentence.month &&
     !!sentence.year &&
-    chargeArticle.every(
-      (article) =>
-        article.state !== "" &&
-        article.part !== "" &&
-        article.episodesNumber !== ""
-    );
+    chargeArticle.every((article) => {
+      const isDisabled = calculateDisabled(
+        article.state,
+        article.part,
+        mockSectionActs
+      );
+      console.log("dis", isDisabled);
 
+      return isDisabled && article.episodesNumber !== "";
+    });
   const searchSubmit = () => {
     setResult(true);
   };
@@ -86,10 +90,14 @@ const CalculatorSearch = ({ setResult }: any) => {
                 errors={{
                   isError: !isPeriodCorrectType(date.value),
                   level: "error",
-                  message: "Допустимы только цифры",
+                  message: "Только цифры",
                 }}
               >
-                <TextInput value={date.value} onChange={date.onChange} />
+                <TextInput
+                  value={date.value}
+                  onChange={date.onChange}
+                  error={!isPeriodCorrectType(date.value)}
+                />
               </InputContainer>
             ))}
           </div>
@@ -103,7 +111,7 @@ const CalculatorSearch = ({ setResult }: any) => {
               label={label}
               color={color}
               onClick={searchSubmit}
-              // disabled={!fieldsWritten}
+              disabled={!fieldsWritten}
               sx={{ width: "100%" }}
             />
           </div>

@@ -14,3 +14,10 @@ export const validateInputActState = (value: string) => {
   const regex = new RegExp(/^(?:\d{1,3}(?:\.\d{1,8})?|\d{1,8}|)$/);
   return regex.test(value);
 };
+
+export const validateEmail = (value: string) => {
+  const regex = new RegExp(
+    /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/
+  );
+  return regex.test(value);
+};
