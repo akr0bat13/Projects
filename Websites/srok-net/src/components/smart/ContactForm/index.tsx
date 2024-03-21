@@ -42,9 +42,14 @@ const ContactForm = (props: IForms) => {
       </div>
       <div className="contact-form-content">
         {inputsContent.map((input) => {
-          const { onChange, placeholder, value } = input;
+          const { onChange, placeholder, value, error } = input;
           return (
-            <InputContainer key={placeholder} label={placeholder} color="blue">
+            <InputContainer
+              key={placeholder}
+              label={placeholder}
+              color="blue"
+              errors={error}
+            >
               <TextInput value={value} onChange={onChange} />
             </InputContainer>
           );

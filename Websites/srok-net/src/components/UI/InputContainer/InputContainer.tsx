@@ -8,7 +8,7 @@ import { P } from "../Text/P";
 import { textColor } from "../Text/utils/types/text.types";
 import { Tooltip } from "../Tooltip/Tooltip";
 
-type TError = {
+export type TError = {
   isError: boolean;
   message?: string;
   level: "error" | "warning" | "info";

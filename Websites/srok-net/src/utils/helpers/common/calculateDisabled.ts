@@ -5,8 +5,6 @@ export const calculateDisabled = (
   part: string,
   mockSectionActs: MockSectionActs
 ) => {
-  // eslint-disable-next-line no-debugger
-  debugger;
   if (!state) {
     return false;
   } else if (mockSectionActs[state]?.length === 0) {

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 
 import AutoCompleteSelect from "src/components/UI/AutoCompleteSelect";
 import { Button } from "src/components/UI/Button/Button";
@@ -12,7 +12,11 @@ import { validateDate } from "src/utils/helpers/common";
 import { useCalculator } from "../../hooks/useCalculator";
 import { mockSectionActs } from "../../utils/mockSectionActs";
 
-const ArticleValueItem: FC = () => {
+interface IArticleValueItem {
+  setIsAnyErrorFields?: any;
+}
+
+const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
   const {
     chargeArticleValue,
     addChargeArticle,
@@ -26,7 +30,17 @@ const ArticleValueItem: FC = () => {
     return Object.keys(mockSectionActs);
   };
   const options = getMockSectionActsKeys();
-  // const [isArticleCorrect, setIsArticleCorrect] = useState(false);
+
+  useEffect(() => {
+    const hasError = chargeArticleValue.some((article) => {
+      const { state, part, episodesNumber } = article;
+      const isStateError = !validateDate(state);
+      const isPartError = !validateDate(part);
+      const isEpisodesNumberError = !validateDate(episodesNumber);
+      return isStateError && isPartError && isEpisodesNumberError;
+    });
+    setIsAnyErrorFields(hasError);
+  }, [chargeArticleValue]);
 
   return (
     <div className="calculator-container-item calculator-article-value">

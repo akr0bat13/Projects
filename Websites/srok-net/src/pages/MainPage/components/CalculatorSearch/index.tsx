@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Button } from "src/components/UI/Button/Button";
 import { Checkbox } from "src/components/UI/Checkbox/Checkbox";
@@ -28,7 +28,6 @@ const CalculatorSearch = ({ setResult }: any) => {
     calculatorSearchValues
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isAnyErrorFields, setIsAnyErrorFields] = useState(false);
 
   const fieldsWritten: boolean =
@@ -60,6 +59,13 @@ const CalculatorSearch = ({ setResult }: any) => {
     return validateInputNumber(value);
   };
 
+  useEffect(() => {
+    const hasError = inputsentenceValue.some(
+      (date) => !isPeriodCorrectType(date.value)
+    );
+    setIsAnyErrorFields(hasError);
+  }, [inputsentenceValue]);
+
   return (
     <div className="calculator-wrapper">
       <H variant="hd" color="white">
@@ -77,7 +83,7 @@ const CalculatorSearch = ({ setResult }: any) => {
           styleWrapper={{ width: 190 }}
         />
 
-        <ArticleValueItem />
+        <ArticleValueItem setIsAnyErrorFields={setIsAnyErrorFields} />
 
         <div className="calculator-container-item">
           <div className="calculator-container-sentence">

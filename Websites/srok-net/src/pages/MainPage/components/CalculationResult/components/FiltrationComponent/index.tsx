@@ -42,27 +42,76 @@ const FiltrationComponent = () => {
   };
 
   const checkButtonDisabled = () => {
-    const measures = [homeArrest, timeUnderArrest, rejectingCurrentDoings];
+    // const measures = [homeArrest, timeUnderArrest, rejectingCurrentDoings];
+    // // eslint-disable-next-line no-debugger
+    // debugger;
+    // for (const measure of measures) {
+    //   if (measure.isActive) {
+    //     const hasCommonValues = isValuesExisting(measure.values);
+    //     const hasNullValues = measure.values.some(
+    //       (value) => value.start === null || value.end === null
+    //     );
+    //     if (hasCommonValues || hasNullValues) {
+    //       return false;
+    //     }
+    //   }
+    // }
 
-    for (const measure of measures) {
-      if (measure.isActive) {
-        const hasCommonValues = isValuesExisting(measure.values);
-        const hasNullValues = measure.values.some(
-          (value) => value.start === null || value.end === null
-        );
-        if (hasCommonValues || hasNullValues) {
-          return false;
-        }
+    // if (apilation.isActive) {
+    //   const { years, month, apilationDate, detention } = apilation;
+    //   if (
+    //     years === "" ||
+    //     month === "" ||
+    //     apilationDate === null ||
+    //     detention === null
+    //   ) {
+    //     return false;
+    //   }
+    // }
+
+    // return true;
+    const homeArrestActive = homeArrest.isActive;
+    const timeUnderArrestActive = timeUnderArrest.isActive;
+    const rejectingCurrentDoingsActive = rejectingCurrentDoings.isActive;
+    const apilationActive = apilation.isActive;
+
+    if (homeArrestActive) {
+      const checkForCommons = isValuesExisting(timeUnderArrest.values);
+      if (checkForCommons) return false;
+      const hasNullValues = homeArrest.values.some(
+        (value) => value.start === null || value.end === null
+      );
+      if (hasNullValues) {
+        return false;
+      }
+    }
+    if (timeUnderArrestActive) {
+      const checkForCommons = isValuesExisting(timeUnderArrest.values);
+      if (checkForCommons) return false;
+      const hasNullValues = timeUnderArrest.values.some(
+        (value) => value.start === null || value.end === null
+      );
+      if (hasNullValues) {
+        return false;
+      }
+    }
+    if (rejectingCurrentDoingsActive) {
+      const checkForCommons = isValuesExisting(rejectingCurrentDoings.values);
+      if (checkForCommons) return false;
+      const hasNullValues = rejectingCurrentDoings.values.some(
+        (value) => value.start === null || value.end === null
+      );
+      if (hasNullValues) {
+        return false;
       }
     }
 
-    if (apilation.isActive) {
-      const { years, month, apilationDate, detention } = apilation;
+    if (apilationActive) {
       if (
-        years === "" ||
-        month === "" ||
-        apilationDate === null ||
-        detention === null
+        apilation.years === "" ||
+        apilation.month === "" ||
+        apilation.apilationDate === null ||
+        apilation.detention === null
       ) {
         return false;
       }
@@ -70,6 +119,7 @@ const FiltrationComponent = () => {
 
     return true;
   };
+
   const buttonDisabled =
     // ((homeArrestActive && isValuesExisting(homeArrest.values)) ||
     //   (timeUnderArrestActive && isValuesExisting(timeUnderArrest.values)) ||

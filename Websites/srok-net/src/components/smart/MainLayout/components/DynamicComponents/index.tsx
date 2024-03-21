@@ -19,7 +19,8 @@ const DynamicComponents: FC<ContentType> = ({ children }) => {
         // }
       )}
     >
-      <div className="content">{<Outlet /> || children}</div>
+      {/* <div className="content">{<Outlet /> || children}</div> */}
+      {<Outlet /> || children}
     </div>
   );
 };

@@ -61,9 +61,9 @@ const JusticeSearch = ({ setResult }: any) => {
           const isFirstInput = index === 0;
           const isFirstInputError = isFirstInput && !checkStateValue(state);
           const isPartInputError = !isFirstInput && !checkPartValue(part);
-          const inputErrorLabel = isFirstInput
-            ? "Укажите статью правильно"
-            : "Укажите часть правильно";
+          // const inputErrorLabel = isFirstInput
+          //   ? "Укажите статью правильно"
+          //   : "Укажите часть правильно";
           const inputColor = isFirstInput
             ? isFirstInputError
               ? "disabled"
@@ -86,7 +86,6 @@ const JusticeSearch = ({ setResult }: any) => {
               errors={{
                 isError: isFirstInputError || isPartInputError,
                 level: "error",
-                message: inputErrorLabel,
               }}
             >
               <AutoCompleteSelect
@@ -96,6 +95,7 @@ const JusticeSearch = ({ setResult }: any) => {
                 onOption={inputSearchHandlerOption}
                 inputType="part"
                 disabled={isButtonDisabled}
+                error={isFirstInputError || isPartInputError}
               />
             </InputContainer>
           );

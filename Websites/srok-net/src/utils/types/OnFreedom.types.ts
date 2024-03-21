@@ -1,3 +1,4 @@
+import { TError } from "src/components/UI/InputContainer/InputContainer";
 import { TOption } from "src/components/UI/Select/Select";
 
 export interface IInputProps {
@@ -22,6 +23,7 @@ export interface IInputFormsValue {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
+  error?: TError;
 }
 
 export interface IForms {
