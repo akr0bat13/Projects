@@ -21,3 +21,8 @@ export const validateEmail = (value: string) => {
   );
   return regex.test(value);
 };
+
+export const validateDate = (value: string) => {
+  const regex = /^[0-9.]*$/;
+  return regex.test(value);
+};

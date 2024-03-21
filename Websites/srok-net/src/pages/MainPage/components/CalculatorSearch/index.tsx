@@ -22,25 +22,27 @@ import { DatePicker, DateRange } from "./components/DatePicker/DatePicker";
 const CalculatorSearch = ({ setResult }: any) => {
   const { buttonSearchProps, inputsentenceValue, convictionHandler } =
     useCalculator();
-
   const { label, color } = buttonSearchProps;
 
   const { verdictDate, comesInToForse, sentence, chargeArticle } = useSelector(
     calculatorSearchValues
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isAnyErrorFields, setIsAnyErrorFields] = useState(false);
+
   const fieldsWritten: boolean =
     !!verdictDate &&
     !!comesInToForse &&
     !!sentence.month &&
     !!sentence.year &&
+    !isAnyErrorFields &&
     chargeArticle.every((article) => {
       const isDisabled = calculateDisabled(
         article.state,
         article.part,
         mockSectionActs
       );
-      console.log("dis", isDisabled);
 
       return isDisabled && article.episodesNumber !== "";
     });
@@ -87,11 +89,6 @@ const CalculatorSearch = ({ setResult }: any) => {
                 styleWrapper={{ width: date.width }}
                 hint={true}
                 hintText={date.hintText}
-                errors={{
-                  isError: !isPeriodCorrectType(date.value),
-                  level: "error",
-                  message: "Только цифры",
-                }}
               >
                 <TextInput
                   value={date.value}

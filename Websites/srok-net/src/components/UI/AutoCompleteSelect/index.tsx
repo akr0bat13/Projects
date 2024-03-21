@@ -102,7 +102,6 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
     <div
       className={cn("auto-compolete-input-wrapper", {
         "auto-compolete-input-wrapper-disabled": disabled,
-        "auto-compolete-input-wrapper-error": error,
       })}
       style={styleWrapper}
     >
@@ -111,6 +110,7 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
         onChange={handleInputChange}
         placeholder={placeholder}
         disabled={disabled}
+        error={error}
       />
       <div className="auto-compolete-button">
         <Button

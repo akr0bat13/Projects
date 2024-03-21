@@ -61,7 +61,11 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
       style={sx}
     >
       <input
-        className={cn("text-input", disabled && "text-input-disabled")}
+        className={cn(
+          "text-input",
+          disabled && "text-input-disabled",
+          error && "text-input-error"
+        )}
         type={isPassword ? (isShow ? "text" : "password") : "text"} //need to refactor too
         disabled={disabled}
         {...rest}

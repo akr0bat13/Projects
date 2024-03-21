@@ -1,13 +1,17 @@
 import { MockSectionActs } from "src/pages/MainPage/utils/mockSectionActs";
 
 export const calculateDisabled = (
-  part: string,
   state: string,
+  part: string,
   mockSectionActs: MockSectionActs
 ) => {
-  if (mockSectionActs[state] && mockSectionActs[state].length === 0) {
+  // eslint-disable-next-line no-debugger
+  debugger;
+  if (!state) {
     return false;
+  } else if (mockSectionActs[state]?.length === 0) {
+    return true;
   } else {
-    return !(part && state && mockSectionActs[state]?.includes(Number(part)));
+    return !!mockSectionActs[state]?.includes(Number(part));
   }
 };

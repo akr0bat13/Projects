@@ -3,7 +3,7 @@
 .loadingspinner {
   --square: 26px;
   --offset: 30px;
-  --duration: 2.4s;
+  --duration: 4s;
   --delay: 0.2s;
   --timing-function: ease-in-out;
   --in-duration: 0.4s;
@@ -14,9 +14,22 @@
   padding: 0px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 30px;
   position: relative;
+}
+
+.loading-content {
+  max-height: calc(100vh - 180px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-title {
+  font-family: inherit;
+  font-size: 24px;
+  color: $blue-primary-active;
 }
 
 .loadingspinner div {

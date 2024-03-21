@@ -26,7 +26,7 @@ const JusticeSearch = ({ setResult }: any) => {
   } = useOnFreedom();
   const { part, state } = useSelector(onFreedomInput);
 
-  const isButtonDisabled = calculateDisabled(part, state, mockSectionActs);
+  const isButtonDisabled = !calculateDisabled(state, part, mockSectionActs);
 
   const checkPartValue = (part: string) => {
     return validateInputNumber(part);

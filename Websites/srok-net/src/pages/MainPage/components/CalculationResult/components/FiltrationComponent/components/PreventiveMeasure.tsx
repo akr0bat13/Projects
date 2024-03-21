@@ -50,7 +50,6 @@ const PreventiveMeasure = () => {
         ...timeUnderArrest,
         ...rejectingCurrentDoings,
       ];
-      console.log("allValues", allValues);
 
       for (let i = 0; i < allValues.length; i++) {
         const start1 = allValues[i].start;

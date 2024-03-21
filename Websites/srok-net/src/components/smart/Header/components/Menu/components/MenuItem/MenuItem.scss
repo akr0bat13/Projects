@@ -9,20 +9,9 @@
     padding: 0 15px;
     align-items: center;
     gap: 20px;
-    &-children {
-      padding: 10px 0 10px 30px;
-    }
     &-title {
         display: flex;
         gap: 15px;
-    }
-    &-submenu {
-      display: flex;
-      flex-direction: column;
-      padding: 20px 0;
-      &-nested {
-        padding: 10px 20px;
-      }
     }
 }
 

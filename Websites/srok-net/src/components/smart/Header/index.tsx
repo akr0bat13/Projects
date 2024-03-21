@@ -4,13 +4,16 @@ import { NavLink } from "react-router-dom";
 
 import SrokNetLogo from "src/assets/images/logo.svg";
 import { MenuMobile } from "src/components/icons/MenuMobile";
+import { useSelector } from "src/store";
+import { selectIsMobileMenu } from "src/store/slices/isMobile/isMobile.selectors";
 import "./Header.scss";
 
+import { Menu } from "./components/Menu";
 import { useHeadBar } from "./hooks/useHeadBar";
 
 const Header = () => {
   const { isMobile, checkIsMobileHandler } = useHeadBar();
-
+  const { active } = useSelector(selectIsMobileMenu);
   return (
     <header
       className={cn("header", {
@@ -31,6 +34,9 @@ const Header = () => {
           </div>
           <div className="status-bar-menu" onClick={checkIsMobileHandler}>
             <MenuMobile />
+          </div>
+          <div className="mobile-menu">
+            {active && <Menu onClose={checkIsMobileHandler} />}
           </div>
         </div>
       </div>

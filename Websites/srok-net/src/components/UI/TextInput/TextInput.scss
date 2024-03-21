@@ -21,7 +21,8 @@
     }
 
     &-error {
-    border: 1px solid $error;
+        border: 1px solid $error;
+        color: $error;
     }
 
 
@@ -41,10 +42,12 @@
         &::placeholder {
             color: $blue-primary-secondary;
         }
-
         &-disabled {
             background-color: $grey-container-disabled;
 
+        }
+        &-error {
+            color: $error;
         }
     }
 

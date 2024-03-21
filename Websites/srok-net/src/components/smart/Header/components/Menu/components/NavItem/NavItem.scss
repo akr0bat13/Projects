@@ -1,4 +1,4 @@
-@import "../../../../../../../../../vars.scss";
+@import "src/vars.scss";
 
 .nav-link {
     display: flex;
@@ -6,11 +6,11 @@
     &-active {
         background-color: $blue-primary-active;
         p {
-            color: $black-primary;
+            color: $text-black;
         }
     }
 }
 
 .nav-link:not(.nav-link-active):hover {
-    background-color: $blue-primary-hover;
+    background-color: $blue-primary-active;
 }

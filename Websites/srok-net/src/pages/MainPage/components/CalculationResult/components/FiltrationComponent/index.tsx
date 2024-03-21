@@ -42,45 +42,27 @@ const FiltrationComponent = () => {
   };
 
   const checkButtonDisabled = () => {
-    const homeArrestActive = homeArrest.isActive;
-    const timeUnderArrestActive = timeUnderArrest.isActive;
-    const rejectingCurrentDoingsActive = rejectingCurrentDoings.isActive;
-    const apilationActive = apilation.isActive;
+    const measures = [homeArrest, timeUnderArrest, rejectingCurrentDoings];
 
-    if (homeArrestActive && isValuesExisting(homeArrest.values)) {
-      const homeArrestValues = homeArrest.values[0];
-      if (homeArrestValues.start === null || homeArrestValues.end === null) {
-        return false;
-      }
-    }
-    if (timeUnderArrestActive && isValuesExisting(timeUnderArrest.values)) {
-      const timeUnderArrestValues = timeUnderArrest.values[0];
-      if (
-        timeUnderArrestValues.start === null ||
-        timeUnderArrestValues.end === null
-      ) {
-        return false;
-      }
-    }
-    if (
-      rejectingCurrentDoingsActive &&
-      isValuesExisting(rejectingCurrentDoings.values)
-    ) {
-      const rejectingCurrentDoingsValues = rejectingCurrentDoings.values[0];
-      if (
-        rejectingCurrentDoingsValues.start === null ||
-        rejectingCurrentDoingsValues.end === null
-      ) {
-        return false;
+    for (const measure of measures) {
+      if (measure.isActive) {
+        const hasCommonValues = isValuesExisting(measure.values);
+        const hasNullValues = measure.values.some(
+          (value) => value.start === null || value.end === null
+        );
+        if (hasCommonValues || hasNullValues) {
+          return false;
+        }
       }
     }
 
-    if (apilationActive) {
+    if (apilation.isActive) {
+      const { years, month, apilationDate, detention } = apilation;
       if (
-        apilation.years === "" ||
-        apilation.month === "" ||
-        apilation.apilationDate === null ||
-        apilation.detention === null
+        years === "" ||
+        month === "" ||
+        apilationDate === null ||
+        detention === null
       ) {
         return false;
       }

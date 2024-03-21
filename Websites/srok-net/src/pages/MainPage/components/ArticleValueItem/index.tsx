@@ -7,6 +7,7 @@ import { textColor } from "src/components/UI/Text/utils/types/text.types";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import AddIcon from "src/components/icons/AddIcon";
 import RemoveIcon from "src/components/icons/RemoveIcon";
+import { validateDate } from "src/utils/helpers/common";
 
 import { useCalculator } from "../../hooks/useCalculator";
 import { mockSectionActs } from "../../utils/mockSectionActs";
@@ -25,6 +26,7 @@ const ArticleValueItem: FC = () => {
     return Object.keys(mockSectionActs);
   };
   const options = getMockSectionActsKeys();
+  // const [isArticleCorrect, setIsArticleCorrect] = useState(false);
 
   return (
     <div className="calculator-container-item calculator-article-value">
@@ -34,6 +36,9 @@ const ArticleValueItem: FC = () => {
         if (state in mockSectionActs) {
           partOptions = mockSectionActs[state].map((value) => value.toString());
         }
+        const isStateError = validateDate(state);
+        const isPartError = validateDate(part);
+        const isEpisodesNumberError = validateDate(episodesNumber);
         return (
           <div key={id} className="calculator-container-article-value">
             <InputContainer
@@ -49,6 +54,7 @@ const ArticleValueItem: FC = () => {
                 setOption={setChargeArticleOption}
                 inputType="state"
                 optionsStyle={{ maxHeight: 74 }}
+                error={!isStateError}
               />
             </InputContainer>
             <InputContainer
@@ -64,6 +70,7 @@ const ArticleValueItem: FC = () => {
                 setOption={setChargeArticleOption}
                 inputType="part"
                 disabled={partOptions.length === 0}
+                error={!isPartError}
               />
             </InputContainer>
 
@@ -77,6 +84,7 @@ const ArticleValueItem: FC = () => {
                 onChange={(event) =>
                   setChargeArticleState(id, "episodesNumber", event)
                 }
+                error={!isEpisodesNumberError}
               />
             </InputContainer>
             <div className="calculator-container-article-value-buttons">
