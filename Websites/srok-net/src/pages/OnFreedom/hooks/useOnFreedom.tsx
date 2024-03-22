@@ -22,7 +22,6 @@ import {
   updateOnFreedomModalWillingToPay,
 } from "src/store/slices/OnFreedomForm";
 import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
-import { validateEmail } from "src/utils/helpers/common";
 import {
   IForms,
   IInputSearchValue,
@@ -101,10 +100,6 @@ export const useOnFreedom = () => {
     dispatch(updateOnFreedomModalTextField(event.target.value));
   };
 
-  const validateEmailError = (value: string) => {
-    return validateEmail(value);
-  };
-
   const buttonSearchProps: ButtonProps = {
     label: "Узнать",
     color: "primary",
@@ -130,10 +125,6 @@ export const useOnFreedom = () => {
         value: modalInputs.contactInfo,
         onChange: inputModalContactInfo,
         placeholder: "Введите почту",
-        error: {
-          isError: !validateEmailError,
-          level: "error",
-        },
       },
       {
         value: modalInputs.useInform,

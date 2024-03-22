@@ -8,6 +8,9 @@ import { H } from "src/components/UI/Text/H";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import LogoIcon from "src/components/icons/LogoIcon";
 import { useOnFreedom } from "src/pages/OnFreedom/hooks/useOnFreedom";
+import { useSelector } from "src/store";
+import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
+import { validateEmail } from "src/utils/helpers/common";
 import { IForms } from "src/utils/types/OnFreedom.types";
 import "./ContactForm.scss";
 
@@ -29,10 +32,24 @@ const ContactForm = (props: IForms) => {
     acceptTermsValue,
   } = useOnFreedom();
   const { title, inputsContent } = props;
+  const { modalInputs } = useSelector(onFreedomModal);
+
+  const contactInfo = modalInputs.contactInfo;
 
   const handleSubmit = () => {
     setShowModal(false);
   };
+
+  const validateEmailError = (value: string) => {
+    return validateEmail(value);
+  };
+
+  const isButtonDisabled =
+    acceptTermsValue &&
+    modalInputs.contactInfo &&
+    modalInputs.periodic &&
+    modalInputs.useInform &&
+    validateEmail(modalInputs.contactInfo);
 
   return (
     <div className="contact-form-wrapper">
@@ -41,16 +58,41 @@ const ContactForm = (props: IForms) => {
         <H variant="lg">{title}</H>
       </div>
       <div className="contact-form-content">
-        {inputsContent.map((input) => {
-          const { onChange, placeholder, value, error } = input;
+        {inputsContent.map((input, index) => {
+          const { onChange, placeholder, value } = input;
           return (
             <InputContainer
-              key={placeholder}
+              key={index}
               label={placeholder}
               color="blue"
-              errors={error}
+              errors={
+                index === 0
+                  ? {
+                      isError:
+                        contactInfo !== ""
+                          ? !validateEmailError(contactInfo)
+                          : false,
+                      level: "error",
+                      message: "Введите почту корректно",
+                    }
+                  : {
+                      isError: false,
+                      level: "error",
+                      message: "Введите почту корректно",
+                    }
+              }
             >
-              <TextInput value={value} onChange={onChange} />
+              <TextInput
+                value={value}
+                onChange={onChange}
+                error={
+                  index === 0
+                    ? contactInfo !== ""
+                      ? !validateEmailError(contactInfo)
+                      : false
+                    : false
+                }
+              />
             </InputContainer>
           );
         })}
@@ -111,7 +153,12 @@ const ContactForm = (props: IForms) => {
         </a>
       </div>
       <div className="contact-form-button">
-        <Button label="Получить отчет" color="primary" onClick={handleSubmit} />
+        <Button
+          label="Получить отчет"
+          color="primary"
+          onClick={handleSubmit}
+          disabled={!isButtonDisabled}
+        />
       </div>
     </div>
   );
