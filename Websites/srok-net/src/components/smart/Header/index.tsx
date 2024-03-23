@@ -12,7 +12,7 @@ import { Menu } from "./components/Menu";
 import { useHeadBar } from "./hooks/useHeadBar";
 
 const Header = () => {
-  const { isMobile, checkIsMobileHandler } = useHeadBar();
+  const { isMobile, checkMobileOpen, checkMobileClosed } = useHeadBar();
   const { active } = useSelector(selectIsMobileMenu);
   return (
     <header
@@ -32,11 +32,15 @@ const Header = () => {
             <NavLink to="/contact-us">Напишите нам</NavLink>
             <NavLink to="/profile">Профиль</NavLink>
           </div>
-          <div className="status-bar-menu" onClick={checkIsMobileHandler}>
+          <div className="status-bar-menu" onClick={checkMobileOpen}>
             <MenuMobile />
           </div>
-          <div className="mobile-menu">
-            {active && <Menu onClose={checkIsMobileHandler} />}
+          <div
+            className={
+              active ? "mobile-menu mobile-menu-active" : "mobile-menu"
+            }
+          >
+            <Menu onClose={checkMobileClosed} />
           </div>
         </div>
       </div>

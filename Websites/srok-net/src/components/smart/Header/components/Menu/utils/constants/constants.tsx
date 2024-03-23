@@ -29,24 +29,20 @@ export interface MenuItemProps
 export const menuNav: SubMenuProps[] = [
   {
     link: "/information",
-    id: "Information",
+    id: "Информация",
   },
-  { link: "/about-us", id: "AboutUs" },
-  {
-    link: "/contact-us",
-    id: "ContactUs",
-  },
+  { link: "/about-us", id: "О нас" },
   {
     link: "/freedom",
-    id: "Freedom",
+    id: "На свободу",
+  },
+  {
+    link: "/contact-us",
+    id: "Напишите нам",
   },
   {
     link: "/profile",
-    id: "Profile",
-  },
-  {
-    link: "/power",
-    id: "Power",
+    id: "Профиль",
   },
 ];
 // export const menus: MenuItemData[] = [

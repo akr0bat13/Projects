@@ -82,3 +82,8 @@
   }
 }
 
+@media screen and (max-width: 850px) {
+  .calculator-wrapper {
+    display: none;
+  }
+}

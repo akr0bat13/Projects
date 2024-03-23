@@ -2,33 +2,35 @@ import { FC } from "react";
 
 import { IconType } from "src/components/icons/types/icon.types";
 
-export const MenuMobile: FC<IconType> = (props) => {
+export const CloseIcon: FC<IconType> = (props) => {
   const { fill } = props;
   return (
     <svg
-      width="26"
-      height="18"
-      viewBox="0 0 26 18"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M1 1.66699H25"
-        stroke={fill || "#fff"}
+        d="M18 18L6 6"
+        stroke={fill || "#0C64C5"}
         strokeWidth="1.5"
         strokeLinecap="round"
       />
       <path
-        d="M1 9H25"
-        stroke={fill || "#fff"}
+        d="M6 18L18 6"
+        stroke={fill || "#0C64C5"}
         strokeWidth="1.5"
         strokeLinecap="round"
       />
-      <path
-        d="M1 17H25"
-        stroke={fill || "#fff"}
-        strokeWidth="1.5"
-        strokeLinecap="round"
+      <rect
+        x="0.5"
+        y="0.5"
+        width="23"
+        height="23"
+        rx="2.5"
+        stroke={fill || "#0C64C5"}
       />
     </svg>
   );

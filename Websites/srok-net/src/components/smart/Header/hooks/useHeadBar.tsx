@@ -6,12 +6,17 @@ export const useHeadBar = () => {
   const dispatch = useDispatch();
   const isMobile = useSelector(selectIsMobileMenu);
 
-  const checkIsMobileHandler = () => {
+  const checkMobileOpen = () => {
     dispatch(checkIsMobile(true));
+  };
+
+  const checkMobileClosed = () => {
+    dispatch(checkIsMobile(false));
   };
 
   return {
     isMobile,
-    checkIsMobileHandler,
+    checkMobileOpen,
+    checkMobileClosed,
   };
 };

@@ -36,6 +36,7 @@ export const NavItem: FC<NavItemData> = ({ link, id, onClose }) => {
     <Link
       style={{
         textDecoration: "none",
+        width: "100%",
       }}
       to={link}
       onClick={rememberLinkHandler}

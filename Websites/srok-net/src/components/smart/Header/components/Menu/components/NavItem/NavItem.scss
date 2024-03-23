@@ -3,6 +3,7 @@
 .nav-link {
     display: flex;
     padding: 10px 30px;
+    transition: all .3s ease-in;
     &-active {
         background-color: $blue-primary-active;
         p {
@@ -12,5 +13,5 @@
 }
 
 .nav-link:not(.nav-link-active):hover {
-    background-color: $blue-primary-active;
+    background-color: $blue-primary-secondary;
 }

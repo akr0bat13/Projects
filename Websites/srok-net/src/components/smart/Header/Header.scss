@@ -43,7 +43,7 @@ header {
 }
 
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 850px) {
   .nav-links {
     display: none;
   }
@@ -54,15 +54,22 @@ header {
   .mobile-menu {
     display: flex;
     position: fixed;
-    top: 0;
-    right: 0;
     width: 100%;
-    max-width: 400px;
-    height: 100%;
+    max-width: 300px;
+    top: 0;
+    right: -100%;
+    transition: all .3s linear;
     background-color: $background;
+
+
+    &-active {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 400px;
+      height: 100%;
+      background-color: $background;
+    }
   }
-}
-
-@media screen and (max-width: 800px) {
-
 }
