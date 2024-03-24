@@ -73,3 +73,9 @@ header {
     }
   }
 }
+
+@media screen and (max-width: 500px) {
+  .mobile-menu {
+    max-width: none;
+  }
+}

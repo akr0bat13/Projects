@@ -55,52 +55,54 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
         const isEpisodesNumberError = validateDate(episodesNumber);
         return (
           <div key={id} className="calculator-container-article-value">
-            <InputContainer
-              label="Статья"
-              color="blue"
-              styleWrapper={{ width: "90px" }}
-            >
-              <AutoCompleteSelect
-                options={options}
-                inputValue={state}
-                id={id}
-                setState={setChargeArticleState}
-                setOption={setChargeArticleOption}
-                inputType="state"
-                optionsStyle={{ maxHeight: 74 }}
-                error={!isStateError}
-              />
-            </InputContainer>
-            <InputContainer
-              label="Часть"
-              color={partOptions.length === 0 ? "disabled" : "blue"}
-              styleWrapper={{ width: "90px" }}
-            >
-              <AutoCompleteSelect
-                options={partOptions}
-                inputValue={part}
-                id={id}
-                setState={setChargeArticleState}
-                setOption={setChargeArticleOption}
-                inputType="part"
-                disabled={partOptions.length === 0}
-                error={!isPartError}
-              />
-            </InputContainer>
-
-            <InputContainer
-              label="Кол-во эпизодов"
-              color="blue"
-              styleWrapper={{ width: "145px" }}
-            >
-              <TextInput
-                value={episodesNumber}
-                onChange={(event) =>
-                  setChargeArticleState(id, "episodesNumber", event)
-                }
-                error={!isEpisodesNumberError}
-              />
-            </InputContainer>
+            <div className="calculator-container-article-value-state">
+              <InputContainer label="Статья" color="blue">
+                <AutoCompleteSelect
+                  options={options}
+                  inputValue={state}
+                  id={id}
+                  setState={setChargeArticleState}
+                  setOption={setChargeArticleOption}
+                  inputType="state"
+                  optionsStyle={{ maxHeight: 74 }}
+                  error={!isStateError}
+                />
+              </InputContainer>
+            </div>
+            <div className="calculator-container-article-value-part">
+              <InputContainer
+                label="Часть"
+                color={partOptions.length === 0 ? "disabled" : "blue"}
+              >
+                <AutoCompleteSelect
+                  options={partOptions}
+                  inputValue={part}
+                  id={id}
+                  setState={setChargeArticleState}
+                  setOption={setChargeArticleOption}
+                  inputType="part"
+                  disabled={partOptions.length === 0}
+                  error={!isPartError}
+                />
+              </InputContainer>
+            </div>
+            <div className="calculator-container-article-value-episodes">
+              <InputContainer
+                label="Эпизоды"
+                color="blue"
+                hint={id === 1}
+                hintText="Введите количество эпизовов"
+                hintPosition="left"
+              >
+                <TextInput
+                  value={episodesNumber}
+                  onChange={(event) =>
+                    setChargeArticleState(id, "episodesNumber", event)
+                  }
+                  error={!isEpisodesNumberError}
+                />
+              </InputContainer>
+            </div>
             <div className="calculator-container-article-value-buttons">
               <Button
                 onClick={() => removeChargeArticle(id)}
@@ -125,7 +127,7 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
         );
       })}
       {chargeArticleValue.length === 1 && (
-        <div className="calculator-container-article-value">
+        <div className="calculator-container-article-value-disabled">
           {disabledComponent.map((item) => {
             const { color, disabled, label, styleWrapper } = item;
             return (

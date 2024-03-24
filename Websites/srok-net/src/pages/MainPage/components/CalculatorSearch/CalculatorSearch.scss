@@ -30,7 +30,7 @@
   &-item {
     display: flex;
     flex-direction: column;
-    gap: 11px;
+    gap: 10px;
   }
 
   &-sentence {
@@ -44,11 +44,21 @@
     margin-right: 0;
   }
 
-  &-article-value {
+  &-article-value,
+  &-article-value-disabled {
     display: flex;
     gap: 20px;
-    padding-top: 6px;
+    padding-top: 3px;
     align-items: center;
+
+    &-state,
+    &-part {
+      width: 90px;
+    }
+
+    &-episodes {
+      width: 145px;
+    }
 
     &-buttons {
       display: flex;
@@ -79,6 +89,48 @@
     align-items: center;
     height: 100%;
     gap: 20px;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+.calculator-wrapper {
+  padding-bottom: 370px;
+}
+  .calculator-container {
+    flex-direction: column;
+    gap: 10px;
+
+    &-article-value,
+    // &-article-value-disabled {
+    &-article-value-disabled {
+      align-items: end;
+
+      &-state {
+        width: 85px;
+      }
+  
+      &-part {
+        width: 130px;
+      }
+  
+      &-episodes {
+        width: 160px;
+      }
+    }
+    &-article-value-disabled {
+      display: none;
+    }
+
+    
+
+    .calculator-article-value {
+      padding: 0;
+    }
+
+    &-item-last-colunm {
+      flex-direction: row;
+      align-items: end;
+    }
   }
 }
 

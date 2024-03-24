@@ -7,6 +7,7 @@ import QuestionIcon from "src/components/icons/QuestionIcon";
 import { P } from "../Text/P";
 import { textColor } from "../Text/utils/types/text.types";
 import { Tooltip } from "../Tooltip/Tooltip";
+import { TooltipPosition } from "../Tooltip/utils/types/tooltip.types";
 
 export type TError = {
   isError: boolean;
@@ -26,6 +27,7 @@ export interface InputContainerProps {
   color?: textColor;
   hint?: boolean;
   hintText?: string;
+  hintPosition?: TooltipPosition;
 }
 
 export const InputContainer: FC<InputContainerProps> = ({
@@ -39,6 +41,7 @@ export const InputContainer: FC<InputContainerProps> = ({
   color,
   hint,
   hintText,
+  hintPosition,
   errors,
 }) => {
   return (
@@ -50,7 +53,11 @@ export const InputContainer: FC<InputContainerProps> = ({
               {label}
             </P>
             {hint && (
-              <Tooltip content={hintText} position="top" tooltipWidth={300}>
+              <Tooltip
+                content={hintText}
+                position={hintPosition || "top"}
+                tooltipWidth={300}
+              >
                 <QuestionIcon />
               </Tooltip>
             )}

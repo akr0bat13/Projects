@@ -80,12 +80,12 @@ const CalculatorSearch = ({ setResult }: any) => {
           sx={{
             gap: 10,
           }}
-          styleWrapper={{ width: 190 }}
+          // styleWrapper={{ width: 190 }}
         />
 
         <ArticleValueItem setIsAnyErrorFields={setIsAnyErrorFields} />
 
-        <div className="calculator-container-item">
+        <div className="calculator-container-item calculator-container-item-last-colunm">
           <div className="calculator-container-sentence">
             {inputsentenceValue.map((date) => (
               <InputContainer
