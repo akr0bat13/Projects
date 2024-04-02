@@ -1,10 +1,10 @@
-import "react-redux";
 import { BaseQueryFn } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import {
   FetchArgs,
   FetchBaseQueryArgs,
   FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/dist/query/fetchBaseQuery";
+import "react-redux";
 
 import { AppReducer } from "../store/rootReducer";
 import { CustomError } from "../utils/types/api.types";

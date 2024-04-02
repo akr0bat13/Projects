@@ -8,6 +8,7 @@ import { P } from "src/components/UI/Text/P";
 import { textColor } from "src/components/UI/Text/utils/types/text.types";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import { useSelector } from "src/store";
+import { useUpdateLawsInfoMutation } from "src/store/api/lawsInfoPageApi.api";
 import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
 import { validateInputNumber } from "src/utils/helpers/common";
 import { calculateDisabled } from "src/utils/helpers/common/calculateDisabled";
@@ -24,11 +25,19 @@ const CalculatorSearch = ({ setResult }: any) => {
     useCalculator();
   const { label, color } = buttonSearchProps;
 
-  const { verdictDate, comesInToForse, sentence, chargeArticle } = useSelector(
-    calculatorSearchValues
-  );
+  const { verdictDate, comesInToForse, sentence, chargeArticle, conviction } =
+    useSelector(calculatorSearchValues);
+
+  const [
+    updateLawsInfo,
+    { data: updateLawsInfoData, isLoading: isLoadingLawsInfo },
+  ] = useUpdateLawsInfoMutation();
 
   const [isAnyErrorFields, setIsAnyErrorFields] = useState(false);
+
+  useEffect(() => {
+    console.log("updateLawsInfoData", updateLawsInfoData);
+  }, [updateLawsInfoData]);
 
   const fieldsWritten: boolean =
     !!verdictDate &&
@@ -46,7 +55,13 @@ const CalculatorSearch = ({ setResult }: any) => {
       return isDisabled && article.episodesNumber !== "";
     });
   const searchSubmit = () => {
-    setResult(true);
+    updateLawsInfo({
+      verdictDate,
+      comesInToForse,
+      chargeArticle,
+      sentence,
+      conviction,
+    });
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -80,7 +95,6 @@ const CalculatorSearch = ({ setResult }: any) => {
           sx={{
             gap: 10,
           }}
-          // styleWrapper={{ width: 190 }}
         />
 
         <ArticleValueItem setIsAnyErrorFields={setIsAnyErrorFields} />
@@ -106,6 +120,7 @@ const CalculatorSearch = ({ setResult }: any) => {
           </div>
           <div className="calculator-container-buttons">
             <Checkbox
+              checked={conviction}
               label="Судимости"
               onChange={convictionHandler}
               sx={{ color: "#0C64C5" }}
@@ -114,7 +129,7 @@ const CalculatorSearch = ({ setResult }: any) => {
               label={label}
               color={color}
               onClick={searchSubmit}
-              disabled={!fieldsWritten}
+              disabled={!fieldsWritten || isLoadingLawsInfo}
               sx={{ width: "100%" }}
             />
           </div>

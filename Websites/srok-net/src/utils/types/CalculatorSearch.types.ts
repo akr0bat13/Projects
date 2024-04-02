@@ -20,3 +20,11 @@ export interface ICalculatorState {
   sentence: ISentenceProps;
   conviction: boolean;
 }
+
+export interface LawData {
+  law: string | null;
+  part: string | null;
+  name: string | null;
+  severity: string | null;
+  punishment: string | null;
+}

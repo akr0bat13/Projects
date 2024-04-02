@@ -1,7 +1,11 @@
 import { Middleware } from "@reduxjs/toolkit";
 import { Manager, Socket } from "socket.io-client";
 
-// const HOST = ConnectionInstance.HOST;
+import { ConnectionInstance } from "src/utils/constants/connection";
+
+const HOST = ConnectionInstance.HOST;
+
+console.log("WSHOST", HOST);
 
 const initialization = (socket: Socket) => {
   socket.on("connect", () => {
@@ -12,7 +16,12 @@ const initialization = (socket: Socket) => {
   });
 };
 
-const manager = new Manager();
+const manager = new Manager(HOST, {
+  reconnection: true,
+  reconnectionDelay: 1000,
+  reconnectionDelayMax: 5000,
+  reconnectionAttempts: Infinity,
+});
 const socket = manager.socket("/");
 initialization(socket);
 

@@ -5,11 +5,11 @@ import {
   useSelector as useReduxSelector,
 } from "react-redux";
 
+import { lawsInfoPageApi } from "./api/lawsInfoPageApi.api";
 import rootReducer from "./rootReducer";
 
-export const middlewares = [];
-
 export type RootReducerState = ReturnType<typeof rootReducer>;
+export const middlewares = [lawsInfoPageApi.middleware];
 
 export const setupStore = (
   preloadedState?: PreloadedState<RootReducerState>
