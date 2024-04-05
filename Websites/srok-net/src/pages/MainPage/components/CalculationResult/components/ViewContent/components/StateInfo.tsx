@@ -1,21 +1,37 @@
-import React from "react";
+import React, { FC } from "react";
 
-import { useViewContent } from "../hooks/useViewContent";
+import { useSelector } from "src/store";
+import { calculatorResult } from "src/store/slices/CalculatorResult/CalculatorResult.selectors";
 
-const StateInfo = () => {
-  const { mockStateResult } = useViewContent();
-  const { part, punishment, severity, state, title } = mockStateResult;
+const StateInfo: FC = () => {
+  const { lawsInfo } = useSelector(calculatorResult);
+
   return (
-    <div className="state-content-wrapper">
-      <div className="state-content-item">
-        <span>Ст.</span> {state} <span>ч.</span> {part} - {title}
-      </div>
-      <div className="state-content-item">
-        <span>Тяжесть:</span> {severity}
-      </div>
-      <div className="state-content-item">
-        <span>Предусмотренное(-ые) наказание(-я):</span> {punishment}
-      </div>
+    <div className="result-states-info">
+      {lawsInfo.map((item) => {
+        const { law, name, part, punishment, severity } = item;
+        const [lawInteger, lawDecimal] = law.split(".");
+
+        const formattedPart =
+          part !== null ? parseFloat(part).toFixed(0) : part;
+        return (
+          <div className="state-content-wrapper" key={law}>
+            <div className="state-content-item">
+              <span>Ст.</span> {lawDecimal ? `${lawInteger}.` : lawInteger}
+              {lawDecimal !== undefined &&
+                lawDecimal !== "00" &&
+                lawDecimal}{" "}
+              {part !== null && <span>ч.</span>} {formattedPart} - {name}
+            </div>
+            <div className="state-content-item">
+              <span>Тяжесть:</span> {severity}
+            </div>
+            <div className="state-content-item">
+              <span>Предусмотренное(-ые) наказание(-я):</span> {punishment}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

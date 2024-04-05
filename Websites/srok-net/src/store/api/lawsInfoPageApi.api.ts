@@ -2,10 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
 // import { Connection } from "../../../utils/enums/common.enums";
 import { ConnectionInstance as Connection } from "src/utils/constants/connection";
-import {
-  ICalculatorState,
-  LawData,
-} from "src/utils/types/CalculatorSearch.types";
+import { LawsInfoResponse } from "src/utils/types/CalculatorResult.types";
+import { IChargeArticleProps } from "src/utils/types/CalculatorSearch.types";
 
 export const lawsInfoPageApi = createApi({
   reducerPath: "lawsInfoPageApi/api",
@@ -13,9 +11,9 @@ export const lawsInfoPageApi = createApi({
     baseUrl: Connection.REST_HOST,
   }),
   endpoints: (build) => ({
-    updateLawsInfo: build.mutation<LawData, ICalculatorState>({
+    updateLawsInfo: build.mutation<LawsInfoResponse, IChargeArticleProps[]>({
       query: (body) => ({
-        url: "/api/laws-info",
+        url: "function/func_srok.php?api=laws-info",
         method: "POST",
         body,
       }),

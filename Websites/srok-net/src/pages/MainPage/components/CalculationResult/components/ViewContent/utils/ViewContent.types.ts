@@ -4,11 +4,3 @@ export interface ResultComponent {
   date?: string;
   fromApilation?: number;
 }
-
-export interface StateComponent {
-  state: number;
-  part: number;
-  title: string;
-  severity: string;
-  punishment: string;
-}

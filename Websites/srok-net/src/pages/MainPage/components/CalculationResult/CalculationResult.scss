@@ -87,6 +87,12 @@
   }
 }
 
+.result-states-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .state-content-wrapper {
   display: flex;
   flex-direction: column;

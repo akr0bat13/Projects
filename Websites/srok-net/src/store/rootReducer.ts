@@ -2,6 +2,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 
 import { lawsInfoPageApi } from "./api/lawsInfoPageApi.api";
 import { reducer as calculatorFiltrationReducers } from "./slices/CalculatorFiltration";
+import { reducer as calculatorResultReducer } from "./slices/CalculatorResult";
 import { reducer as calculatorSearchReducers } from "./slices/CalculatorSearch";
 import { reducer as onFreedomReducers } from "./slices/OnFreedom";
 import { reducer as onFreedomModalReducers } from "./slices/OnFreedomForm";
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   onFreedomModal: onFreedomModalReducers,
   isMobile: isMobileReducer,
   helperSlices: helperSlicesReducer,
+  calculatorResult: calculatorResultReducer,
   [lawsInfoPageApi.reducerPath]: lawsInfoPageApi.reducer,
 });
 
