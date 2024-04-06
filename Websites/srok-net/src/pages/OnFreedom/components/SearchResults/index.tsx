@@ -61,7 +61,7 @@ const SearchResults: FC<ISearchResult> = (component) => {
           "search-results-disabled": disabled,
         })}
       >
-        <img src={Book} alt="" />
+        <img className="search-result-image" src={Book} alt="" />
         <div className="search-results-content">
           <H variant="lg" color={disabled ? "disabled" : "blue"}>
             {title}

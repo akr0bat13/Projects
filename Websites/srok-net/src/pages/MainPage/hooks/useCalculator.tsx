@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { ButtonProps } from "src/components/UI/Button/Button";
 import { useDispatch, useSelector } from "src/store";
@@ -17,7 +17,8 @@ export const useCalculator = () => {
   const dispatch = useDispatch();
 
   const { sentence } = useSelector(calculatorSearchValues);
-
+  const [widthYear, setWidthYear] = useState(110);
+  const [widthMonth, setWidthMonth] = useState(160);
   const [chargeArticleValue, setChargeArticleValue] = useState<
     IChargeArticleProps[]
   >([
@@ -28,6 +29,24 @@ export const useCalculator = () => {
       episodesNumber: "",
     },
   ]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 700) {
+        setWidthYear(157);
+        setWidthMonth(157);
+      } else {
+        setWidthYear(110);
+        setWidthMonth(160);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const buttonSearchProps: ButtonProps = {
     label: "Показать",
@@ -132,7 +151,7 @@ export const useCalculator = () => {
       onChange: inputCalculatorSentenceYear,
       placeholder: "Срок (лет)",
       color: "blue",
-      width: 110,
+      width: widthYear,
       hintText:
         "Введи срок по решению суда. Если суда не было и срок неизвестен, то введите предполагаемый срок. Если срок меньше 1 года то введите 0",
     },
@@ -141,7 +160,7 @@ export const useCalculator = () => {
       onChange: inputCalculatorSentenceMonth,
       placeholder: "Срок (месяцев)",
       color: "blue",
-      width: 160,
+      width: widthMonth,
       hintText:
         "Введите срок по решению суда. Если суда не было то введите предполагаемый срок. Если срок равные года, то введите 0",
     },

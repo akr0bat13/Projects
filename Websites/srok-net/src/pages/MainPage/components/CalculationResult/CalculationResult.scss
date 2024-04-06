@@ -138,3 +138,9 @@
   display: flex;
   gap: 5px;
 }
+
+@media screen and (max-width: 1050px) {
+  .filtration-component-wrapper {
+    min-width: 310px;
+  }
+}

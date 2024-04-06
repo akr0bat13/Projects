@@ -94,7 +94,7 @@
 
 @media screen and (max-width: 1050px) {
 .calculator-wrapper {
-  padding-bottom: 370px;
+  padding-bottom: 250px;
 }
   .calculator-container {
     flex-direction: column;
@@ -134,8 +134,35 @@
   }
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 700px) {
   .calculator-wrapper {
-    display: none;
+    padding-bottom: 550px;
+  }
+
+  .calculator-container {
+    padding: 10px;
+
+    &-article-value,
+    &-article-value-disabled {
+      align-items: end;
+      gap: 10px;
+
+      &-state {
+        width: 58px;
+      }
+  
+      &-part {
+        width: 54px;
+      }
+  
+      &-episodes {
+        width: 140px;
+      }
+    }
+
+    &-item-last-colunm {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 }

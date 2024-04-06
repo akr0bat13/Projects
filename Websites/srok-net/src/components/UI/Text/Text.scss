@@ -35,3 +35,22 @@
 .color-disabled {
   color: $button-disabled;
 }
+
+@media screen and (max-width: 1050px) {
+  .text-small-variant {
+    font-size: 14px;
+  }
+  
+  .text-middle-variant {
+    font-size: 16px;
+  }
+  
+  .text-large-variant {
+    font-size: 18px;
+  }
+  
+  .text-heading-variant {
+    font-size: 24px;
+  }
+  
+}

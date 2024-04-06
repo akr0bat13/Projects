@@ -31,3 +31,16 @@
     padding-bottom: 13px;
   }
 }
+
+@media screen and (max-width: 700px) {
+  .search-results {
+    .search-result-image {
+      display: none;
+    }
+
+    &-button {
+      padding-bottom: 0;
+    }
+  }
+
+}

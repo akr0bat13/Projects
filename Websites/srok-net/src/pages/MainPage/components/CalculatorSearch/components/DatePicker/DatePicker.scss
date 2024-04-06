@@ -120,3 +120,10 @@
   }
 }
 
+
+@media screen and (max-width: 700px) {
+  .datepicker-wrapper {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

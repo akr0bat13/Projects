@@ -1,5 +1,5 @@
 import cn from "classnames";
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import SrokNetLogo from "src/assets/images/logo.svg";
@@ -14,6 +14,16 @@ import { useHeadBar } from "./hooks/useHeadBar";
 const Header = () => {
   const { isMobile, checkMobileOpen, checkMobileClosed } = useHeadBar();
   const { active } = useSelector(selectIsMobileMenu);
+
+  useEffect(() => {
+    if (active) {
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = "auto";
+      };
+    }
+  }, [active]);
+
   return (
     <header
       className={cn("header", {

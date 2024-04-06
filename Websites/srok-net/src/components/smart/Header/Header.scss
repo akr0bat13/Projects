@@ -60,6 +60,7 @@ header {
     right: -100%;
     transition: all .3s linear;
     background-color: $background;
+    z-index: $z-index-high;
 
 
     &-active {
