@@ -7,6 +7,7 @@ import {
 
 const initialState: ICalculatorCrimeResult = {
   lawsInfo: [],
+  calculatorInfo: [],
 };
 
 const slice = createSlice({
@@ -16,9 +17,12 @@ const slice = createSlice({
     toggleLawsInfo: (state, action: PayloadAction<ICalculatorCrimeInfo[]>) => {
       state.lawsInfo = action.payload;
     },
+    toggleCalculatorInfo: (state, action: PayloadAction<unknown>) => {
+      state.calculatorInfo = action.payload;
+    },
   },
 });
 
-export const { toggleLawsInfo } = slice.actions;
+export const { toggleLawsInfo, toggleCalculatorInfo } = slice.actions;
 
 export const { reducer } = slice;

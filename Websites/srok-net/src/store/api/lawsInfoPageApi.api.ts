@@ -6,7 +6,7 @@ import { LawsInfoResponse } from "src/utils/types/CalculatorResult.types";
 import { IChargeArticleProps } from "src/utils/types/CalculatorSearch.types";
 
 export const lawsInfoPageApi = createApi({
-  reducerPath: "lawsInfoPageApi/api",
+  reducerPath: "calculatorResultApi/api",
   baseQuery: fetchBaseQuery({
     baseUrl: Connection.REST_HOST,
   }),
@@ -18,7 +18,15 @@ export const lawsInfoPageApi = createApi({
         body,
       }),
     }),
+    updateCalculatorInfo: build.mutation<unknown, unknown>({
+      query: (body) => ({
+        url: "function/func_srok.php?api=calculator",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useUpdateLawsInfoMutation } = lawsInfoPageApi;
+export const { useUpdateLawsInfoMutation, useUpdateCalculatorInfoMutation } =
+  lawsInfoPageApi;

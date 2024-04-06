@@ -1,19 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
+import React, { FC } from "react";
 
 import { Button } from "src/components/UI/Button/Button";
-import { useDispatch, useSelector } from "src/store";
+import { useSelector } from "src/store";
 import { calculatorFiltrationValues } from "src/store/slices/CalculatorFiltration/calculatorFiltration.selectors";
-import { showCalculatorResult } from "src/store/slices/helperSlices";
 import { IFiltrationDate } from "src/utils/types/CalculatorFiltration.types";
 
 import Apilation from "./components/Apilation";
 import PreventiveMeasure from "./components/PreventiveMeasure";
 import PunishmentType from "./components/PunishmentType";
 
-const FiltrationComponent = () => {
-  const dispatch = useDispatch();
+interface IFiltrationComponent {
+  isLoadingCalculator: boolean;
+  updateCalculatorInfo: any;
+}
 
+const FiltrationComponent: FC<IFiltrationComponent> = ({
+  isLoadingCalculator,
+  updateCalculatorInfo,
+}) => {
   const {
     punishmentType,
     timeUnderArrest,
@@ -38,7 +42,7 @@ const FiltrationComponent = () => {
   };
 
   const submitButton = () => {
-    dispatch(showCalculatorResult(true));
+    // updateCalculatorInfo()
   };
 
   const checkButtonDisabled = () => {
@@ -134,7 +138,7 @@ const FiltrationComponent = () => {
       <Button
         label="Рассчитать"
         color="primary"
-        disabled={!buttonDisabled}
+        disabled={!buttonDisabled || isLoadingCalculator}
         onClick={submitButton}
       />
     </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import { Button } from "src/components/UI/Button/Button";
 import { Checkbox } from "src/components/UI/Checkbox/Checkbox";
@@ -7,9 +7,7 @@ import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
 import { textColor } from "src/components/UI/Text/utils/types/text.types";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
-import { useDispatch, useSelector } from "src/store";
-import { useUpdateLawsInfoMutation } from "src/store/api/lawsInfoPageApi.api";
-import { toggleLawsInfo } from "src/store/slices/CalculatorResult";
+import { useSelector } from "src/store";
 import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
 import { validateInputNumber } from "src/utils/helpers/common";
 import { calculateDisabled } from "src/utils/helpers/common/calculateDisabled";
@@ -21,8 +19,13 @@ import ArticleValueItem from "../ArticleValueItem";
 
 import { DatePicker, DateRange } from "./components/DatePicker/DatePicker";
 
-const CalculatorSearch = ({ setResult }: any) => {
-  const dispatch = useDispatch();
+interface ICalculatorSearch {
+  updateLawsInfo: any;
+  isLoadingLawsInfo: boolean;
+}
+
+const CalculatorSearch: FC<ICalculatorSearch> = (props) => {
+  const { updateLawsInfo, isLoadingLawsInfo } = props;
 
   const { buttonSearchProps, inputsentenceValue, convictionHandler } =
     useCalculator();
@@ -30,28 +33,7 @@ const CalculatorSearch = ({ setResult }: any) => {
   const { verdictDate, comesInToForse, sentence, chargeArticle, conviction } =
     useSelector(calculatorSearchValues);
 
-  const [
-    updateLawsInfo,
-    {
-      isSuccess: updateLawsInfoSuccess,
-      isLoading: isLoadingLawsInfo,
-      isError: updateLawsInfoError,
-      data: updateLawsInfoData,
-    },
-  ] = useUpdateLawsInfoMutation();
-
   const [isAnyErrorFields, setIsAnyErrorFields] = useState(false);
-
-  useEffect(() => {
-    if (updateLawsInfoSuccess) {
-      if (updateLawsInfoData) {
-        dispatch(toggleLawsInfo(updateLawsInfoData?.data.laws));
-      }
-      setResult(true);
-    } else {
-      setResult(false);
-    }
-  }, [updateLawsInfoSuccess, updateLawsInfoError]);
 
   const fieldsWritten: boolean =
     !!verdictDate &&

@@ -8,6 +8,7 @@ export interface ICalculatorCrimeInfo {
 
 export interface ICalculatorCrimeResult {
   lawsInfo: ICalculatorCrimeInfo[];
+  calculatorInfo: any;
 }
 
 export interface LawsInfoResponse {
