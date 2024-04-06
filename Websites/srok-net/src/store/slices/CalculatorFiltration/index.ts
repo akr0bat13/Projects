@@ -50,32 +50,11 @@ const apilation: IApilationProps = {
   detention: null,
 };
 
-const punishmentType: IFiltrationCheckBoxProps[] = [
-  {
-    title: "Колония поселения",
-    value: false,
-  },
-  {
-    title: "Колония общего режима",
-    value: false,
-  },
-  {
-    title: "Колония строгого режима",
-    value: false,
-  },
-  {
-    title: "Колония особого режима",
-    value: false,
-  },
-  {
-    title: "Принудительные трудовые работы",
-    value: false,
-  },
-  {
-    title: "Тюрьма",
-    value: false,
-  },
-];
+const punishmentType: IFiltrationCheckBoxProps = {
+  title: "",
+  value: 0,
+  isActive: false,
+};
 
 const initialState: ICalculatorFiltrationState = {
   homeArrest,
@@ -107,22 +86,18 @@ const slice = createSlice({
         isActive: action.payload,
       };
     },
+
     togglePunishmentType: (
       state,
-      action: PayloadAction<{ title: string; value: boolean }>
+      action: PayloadAction<{
+        item: IFiltrationCheckBoxProps;
+        isActive: boolean;
+      }>
     ) => {
-      const { title, value } = action.payload;
-
-      const updatedPunishmentType = state.punishmentType.map((item) => {
-        if (item.title === title) {
-          return { ...item, value };
-        }
-        return { ...item, value: false };
-      });
-
-      return {
-        ...state,
-        punishmentType: updatedPunishmentType,
+      const { item, isActive } = action.payload;
+      state.punishmentType = {
+        ...item,
+        isActive,
       };
     },
     toggleApilationDate: (state, action: PayloadAction<boolean>) => {

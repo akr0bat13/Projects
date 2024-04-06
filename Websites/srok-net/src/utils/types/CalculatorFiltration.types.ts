@@ -12,7 +12,8 @@ export interface IFiltrationSelectProps {
 
 export interface IFiltrationCheckBoxProps {
   title: string;
-  value: boolean;
+  isActive: boolean;
+  value: number;
 }
 
 export interface IApilationProps {
@@ -37,5 +38,5 @@ export interface ICalculatorFiltrationState {
   timeUnderArrest: IFiltrationSelectProps;
   rejectingCurrentDoings: IFiltrationSelectProps;
   apilation: IApilationProps;
-  punishmentType: IFiltrationCheckBoxProps[];
+  punishmentType: IFiltrationCheckBoxProps;
 }

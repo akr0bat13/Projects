@@ -125,11 +125,7 @@ const FiltrationComponent: FC<IFiltrationComponent> = ({
   };
 
   const buttonDisabled =
-    // ((homeArrestActive && isValuesExisting(homeArrest.values)) ||
-    //   (timeUnderArrestActive && isValuesExisting(timeUnderArrest.values)) ||
-    //   (rejectingCurrentDoingsActive &&
-    //     isValuesExisting(rejectingCurrentDoings.values))) &&
-    checkButtonDisabled() && punishmentType.some((item) => item.value === true);
+    checkButtonDisabled() && punishmentType.isActive === true;
   return (
     <div className="filtration-component-wrapper">
       <PreventiveMeasure />

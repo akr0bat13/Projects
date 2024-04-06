@@ -26,6 +26,7 @@ import { calculatorFiltrationApilation } from "src/store/slices/CalculatorFiltra
 import { updateChargeArticleAction } from "src/store/slices/CalculatorSearch";
 import {
   IApilationProps,
+  IFiltrationCheckBoxProps,
   IFiltrationDate,
 } from "src/utils/types/CalculatorFiltration.types";
 
@@ -97,6 +98,41 @@ export const useFiltrationComponent = () => {
     label: "",
   });
 
+  const [punishmentType, setPunishmentType] = useState<
+    IFiltrationCheckBoxProps[]
+  >([
+    {
+      title: "Колония поселения",
+      value: 2,
+      isActive: false,
+    },
+    {
+      title: "Колония общего режима",
+      value: 3,
+      isActive: false,
+    },
+    {
+      title: "Колония строгого режима",
+      value: 4,
+      isActive: false,
+    },
+    {
+      title: "Колония особого режима",
+      value: 5,
+      isActive: false,
+    },
+    {
+      title: "Принудительные трудовые работы",
+      value: 6,
+      isActive: false,
+    },
+    {
+      title: "Тюрьма",
+      value: 7,
+      isActive: false,
+    },
+  ]);
+
   const handlePreventiveMeasureChange = (
     event: ChangeEvent<HTMLInputElement>,
     title: string
@@ -151,11 +187,14 @@ export const useFiltrationComponent = () => {
 
   const handlePunishmentChange = (
     event: ChangeEvent<HTMLInputElement>,
-    title: string
+    item: IFiltrationCheckBoxProps
   ) => {
-    console.log(title);
-
-    dispatch(togglePunishmentType({ title, value: event.target.checked }));
+    const updatedPunishmentType = punishmentType.map((punishment) => ({
+      ...punishment,
+      isActive: punishment.title === item.title ? event.target.checked : false,
+    }));
+    setPunishmentType(updatedPunishmentType);
+    dispatch(togglePunishmentType({ item, isActive: event.target.checked }));
   };
 
   const showApilation = () => {
@@ -329,5 +368,6 @@ export const useFiltrationComponent = () => {
     timeUnderArrest,
     rejectingCurrentDoings,
     handleApilationChange,
+    punishmentType,
   };
 };
