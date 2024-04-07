@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { FC, useEffect, useState } from "react";
 
 import { Button } from "src/components/UI/Button/Button";
 import { useSelector } from "src/store";
@@ -44,6 +45,10 @@ const FiltrationComponent: FC<IFiltrationComponent> = ({
   const submitButton = () => {
     // updateCalculatorInfo()
   };
+  const [homeArrestStatus, setHomeArrestStatus] = useState(false);
+  const [timeUnderArrestStatus, setTimeUnderArrestStatus] = useState(false);
+  const [rejectingCurrentDoingsStatus, setRejectingCurrentDoingsStatus] =
+    useState(false);
 
   const checkButtonDisabled = () => {
     // const measures = [homeArrest, timeUnderArrest, rejectingCurrentDoings];
@@ -80,34 +85,38 @@ const FiltrationComponent: FC<IFiltrationComponent> = ({
     const apilationActive = apilation.isActive;
 
     if (homeArrestActive) {
-      const checkForCommons = isValuesExisting(timeUnderArrest.values);
-      if (checkForCommons) return false;
-      const hasNullValues = homeArrest.values.some(
-        (value) => value.start === null || value.end === null
-      );
-      if (hasNullValues) {
-        return false;
+      const hasExistingValues = isValuesExisting(homeArrest.values);
+
+      setHomeArrestStatus(false);
+      if (hasExistingValues) {
+        setHomeArrestStatus(true);
       }
     }
     if (timeUnderArrestActive) {
-      const checkForCommons = isValuesExisting(timeUnderArrest.values);
-      if (checkForCommons) return false;
-      const hasNullValues = timeUnderArrest.values.some(
-        (value) => value.start === null || value.end === null
-      );
-      if (hasNullValues) {
-        return false;
+      const hasExistingValues = isValuesExisting(timeUnderArrest.values);
+
+      setTimeUnderArrestStatus(false);
+      if (hasExistingValues) {
+        setTimeUnderArrestStatus(true);
       }
     }
     if (rejectingCurrentDoingsActive) {
-      const checkForCommons = isValuesExisting(rejectingCurrentDoings.values);
-      if (checkForCommons) return false;
-      const hasNullValues = rejectingCurrentDoings.values.some(
-        (value) => value.start === null || value.end === null
-      );
-      if (hasNullValues) {
-        return false;
+      const hasExistingValues = isValuesExisting(rejectingCurrentDoings.values);
+
+      setRejectingCurrentDoingsStatus(false);
+      if (hasExistingValues) {
+        setRejectingCurrentDoingsStatus(true);
       }
+    }
+
+    if (
+      !homeArrestActive &&
+      !timeUnderArrestActive &&
+      !rejectingCurrentDoingsActive
+    ) {
+      setHomeArrestStatus(true);
+      setTimeUnderArrestStatus(true);
+      setRejectingCurrentDoingsStatus(true);
     }
 
     if (apilationActive) {
@@ -124,8 +133,14 @@ const FiltrationComponent: FC<IFiltrationComponent> = ({
     return true;
   };
 
-  const buttonDisabled =
-    checkButtonDisabled() && punishmentType.isActive === true;
+  useEffect(() => {
+    checkButtonDisabled();
+  }, [homeArrest, timeUnderArrest, rejectingCurrentDoings]);
+
+  const result =
+    timeUnderArrestStatus && homeArrestStatus && rejectingCurrentDoingsStatus;
+
+  const buttonDisabled = result && punishmentType.isActive === true;
   return (
     <div className="filtration-component-wrapper">
       <PreventiveMeasure />

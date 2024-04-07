@@ -40,6 +40,7 @@ const MainPage = () => {
       <CalculatorSearch
         updateLawsInfo={updateLawsInfo}
         isLoadingLawsInfo={isLoadingLawsInfo}
+        setResult={setResult}
       />
       {isLoadingLawsInfo && (
         <div className="response-waiting" style={{ paddingTop: 100 }}>

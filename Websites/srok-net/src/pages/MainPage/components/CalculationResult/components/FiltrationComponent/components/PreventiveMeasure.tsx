@@ -37,8 +37,8 @@ const PreventiveMeasure = () => {
     homeArrestValues,
     addFiltrationComponentValue,
     removeFiltrationComponentValue,
-    timeUnderArrest,
-    rejectingCurrentDoings,
+    timeUnderArrestValues,
+    rejectingCurrentDoingsValues,
   } = useFiltrationComponent();
 
   const [isDateOverlap, setIsDateOverlap] = useState(false);
@@ -47,8 +47,8 @@ const PreventiveMeasure = () => {
     const checkDateOverlap = () => {
       const allValues = [
         ...homeArrestValues,
-        ...timeUnderArrest,
-        ...rejectingCurrentDoings,
+        ...timeUnderArrestValues,
+        ...rejectingCurrentDoingsValues,
       ];
 
       for (let i = 0; i < allValues.length; i++) {
@@ -56,7 +56,7 @@ const PreventiveMeasure = () => {
         const end1 = allValues[i].end;
 
         if (start1 === null || end1 === null) {
-          break;
+          continue;
         }
 
         for (let j = i + 1; j < allValues.length; j++) {
@@ -64,7 +64,7 @@ const PreventiveMeasure = () => {
           const end2 = allValues[j].end;
 
           if (start2 === null || end2 === null) {
-            break;
+            continue;
           }
 
           if (start1 <= end2 && end1 >= start2) {
@@ -78,7 +78,7 @@ const PreventiveMeasure = () => {
     };
 
     checkDateOverlap();
-  }, [homeArrestValues, timeUnderArrest, rejectingCurrentDoings]);
+  }, [homeArrestValues, timeUnderArrestValues, rejectingCurrentDoingsValues]);
   return (
     <div className="filtration-component-item">
       <H variant="lg" color="blue">
@@ -98,7 +98,7 @@ const PreventiveMeasure = () => {
       <FiltrationComponentItem
         title={TimeUnderArrestTitle}
         active={TimeUnderArrestActive}
-        values={timeUnderArrest}
+        values={timeUnderArrestValues}
         onToggleChange={handlePreventiveMeasureChange}
         onValueChange={setUpdateFiltrationComponentValue}
         onRemoveValue={removeFiltrationComponentValue}
@@ -109,7 +109,7 @@ const PreventiveMeasure = () => {
       <FiltrationComponentItem
         title={RejectingDoingsTitle}
         active={RejectingDoingsActive}
-        values={rejectingCurrentDoings}
+        values={rejectingCurrentDoingsValues}
         onToggleChange={handlePreventiveMeasureChange}
         onValueChange={setUpdateFiltrationComponentValue}
         onRemoveValue={removeFiltrationComponentValue}

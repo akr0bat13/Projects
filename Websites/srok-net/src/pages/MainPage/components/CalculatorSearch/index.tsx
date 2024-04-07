@@ -22,10 +22,12 @@ import { DatePicker, DateRange } from "./components/DatePicker/DatePicker";
 interface ICalculatorSearch {
   updateLawsInfo: any;
   isLoadingLawsInfo: boolean;
+  setResult: any;
 }
 
 const CalculatorSearch: FC<ICalculatorSearch> = (props) => {
-  const { updateLawsInfo, isLoadingLawsInfo } = props;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { updateLawsInfo, isLoadingLawsInfo, setResult } = props;
 
   const { buttonSearchProps, inputsentenceValue, convictionHandler } =
     useCalculator();
@@ -51,7 +53,8 @@ const CalculatorSearch: FC<ICalculatorSearch> = (props) => {
       return isDisabled && article.episodesNumber !== "";
     });
   const searchSubmit = () => {
-    updateLawsInfo(chargeArticle);
+    setResult(true);
+    // updateLawsInfo(chargeArticle);
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

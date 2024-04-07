@@ -66,15 +66,7 @@ export const useFiltrationComponent = () => {
     },
   ]);
 
-  const [timeUnderArrest, setTimeUnderArrest] = useState<IFiltrationDate[]>([
-    {
-      id: 1,
-      start: null,
-      end: null,
-    },
-  ]);
-
-  const [rejectingCurrentDoings, setRejectingCurrentDoings] = useState<
+  const [timeUnderArrestValues, setTimeUnderArrestValues] = useState<
     IFiltrationDate[]
   >([
     {
@@ -83,6 +75,15 @@ export const useFiltrationComponent = () => {
       end: null,
     },
   ]);
+
+  const [rejectingCurrentDoingsValues, setRejectingCurrentDoingsValues] =
+    useState<IFiltrationDate[]>([
+      {
+        id: 1,
+        start: null,
+        end: null,
+      },
+    ]);
 
   const [active, setActive] = useState<boolean>(false);
   const [apilationProps, setApilationProps] = useState<IApilationProps>({
@@ -150,7 +151,7 @@ export const useFiltrationComponent = () => {
         break;
       case "Срок содержания под стражей":
         dispatch(toggleTimeUnderArrest(event.target.checked));
-        setTimeUnderArrest([
+        setTimeUnderArrestValues([
           {
             id: 1,
             start: null,
@@ -160,7 +161,7 @@ export const useFiltrationComponent = () => {
         break;
       case "Запрет определенных действий":
         dispatch(toggleRejectingCurrentDoings(event.target.checked));
-        setRejectingCurrentDoings([
+        setRejectingCurrentDoingsValues([
           {
             id: 1,
             start: null,
@@ -242,13 +243,13 @@ export const useFiltrationComponent = () => {
     };
 
     const newArrest: IFiltrationDate = {
-      id: timeUnderArrest.length + 1,
+      id: timeUnderArrestValues.length + 1,
       start: null,
       end: null,
     };
 
     const newDoing: IFiltrationDate = {
-      id: rejectingCurrentDoings.length + 1,
+      id: rejectingCurrentDoingsValues.length + 1,
       start: null,
       end: null,
     };
@@ -259,11 +260,14 @@ export const useFiltrationComponent = () => {
         dispatch(addHomeArrestValuesAction(newArticle));
         break;
       case "Срок содержания под стражей":
-        setTimeUnderArrest([...timeUnderArrest, newArrest]);
+        setTimeUnderArrestValues([...timeUnderArrestValues, newArrest]);
         dispatch(addTimeUnderArrestAction(newArrest));
         break;
       case "Запрет определенных действий":
-        setRejectingCurrentDoings([...rejectingCurrentDoings, newDoing]);
+        setRejectingCurrentDoingsValues([
+          ...rejectingCurrentDoingsValues,
+          newDoing,
+        ]);
         dispatch(addRejectingCurrentDoingsAction(newDoing));
         break;
       default:
@@ -290,7 +294,7 @@ export const useFiltrationComponent = () => {
         );
         break;
       case "Срок содержания под стражей":
-        setTimeUnderArrest((prevState) =>
+        setTimeUnderArrestValues((prevState) =>
           prevState.map((item) =>
             item.id === id ? { ...item, [field]: date } : item
           )
@@ -300,7 +304,7 @@ export const useFiltrationComponent = () => {
         );
         break;
       case "Запрет определенных действий":
-        setRejectingCurrentDoings((prevState) =>
+        setRejectingCurrentDoingsValues((prevState) =>
           prevState.map((item) =>
             item.id === id ? { ...item, [field]: date } : item
           )
@@ -328,17 +332,17 @@ export const useFiltrationComponent = () => {
         }
         break;
       case "Срок содержания под стражей":
-        if (timeUnderArrest.length !== 1) {
-          setTimeUnderArrest(
-            timeUnderArrest.filter((value) => value.id !== id)
+        if (timeUnderArrestValues.length !== 1) {
+          setTimeUnderArrestValues(
+            timeUnderArrestValues.filter((value) => value.id !== id)
           );
           dispatch(removeTimeUnderArrestAction(id));
         }
         break;
       case "Запрет определенных действий":
-        if (rejectingCurrentDoings.length !== 1) {
-          setRejectingCurrentDoings(
-            rejectingCurrentDoings.filter((value) => value.id !== id)
+        if (rejectingCurrentDoingsValues.length !== 1) {
+          setRejectingCurrentDoingsValues(
+            rejectingCurrentDoingsValues.filter((value) => value.id !== id)
           );
           dispatch(removeRejectingCurrentDoingsAction(id));
         }
@@ -365,8 +369,8 @@ export const useFiltrationComponent = () => {
     homeArrestValues,
     addFiltrationComponentValue,
     removeFiltrationComponentValue,
-    timeUnderArrest,
-    rejectingCurrentDoings,
+    timeUnderArrestValues,
+    rejectingCurrentDoingsValues,
     handleApilationChange,
     punishmentType,
   };
