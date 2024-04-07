@@ -1,3 +1,5 @@
+import { ICalculatorState } from "./CalculatorSearch.types";
+
 export interface IFiltrationDate {
   id: number;
   start: Date | null;
@@ -39,4 +41,9 @@ export interface ICalculatorFiltrationState {
   rejectingCurrentDoings: IFiltrationSelectProps;
   apilation: IApilationProps;
   punishmentType: IFiltrationCheckBoxProps;
+}
+
+export interface ICalculatorInfo {
+  calculatorSearchValues: ICalculatorState;
+  calculatorFiltrationValues: ICalculatorFiltrationState;
 }

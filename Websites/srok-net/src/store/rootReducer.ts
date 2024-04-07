@@ -1,6 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
 import { lawsInfoPageApi } from "./api/lawsInfoPageApi.api";
+import { onFreedomApi } from "./api/onFreedomApi.api.";
 import { reducer as calculatorFiltrationReducers } from "./slices/CalculatorFiltration";
 import { reducer as calculatorResultReducer } from "./slices/CalculatorResult";
 import { reducer as calculatorSearchReducers } from "./slices/CalculatorSearch";
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   helperSlices: helperSlicesReducer,
   calculatorResult: calculatorResultReducer,
   [lawsInfoPageApi.reducerPath]: lawsInfoPageApi.reducer,
+  [onFreedomApi.reducerPath]: onFreedomApi.reducer,
 });
 
 export default rootReducer;

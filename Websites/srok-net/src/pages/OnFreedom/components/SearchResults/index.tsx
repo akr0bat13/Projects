@@ -103,7 +103,7 @@ const SearchResults: FC<ISearchResult> = (component) => {
         </div>
       </div>
       <Modal {...showModalSettings}>
-        <ContactForm {...inputFormsValue} />
+        <ContactForm setShowModal={setShowModal} {...inputFormsValue} />
       </Modal>
     </>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, useEffect } from "react";
 
 import { Button } from "src/components/UI/Button/Button";
 import { Checkbox } from "src/components/UI/Checkbox/Checkbox";
@@ -9,14 +9,20 @@ import { TextInput } from "src/components/UI/TextInput/TextInput";
 import LogoIcon from "src/components/icons/LogoIcon";
 import { useOnFreedom } from "src/pages/OnFreedom/hooks/useOnFreedom";
 import { useSelector } from "src/store";
+import { useContactFormInfoMutation } from "src/store/api/onFreedomApi.api.";
 import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
 import { validateEmail } from "src/utils/helpers/common";
-import { IForms } from "src/utils/types/OnFreedom.types";
+import { IInputFormsValue } from "src/utils/types/OnFreedom.types";
 import "./ContactForm.scss";
 
-const ContactForm = (props: IForms) => {
+interface IContactForm {
+  setShowModal: any;
+  title: string;
+  inputsContent: IInputFormsValue[];
+}
+
+const ContactForm: FC<IContactForm> = (props) => {
   const {
-    setShowModal,
     modalAcceptTerms,
     inputModalDefaultPrice,
     agree_with_price,
@@ -31,13 +37,33 @@ const ContactForm = (props: IForms) => {
     textContent,
     acceptTermsValue,
   } = useOnFreedom();
-  const { title, inputsContent } = props;
+  const { title, inputsContent, setShowModal } = props;
   const { modalInputs } = useSelector(onFreedomModal);
+  const modalInfo = useSelector(onFreedomModal);
 
   const contactInfo = modalInputs.contactInfo;
 
+  const [
+    contactFormInfo,
+    {
+      isSuccess: contactFormInfoSuccess,
+      isLoading: isLoadingForm,
+      isError: contactFormInfoError,
+    },
+  ] = useContactFormInfoMutation();
+
+  useEffect(() => {
+    if (contactFormInfoSuccess) {
+      console.log("Удачно");
+      setShowModal(false);
+    } else {
+      console.log("Ошибка");
+      setShowModal(false);
+    }
+  }, [contactFormInfoSuccess, contactFormInfoError]);
+
   const handleSubmit = () => {
-    setShowModal(false);
+    contactFormInfo(modalInfo);
   };
 
   const validateEmailError = (value: string) => {
@@ -157,7 +183,7 @@ const ContactForm = (props: IForms) => {
           label="Получить отчет"
           color="primary"
           onClick={handleSubmit}
-          disabled={!isButtonDisabled}
+          disabled={!isButtonDisabled || isLoadingForm}
         />
       </div>
     </div>

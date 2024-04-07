@@ -6,10 +6,14 @@ import {
 } from "react-redux";
 
 import { lawsInfoPageApi } from "./api/lawsInfoPageApi.api";
+import { onFreedomApi } from "./api/onFreedomApi.api.";
 import rootReducer from "./rootReducer";
 
 export type RootReducerState = ReturnType<typeof rootReducer>;
-export const middlewares = [lawsInfoPageApi.middleware];
+export const middlewares = [
+  lawsInfoPageApi.middleware,
+  onFreedomApi.middleware,
+];
 
 export const setupStore = (
   preloadedState?: PreloadedState<RootReducerState>

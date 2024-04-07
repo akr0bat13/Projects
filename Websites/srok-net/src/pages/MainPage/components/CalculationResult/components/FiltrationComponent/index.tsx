@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from "react";
 import { Button } from "src/components/UI/Button/Button";
 import { useSelector } from "src/store";
 import { calculatorFiltrationValues } from "src/store/slices/CalculatorFiltration/calculatorFiltration.selectors";
+import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
 import { IFiltrationDate } from "src/utils/types/CalculatorFiltration.types";
 
 import Apilation from "./components/Apilation";
@@ -25,6 +26,9 @@ const FiltrationComponent: FC<IFiltrationComponent> = ({
     homeArrest,
     apilation,
   } = useSelector(calculatorFiltrationValues);
+  const searchValues = useSelector(calculatorSearchValues);
+  const filtrationValues = useSelector(calculatorFiltrationValues);
+
   const [homeArrestStatus, setHomeArrestStatus] = useState(false);
   const [timeUnderArrestStatus, setTimeUnderArrestStatus] = useState(false);
   const [rejectingCurrentDoingsStatus, setRejectingCurrentDoingsStatus] =
@@ -80,11 +84,13 @@ const FiltrationComponent: FC<IFiltrationComponent> = ({
     if (
       !homeArrestActive &&
       !timeUnderArrestActive &&
-      !rejectingCurrentDoingsActive
+      !rejectingCurrentDoingsActive &&
+      !apilationActive
     ) {
       setHomeArrestStatus(true);
       setTimeUnderArrestStatus(true);
       setRejectingCurrentDoingsStatus(true);
+      setApilationStatus(true);
     }
 
     if (apilationActive) {
@@ -104,8 +110,13 @@ const FiltrationComponent: FC<IFiltrationComponent> = ({
     checkButtonDisabled();
   }, [homeArrest, timeUnderArrest, rejectingCurrentDoings, apilation]);
 
+  const sendReuslt = {
+    calculatorSearchValues: searchValues,
+    calculatorFiltrationValues: filtrationValues,
+  };
+
   const submitButton = () => {
-    // updateCalculatorInfo()
+    updateCalculatorInfo(sendReuslt);
   };
 
   const result =
