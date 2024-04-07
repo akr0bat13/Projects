@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { FC, useEffect, useState } from "react";
 
 import { Button } from "src/components/UI/Button/Button";
@@ -26,6 +25,11 @@ const FiltrationComponent: FC<IFiltrationComponent> = ({
     homeArrest,
     apilation,
   } = useSelector(calculatorFiltrationValues);
+  const [homeArrestStatus, setHomeArrestStatus] = useState(false);
+  const [timeUnderArrestStatus, setTimeUnderArrestStatus] = useState(false);
+  const [rejectingCurrentDoingsStatus, setRejectingCurrentDoingsStatus] =
+    useState(false);
+  const [apilationStatus, setApilationStatus] = useState(false);
 
   const emptyField: unknown = ""; //todo переделать
 
@@ -42,43 +46,7 @@ const FiltrationComponent: FC<IFiltrationComponent> = ({
     return false;
   };
 
-  const submitButton = () => {
-    // updateCalculatorInfo()
-  };
-  const [homeArrestStatus, setHomeArrestStatus] = useState(false);
-  const [timeUnderArrestStatus, setTimeUnderArrestStatus] = useState(false);
-  const [rejectingCurrentDoingsStatus, setRejectingCurrentDoingsStatus] =
-    useState(false);
-
   const checkButtonDisabled = () => {
-    // const measures = [homeArrest, timeUnderArrest, rejectingCurrentDoings];
-    // // eslint-disable-next-line no-debugger
-    // debugger;
-    // for (const measure of measures) {
-    //   if (measure.isActive) {
-    //     const hasCommonValues = isValuesExisting(measure.values);
-    //     const hasNullValues = measure.values.some(
-    //       (value) => value.start === null || value.end === null
-    //     );
-    //     if (hasCommonValues || hasNullValues) {
-    //       return false;
-    //     }
-    //   }
-    // }
-
-    // if (apilation.isActive) {
-    //   const { years, month, apilationDate, detention } = apilation;
-    //   if (
-    //     years === "" ||
-    //     month === "" ||
-    //     apilationDate === null ||
-    //     detention === null
-    //   ) {
-    //     return false;
-    //   }
-    // }
-
-    // return true;
     const homeArrestActive = homeArrest.isActive;
     const timeUnderArrestActive = timeUnderArrest.isActive;
     const rejectingCurrentDoingsActive = rejectingCurrentDoings.isActive;
@@ -120,27 +88,34 @@ const FiltrationComponent: FC<IFiltrationComponent> = ({
     }
 
     if (apilationActive) {
+      setApilationStatus(true);
       if (
         apilation.years === "" ||
         apilation.month === "" ||
         apilation.apilationDate === null ||
         apilation.detention === null
       ) {
-        return false;
+        setApilationStatus(false);
       }
     }
-
-    return true;
   };
 
   useEffect(() => {
     checkButtonDisabled();
-  }, [homeArrest, timeUnderArrest, rejectingCurrentDoings]);
+  }, [homeArrest, timeUnderArrest, rejectingCurrentDoings, apilation]);
+
+  const submitButton = () => {
+    // updateCalculatorInfo()
+  };
 
   const result =
-    timeUnderArrestStatus && homeArrestStatus && rejectingCurrentDoingsStatus;
+    timeUnderArrestStatus &&
+    homeArrestStatus &&
+    rejectingCurrentDoingsStatus &&
+    apilationStatus;
 
   const buttonDisabled = result && punishmentType.isActive === true;
+
   return (
     <div className="filtration-component-wrapper">
       <PreventiveMeasure />

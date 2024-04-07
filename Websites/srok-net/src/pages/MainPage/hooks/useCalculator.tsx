@@ -13,6 +13,8 @@ import {
 import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
 import { IChargeArticleProps } from "src/utils/types/CalculatorSearch.types";
 
+import { mockSectionActs } from "../utils/mockSectionActs";
+
 export const useCalculator = () => {
   const dispatch = useDispatch();
 
@@ -91,15 +93,34 @@ export const useCalculator = () => {
   ) => {
     const newState = event.target.value;
 
-    dispatch(
-      updateChargeArticleAction({ id, newState: { [field]: newState } })
-    );
+    if (
+      field === "state" &&
+      newState in mockSectionActs &&
+      mockSectionActs[newState].length === 0
+    ) {
+      dispatch(
+        updateChargeArticleAction({
+          id,
+          newState: { [field]: newState, part: "" },
+        })
+      );
 
-    setChargeArticleValue((prevState) =>
-      prevState.map((item) =>
-        item.id === id ? { ...item, [field]: newState } : item
-      )
-    );
+      setChargeArticleValue((prevState) =>
+        prevState.map((item) =>
+          item.id === id ? { ...item, [field]: newState, part: "" } : item
+        )
+      );
+    } else {
+      dispatch(
+        updateChargeArticleAction({ id, newState: { [field]: newState } })
+      );
+
+      setChargeArticleValue((prevState) =>
+        prevState.map((item) =>
+          item.id === id ? { ...item, [field]: newState } : item
+        )
+      );
+    }
   };
 
   const setChargeArticleOption = (
@@ -109,15 +130,34 @@ export const useCalculator = () => {
   ) => {
     const newState = option;
 
-    dispatch(
-      updateChargeArticleAction({ id, newState: { [field]: newState } })
-    );
+    if (
+      field === "state" &&
+      newState in mockSectionActs &&
+      mockSectionActs[newState].length === 0
+    ) {
+      dispatch(
+        updateChargeArticleAction({
+          id,
+          newState: { [field]: newState, part: "" },
+        })
+      );
 
-    setChargeArticleValue((prevState) =>
-      prevState.map((item) =>
-        item.id === id ? { ...item, [field]: newState } : item
-      )
-    );
+      setChargeArticleValue((prevState) =>
+        prevState.map((item) =>
+          item.id === id ? { ...item, [field]: newState, part: "" } : item
+        )
+      );
+    } else {
+      dispatch(
+        updateChargeArticleAction({ id, newState: { [field]: newState } })
+      );
+
+      setChargeArticleValue((prevState) =>
+        prevState.map((item) =>
+          item.id === id ? { ...item, [field]: newState } : item
+        )
+      );
+    }
   };
 
   const convictionHandler = (event: ChangeEvent<HTMLInputElement>) => {
