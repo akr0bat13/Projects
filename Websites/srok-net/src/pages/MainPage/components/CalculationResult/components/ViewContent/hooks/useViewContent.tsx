@@ -22,7 +22,7 @@ export const useViewContent = () => {
       },
     },
     {
-      title: "Дата с которой можно подавать на принудительные трудовые работы",
+      title: "Принудительные трудовые работы",
       date: calculatorInfo.ptr.date,
       fromApilation: {
         subtitle: `Количество дней c даты ${wordVarant} до даты с которой можно подавать на ПТР`,
@@ -30,7 +30,7 @@ export const useViewContent = () => {
       },
     },
     {
-      title: "Дата с которой можно подавать на условно досрочное освобождение",
+      title: "Условно досрочное освобождение",
       date: calculatorInfo.udo.date,
       fromApilation: {
         subtitle: `Количество дней c даты ${wordVarant} до даты с которой можно подавать на УДО`,
@@ -38,7 +38,7 @@ export const useViewContent = () => {
       },
     },
     {
-      title: "Дата с которой можно подавать на колонию поселения",
+      title: "Колония поселения",
       date: calculatorInfo.colony.date,
       fromApilation: {
         subtitle: `Количество дней c даты ${wordVarant} до даты с которой можно подавать на колонию поселения`,
@@ -46,7 +46,7 @@ export const useViewContent = () => {
       },
     },
     {
-      title: "Дата с которой можно подавать на исправительные трудовые работы",
+      title: "Исправительные трудовые работы",
       date: calculatorInfo.itr.date,
       fromApilation: {
         subtitle: `Количество дней c даты ${wordVarant} до даты с которой можно подавать на ИТР`,

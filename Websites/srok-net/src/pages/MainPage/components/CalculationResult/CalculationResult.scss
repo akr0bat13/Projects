@@ -83,6 +83,8 @@
 
     span {
       color: $black-primary;
+      display: flex;
+      align-items: end;
     }
   }
 }
