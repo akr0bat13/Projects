@@ -1,7 +1,7 @@
 export interface ResultComponent {
   title: string;
   days?: number;
-  date?: string | number;
+  date?: string;
   fromApilation?: {
     data: number | undefined;
     subtitle: string;

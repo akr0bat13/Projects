@@ -11,7 +11,10 @@ export const useViewContent = () => {
   const resultData: ResultComponent[] = [
     {
       title: "Количество дней, зачтенных в срок отбывания наказания",
-      date: calculatorInfo.max_term,
+      fromApilation: {
+        subtitle: "Дней",
+        data: calculatorInfo.release.credit,
+      },
     },
     {
       title: "Дата освобождения",
