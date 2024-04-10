@@ -25,7 +25,7 @@ const CalculationResult = () => {
   useEffect(() => {
     if (updatCalculatorSuccess) {
       if (updatCalculatorData) {
-        dispatch(toggleCalculatorInfo(updatCalculatorData));
+        dispatch(toggleCalculatorInfo(updatCalculatorData?.data));
       }
       dispatch(showCalculatorResult(true));
     } else {

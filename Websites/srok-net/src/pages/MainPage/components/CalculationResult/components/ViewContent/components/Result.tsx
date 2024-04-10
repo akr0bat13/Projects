@@ -2,14 +2,14 @@ import React from "react";
 
 import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
-import { useSelector } from "src/store";
-import { calculatorFiltrationApilation } from "src/store/slices/CalculatorFiltration/calculatorFiltration.selectors";
 
 import { useViewContent } from "../hooks/useViewContent";
 
 const Result = () => {
-  const { mockResultData } = useViewContent();
-  const isApilation = useSelector(calculatorFiltrationApilation);
+  const { resultData } = useViewContent();
+  const filteredResultData = resultData.filter(
+    (item) => item.date !== null && item.fromApilation !== null
+  );
 
   return (
     <div className="result-content-wrapper">
@@ -17,7 +17,7 @@ const Result = () => {
         Результат
       </H>
       <div className="result-info">
-        {mockResultData.map((item) => {
+        {filteredResultData.map((item) => {
           const { title, date, fromApilation } = item;
           return (
             <div key={title} className="result-info-item">
@@ -30,8 +30,11 @@ const Result = () => {
               </div>
 
               <div className="result-info-item-text">
-                Срок с даты {isApilation.isActive ? "аппеляции" : "приговора"}:
-                <span>{fromApilation}</span>
+                {fromApilation && (
+                  <>
+                    {fromApilation?.subtitle}:<span>{fromApilation?.data}</span>
+                  </>
+                )}
               </div>
             </div>
           );
