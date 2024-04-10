@@ -10,6 +10,7 @@ import LogoIcon from "src/components/icons/LogoIcon";
 import { useOnFreedom } from "src/pages/OnFreedom/hooks/useOnFreedom";
 import { useSelector } from "src/store";
 import { useContactFormInfoMutation } from "src/store/api/onFreedomApi.api.";
+import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
 import { validateEmail } from "src/utils/helpers/common";
 import { IInputFormsValue } from "src/utils/types/OnFreedom.types";
@@ -40,6 +41,7 @@ const ContactForm: FC<IContactForm> = (props) => {
   const { title, inputsContent, setShowModal } = props;
   const { modalInputs } = useSelector(onFreedomModal);
   const modalInfo = useSelector(onFreedomModal);
+  const laws = useSelector(onFreedomInput);
 
   const contactInfo = modalInputs.contactInfo;
 
@@ -63,7 +65,7 @@ const ContactForm: FC<IContactForm> = (props) => {
   }, [contactFormInfoSuccess, contactFormInfoError]);
 
   const handleSubmit = () => {
-    contactFormInfo(modalInfo);
+    contactFormInfo({ modalInfo, laws });
   };
 
   const validateEmailError = (value: string) => {
