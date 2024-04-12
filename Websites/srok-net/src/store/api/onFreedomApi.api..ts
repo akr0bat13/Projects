@@ -15,7 +15,15 @@ export const onFreedomApi = createApi({
         body,
       }),
     }),
+    contactFormSendMail: build.mutation<unknown, unknown>({
+      query: (body) => ({
+        url: "function/func_srok.php?api=sendmail",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useContactFormInfoMutation } = onFreedomApi;
+export const { useContactFormInfoMutation, useContactFormSendMailMutation } =
+  onFreedomApi;

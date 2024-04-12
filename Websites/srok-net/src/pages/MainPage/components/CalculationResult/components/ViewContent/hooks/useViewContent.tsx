@@ -13,7 +13,7 @@ export const useViewContent = () => {
       title: "Количество дней, зачтенных в срок отбывания наказания",
       fromApilation: {
         subtitle: "Дней",
-        data: calculatorInfo.release.credit,
+        data: calculatorInfo.credit_period,
       },
     },
     {

@@ -25,8 +25,12 @@ const Result = () => {
                 {title}
               </P>
               <div className="result-info-item-text">
-                Дата:
-                <span>{date}</span>
+                {date && (
+                  <>
+                    Дата:
+                    <span>{date}</span>
+                  </>
+                )}
               </div>
 
               <div className="result-info-item-text">

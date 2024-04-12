@@ -9,7 +9,10 @@ import { TextInput } from "src/components/UI/TextInput/TextInput";
 import LogoIcon from "src/components/icons/LogoIcon";
 import { useOnFreedom } from "src/pages/OnFreedom/hooks/useOnFreedom";
 import { useSelector } from "src/store";
-import { useContactFormInfoMutation } from "src/store/api/onFreedomApi.api.";
+import {
+  useContactFormInfoMutation,
+  useContactFormSendMailMutation,
+} from "src/store/api/onFreedomApi.api.";
 import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
 import { validateEmail } from "src/utils/helpers/common";
@@ -54,8 +57,13 @@ const ContactForm: FC<IContactForm> = (props) => {
     },
   ] = useContactFormInfoMutation();
 
+  const [contactFormSendMail] = useContactFormSendMailMutation();
+
   useEffect(() => {
     if (contactFormInfoSuccess) {
+      contactFormSendMail({
+        email: modalInputs.contactInfo,
+      });
       console.log("Удачно");
       setShowModal(false);
     } else {
