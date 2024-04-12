@@ -5,6 +5,7 @@ import { ButtonProps } from "src/components/UI/Button/Button";
 import { RadioOptions } from "src/components/UI/Radio";
 import { TOption } from "src/components/UI/Select/Select";
 import { IModal } from "src/components/smart/Modal";
+import { mockSectionActs } from "src/pages/MainPage/utils/mockSectionActs";
 import { useDispatch, useSelector } from "src/store";
 import {
   updateOnFreedomInputPart,
@@ -65,6 +66,9 @@ export const useOnFreedom = () => {
 
   const inputSearchHandlerState = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateOnFreedomInputState(event.target.value));
+    if (mockSectionActs[event.target.value]?.length === 0) {
+      dispatch(updateOnFreedomInputPart(""));
+    }
   };
 
   const inputSearchHandlerStateOption = (event: string) => {
