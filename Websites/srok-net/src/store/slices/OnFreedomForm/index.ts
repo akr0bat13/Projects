@@ -26,13 +26,18 @@ const initialState: OnFreedomModalState = {
   modalInputs: inputModalValue,
   valuablePrice,
   extraSupport,
-  acceptTerms: false,
 };
 
 const slice = createSlice({
   name: "onFreedomModal",
   initialState,
   reducers: {
+    updateOnFreedomModal: (
+      state,
+      action: PayloadAction<OnFreedomModalState>
+    ) => {
+      return { ...state, ...action.payload };
+    },
     updateOnFreedomModalContactInfo: (state, action: PayloadAction<string>) => {
       state.modalInputs.contactInfo = action.payload;
     },
@@ -63,16 +68,11 @@ const slice = createSlice({
     updateOnFreedomModalTextField: (state, action: PayloadAction<string>) => {
       state.extraSupport.textField = action.payload;
     },
-    updateOnFreedomModalAcceptTerms: (
-      state,
-      action: PayloadAction<boolean>
-    ) => {
-      state.acceptTerms = action.payload;
-    },
   },
 });
 
 export const {
+  updateOnFreedomModal,
   updateOnFreedomModalContactInfo,
   updateOnFreedomModalUseInform,
   updateOnFreedomModalPeriodic,
@@ -80,7 +80,6 @@ export const {
   updateOnFreedomModalWillingToPay,
   updateOnFreedomModalSupportVariants,
   updateOnFreedomModalTextField,
-  updateOnFreedomModalAcceptTerms,
 } = slice.actions;
 
 export const { reducer } = slice;

@@ -14,13 +14,13 @@ function transform(obj: { [id: string]: RadioOption }): Option[] {
   }, []);
 }
 
-const INPUT_WITH = 7;
+const INPUT_WIDTH = 7;
 
 const Radio: FC<RadioProps> = (props) => (
   <div className="radio-group" style={props.sx}>
     {transform(props.options).map((option) => (
       <div key={option.id} className="radio-option">
-        <IconWrapper size={INPUT_WITH}>
+        <IconWrapper size={INPUT_WIDTH}>
           <input
             className="radio-option-input"
             type="radio"
@@ -28,11 +28,10 @@ const Radio: FC<RadioProps> = (props) => (
             value={option.value}
             checked={props.selected === option.value}
             onChange={props.onChange}
-            name={option.id}
             disabled={option.disabled}
           />
         </IconWrapper>
-        <label className="radio-option-label" htmlFor={option.id}>
+        <label className="radio-option-label">
           {option.label ?? option.value}
         </label>
       </div>

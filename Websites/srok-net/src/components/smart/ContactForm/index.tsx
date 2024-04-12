@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import { Button } from "src/components/UI/Button/Button";
 import { Checkbox } from "src/components/UI/Checkbox/Checkbox";
@@ -27,7 +27,6 @@ interface IContactForm {
 
 const ContactForm: FC<IContactForm> = (props) => {
   const {
-    modalAcceptTerms,
     inputModalDefaultPrice,
     agree_with_price,
     defaultPriceValue,
@@ -39,14 +38,18 @@ const ContactForm: FC<IContactForm> = (props) => {
     inputModalExtraSupport,
     inputModalTextField,
     textContent,
-    acceptTermsValue,
   } = useOnFreedom();
   const { title, inputsContent, setShowModal } = props;
   const { modalInputs } = useSelector(onFreedomModal);
   const modalInfo = useSelector(onFreedomModal);
   const laws = useSelector(onFreedomInput);
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
   const contactInfo = modalInputs.contactInfo;
+
+  useEffect(() => {
+    setAcceptTerms(false);
+  }, [modalInfo]);
 
   const [
     contactFormInfo,
@@ -76,12 +79,16 @@ const ContactForm: FC<IContactForm> = (props) => {
     contactFormInfo({ modalInfo, laws });
   };
 
+  const modalAcceptTerms = () => {
+    setAcceptTerms(!acceptTerms);
+  };
+
   const validateEmailError = (value: string) => {
     return validateEmail(value);
   };
 
   const isButtonDisabled =
-    acceptTermsValue &&
+    acceptTerms &&
     modalInputs.contactInfo &&
     modalInputs.periodic &&
     modalInputs.useInform &&
@@ -93,6 +100,11 @@ const ContactForm: FC<IContactForm> = (props) => {
       <div className="contact-form-wrapper-title">
         <H variant="lg">{title}</H>
       </div>
+      {/* <NewRadio
+        options={agree_with_price}
+        onChange={inputModalDefaultPrice}
+        selected={defaultPriceValue}
+      /> */}
       <div className="contact-form-content">
         {inputsContent.map((input, index) => {
           const { onChange, placeholder, value } = input;
@@ -177,7 +189,7 @@ const ContactForm: FC<IContactForm> = (props) => {
         </InputContainer>
       </div>
       <div className="checkbox-modal-container">
-        <Checkbox checked={acceptTermsValue} onChange={modalAcceptTerms} />
+        <Checkbox checked={acceptTerms} onChange={modalAcceptTerms} />
         <a
           className="checkbox-text"
           href="/PersonalData.pdf"

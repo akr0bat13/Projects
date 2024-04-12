@@ -13,9 +13,27 @@ import Modal from "src/components/smart/Modal";
 import { useDispatch, useSelector } from "src/store";
 import { updateSelectedCity } from "src/store/slices/OnFreedom";
 import { selectedCity } from "src/store/slices/OnFreedom/onFreedom.selectors";
+import { updateOnFreedomModal } from "src/store/slices/OnFreedomForm";
 import { ISearchResult } from "src/utils/types/OnFreedom.types";
+import { OnFreedomModalState } from "src/utils/types/OnFreedomModal.types";
 
 import { useOnFreedom } from "../../hooks/useOnFreedom";
+
+const modalInitialState: OnFreedomModalState = {
+  modalInputs: {
+    contactInfo: "",
+    useInform: "",
+    periodic: "",
+  },
+  valuablePrice: {
+    defaultPrice: 1,
+    willingToPay: 1,
+  },
+  extraSupport: {
+    supportVariants: 1,
+    textField: "",
+  },
+};
 
 const SearchResults: FC<ISearchResult> = (component) => {
   const { title, components, disabled } = component;
@@ -50,6 +68,7 @@ const SearchResults: FC<ISearchResult> = (component) => {
 
   const handleClick = () => {
     if (selectValue.label) {
+      dispatch(updateOnFreedomModal(modalInitialState));
       setShowModal(true);
     }
   };

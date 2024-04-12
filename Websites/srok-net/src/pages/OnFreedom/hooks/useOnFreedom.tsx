@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 import { ButtonProps } from "src/components/UI/Button/Button";
 import { RadioOptions } from "src/components/UI/Radio";
@@ -12,7 +12,6 @@ import {
 } from "src/store/slices/OnFreedom";
 import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import {
-  updateOnFreedomModalAcceptTerms,
   updateOnFreedomModalContactInfo,
   updateOnFreedomModalDefaultPrice,
   updateOnFreedomModalPeriodic,
@@ -32,8 +31,10 @@ export const useOnFreedom = () => {
   const dispatch = useDispatch();
 
   const { part, state } = useSelector(onFreedomInput);
-  const { modalInputs, acceptTerms, extraSupport, valuablePrice } =
+  const { modalInputs, extraSupport, valuablePrice } =
     useSelector(onFreedomModal);
+
+  const modalInfo = useSelector(onFreedomModal);
 
   const [showModal, setShowModal] = useState(false);
   const [defaultPriceValue, setDefaultPriceValue] = useState(
@@ -42,11 +43,17 @@ export const useOnFreedom = () => {
   const [willingToPayValue, setWillingToPayValue] = useState(
     valuablePrice.willingToPay
   );
-  const [acceptTermsValue, setAcceptTermsValue] = useState(acceptTerms);
   const [extraSupportValue, setExtraSupportValue] = useState(
     extraSupport.supportVariants
   );
   const [textContent, setTextContent] = useState(extraSupport.textField);
+
+  useEffect(() => {
+    setDefaultPriceValue(valuablePrice.defaultPrice);
+    setWillingToPayValue(valuablePrice.willingToPay);
+    setExtraSupportValue(extraSupport.supportVariants);
+    setTextContent(extraSupport.textField);
+  }, [modalInfo]);
 
   const inputSearchHandlerPart = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateOnFreedomInputPart(event.target.value));
@@ -74,11 +81,6 @@ export const useOnFreedom = () => {
 
   const inputModalPeriodic = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(updateOnFreedomModalPeriodic(event.target.value));
-  };
-
-  const modalAcceptTerms = (event: ChangeEvent<HTMLInputElement>) => {
-    setAcceptTermsValue(event.target.checked);
-    dispatch(updateOnFreedomModalAcceptTerms(event.target.checked));
   };
 
   const inputModalDefaultPrice = (event: ChangeEvent<HTMLInputElement>) => {
@@ -245,7 +247,6 @@ export const useOnFreedom = () => {
     showModalSettings,
     inputFormsValue,
     setShowModal,
-    modalAcceptTerms,
     defaultPriceValue,
     willingToPayValue,
     textContent,
@@ -257,7 +258,6 @@ export const useOnFreedom = () => {
     your_price,
     need_another_help,
     extraSupportValue,
-    acceptTermsValue,
     inputSearchHandlerPartOption,
     inputSearchHandlerStateOption,
   };

@@ -16,5 +16,4 @@ export interface OnFreedomModalState {
   modalInputs: IOnFreedomModalInputs;
   valuablePrice: IOnFreedomModalValuablePrice;
   extraSupport: IOnFreedomModalExtraSupport;
-  acceptTerms: boolean;
 }
