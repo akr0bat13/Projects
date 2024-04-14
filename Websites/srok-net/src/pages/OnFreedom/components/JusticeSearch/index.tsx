@@ -37,7 +37,9 @@ const JusticeSearch = ({ setResult }: any) => {
   };
 
   const searchSubmit = () => {
-    if (!isButtonDisabled) setResult(true);
+    if (!isButtonDisabled) {
+      setResult(true);
+    }
   };
 
   const { label, color } = buttonSearchProps;

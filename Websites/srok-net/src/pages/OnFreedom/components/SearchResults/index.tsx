@@ -55,7 +55,6 @@ const SearchResults: FC<ISearchResult> = (component) => {
   useEffect(() => {
     if (isCorrectCity) {
       setCityError(true);
-      console.log(selectValue.value);
     } else {
       setCityError(false);
     }

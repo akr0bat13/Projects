@@ -16,6 +16,7 @@ import {
 import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
 import { validateEmail } from "src/utils/helpers/common";
+import { updateNotification } from "src/utils/helpers/updateNotification";
 import { IInputFormsValue } from "src/utils/types/OnFreedom.types";
 import "./ContactForm.scss";
 
@@ -44,7 +45,6 @@ const ContactForm: FC<IContactForm> = (props) => {
   const modalInfo = useSelector(onFreedomModal);
   const laws = useSelector(onFreedomInput);
   const [acceptTerms, setAcceptTerms] = useState(false);
-
   const contactInfo = modalInputs.contactInfo;
 
   useEffect(() => {
@@ -62,15 +62,19 @@ const ContactForm: FC<IContactForm> = (props) => {
 
   const [contactFormSendMail] = useContactFormSendMailMutation();
 
+  console.log("contactFormInfoError", contactFormInfoError);
+  console.log("contactFormInfoSuccess", contactFormInfoSuccess);
+
   useEffect(() => {
     if (contactFormInfoSuccess) {
       contactFormSendMail({
         email: modalInputs.contactInfo,
       });
-      console.log("Удачно");
+      updateNotification("success", "Письмо успешно отправлено");
       setShowModal(false);
-    } else {
-      console.log("Ошибка");
+    }
+    if (contactFormInfoError) {
+      updateNotification("error", "Ошибка при отправке письма");
       setShowModal(false);
     }
   }, [contactFormInfoSuccess, contactFormInfoError]);
@@ -100,11 +104,6 @@ const ContactForm: FC<IContactForm> = (props) => {
       <div className="contact-form-wrapper-title">
         <H variant="lg">{title}</H>
       </div>
-      {/* <NewRadio
-        options={agree_with_price}
-        onChange={inputModalDefaultPrice}
-        selected={defaultPriceValue}
-      /> */}
       <div className="contact-form-content">
         {inputsContent.map((input, index) => {
           const { onChange, placeholder, value } = input;
