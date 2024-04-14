@@ -2,12 +2,12 @@ import React, { FC, lazy, Suspense } from "react";
 import { RouteObject } from "react-router";
 
 import LoadingScreen from "./components/smart/LoadingScreen";
-import AboutUs from "./pages/AboutUs";
+// import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
-import Information from "./pages/Information";
+// import Information from "./pages/Information";
 import MainPage from "./pages/MainPage";
 import OnFreedom from "./pages/OnFreedom";
-import Profile from "./pages/Profile";
+// import Profile from "./pages/Profile";
 
 const Loadable =
   (Component: React.LazyExoticComponent<FC>) =>
@@ -32,14 +32,14 @@ export const routes: RouteObject[] = [
         path: "/",
         element: <MainPage />,
       },
-      {
-        path: "information",
-        element: <Information />,
-      },
-      {
-        path: "about-us",
-        element: <AboutUs />,
-      },
+      // {
+      //   path: "information",
+      //   element: <Information />,
+      // },
+      // {
+      //   path: "about-us",
+      //   element: <AboutUs />,
+      // },
       {
         path: "contact-us",
         element: <ContactUs />,
@@ -48,10 +48,10 @@ export const routes: RouteObject[] = [
         path: "freedom",
         element: <OnFreedom />,
       },
-      {
-        path: "profile",
-        element: <Profile />,
-      },
+      // {
+      //   path: "profile",
+      //   element: <Profile />,
+      // },
       {
         path: "*",
         element: <Error />,

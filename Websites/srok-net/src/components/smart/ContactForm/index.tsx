@@ -47,10 +47,6 @@ const ContactForm: FC<IContactForm> = (props) => {
   const [acceptTerms, setAcceptTerms] = useState(false);
   const contactInfo = modalInputs.contactInfo;
 
-  useEffect(() => {
-    setAcceptTerms(false);
-  }, [modalInfo]);
-
   const [
     contactFormInfo,
     {
@@ -61,9 +57,6 @@ const ContactForm: FC<IContactForm> = (props) => {
   ] = useContactFormInfoMutation();
 
   const [contactFormSendMail] = useContactFormSendMailMutation();
-
-  console.log("contactFormInfoError", contactFormInfoError);
-  console.log("contactFormInfoSuccess", contactFormInfoSuccess);
 
   useEffect(() => {
     if (contactFormInfoSuccess) {

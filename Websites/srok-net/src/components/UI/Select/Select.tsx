@@ -18,6 +18,7 @@ export interface ISelectProps<T> {
   width?: string;
   handleChange?(arg: TOption<T>): void;
   ariaLabel?: string;
+  error?: boolean;
 }
 
 const defaultPlaceholder = "-";
@@ -31,6 +32,7 @@ export function Select<T>(props: ISelectProps<T>) {
     disabled,
     ariaLabel,
     width,
+    error,
   } = props;
 
   const [showOptions, setShowOptions] = useState(false);
@@ -40,6 +42,7 @@ export function Select<T>(props: ISelectProps<T>) {
       <div
         className={cn("select-wrapper", {
           "select-wrapper-disabled": disabled,
+          "select-wrapper-error": error,
         })}
         onClick={() => !disabled && setShowOptions(!showOptions)}
       >

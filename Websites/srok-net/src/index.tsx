@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./index.scss";
 
 import App from "./App";
+import Notification from "./components/smart/Notification";
 import store from "./store";
 
 const root = ReactDOM.createRoot(
@@ -14,6 +15,7 @@ root.render(
   <ReduxProvider store={store}>
     <Router>
       <App />
+      <Notification />
     </Router>
   </ReduxProvider>
 );

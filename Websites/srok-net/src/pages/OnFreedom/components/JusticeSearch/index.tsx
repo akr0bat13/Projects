@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./JusticeSearch.scss";
 
 import AutoCompleteSelect from "src/components/UI/AutoCompleteSelect";
@@ -27,6 +27,10 @@ const JusticeSearch = ({ setResult }: any) => {
   const { part, state } = useSelector(onFreedomInput);
 
   const isButtonDisabled = !calculateDisabled(state, part, mockSectionActs);
+
+  useEffect(() => {
+    setResult(false);
+  }, [state, part]);
 
   const checkPartValue = (part: string) => {
     return validateInputNumber(part);

@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "src/store";
 import { updateSelectedCity } from "src/store/slices/OnFreedom";
 import { selectedCity } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import { updateOnFreedomModal } from "src/store/slices/OnFreedomForm";
+import { updateNotification } from "src/utils/helpers/updateNotification";
 import { ISearchResult } from "src/utils/types/OnFreedom.types";
 import { OnFreedomModalState } from "src/utils/types/OnFreedomModal.types";
 
@@ -55,6 +56,7 @@ const SearchResults: FC<ISearchResult> = (component) => {
   useEffect(() => {
     if (isCorrectCity) {
       setCityError(true);
+      updateNotification("error", "Данная функция досупна только в Москве");
     } else {
       setCityError(false);
     }
@@ -90,11 +92,11 @@ const SearchResults: FC<ISearchResult> = (component) => {
                 key={item.label}
                 label={item.label}
                 color={item.disabled ? "disabled" : "blue"}
-                errors={{
-                  isError: index === 0 ? cityError : false,
-                  level: "error",
-                  message: "Доступно только в Москве",
-                }}
+                // errors={{
+                //   isError: index === 0 ? cityError : false,
+                //   level: "error",
+                //   message: "Доступно только в Москве",
+                // }}
               >
                 {item.isSelect ? (
                   <Select
@@ -103,6 +105,7 @@ const SearchResults: FC<ISearchResult> = (component) => {
                     disabled={disabled}
                     value={selectValue}
                     handleChange={handleChangeCity}
+                    error={index === 0 ? cityError : false}
                   />
                 ) : (
                   <TextInput isLock={true} disabled={item.disabled} />
