@@ -1,6 +1,5 @@
 import React from "react";
 
-import Instagram from "src/assets/images/instagram.svg";
 import Telegram from "src/assets/images/telegram.svg";
 import "./Footer.scss";
 
@@ -14,8 +13,9 @@ const Footer = () => {
             info@srok.net
           </a>
           <div className="footer-media">
-            <img src={Instagram} alt="Instagram" />
-            <img src={Telegram} alt="Telegram" />
+            <a className="footer-media-links" href="https://t.me/srok_net">
+              <img src={Telegram} alt="Telegram" />
+            </a>
           </div>
         </div>
       </div>
