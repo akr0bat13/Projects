@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "src/store";
 import { updateSelectedCity } from "src/store/slices/OnFreedom";
 import { selectedCity } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import { updateOnFreedomModal } from "src/store/slices/OnFreedomForm";
+import { cities } from "src/utils/constants/cities";
 import { updateNotification } from "src/utils/helpers/updateNotification";
 import { ISearchResult } from "src/utils/types/OnFreedom.types";
 import { OnFreedomModalState } from "src/utils/types/OnFreedomModal.types";
@@ -49,9 +50,8 @@ const SearchResults: FC<ISearchResult> = (component) => {
   });
   const [cityError, setCityError] = useState<boolean>(false);
 
-  const { options, showModalSettings, inputFormsValue, setShowModal } =
-    useOnFreedom();
-  const isCorrectCity = selectValue.value !== 0;
+  const { showModalSettings, inputFormsValue, setShowModal } = useOnFreedom();
+  const isCorrectCity = selectValue.value !== "Москва";
 
   useEffect(() => {
     if (isCorrectCity) {
@@ -100,7 +100,7 @@ const SearchResults: FC<ISearchResult> = (component) => {
               >
                 {item.isSelect ? (
                   <Select
-                    options={options}
+                    options={cities}
                     placeholder={"Выберите город"}
                     disabled={disabled}
                     value={selectValue}

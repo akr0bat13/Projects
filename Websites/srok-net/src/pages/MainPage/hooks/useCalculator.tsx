@@ -35,8 +35,8 @@ export const useCalculator = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 700) {
-        setWidthYear(157);
-        setWidthMonth(157);
+        setWidthYear(140);
+        setWidthMonth(140);
       } else {
         setWidthYear(110);
         setWidthMonth(160);

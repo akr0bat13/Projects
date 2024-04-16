@@ -6,6 +6,7 @@ import LoadingScreen from "src/components/smart/LoadingScreen";
 import { useDispatch } from "src/store";
 import { useUpdateLawsInfoMutation } from "src/store/api/lawsInfoPageApi.api";
 import { toggleLawsInfo } from "src/store/slices/CalculatorResult";
+import { updateNotification } from "src/utils/helpers/updateNotification";
 
 import CalculationResult from "./components/CalculationResult";
 import CalculatorSearch from "./components/CalculatorSearch";
@@ -30,8 +31,11 @@ const MainPage = () => {
         dispatch(toggleLawsInfo(updateLawsInfoData?.data.laws));
       }
       setResult(true);
-    } else {
+    }
+
+    if (updateLawsInfoError) {
       setResult(false);
+      updateNotification("error", "Произошла ошибка, попробуйте еще раз");
     }
   }, [updateLawsInfoSuccess, updateLawsInfoError]);
 

@@ -35,13 +35,26 @@
 
 @media screen and (max-width: 700px) {
   .search-results {
+    flex-direction: column;
+
     .search-result-image {
       display: none;
     }
 
+  &-content {
+    width: 100%;
+  }
+
     &-button {
+      justify-content: end;
       padding-bottom: 0;
     }
+
+    &-inputs {
+      max-width: 500px;
+      flex-direction: column;
+    }
+  
   }
 
 }

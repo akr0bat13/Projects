@@ -27,23 +27,27 @@ export interface MenuItemProps
     SubMenuProps,
     MenuClickableItem {}
 export const menuNav: SubMenuProps[] = [
+  // {
+  //   link: "/information",
+  //   id: "Информация",
+  // },
+  // { link: "/about-us", id: "О нас" },
   {
-    link: "/information",
-    id: "Информация",
+    link: "/",
+    id: "Калькулятор",
   },
-  { link: "/about-us", id: "О нас" },
   {
     link: "/freedom",
     id: "На свободу",
   },
-  {
-    link: "/contact-us",
-    id: "Напишите нам",
-  },
-  {
-    link: "/profile",
-    id: "Профиль",
-  },
+  // {
+  //   link: "/contact-us",
+  //   id: "Напишите нам",
+  // },
+  // {
+  //   link: "/profile",
+  //   id: "Профиль",
+  // },
 ];
 // export const menus: MenuItemData[] = [
 //   {

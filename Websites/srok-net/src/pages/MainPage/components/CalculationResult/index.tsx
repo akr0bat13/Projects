@@ -4,6 +4,7 @@ import { useDispatch } from "src/store";
 import { useUpdateCalculatorInfoMutation } from "src/store/api/lawsInfoPageApi.api";
 import { toggleCalculatorInfo } from "src/store/slices/CalculatorResult";
 import { showCalculatorResult } from "src/store/slices/helperSlices";
+import { updateNotification } from "src/utils/helpers/updateNotification";
 import "./CalculationResult.scss";
 
 import FiltrationComponent from "./components/FiltrationComponent";
@@ -30,6 +31,7 @@ const CalculationResult = () => {
       dispatch(showCalculatorResult(true));
     } else {
       dispatch(showCalculatorResult(false));
+      updateNotification("error", "Произоша ошибка, попробуйте еще раз");
     }
   }, [updatCalculatorSuccess, updatCalculatorError]);
 

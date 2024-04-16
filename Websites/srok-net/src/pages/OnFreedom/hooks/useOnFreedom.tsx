@@ -3,7 +3,6 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 
 import { ButtonProps } from "src/components/UI/Button/Button";
 import { RadioOptions } from "src/components/UI/Radio";
-import { TOption } from "src/components/UI/Select/Select";
 import { IModal } from "src/components/smart/Modal";
 import { mockSectionActs } from "src/pages/MainPage/utils/mockSectionActs";
 import { useDispatch, useSelector } from "src/store";
@@ -192,13 +191,6 @@ export const useOnFreedom = () => {
     },
   ];
 
-  const options: TOption[] = [
-    { value: 0, label: "Москва" },
-    { value: 1, label: "Питер" },
-    { value: 2, label: "Владимир" },
-    { value: 3, label: "Магадан" },
-  ];
-
   const agree_with_price: RadioOptions = {
     agree_with_price1: {
       value: 1,
@@ -247,7 +239,6 @@ export const useOnFreedom = () => {
     buttonSearchProps,
     inputSearchValue,
     searchResult,
-    options,
     showModalSettings,
     inputFormsValue,
     setShowModal,

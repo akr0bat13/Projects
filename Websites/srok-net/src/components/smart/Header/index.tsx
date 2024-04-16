@@ -38,8 +38,9 @@ const Header = () => {
           <div className="nav-links">
             {/* <NavLink to="/information">Информация</NavLink>
             <NavLink to="/about-us">О нас</NavLink> */}
+            <NavLink to="/">Калькулятор</NavLink>
             <NavLink to="/freedom">На свободу</NavLink>
-            <NavLink to="/contact-us">Напишите нам</NavLink>
+            {/* <NavLink to="/contact-us">Напишите нам</NavLink> */}
             {/* <NavLink to="/profile">Профиль</NavLink> */}
           </div>
           <div className="status-bar-menu" onClick={checkMobileOpen}>

@@ -146,3 +146,21 @@
     min-width: 310px;
   }
 }
+
+@media screen and (max-width: 850px) {
+  .result-wrapper {
+    display: block;
+  }
+
+  .filtration-component-wrapper {
+    width: 100%;
+  }
+
+  .view-content-wrapper {
+    margin-left: 0;
+  }
+
+  .result-info-item {
+    width: 100%;
+  }
+}
