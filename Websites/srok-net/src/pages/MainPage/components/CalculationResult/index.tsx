@@ -29,7 +29,8 @@ const CalculationResult = () => {
         dispatch(toggleCalculatorInfo(updatCalculatorData?.data));
       }
       dispatch(showCalculatorResult(true));
-    } else {
+    }
+    if (updatCalculatorError) {
       dispatch(showCalculatorResult(false));
       updateNotification("error", "Произоша ошибка, попробуйте еще раз");
     }

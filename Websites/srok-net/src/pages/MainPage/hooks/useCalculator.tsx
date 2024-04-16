@@ -178,7 +178,7 @@ export const useCalculator = () => {
       disabled: true,
     },
     {
-      label: "Кол-во эпизодов",
+      label: "Эпизоды",
       color: "disabled",
       styleWrapper: 145,
       disabled: true,

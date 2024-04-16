@@ -128,7 +128,7 @@ const FiltrationComponent: FC<IFiltrationComponent> = ({
   const buttonDisabled = result && punishmentType.isActive === true;
 
   return (
-    <div className="filtration-component-wrapper">
+    <div className="filtration-component-wrapper" style={{ paddingBottom: 30 }}>
       <PreventiveMeasure />
       <Apilation />
       <PunishmentType />

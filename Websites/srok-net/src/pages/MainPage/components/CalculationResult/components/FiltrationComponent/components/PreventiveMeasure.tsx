@@ -1,22 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
-import ReactDatePicker from "react-datepicker";
 
-import { Button } from "src/components/UI/Button/Button";
-import { InputContainer } from "src/components/UI/InputContainer/InputContainer";
-import { SwitchToggle } from "src/components/UI/SwitchToggle/SwitchToggle";
 import { H } from "src/components/UI/Text/H";
-import { P } from "src/components/UI/Text/P";
-import { TextInput } from "src/components/UI/TextInput/TextInput";
-import AddIcon from "src/components/icons/AddIcon";
-import CalendarIcon from "src/components/icons/CalendarIcon";
-import RemoveIcon from "src/components/icons/RemoveIcon";
 import { useSelector } from "src/store";
 import {
   calculatorHomeArrest,
   calculatorRejectingCurrentDoings,
   calculatorTimeUnderArrest,
 } from "src/store/slices/CalculatorFiltration/calculatorFiltration.selectors";
+import { updateNotification } from "src/utils/helpers/updateNotification";
 
 import { useFiltrationComponent } from "../hooks/useFiltrationComponent";
 
@@ -42,6 +33,12 @@ const PreventiveMeasure = () => {
   } = useFiltrationComponent();
 
   const [isDateOverlap, setIsDateOverlap] = useState(false);
+
+  useEffect(() => {
+    if (isDateOverlap === true) {
+      updateNotification("error", "Периоды не должны пересекаться");
+    }
+  }, [isDateOverlap]);
 
   useEffect(() => {
     const checkDateOverlap = () => {

@@ -11,7 +11,6 @@ import AddIcon from "src/components/icons/AddIcon";
 import CalendarIcon from "src/components/icons/CalendarIcon";
 import RemoveIcon from "src/components/icons/RemoveIcon";
 import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
-import { updateNotification } from "src/utils/helpers/updateNotification";
 import { IFiltrationDate } from "src/utils/types/CalculatorFiltration.types";
 
 interface IFiltrationComponentItem {
@@ -54,10 +53,6 @@ const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
     }
   }, [verdictDate]);
 
-  useEffect(() => {
-    updateNotification("error", "Периоды не должны пересекаться");
-  }, [error]);
-
   return (
     <div className="filtration-preventive-measure-item">
       <div className="filtration-preventive-title">
@@ -73,11 +68,11 @@ const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
                 key={id}
                 color="blue"
                 // fieldStyles={{ display: "flex", gap: 5 }}
-                // errors={{
-                //   isError: error,
-                //   level: "error",
-                //   message: "Периоды не должны пересекаться",
-                // }}
+                errors={{
+                  isError: error,
+                  level: "error",
+                  // message: "Периоды не должны пересекаться",
+                }}
               >
                 <div className="select-dates-content">
                   <div className="select-dates-calendar">
