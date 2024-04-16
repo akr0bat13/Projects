@@ -13,12 +13,12 @@ const inputModalValue: IOnFreedomModalInputs = {
   periodic: "",
 };
 const valuablePrice: IOnFreedomModalValuablePrice = {
-  defaultPrice: 1,
-  willingToPay: 1,
+  defaultPrice: 0,
+  willingToPay: 0,
 };
 
 const extraSupport: IOnFreedomModalExtraSupport = {
-  supportVariants: 1,
+  supportVariants: 0,
   textField: "",
 };
 

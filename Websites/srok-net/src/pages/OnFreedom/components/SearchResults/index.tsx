@@ -28,11 +28,11 @@ const modalInitialState: OnFreedomModalState = {
     periodic: "",
   },
   valuablePrice: {
-    defaultPrice: 1,
-    willingToPay: 1,
+    defaultPrice: 0,
+    willingToPay: 0,
   },
   extraSupport: {
-    supportVariants: 1,
+    supportVariants: 0,
     textField: "",
   },
 };

@@ -41,7 +41,8 @@ const ContactForm: FC<IContactForm> = (props) => {
     textContent,
   } = useOnFreedom();
   const { title, inputsContent, setShowModal } = props;
-  const { modalInputs } = useSelector(onFreedomModal);
+  const { modalInputs, extraSupport, valuablePrice } =
+    useSelector(onFreedomModal);
   const modalInfo = useSelector(onFreedomModal);
   const laws = useSelector(onFreedomInput);
   const [acceptTerms, setAcceptTerms] = useState(false);
@@ -89,6 +90,8 @@ const ContactForm: FC<IContactForm> = (props) => {
     modalInputs.contactInfo &&
     modalInputs.periodic &&
     modalInputs.useInform &&
+    valuablePrice.defaultPrice !== 0 &&
+    extraSupport.supportVariants !== 0 &&
     validateEmail(modalInputs.contactInfo);
 
   return (
