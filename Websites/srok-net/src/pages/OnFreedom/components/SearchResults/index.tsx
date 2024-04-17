@@ -56,7 +56,10 @@ const SearchResults: FC<ISearchResult> = (component) => {
   useEffect(() => {
     if (isCorrectCity) {
       setCityError(true);
-      updateNotification("error", "Данная функция досупна только в Москве");
+      updateNotification(
+        "error",
+        "На текущий момент отчеты доступны только по Москве"
+      );
     } else {
       setCityError(false);
     }

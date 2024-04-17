@@ -68,6 +68,12 @@ const slice = createSlice({
   name: "createCalculatorFiltration",
   initialState,
   reducers: {
+    toggleInitialState: (
+      state,
+      action: PayloadAction<ICalculatorFiltrationState>
+    ) => {
+      return { ...action.payload };
+    },
     toggleHomeArrest: (state, action: PayloadAction<boolean>) => {
       state.homeArrest = {
         ...homeArrest,
@@ -277,6 +283,7 @@ const slice = createSlice({
 });
 
 export const {
+  toggleInitialState,
   togglePunishmentType,
   updateApilationDate,
   updateApilationMonth,

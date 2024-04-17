@@ -57,7 +57,10 @@ const FiltrationComponentItem: FC<IFiltrationComponentItem> = ({
     <div className="filtration-preventive-measure-item">
       <div className="filtration-preventive-title">
         <P variant="md">{title}</P>
-        <SwitchToggle onChange={(event) => onToggleChange(event, title)} />
+        <SwitchToggle
+          checked={active}
+          onChange={(event) => onToggleChange(event, title)}
+        />
       </div>
       {active && (
         <div className="select-dates">

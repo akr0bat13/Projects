@@ -11,9 +11,8 @@ import {
   updateConviction,
 } from "src/store/slices/CalculatorSearch";
 import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
+import { mockSectionActs } from "src/utils/constants/mockSectionActs";
 import { IChargeArticleProps } from "src/utils/types/CalculatorSearch.types";
-
-import { mockSectionActs } from "../utils/mockSectionActs";
 
 export const useCalculator = () => {
   const dispatch = useDispatch();

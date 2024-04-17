@@ -8,7 +8,9 @@ const Footer = () => {
     <footer className="footer">
       <div className="container">
         <div className="footer-content">
-          <div className="footer-seo">Все права защищены. srok.net 2023</div>
+          <div className="footer-seo">
+            Все права защищены. srok.net {new Date().getFullYear()}
+          </div>
           <a className="footer-mail" href="mailto:info@srok.net">
             info@srok.net
           </a>

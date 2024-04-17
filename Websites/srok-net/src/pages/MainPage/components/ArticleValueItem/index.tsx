@@ -7,10 +7,10 @@ import { textColor } from "src/components/UI/Text/utils/types/text.types";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import AddIcon from "src/components/icons/AddIcon";
 import RemoveIcon from "src/components/icons/RemoveIcon";
+import { mockSectionActs } from "src/utils/constants/mockSectionActs";
 import { validateDate } from "src/utils/helpers/common";
 
 import { useCalculator } from "../../hooks/useCalculator";
-import { mockSectionActs } from "../../utils/mockSectionActs";
 
 interface IArticleValueItem {
   setIsAnyErrorFields?: any;

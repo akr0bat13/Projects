@@ -6,9 +6,9 @@ import { Button } from "src/components/UI/Button/Button";
 import { InputContainer } from "src/components/UI/InputContainer/InputContainer";
 import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
-import { mockSectionActs } from "src/pages/MainPage/utils/mockSectionActs";
 import { useSelector } from "src/store";
 import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
+import { mockSectionActs } from "src/utils/constants/mockSectionActs";
 import {
   validateInputActState,
   validateInputNumber,

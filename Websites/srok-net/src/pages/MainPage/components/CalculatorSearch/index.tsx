@@ -9,12 +9,12 @@ import { textColor } from "src/components/UI/Text/utils/types/text.types";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import { useSelector } from "src/store";
 import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
+import { mockSectionActs } from "src/utils/constants/mockSectionActs";
 import { validateInputNumber } from "src/utils/helpers/common";
 import { calculateDisabled } from "src/utils/helpers/common/calculateDisabled";
 import "./CalculatorSearch.scss";
 
 import { useCalculator } from "../../hooks/useCalculator";
-import { mockSectionActs } from "../../utils/mockSectionActs";
 import ArticleValueItem from "../ArticleValueItem";
 
 import { DatePicker, DateRange } from "./components/DatePicker/DatePicker";

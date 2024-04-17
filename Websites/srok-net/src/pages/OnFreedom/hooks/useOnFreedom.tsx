@@ -4,7 +4,6 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { ButtonProps } from "src/components/UI/Button/Button";
 import { RadioOptions } from "src/components/UI/Radio";
 import { IModal } from "src/components/smart/Modal";
-import { mockSectionActs } from "src/pages/MainPage/utils/mockSectionActs";
 import { useDispatch, useSelector } from "src/store";
 import {
   updateOnFreedomInputPart,
@@ -21,6 +20,7 @@ import {
   updateOnFreedomModalWillingToPay,
 } from "src/store/slices/OnFreedomForm";
 import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
+import { mockSectionActs } from "src/utils/constants/mockSectionActs";
 import {
   IForms,
   IInputSearchValue,

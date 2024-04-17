@@ -13,7 +13,7 @@ export interface SwitchToggleProps
 }
 
 export const SwitchToggle: FC<SwitchToggleProps> = (props) => {
-  const { title, onChange, isSpin, disabled, ...rest } = props;
+  const { title, onChange, checked, isSpin, disabled, ...rest } = props;
   return (
     <div className="switch-toggle-root">
       {isSpin ? (
@@ -26,6 +26,7 @@ export const SwitchToggle: FC<SwitchToggleProps> = (props) => {
             type="checkbox"
             disabled={disabled}
             onChange={onChange}
+            checked={checked}
             {...rest}
           />
           <span className="slider"></span>

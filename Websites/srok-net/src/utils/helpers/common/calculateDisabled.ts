@@ -1,4 +1,4 @@
-import { MockSectionActs } from "src/pages/MainPage/utils/mockSectionActs";
+import { MockSectionActs } from "src/utils/constants/mockSectionActs";
 
 export const calculateDisabled = (
   state: string,
