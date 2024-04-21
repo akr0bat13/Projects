@@ -75,6 +75,7 @@ export const DatePicker: FC<IDatePickerProps> = ({
         color="blue"
         styleWrapper={styleWrapper}
         hint={true}
+        hintPosition="right"
         hintText="Eсли дата приговора неизвестна, то внесите предполагаемую дату приговора"
       >
         <ReactDatePicker
@@ -95,6 +96,7 @@ export const DatePicker: FC<IDatePickerProps> = ({
         color="blue"
         styleWrapper={styleWrapper}
         hint={true}
+        hintPosition="right"
         hintText="Если подали апелляцию, то внесите дату из приговора, если приговора нет, то внесите предполагаемую дату"
       >
         <ReactDatePicker

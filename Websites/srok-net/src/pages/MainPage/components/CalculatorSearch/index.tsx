@@ -7,6 +7,7 @@ import { H } from "src/components/UI/Text/H";
 import { P } from "src/components/UI/Text/P";
 import { textColor } from "src/components/UI/Text/utils/types/text.types";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
+import { TooltipPosition } from "src/components/UI/Tooltip/utils/types/tooltip.types";
 import { useSelector } from "src/store";
 import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
 import { mockSectionActs } from "src/utils/constants/mockSectionActs";
@@ -99,6 +100,7 @@ const CalculatorSearch: FC<ICalculatorSearch> = (props) => {
                 styleWrapper={{ width: date.width }}
                 hint={true}
                 hintText={date.hintText}
+                hintPosition={date.hintPosition as TooltipPosition}
               >
                 <TextInput
                   value={date.value}

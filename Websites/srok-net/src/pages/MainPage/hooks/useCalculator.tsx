@@ -196,6 +196,7 @@ export const useCalculator = () => {
       width: widthYear,
       hintText:
         "Введи срок по решению суда. Если суда не было и срок неизвестен, то введите предполагаемый срок. Если срок меньше 1 года то введите 0",
+      hintPosition: "right",
     },
     {
       value: sentence.month,
@@ -205,6 +206,7 @@ export const useCalculator = () => {
       width: widthMonth,
       hintText:
         "Введите срок по решению суда. Если суда не было то введите предполагаемый срок. Если срок равные года, то введите 0",
+      hintPosition: "left",
     },
   ];
 
