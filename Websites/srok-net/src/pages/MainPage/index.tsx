@@ -99,11 +99,7 @@ const MainPage = () => {
           <LoadingScreen />
         </div>
       )}
-      {result ? (
-        <CalculationResult />
-      ) : (
-        <HowItWorks styleConteiner={{ marginTop: 100 }} />
-      )}
+      {result ? <CalculationResult /> : <HowItWorks />}
     </SectionLayout>
   );
 };

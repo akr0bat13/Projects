@@ -4,6 +4,7 @@ import React, {
   ChangeEvent,
   FC,
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -98,12 +99,28 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
   const shouldShowOptions =
     inputValue.length >= 0 && filteredOptions.length >= 0 && isOptionsVisible;
 
+  const textInputRef = useRef<HTMLInputElement>(null);
+
+  const handleWrapperBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    const wrapperElement = event.currentTarget;
+    const clickedElement = event.relatedTarget as HTMLElement;
+
+    if (
+      !wrapperElement.contains(clickedElement) ||
+      clickedElement === wrapperElement
+    ) {
+      setIsOptionsVisible(false);
+    }
+  };
+
   return (
     <div
       className={cn("auto-compolete-input-wrapper", {
         "auto-compolete-input-wrapper-disabled": disabled,
       })}
       style={styleWrapper}
+      onBlur={handleWrapperBlur}
+      ref={textInputRef}
     >
       <TextInput
         value={inputValue}

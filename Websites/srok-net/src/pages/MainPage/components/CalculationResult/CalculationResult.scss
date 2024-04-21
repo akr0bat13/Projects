@@ -149,7 +149,9 @@
 
 @media screen and (max-width: 850px) {
   .result-wrapper {
-    display: block;
+    flex-direction: column;
+    margin-top: 30px;
+    gap: 30px;
   }
 
   .filtration-component-wrapper {

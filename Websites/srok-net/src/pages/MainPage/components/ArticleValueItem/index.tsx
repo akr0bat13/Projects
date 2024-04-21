@@ -129,18 +129,13 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
       {chargeArticleValue.length === 1 && (
         <div className="calculator-container-article-value-disabled">
           {disabledComponent.map((item) => {
-            const { color, disabled, label, styleWrapper } = item;
+            const { color, disabled, label, className } = item;
             return (
-              <>
-                <InputContainer
-                  key={label}
-                  label={label}
-                  color={color as textColor}
-                  styleWrapper={{ width: styleWrapper }}
-                >
+              <div key={label} className={className}>
+                <InputContainer label={label} color={color as textColor}>
                   <TextInput disabled={disabled} />
                 </InputContainer>
-              </>
+              </div>
             );
           })}
           <div className="calculator-container-article-value-buttons">

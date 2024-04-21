@@ -14,6 +14,7 @@ import {
   validateInputNumber,
 } from "src/utils/helpers/common";
 import { calculateDisabled } from "src/utils/helpers/common/calculateDisabled";
+import { updateNotification } from "src/utils/helpers/updateNotification";
 
 import { useOnFreedom } from "../../hooks/useOnFreedom";
 
@@ -77,6 +78,14 @@ const JusticeSearch = ({ setResult }: any) => {
             : partOptions.length === 0
               ? "disabled"
               : "blue";
+          switch (true) {
+            case isFirstInputError:
+            case isPartInputError:
+              updateNotification("error", inputErrorLabel);
+              break;
+            default:
+              break;
+          }
 
           const inputSearchHandlerOption = isFirstInput
             ? inputSearchHandlerStateOption
@@ -89,11 +98,6 @@ const JusticeSearch = ({ setResult }: any) => {
               key={input.placeholder}
               label={input.placeholder}
               color={inputColor}
-              errors={{
-                isError: isFirstInputError || isPartInputError,
-                level: "error",
-                message: inputErrorLabel,
-              }}
             >
               <AutoCompleteSelect
                 options={isFirstInput ? options : partOptions}

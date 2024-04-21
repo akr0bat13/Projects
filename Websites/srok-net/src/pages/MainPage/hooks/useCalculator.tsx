@@ -169,18 +169,21 @@ export const useCalculator = () => {
       color: "disabled",
       styleWrapper: 90,
       disabled: true,
+      className: "calculator-container-article-value-state",
     },
     {
       label: "Часть",
       color: "disabled",
       styleWrapper: 90,
       disabled: true,
+      className: "calculator-container-article-value-part",
     },
     {
       label: "Эпизоды",
       color: "disabled",
       styleWrapper: 145,
       disabled: true,
+      className: "calculator-container-article-value-episodes",
     },
   ];
 
