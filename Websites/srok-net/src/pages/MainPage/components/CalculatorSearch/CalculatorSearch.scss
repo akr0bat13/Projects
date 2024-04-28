@@ -98,8 +98,8 @@
   padding-bottom: 300px;
 }
   .calculator-container {
-    flex-direction: column;
-    gap: 10px;
+   display: block;
+   height: auto;
 
     &-article-value,
     // &-article-value-disabled {
@@ -125,7 +125,8 @@
 
 
     .calculator-article-value {
-      padding: 0;
+      padding-left: 1px;
+      padding-right: 0;
     }
 
     &-item-last-colunm {

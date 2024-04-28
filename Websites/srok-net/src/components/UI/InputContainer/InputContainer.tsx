@@ -28,6 +28,7 @@ export interface InputContainerProps {
   hint?: boolean;
   hintText?: string;
   hintPosition?: TooltipPosition;
+  hintWidth?: number;
 }
 
 export const InputContainer: FC<InputContainerProps> = ({
@@ -42,6 +43,7 @@ export const InputContainer: FC<InputContainerProps> = ({
   hint,
   hintText,
   hintPosition,
+  hintWidth,
   errors,
 }) => {
   return (
@@ -56,7 +58,7 @@ export const InputContainer: FC<InputContainerProps> = ({
               <Tooltip
                 content={hintText}
                 position={hintPosition || "top"}
-                tooltipWidth={300}
+                tooltipWidth={hintWidth || 300}
               >
                 <QuestionIcon />
               </Tooltip>

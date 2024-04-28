@@ -150,7 +150,7 @@
 @media screen and (max-width: 850px) {
   .result-wrapper {
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 60px;
     gap: 30px;
   }
 
@@ -164,5 +164,11 @@
 
   .result-info-item {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .result-wrapper {
+    margin-top: 30px;
   }
 }

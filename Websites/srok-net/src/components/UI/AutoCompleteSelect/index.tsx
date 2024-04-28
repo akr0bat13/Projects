@@ -31,6 +31,7 @@ interface IAutoCompleteSelectProps {
   inputType?: string;
   disabled?: boolean;
   error?: boolean;
+  metric?: string;
 }
 
 const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
@@ -47,6 +48,7 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
   onChange,
   onOption,
   optionsStyle,
+  metric,
 }) => {
   const [filteredOptions, setFilteredOptions] = useState<string[]>([]);
   const [isOptionsVisible, setIsOptionsVisible] = useState(false);
@@ -86,6 +88,7 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
       setFilteredOptions(options);
       setShowNoResults(false);
     }
+    metric;
   };
 
   useEffect(() => {
@@ -119,10 +122,10 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
         "auto-compolete-input-wrapper-disabled": disabled,
       })}
       style={styleWrapper}
-      onBlur={handleWrapperBlur}
       ref={textInputRef}
     >
       <TextInput
+        onBlur={handleWrapperBlur}
         value={inputValue}
         onChange={handleInputChange}
         placeholder={placeholder}

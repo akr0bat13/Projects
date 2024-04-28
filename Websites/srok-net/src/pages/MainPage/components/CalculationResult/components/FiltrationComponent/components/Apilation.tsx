@@ -52,6 +52,7 @@ const Apilation = () => {
             labelStyles={{ fontSize: 18 }}
             fieldStyles={{ display: "flex", gap: 20 }}
             hint={true}
+            hintPosition="left"
             hintText="Если срок неизвестен, то введите предположительный"
           >
             <TextInput placeholder="Лет" onChange={inputApilationYear} />
@@ -59,6 +60,7 @@ const Apilation = () => {
           </InputContainer>
           <InputContainer
             label="Дата аппеляции"
+            hintPosition="left"
             hint={true}
             fieldStyles={{ width: "100%" }}
             hintText="Если дата неизвестна, то выберите предположительную"

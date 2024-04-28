@@ -41,9 +41,12 @@ const JusticeSearch = ({ setResult }: any) => {
     return validateInputActState(state);
   };
 
+  const searchMetric = "ym(97021647,'reachGoal','To know')";
+
   const searchSubmit = () => {
     if (!isButtonDisabled) {
       setResult(true);
+      searchMetric;
     }
   };
 
@@ -107,6 +110,7 @@ const JusticeSearch = ({ setResult }: any) => {
                 inputType="part"
                 disabled={isButtonDisabled}
                 error={isFirstInputError || isPartInputError}
+                metric={input.metric}
               />
             </InputContainer>
           );

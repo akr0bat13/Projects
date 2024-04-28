@@ -70,10 +70,13 @@ const SearchResults: FC<ISearchResult> = (component) => {
     dispatch(updateSelectedCity(elem));
   };
 
+  const buyMetric = "ym(97021647,'reachGoal','Buy')";
+
   const handleClick = () => {
     if (selectValue.label) {
       dispatch(updateOnFreedomModal(modalInitialState));
       setShowModal(true);
+      buyMetric;
     }
   };
 
@@ -95,11 +98,6 @@ const SearchResults: FC<ISearchResult> = (component) => {
                 key={item.label}
                 label={item.label}
                 color={item.disabled ? "disabled" : "blue"}
-                // errors={{
-                //   isError: index === 0 ? cityError : false,
-                //   level: "error",
-                //   message: "Доступно только в Москве",
-                // }}
               >
                 {item.isSelect ? (
                   <Select

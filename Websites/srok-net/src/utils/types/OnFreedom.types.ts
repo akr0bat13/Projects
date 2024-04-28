@@ -16,6 +16,7 @@ export interface IInputSearchValue {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
+  metric: string;
 }
 
 export interface IInputFormsValue {

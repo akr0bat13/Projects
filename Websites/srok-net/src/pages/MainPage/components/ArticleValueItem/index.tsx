@@ -91,8 +91,9 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
                 label="Эпизоды"
                 color="blue"
                 hint={id === 1}
-                hintText="Введите количество эпизовов"
+                hintText="Количество эпизодов"
                 hintPosition="left"
+                hintWidth={200}
               >
                 <TextInput
                   value={episodesNumber}

@@ -57,24 +57,38 @@ const ContactForm: FC<IContactForm> = (props) => {
     },
   ] = useContactFormInfoMutation();
 
-  const [contactFormSendMail] = useContactFormSendMailMutation();
+  const [
+    contactFormSendMail,
+    { isSuccess: contactFormSendSuccess, isError: contactFormSendError },
+  ] = useContactFormSendMailMutation();
 
   useEffect(() => {
     if (contactFormInfoSuccess) {
       contactFormSendMail({
         email: modalInputs.contactInfo,
       });
-      updateNotification("success", "Письмо успешно отправлено");
       setShowModal(false);
     }
     if (contactFormInfoError) {
-      updateNotification("error", "Ошибка при отправке письма");
+      updateNotification("error", "Ошибка при создании отчёта");
       setShowModal(false);
     }
   }, [contactFormInfoSuccess, contactFormInfoError]);
 
+  useEffect(() => {
+    if (contactFormSendSuccess) {
+      updateNotification("success", "Письмо успешно отправлено");
+    }
+    if (contactFormSendError) {
+      updateNotification("error", "Ошибка отправки письма на почту");
+    }
+  }, [contactFormSendSuccess, contactFormSendError]);
+
+  const getReportMetric = "ym(97021647,'reachGoal','Get Report')";
+
   const handleSubmit = () => {
     contactFormInfo({ modalInfo, laws });
+    getReportMetric;
   };
 
   const modalAcceptTerms = () => {

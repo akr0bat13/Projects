@@ -1,4 +1,4 @@
-@import "../../../vars.scss";
+@import "/src/vars.scss";
 
 .tooltip-main {
     position: relative;
@@ -13,7 +13,7 @@
 .tooltip {
     position: absolute;
     color: $blue-primary-active;
-    z-index: $z-index-high;
+    z-index: $z-index-alert;
     display: block;
 
     &-hidden {

@@ -6,6 +6,6 @@ const getAppHost = () => {
 };
 
 export const ConnectionInstance = {
-  HOST: `http://${getAppHost()}:5000`,
-  REST_HOST: `http://${getAppHost()}`,
+  HOST: `https://${getAppHost()}:5000`,
+  REST_HOST: `https://${getAppHost()}`,
 };

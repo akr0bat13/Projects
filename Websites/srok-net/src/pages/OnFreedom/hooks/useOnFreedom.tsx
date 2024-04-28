@@ -115,11 +115,13 @@ export const useOnFreedom = () => {
       value: state,
       onChange: inputSearchHandlerState,
       placeholder: "Введите статью",
+      metric: "ym(97021647,'reachGoal','State')",
     },
     {
       value: part,
       onChange: inputSearchHandlerPart,
       placeholder: "Введите часть",
+      metric: "ym(97021647,'reachGoal','Part')",
     },
   ];
 
