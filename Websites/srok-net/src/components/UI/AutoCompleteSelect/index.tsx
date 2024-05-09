@@ -11,6 +11,7 @@ import React, {
 import { Button } from "src/components/UI/Button/Button";
 import { TextInput } from "src/components/UI/TextInput/TextInput";
 import DownArrowIcon from "src/components/icons/DownArrowIcon";
+import { metricsForm } from "src/utils/metrics/metrics";
 import "./AutoCompleteSelect.scss";
 
 interface IAutoCompleteSelectProps {
@@ -80,6 +81,7 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
     setFilteredOptions([]);
     setShowNoResults(false);
     setIsOptionsVisible(false);
+    if (metric) metricsForm("reachGoal", metric);
   };
 
   const toggleOptionsVisibility = () => {
@@ -88,7 +90,6 @@ const AutoCompleteSelect: FC<IAutoCompleteSelectProps> = ({
       setFilteredOptions(options);
       setShowNoResults(false);
     }
-    metric;
   };
 
   useEffect(() => {

@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { ButtonProps } from "src/components/UI/Button/Button";
 import { RadioOptions } from "src/components/UI/Radio";
@@ -115,13 +114,13 @@ export const useOnFreedom = () => {
       value: state,
       onChange: inputSearchHandlerState,
       placeholder: "Введите статью",
-      metric: "ym(97021647,'reachGoal','State')",
+      metric: "State",
     },
     {
       value: part,
       onChange: inputSearchHandlerPart,
       placeholder: "Введите часть",
-      metric: "ym(97021647,'reachGoal','Part')",
+      metric: "Part",
     },
   ];
 

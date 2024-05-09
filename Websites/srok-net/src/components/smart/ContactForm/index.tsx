@@ -17,6 +17,7 @@ import { onFreedomInput } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
 import { validateEmail } from "src/utils/helpers/common";
 import { updateNotification } from "src/utils/helpers/updateNotification";
+import { metricsForm } from "src/utils/metrics/metrics";
 import { IInputFormsValue } from "src/utils/types/OnFreedom.types";
 import "./ContactForm.scss";
 
@@ -84,11 +85,9 @@ const ContactForm: FC<IContactForm> = (props) => {
     }
   }, [contactFormSendSuccess, contactFormSendError]);
 
-  const getReportMetric = "ym(97021647,'reachGoal','Get Report')";
-
   const handleSubmit = () => {
     contactFormInfo({ modalInfo, laws });
-    getReportMetric;
+    metricsForm("reachGoal", "Get Report");
   };
 
   const modalAcceptTerms = () => {

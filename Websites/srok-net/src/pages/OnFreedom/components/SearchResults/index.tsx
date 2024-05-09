@@ -16,6 +16,7 @@ import { selectedCity } from "src/store/slices/OnFreedom/onFreedom.selectors";
 import { updateOnFreedomModal } from "src/store/slices/OnFreedomForm";
 import { cities } from "src/utils/constants/cities";
 import { updateNotification } from "src/utils/helpers/updateNotification";
+import { metricsForm } from "src/utils/metrics/metrics";
 import { ISearchResult } from "src/utils/types/OnFreedom.types";
 import { OnFreedomModalState } from "src/utils/types/OnFreedomModal.types";
 
@@ -70,13 +71,11 @@ const SearchResults: FC<ISearchResult> = (component) => {
     dispatch(updateSelectedCity(elem));
   };
 
-  const buyMetric = "ym(97021647,'reachGoal','Buy')";
-
   const handleClick = () => {
     if (selectValue.label) {
       dispatch(updateOnFreedomModal(modalInitialState));
       setShowModal(true);
-      buyMetric;
+      metricsForm("reachGoal", "Buy");
     }
   };
 

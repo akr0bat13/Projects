@@ -15,6 +15,7 @@ import {
 } from "src/utils/helpers/common";
 import { calculateDisabled } from "src/utils/helpers/common/calculateDisabled";
 import { updateNotification } from "src/utils/helpers/updateNotification";
+import { metricsForm } from "src/utils/metrics/metrics";
 
 import { useOnFreedom } from "../../hooks/useOnFreedom";
 
@@ -41,12 +42,10 @@ const JusticeSearch = ({ setResult }: any) => {
     return validateInputActState(state);
   };
 
-  const searchMetric = "ym(97021647,'reachGoal','To know')";
-
   const searchSubmit = () => {
     if (!isButtonDisabled) {
       setResult(true);
-      searchMetric;
+      metricsForm("reachGoal", "To know");
     }
   };
 
