@@ -82,6 +82,7 @@ const CalculatorSearch: FC<ICalculatorSearch> = (props) => {
     });
     setIsAnyErrorFields(hasError);
   }, [inputsentenceValue]);
+
   return (
     <div className="calculator-wrapper">
       <H variant="hd" color="white">

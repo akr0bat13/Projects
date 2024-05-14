@@ -10,6 +10,7 @@ import AddIcon from "src/components/icons/AddIcon";
 import RemoveIcon from "src/components/icons/RemoveIcon";
 import { mockSectionActs } from "src/utils/constants/mockSectionActs";
 import { validateDate } from "src/utils/helpers/common";
+import { updateNotification } from "src/utils/helpers/updateNotification";
 
 import { useCalculator } from "../../hooks/useCalculator";
 
@@ -36,7 +37,6 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
       .map(([key]) => key);
   };
   const options = getMockSectionActsKeys();
-  console.log("options", mockSectionActs);
 
   useEffect(() => {
     const hasError = chargeArticleValue.some((article) => {
@@ -90,7 +90,25 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
         }
         const isStateError = validateDate(state);
         const isPartError = validateDate(part);
+        const noPartExists = part !== "" && !partOptions.includes(part);
+        const noStateExists = state !== "" && !options.includes(state);
         const isEpisodesNumberError = validateDate(episodesNumber);
+
+        switch (true) {
+          case !isStateError:
+            updateNotification("error", "Выберите статью из списка");
+            break;
+          case !isPartError:
+            updateNotification("error", "Выберите часть из списка");
+            break;
+          case noPartExists:
+            updateNotification("error", "Такой части в списке не существует");
+            break;
+          case noStateExists:
+            updateNotification("error", "Такой статьи в списке не существует");
+            break;
+        }
+
         return (
           <div key={id} className="calculator-container-article-value">
             <div className="calculator-container-article-value-state">
@@ -103,7 +121,7 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
                   setOption={setChargeArticleOption}
                   inputType="state"
                   optionsStyle={{ maxHeight: containerWidth ? 200 : 74 }}
-                  error={!isStateError}
+                  error={!isStateError || noStateExists}
                 />
               </InputContainer>
             </div>
@@ -121,7 +139,7 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
                   inputType="part"
                   optionsStyle={{ maxHeight: containerWidth ? 200 : 74 }}
                   disabled={partOptions.length === 0}
-                  error={!isPartError}
+                  error={!isPartError || noPartExists}
                 />
               </InputContainer>
             </div>

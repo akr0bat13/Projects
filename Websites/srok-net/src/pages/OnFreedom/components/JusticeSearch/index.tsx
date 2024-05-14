@@ -50,10 +50,17 @@ const JusticeSearch = ({ setResult }: any) => {
   };
 
   const { label, color } = buttonSearchProps;
+
   const getMockSectionActsKeys = () => {
-    return Object.keys(mockSectionActs);
+    return Object.entries(mockSectionActs)
+      .sort(([keyA], [keyB]) => {
+        return String(keyA).localeCompare(String(keyB));
+      })
+      .map(([key]) => key);
   };
+
   const options = getMockSectionActsKeys();
+  let notificationExecuted = false;
 
   return (
     <div className="search-wrapper">
@@ -70,9 +77,10 @@ const JusticeSearch = ({ setResult }: any) => {
           const isFirstInput = index === 0;
           const isFirstInputError = isFirstInput && !checkStateValue(state);
           const isPartInputError = !isFirstInput && !checkPartValue(part);
-          const inputErrorLabel = isFirstInput
-            ? "Статья должна быть из списка"
-            : "Часть должна быть из списка";
+          const noPartExists =
+            !isFirstInput && part !== "" && !partOptions.includes(part);
+          const noStateExists =
+            isFirstInput && state !== "" && !options.includes(state);
           const inputColor = isFirstInput
             ? isFirstInputError
               ? "disabled"
@@ -80,10 +88,37 @@ const JusticeSearch = ({ setResult }: any) => {
             : partOptions.length === 0
               ? "disabled"
               : "blue";
+
           switch (true) {
             case isFirstInputError:
+              if (!notificationExecuted) {
+                updateNotification("error", "Статья должна быть из списка");
+                notificationExecuted = true;
+              }
+              break;
             case isPartInputError:
-              updateNotification("error", inputErrorLabel);
+              if (!notificationExecuted) {
+                updateNotification("error", "Часть должна быть из списка");
+                notificationExecuted = true;
+              }
+              break;
+            case noPartExists:
+              if (!notificationExecuted) {
+                updateNotification(
+                  "error",
+                  "Такой части в списке не существует"
+                );
+                notificationExecuted = true;
+              }
+              break;
+            case noStateExists:
+              if (!notificationExecuted) {
+                updateNotification(
+                  "error",
+                  "Такой статьи в списке не существует"
+                );
+                notificationExecuted = true;
+              }
               break;
             default:
               break;
@@ -108,7 +143,12 @@ const JusticeSearch = ({ setResult }: any) => {
                 onOption={inputSearchHandlerOption}
                 inputType="part"
                 disabled={isButtonDisabled}
-                error={isFirstInputError || isPartInputError}
+                error={
+                  isFirstInputError ||
+                  isPartInputError ||
+                  noPartExists ||
+                  noStateExists
+                }
                 metric={input.metric}
               />
             </InputContainer>
