@@ -27,7 +27,7 @@ export const useCalculator = () => {
       id: 1,
       state: "",
       part: "",
-      episodesNumber: "",
+      episodesNumber: "1",
     },
   ]);
 
@@ -79,7 +79,7 @@ export const useCalculator = () => {
       id: chargeArticleValue.length + 1,
       state: "",
       part: "",
-      episodesNumber: "",
+      episodesNumber: "1",
     };
     setChargeArticleValue([...chargeArticleValue, newArticle]);
     dispatch(addChargeArticleAction(newArticle));

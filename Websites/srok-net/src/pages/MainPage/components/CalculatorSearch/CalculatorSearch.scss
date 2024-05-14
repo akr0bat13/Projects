@@ -98,7 +98,9 @@
   padding-bottom: 300px;
 }
   .calculator-container {
-   display: block;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
    height: auto;
 
     &-article-value,
@@ -138,16 +140,27 @@
 
 @media screen and (max-width: 700px) {
   .calculator-wrapper {
-    padding-bottom: 550px;
+    padding-bottom: 100px;
   }
 
   .calculator-container {
     padding: 10px;
+    position: static;
+
+    .calculator-article-value {
+      max-height: 220px;
+      // gap: 5px;
+    }
+
+    .calculator-article-value-mobile {
+
+    }
 
     &-article-value,
     &-article-value-disabled {
       align-items: end;
       gap: 10px;
+      padding: 10px 0;
 
       &-state {
         width: 65px;

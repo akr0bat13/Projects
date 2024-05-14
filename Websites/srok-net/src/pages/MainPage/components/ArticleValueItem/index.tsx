@@ -1,4 +1,5 @@
-import React, { FC, useEffect } from "react";
+import cn from "classnames";
+import React, { FC, useEffect, useState } from "react";
 
 import AutoCompleteSelect from "src/components/UI/AutoCompleteSelect";
 import { Button } from "src/components/UI/Button/Button";
@@ -25,6 +26,7 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
     disabledComponent,
     setChargeArticleOption,
   } = useCalculator();
+  const [isMobile, setIsMobile] = useState({ width: window.innerWidth });
 
   const getMockSectionActsKeys = () => {
     return Object.keys(mockSectionActs);
@@ -42,8 +44,39 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
     setIsAnyErrorFields(hasError);
   }, [chargeArticleValue]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile({
+        width: window.innerWidth,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  let containerWidth = false;
+
+  switch (true) {
+    case isMobile.width < 700:
+      containerWidth = true;
+      break;
+    default:
+      containerWidth = false;
+  }
+
   return (
-    <div className="calculator-container-item calculator-article-value">
+    <div
+      className={cn(
+        "calculator-container-item",
+        containerWidth
+          ? "calculator-article-value-mobile"
+          : "calculator-article-value"
+      )}
+    >
       {chargeArticleValue.map((article) => {
         const { id, episodesNumber, part, state } = article;
         let partOptions: string[] = [];
@@ -64,7 +97,7 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
                   setState={setChargeArticleState}
                   setOption={setChargeArticleOption}
                   inputType="state"
-                  optionsStyle={{ maxHeight: 74 }}
+                  optionsStyle={{ maxHeight: containerWidth ? 200 : 74 }}
                   error={!isStateError}
                 />
               </InputContainer>
@@ -81,6 +114,7 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
                   setState={setChargeArticleState}
                   setOption={setChargeArticleOption}
                   inputType="part"
+                  optionsStyle={{ maxHeight: containerWidth ? 200 : 74 }}
                   disabled={partOptions.length === 0}
                   error={!isPartError}
                 />

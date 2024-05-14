@@ -11,7 +11,10 @@ import { TooltipPosition } from "src/components/UI/Tooltip/utils/types/tooltip.t
 import { useSelector } from "src/store";
 import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
 import { mockSectionActs } from "src/utils/constants/mockSectionActs";
-import { validateInputNumber } from "src/utils/helpers/common";
+import {
+  validateInputDigitsOnly,
+  validateInputNumber,
+} from "src/utils/helpers/common";
 import { calculateDisabled } from "src/utils/helpers/common/calculateDisabled";
 import "./CalculatorSearch.scss";
 
@@ -61,17 +64,24 @@ const CalculatorSearch: FC<ICalculatorSearch> = (props) => {
     comesInToForse,
   });
 
-  const isPeriodCorrectType = (value: string) => {
-    return validateInputNumber(value);
+  const isPeriodCorrectType = (value: string, isSecondInput = false) => {
+    if (isSecondInput) {
+      return validateInputNumber(value);
+    } else {
+      return validateInputDigitsOnly(value);
+    }
   };
 
   useEffect(() => {
-    const hasError = inputsentenceValue.some(
-      (date) => !isPeriodCorrectType(date.value)
-    );
+    const hasError = inputsentenceValue.some((date, index) => {
+      if (index === 0) {
+        return !isPeriodCorrectType(date.value);
+      } else {
+        return !isPeriodCorrectType(date.value, true);
+      }
+    });
     setIsAnyErrorFields(hasError);
   }, [inputsentenceValue]);
-
   return (
     <div className="calculator-wrapper">
       <H variant="hd" color="white">
@@ -92,7 +102,7 @@ const CalculatorSearch: FC<ICalculatorSearch> = (props) => {
 
         <div className="calculator-container-item calculator-container-item-last-colunm">
           <div className="calculator-container-sentence">
-            {inputsentenceValue.map((date) => (
+            {inputsentenceValue.map((date, index) => (
               <InputContainer
                 key={date.placeholder}
                 label={date.placeholder}
@@ -105,7 +115,7 @@ const CalculatorSearch: FC<ICalculatorSearch> = (props) => {
                 <TextInput
                   value={date.value}
                   onChange={date.onChange}
-                  error={!isPeriodCorrectType(date.value)}
+                  error={!isPeriodCorrectType(date.value, index === 1)}
                 />
               </InputContainer>
             ))}

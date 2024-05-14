@@ -16,7 +16,7 @@ const chargeArticleValue: IChargeArticleProps[] = [
     id: 1,
     state: "",
     part: "",
-    episodesNumber: "",
+    episodesNumber: "1",
   },
 ];
 
