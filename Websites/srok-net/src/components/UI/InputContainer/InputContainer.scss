@@ -31,4 +31,14 @@
         position: relative;
         justify-content: space-between;
     }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+      }
+
+    .question-icon-pulse {
+        animation: pulse 2s infinite;
+    }
 }

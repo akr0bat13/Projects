@@ -60,7 +60,9 @@ export const InputContainer: FC<InputContainerProps> = ({
                 position={hintPosition || "top"}
                 tooltipWidth={hintWidth || 300}
               >
-                <QuestionIcon />
+                <div className="question-icon-pulse">
+                  <QuestionIcon />
+                </div>
               </Tooltip>
             )}
           </div>
