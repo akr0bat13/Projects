@@ -29,9 +29,14 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
   const [isMobile, setIsMobile] = useState({ width: window.innerWidth });
 
   const getMockSectionActsKeys = () => {
-    return Object.keys(mockSectionActs);
+    return Object.entries(mockSectionActs)
+      .sort(([keyA], [keyB]) => {
+        return String(keyA).localeCompare(String(keyB));
+      })
+      .map(([key]) => key);
   };
   const options = getMockSectionActsKeys();
+  console.log("options", mockSectionActs);
 
   useEffect(() => {
     const hasError = chargeArticleValue.some((article) => {
