@@ -120,7 +120,10 @@ const ArticleValueItem: FC<IArticleValueItem> = ({ setIsAnyErrorFields }) => {
                   setState={setChargeArticleState}
                   setOption={setChargeArticleOption}
                   inputType="state"
-                  optionsStyle={{ maxHeight: containerWidth ? 200 : 74 }}
+                  optionsStyle={{
+                    maxHeight: containerWidth ? 200 : 74,
+                    fontSize: containerWidth ? "12px" : "16px",
+                  }}
                   error={!isStateError || noStateExists}
                 />
               </InputContainer>
