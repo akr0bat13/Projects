@@ -1,5 +1,5 @@
 import cn from "classnames";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import SrokNetLogo from "src/assets/images/logo.svg";
@@ -8,12 +8,16 @@ import { useSelector } from "src/store";
 import { selectIsMobileMenu } from "src/store/slices/isMobile/isMobile.selectors";
 import "./Header.scss";
 
+import Modal, { IModal } from "../Modal";
+
 import { Menu } from "./components/Menu";
+import { ContactUsForm } from "./components/Modals/ContactUsForm";
 import { useHeadBar } from "./hooks/useHeadBar";
 
 const Header = () => {
   const { isMobile, checkMobileOpen, checkMobileClosed } = useHeadBar();
   const { active } = useSelector(selectIsMobileMenu);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (active) {
@@ -23,6 +27,15 @@ const Header = () => {
       };
     }
   }, [active]);
+
+  const handleClick = () => {
+    setShowModal(true);
+  };
+
+  const showModalSettings: IModal = {
+    active: showModal,
+    setActive: setShowModal,
+  };
 
   return (
     <header
@@ -40,7 +53,7 @@ const Header = () => {
             <NavLink to="/about-us">О нас</NavLink> */}
             <NavLink to="/">Калькулятор</NavLink>
             <NavLink to="/freedom">На свободу</NavLink>
-            {/* <NavLink to="/contact-us">Напишите нам</NavLink> */}
+            <a onClick={handleClick}>Напишите нам</a>
             {/* <NavLink to="/profile">Профиль</NavLink> */}
           </div>
           <div className="status-bar-menu" onClick={checkMobileOpen}>
@@ -55,6 +68,9 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <Modal {...showModalSettings}>
+        <ContactUsForm />
+      </Modal>
     </header>
   );
 };

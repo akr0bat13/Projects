@@ -1,10 +1,10 @@
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import cn from "classnames";
 import { FC, useState } from "react";
 import "./Substrate.scss";
 
 import { Button } from "src/components/UI/Button/Button";
+import DownArrowIcon from "src/components/icons/DownArrowIcon";
+import UpArrowIcon from "src/components/icons/UpArrowIcon";
 
 import { ISubstrate } from "./utils/types/Substrate.typings";
 
@@ -63,13 +63,7 @@ const Substrate: FC<ISubstrate> = (props) => {
             <Button
               label={dropdownLabel}
               onClick={dropDownToggleHandler}
-              icon={
-                isActiveDropdown ? (
-                  <KeyboardArrowDownIcon />
-                ) : (
-                  <KeyboardArrowRightIcon />
-                )
-              }
+              icon={isActiveDropdown ? <DownArrowIcon /> : <UpArrowIcon />}
               style={sx}
             ></Button>
           )}

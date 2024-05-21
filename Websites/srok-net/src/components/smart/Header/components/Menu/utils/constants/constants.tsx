@@ -40,10 +40,9 @@ export const menuNav: SubMenuProps[] = [
     link: "/freedom",
     id: "На свободу",
   },
-  // {
-  //   link: "/contact-us",
-  //   id: "Напишите нам",
-  // },
+  {
+    id: "Напишите нам",
+  },
   // {
   //   link: "/profile",
   //   id: "Профиль",

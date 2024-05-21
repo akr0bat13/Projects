@@ -28,6 +28,13 @@ export const validateEmail = (value: string) => {
   return regex.test(value);
 };
 
+export const validatePhoneNumber = (value: string) => {
+  const regex = new RegExp(
+    /^(\+7|7|8)?[\s-]?\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/
+  );
+  return regex.test(value);
+};
+
 export const validateDate = (value: string) => {
   const regex = /^[0-9.]*$/;
   return regex.test(value);

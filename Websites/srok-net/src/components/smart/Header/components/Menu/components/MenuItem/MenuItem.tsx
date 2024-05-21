@@ -2,15 +2,28 @@ import cn from "classnames";
 import { FC, useState } from "react";
 import "./MenuItem.scss";
 
+import Modal, { IModal } from "src/components/smart/Modal";
+
+import ContactUsForm from "../../../Modals";
 import { MenuItemProps } from "../../utils/constants/constants";
 import { NavItem } from "../NavItem/NavItem";
 
 export const MenuItem: FC<MenuItemProps> = (item) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handelOpenMenu = () => {
-    setIsOpenModal(true);
+    if (item.id === "Напишите нам") {
+      setShowModal(true);
+    } else {
+      setIsOpenModal(true);
+    }
+  };
+
+  const showModalSettings: IModal = {
+    active: showModal,
+    setActive: setShowModal,
   };
 
   return (
@@ -32,6 +45,9 @@ export const MenuItem: FC<MenuItemProps> = (item) => {
           </div>
         </div>
       </div>
+      <Modal {...showModalSettings}>
+        <ContactUsForm />
+      </Modal>
     </>
   );
 };
