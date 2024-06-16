@@ -53,7 +53,9 @@ const Header = () => {
             <NavLink to="/about-us">О нас</NavLink> */}
             <NavLink to="/">Калькулятор</NavLink>
             <NavLink to="/freedom">На свободу</NavLink>
-            <a onClick={handleClick}>Напишите нам</a>
+            <a className="modal-link" onClick={handleClick}>
+              Напишите нам
+            </a>
             {/* <NavLink to="/profile">Профиль</NavLink> */}
           </div>
           <div className="status-bar-menu" onClick={checkMobileOpen}>
@@ -69,7 +71,7 @@ const Header = () => {
         </div>
       </div>
       <Modal {...showModalSettings}>
-        <ContactUsForm />
+        <ContactUsForm setShowModal={setShowModal} />
       </Modal>
     </header>
   );

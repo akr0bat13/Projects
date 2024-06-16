@@ -4,7 +4,7 @@ import "./MenuItem.scss";
 
 import Modal, { IModal } from "src/components/smart/Modal";
 
-import ContactUsForm from "../../../Modals";
+import { ContactUsForm } from "../../../Modals/ContactUsForm";
 import { MenuItemProps } from "../../utils/constants/constants";
 import { NavItem } from "../NavItem/NavItem";
 
@@ -46,7 +46,7 @@ export const MenuItem: FC<MenuItemProps> = (item) => {
         </div>
       </div>
       <Modal {...showModalSettings}>
-        <ContactUsForm />
+        <ContactUsForm setShowModal={setShowModal} />
       </Modal>
     </>
   );

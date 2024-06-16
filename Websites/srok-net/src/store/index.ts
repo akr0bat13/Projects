@@ -5,6 +5,7 @@ import {
   useSelector as useReduxSelector,
 } from "react-redux";
 
+import { contactUsApi } from "./api/contactUsApi.api";
 import { lawsInfoPageApi } from "./api/lawsInfoPageApi.api";
 import { onFreedomApi } from "./api/onFreedomApi.api.";
 import rootReducer from "./rootReducer";
@@ -13,6 +14,7 @@ export type RootReducerState = ReturnType<typeof rootReducer>;
 export const middlewares = [
   lawsInfoPageApi.middleware,
   onFreedomApi.middleware,
+  contactUsApi.middleware,
 ];
 
 export const setupStore = (

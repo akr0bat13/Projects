@@ -3,7 +3,7 @@
 header {
   background-color: $blue-primary-active;
   width: 100%;
-  
+
   &-mobile {
     position: absolute;
     z-index: $z-index-medium;
@@ -23,6 +23,10 @@ header {
 .nav-links {
   display: flex;
   gap: 30px;
+
+  .modal-link {
+    cursor: pointer;
+  }
 }
 
 .nav-links .active {
