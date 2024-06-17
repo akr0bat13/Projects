@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import HowItWorks from "src/components/UI/HowItWorks";
+import Advertisement from "src/components/UI/Advertisement";
 import { SectionLayout } from "src/components/UI/SectionLayout/SectionLayout";
 
 import JusticeSearch from "./components/JusticeSearch";
@@ -8,7 +8,7 @@ import SearchResults from "./components/SearchResults";
 import { useOnFreedom } from "./hooks/useOnFreedom";
 
 const OnFreedom = () => {
-  const { searchResult } = useOnFreedom();
+  const { searchResult, howItWorksContent } = useOnFreedom();
   const [result, setResult] = useState<boolean>(false);
 
   return (
@@ -18,7 +18,12 @@ const OnFreedom = () => {
         searchResult.map((component) => (
           <SearchResults key={component.title} {...component} />
         ))}
-      <HowItWorks />
+      <div className="advertising-content-container">
+        <Advertisement
+          title={howItWorksContent.title}
+          text={howItWorksContent.text}
+        />
+      </div>
     </SectionLayout>
   );
 };

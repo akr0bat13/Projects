@@ -1,0 +1,65 @@
+@import 'src/vars.scss';
+
+.advertising-wrapper {
+  display: flex;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid $blue-primary-active;
+  gap: 20px;
+  padding: 5px 25px;
+}
+
+
+.advertising-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+
+  &-title {
+    cursor: pointer;
+    width: fit-content;
+  }
+
+  &-more-info {
+    position: relative;
+    cursor: pointer;
+    width: fit-content;
+    margin-bottom: 10px;
+
+    &::before {
+      content: '';
+      height: 2px;
+      width: 10px;
+      border-radius: 1px;
+      background-color: $blue-primary-active;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      transition: all .2s linear;
+    }
+    &:hover {
+      &::before {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.advertising-content-container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+@media screen and (max-width: 700px) {
+
+  .advertising-content-container {
+    margin-top: 40px;
+  }
+
+  .advertising-image {
+    display: none;
+  }
+}

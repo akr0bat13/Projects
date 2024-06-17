@@ -1,5 +1,6 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
+import Br from "src/components/UI/Br";
 import { ButtonProps } from "src/components/UI/Button/Button";
 import { RadioOptions } from "src/components/UI/Radio";
 import { IModal } from "src/components/smart/Modal";
@@ -20,6 +21,7 @@ import {
 } from "src/store/slices/OnFreedomForm";
 import { onFreedomModal } from "src/store/slices/OnFreedomForm/onFreedom.selectors";
 import { mockSectionActs } from "src/utils/constants/mockSectionActs";
+import { IAdvertisementContent } from "src/utils/types/Advertisement.types";
 import {
   IForms,
   IInputSearchValue,
@@ -236,6 +238,18 @@ export const useOnFreedom = () => {
     setActive: setShowModal,
   };
 
+  const howItWorksContent: IAdvertisementContent = {
+    title: "Узнай, какой средний срок выдает конкретный судья по статье",
+    text: (
+      <React.Fragment>
+        С помощью искусственного интеллекта мы провели анализ уголовных дел из
+        открытых источников. <Br />
+        На основе анализа мы подготовили отчеты, которые помогают людям понять
+        фактическую информацию о том, какое наказание выносится по статье
+      </React.Fragment>
+    ),
+  };
+
   return {
     buttonSearchProps,
     inputSearchValue,
@@ -256,5 +270,6 @@ export const useOnFreedom = () => {
     extraSupportValue,
     inputSearchHandlerPartOption,
     inputSearchHandlerStateOption,
+    howItWorksContent,
   };
 };

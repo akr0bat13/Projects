@@ -1,6 +1,9 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
+import Br from "src/components/UI/Br";
 import { ButtonProps } from "src/components/UI/Button/Button";
+import { IModal } from "src/components/smart/Modal";
 import { useDispatch, useSelector } from "src/store";
 import {
   addChargeArticleAction,
@@ -12,12 +15,16 @@ import {
 } from "src/store/slices/CalculatorSearch";
 import { calculatorSearchValues } from "src/store/slices/CalculatorSearch/calculatorSearch.selectors";
 import { mockSectionActs } from "src/utils/constants/mockSectionActs";
+import { IAdvertisementContent } from "src/utils/types/Advertisement.types";
 import { IChargeArticleProps } from "src/utils/types/CalculatorSearch.types";
 
 export const useCalculator = () => {
   const dispatch = useDispatch();
+  const router = useNavigate();
 
   const { sentence } = useSelector(calculatorSearchValues);
+
+  const [showModal, setShowModal] = useState(false);
   const [widthYear, setWidthYear] = useState(110);
   const [widthMonth, setWidthMonth] = useState(160);
   const [chargeArticleValue, setChargeArticleValue] = useState<
@@ -210,6 +217,39 @@ export const useCalculator = () => {
     },
   ];
 
+  const showModalSettings: IModal = {
+    active: showModal,
+    setActive: setShowModal,
+  };
+
+  const howItWorksContent: IAdvertisementContent = {
+    title: "Узнай, какой средний срок выдает конкретный судья по статье",
+    text: (
+      <React.Fragment>
+        С помощью искусственного интеллекта мы провели анализ уголовных дел из
+        открытых источников. <Br />
+        На основе анализа мы подготовили отчеты, которые помогают людям понять
+        фактическую информацию о том, какое наказание выносится по статье
+      </React.Fragment>
+    ),
+    onClick: () => router("/freedom"),
+  };
+  const personalHelpContent: IAdvertisementContent = {
+    title: "Разберем твою проблему индвидуально",
+    text: (
+      <React.Fragment>
+        Наши эксперты на основе аналитической базы помогут индвидуально
+        разобраться в вашей проблеме
+      </React.Fragment>
+    ),
+    onClick: () => setShowModal(true),
+  };
+
+  const advertisementMainContent: IAdvertisementContent[] = [
+    howItWorksContent,
+    personalHelpContent,
+  ];
+
   return {
     buttonSearchProps,
     inputsentenceValue,
@@ -220,5 +260,8 @@ export const useCalculator = () => {
     disabledComponent,
     convictionHandler,
     setChargeArticleOption,
+    advertisementMainContent,
+    setShowModal,
+    showModalSettings,
   };
 };
