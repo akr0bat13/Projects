@@ -232,7 +232,10 @@ export const useCalculator = () => {
         фактическую информацию о том, какое наказание выносится по статье
       </React.Fragment>
     ),
-    onClick: () => router("/freedom"),
+    onClick: () => {
+      router("/freedom");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },
   };
   const personalHelpContent: IAdvertisementContent = {
     title: "Разберем твою проблему индвидуально",

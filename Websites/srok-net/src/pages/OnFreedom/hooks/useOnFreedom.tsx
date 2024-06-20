@@ -239,7 +239,7 @@ export const useOnFreedom = () => {
   };
 
   const howItWorksContent: IAdvertisementContent = {
-    title: "Узнай, какой средний срок выдает конкретный судья по статье",
+    title: "Как это работает?",
     text: (
       <React.Fragment>
         С помощью искусственного интеллекта мы провели анализ уголовных дел из

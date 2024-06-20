@@ -1,6 +1,6 @@
 @import 'src/vars.scss';
 
-.advertising-wrapper {
+.useful-links-wrapper {
   display: flex;
   width: 100%;
   border-radius: 3px;
@@ -10,7 +10,7 @@
 }
 
 
-.advertising-content {
+.useful-links-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,7 +59,7 @@
     margin-top: 40px;
   }
 
-  .advertising-image {
+  .useful-links-image {
     display: none;
   }
 }
