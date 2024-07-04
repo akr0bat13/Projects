@@ -32,18 +32,6 @@ export const TextInputdStory = () => {
           }}
         />
       </div>
-      <div>
-        <TextInput isPassword={true} />
-      </div>
-      <div>
-        <TextInput isPassword={true} isInfo infoHandler={() => alert("info")} />
-      </div>
-      <div>
-        <TextInput isSearch />
-      </div>
-      <div>
-        <TextInput isSearch isSearchLoading />
-      </div>
     </div>
   );
 };

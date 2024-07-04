@@ -1,5 +1,5 @@
-import dedent from "ts-dedent";
 import { useState } from "react";
+import dedent from "ts-dedent";
 
 import { SwitchToggle } from "./SwitchToggle";
 
@@ -7,7 +7,7 @@ const describe = dedent`
            <br>
            ## How to use
            The SwitchToggle component is made to switch the state. The checked prop is responsible for the state of the switch, the setChecked prop is responsible for switching.
-           
+
                 <SwitchToggle checked={checked} setChecked={setChecked} />
           `;
 
@@ -27,8 +27,6 @@ export default {
 
 export const SwitchToggleStory = () => {
   const [checked, setChecked] = useState(false);
-  const [checkedDisbaled, setCheckedDisbaled] = useState(false);
-  const [checkedSpin, setCheckedSpin] = useState(false);
 
   return (
     <div
@@ -45,19 +43,6 @@ export const SwitchToggleStory = () => {
         checked={checked}
         onChange={() => setChecked(!checked)}
         title="Simple Toggle"
-      />
-      <SwitchToggle
-        checked={checkedDisbaled}
-        onChange={() => setCheckedDisbaled(!checked)}
-        title="Disabled Toggle"
-        disabled
-      />
-      <SwitchToggle
-        checked={checkedSpin}
-        onChange={() => setCheckedSpin(!checked)}
-        title="Spin Toggle"
-        disabled
-        isSpin
       />
     </div>
   );
