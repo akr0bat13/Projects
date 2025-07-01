@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 5px;
+  background: grey;
+  color: white;
+}
+
+.nav-item {
+  margin-right: 20px;
+  color: white;
+  transition: all 0.3s linear;
+  text-decoration: none;
+  &:hover {
+    color: #000;
+  }
+}
