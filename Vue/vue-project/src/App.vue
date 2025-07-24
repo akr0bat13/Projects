@@ -1,85 +1,55 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div class="app">
+    <Button @click="showModal = true">Создать пост</Button>
+    <Modal v-model:show="showModal" >
+      <PostForm @create="createPost"/>
+    </Modal>
+    <PostList :posts="posts" @remove="removePost"/>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<script>
+import PostList from '@/components/PostList.vue'
+import PostForm from '@/components/PostForm.vue'
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+export default {
+  components: {
+    PostList,
+    PostForm
+  },
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+  data() {
+    return {
+      posts:[
+        {id: 1, title: 'title 1', body: 'body 1'},
+        {id: 2, title: 'title 2', body: 'body 2'},
+        {id: 3, title: 'title 3', body: 'body 3'}
+      ],
+      showModal: false
+    }
+  },
+  methods: {
+    createPost(post) {
+      this.posts.push(post)
+      this.showModal = false
+    },
+    removePost(post) {
+      this.posts = this.posts.filter(p => p.id !== post.id)
+    }
   }
 }
+</script>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .app {
+    padding: 20px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
 </style>
