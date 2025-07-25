@@ -1,0 +1,40 @@
+@forward 'reset';
+@forward 'vars';
+@forward 'adaptive';
+
+body {
+  overflow: hidden;
+  background: var(--neutral-800);
+  font-family: var(--font-family-primary);
+}
+
+#app {
+  display: flex;
+  height: 100dvh;
+}
+
+*::-webkit-scrollbar {
+  width: 0.3em;
+  height: 0.3em;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--neutral-600);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--neutral-500);
+  border-radius: 6px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--neutral-400);
+}
+
+button {
+  outline: none;
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}

@@ -1,17 +1,9 @@
 <script>
+  import toggleMixin from '@/mixins/toggleMixin'
+
   export default {
     name: "Modal",
-    props: {
-      show: {
-        type: Boolean,
-        default: false
-      }
-    },
-    methods: {
-      hideModal() {
-        this.$emit('update:show', false)
-      }
-    }
+    mixins: [toggleMixin]
   }
 </script>
 
@@ -35,6 +27,7 @@
   }
 
   .modal--content {
+    width: fit-content;
     margin: auto;
     background: white;
     border-radius: 12px;

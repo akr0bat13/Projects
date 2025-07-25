@@ -1,0 +1,45 @@
+.typography {
+  &.inherit {
+    color: var(--white-primary);
+  }
+
+  &.muted {
+    color: var(--neutral-400);
+  }
+
+  &.size_xs {
+    font: var(--font-body-xs);
+  }
+
+  &.size_sm {
+    font: var(--font-body-sm);
+
+    &_bold {
+      font: var(--font-body-sm-medium);
+    }
+  }
+
+  &.size_md {
+    font: var(--font-body-md);
+
+    &_bold {
+      font: var(--font-body-md-semibold);
+    }
+  }
+
+  &.size_lg {
+    font: var(--font-body-lg-semibold);
+
+    &_bold {
+      font: var(--font-body-lg-semibold);
+    }
+  }
+
+  &.size_xl {
+    font: var(--font-body-xl-semibold);
+  }
+
+  &.size_2xl {
+    font: var(--font-body-2xl-semibold);
+  }
+}

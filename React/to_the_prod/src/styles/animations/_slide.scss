@@ -1,0 +1,31 @@
+@use 'sass:map';
+@use 'sass:list';
+
+$directions: (
+  left: (100%, 0),
+  right: (-100%, 0),
+  up: (0, 100%),
+  down: (0, -100%),
+);
+
+@mixin slide($direction, $duration: 0.1s) {
+  animation: slide-#{$direction} $duration ease-out;
+
+  $translate-values: map.get($directions, $direction);
+
+  @if $translate-values {
+    @keyframes slide-#{$direction} {
+      from {
+        transform: translate(list.nth($translate-values, 1), list.nth($translate-values, 2));
+      }
+
+      to {
+        transform: translate(0, 0);
+      }
+    }
+
+    /* stylelint-disable-next-line @stylistic/block-closing-brace-newline-after */
+  } @else {
+    @warn "Unknown direction: #{$direction}. Valid directions are: #{map.keys($directions)}.";
+  }
+}

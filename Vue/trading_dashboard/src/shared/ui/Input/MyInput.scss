@@ -1,0 +1,29 @@
+.input-container {
+  border: 0.5px solid transparent;
+  border-radius: var(--border-radius-md);
+  position: relative;
+
+  // &::after {
+  //   content: '';
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   background: red;
+  // }
+}
+
+.my-input {
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  background: var(--neutral-700);
+  color: var(--white-primary);
+  width: 100%;
+  outline: none;
+}
+
+.my-input::placeholder {
+  color: var(--neutral-400);
+}

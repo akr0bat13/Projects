@@ -1,0 +1,91 @@
+:root {
+  /* =============== font family =============== */
+  --font-family-primary: "Inter", sans-serif;
+
+  /* =============== letter spacing =============== */
+  --letter-spacing-tight: -0.3px;
+  --letter-spacing-normal: 0px;
+  --letter-spacing-thin: 0.4px;
+  --letter-spacing-wider: 0.75px;
+  --letter-spacing-widest: 3px;
+
+  /* =============== font size =============== */
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-md: 15px;
+  --font-size-lg: 17px;
+  --font-size-xl: 19px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 32px;
+  --font-size-5xl: 36px;
+  --font-size-6xl: 40px;
+
+  /* =============== line height =============== */
+  --line-height-xxs: 12px;
+  --line-height-xs: 16px;
+  --line-height-sm: 20px;
+  --line-height-md: 22px;
+  --line-height-lg: 24px;
+  --line-height-xl: 28px;
+  --line-height-2xl: 30px;
+  --line-height-3xl: 36px;
+  --line-height-4xl: 40px;
+  --line-height-5xl: 44px;
+  --line-height-6xl: 48px;
+
+  /* =============== font weight =============== */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* =============== font (heading) =============== */
+  --font-heading-800: var(--font-weight-semibold) var(--font-size-6xl) / var(--line-height-6xl) var(--font-family-primary);
+  --font-heading-700: var(--font-weight-semibold) var(--font-size-5xl) / var(--line-height-5xl) var(--font-family-primary);
+  --font-heading-600: var(--font-weight-semibold) var(--font-size-4xl) / var(--line-height-4xl) var(--font-family-primary);
+  --font-heading-500: var(--font-weight-semibold) var(--font-size-3xl) / var(--line-height-3xl) var(--font-family-primary);
+  --font-heading-400: var(--font-weight-semibold) var(--font-size-2xl) / var(--line-height-2xl) var(--font-family-primary);
+  --font-heading-300: var(--font-weight-semibold) var(--font-size-xl) / var(--line-height-lg) var(--font-family-primary);
+  --font-heading-200: var(--font-weight-semibold) var(--font-size-lg) / var(--line-height-md) var(--font-family-primary);
+  --font-heading-100: var(--font-weight-semibold) var(--font-size-md) / var(--line-height-sm) var(--font-family-primary);
+
+  /* =============== font (body) =============== */
+  --font-body-700: var(--font-weight-normal) var(--font-size-xl) / var(--line-height-xl) var(--font-family-primary);
+  --font-body-600: var(--font-weight-normal) var(--font-size-lg) / var(--line-height-xl) var(--font-family-primary);
+  --font-body-500: var(--font-weight-normal) var(--font-size-md) / var(--line-height-lg) var(--font-family-primary);
+  --font-body-400: var(--font-weight-normal) var(--font-size-sm) / var(--line-height-sm) var(--font-family-primary);
+  --font-body-300: var(--font-weight-normal) var(--font-size-xs) / var(--line-height-xs) var(--font-family-primary);
+  --font-body-700-bold: var(--font-weight-semibold) var(--font-size-xl) / var(--line-height-xl) var(--font-family-primary);
+  --font-body-600-bold: var(--font-weight-semibold) var(--font-size-lg) / var(--line-height-xl) var(--font-family-primary);
+  --font-body-500-bold: var(--font-weight-semibold) var(--font-size-md) / var(--line-height-lg) var(--font-family-primary);
+  --font-body-400-bold: var(--font-weight-semibold) var(--font-size-sm) / var(--line-height-sm) var(--font-family-primary);
+  --font-body-300-bold: var(--font-weight-semibold) var(--font-size-xs) / var(--line-height-xs) var(--font-family-primary);
+
+  /* =============== font (label) =============== */
+  --font-label-500: var(--font-weight-normal) var(--font-size-md) / var(--line-height-xs) var(--font-family-primary);
+  --font-label-400: var(--font-weight-normal) var(--font-size-sm) / var(--line-height-xs) var(--font-family-primary);
+  --font-label-300: var(--font-weight-normal) var(--font-size-xs) / var(--line-height-xxs) var(--font-family-primary);
+  --font-label-500-bold: var(--font-weight-semibold) var(--font-size-md) / var(--line-height-xs) var(--font-family-primary);
+  --font-label-400-bold: var(--font-weight-semibold) var(--font-size-sm) / var(--line-height-xs) var(--font-family-primary);
+  --font-label-300-bold: var(--font-weight-semibold) var(--font-size-xs) / var(--line-height-xxs) var(--font-family-primary);
+
+  /* =============== font (table) =============== */
+  --font-table-600: var(--font-weight-normal) var(--font-size-lg) / var(--line-height-md) var(--font-family-primary);
+  --font-table-500: var(--font-weight-normal) var(--font-size-md) / var(--line-height-sm) var(--font-family-primary);
+  --font-table-400: var(--font-weight-normal) var(--font-size-sm) / var(--line-height-xs) var(--font-family-primary);
+  --font-table-600-bold: var(--font-weight-semibold) var(--font-size-lg) / var(--line-height-md) var(--font-family-primary);
+  --font-table-500-bold: var(--font-weight-semibold) var(--font-size-md) / var(--line-height-sm) var(--font-family-primary);
+  --font-table-400-bold: var(--font-weight-semibold) var(--font-size-sm) / var(--line-height-xs) var(--font-family-primary);
+
+  /* =============== font (caps) =============== */
+  --font-caps-400: uppercase var(--font-weight-normal) var(--font-size-sm) / var(--line-height-xs) var(--font-family-primary);
+  --font-caps-300: uppercase var(--font-weight-normal) var(--font-size-xs) / var(--line-height-xxs) var(--font-family-primary);
+  --font-caps-400-bold: uppercase var(--font-weight-semibold) var(--font-size-sm) / var(--line-height-xs) var(--font-family-primary);
+  --font-caps-300-bold: uppercase var(--font-weight-semibold) var(--font-size-xs) / var(--line-height-xxs) var(--font-family-primary);
+}

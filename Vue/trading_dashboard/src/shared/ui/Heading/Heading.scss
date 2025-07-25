@@ -1,0 +1,12 @@
+.heading {
+  &.inherit {
+    color: var(--white-primary);
+  }
+
+  &.muted {
+    color: var(--neutral-400);
+  }
+  &.size_xl {
+    font: var(--font-heading-xl);
+  }
+}

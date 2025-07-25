@@ -1,0 +1,13 @@
+:root {
+  // Border
+  --interactive-element-border: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  // Border-radius
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 29.3%;
+  --border-radius-xl: 1000px;
+}

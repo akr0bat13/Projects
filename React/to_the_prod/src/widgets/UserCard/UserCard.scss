@@ -1,0 +1,9 @@
+.user-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: calc(33.333% - 20px);
+  background-color: var(--background-secondary);
+  border-radius: var(--border-3xl);
+  padding: 10px;
+}

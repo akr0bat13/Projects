@@ -1,0 +1,204 @@
+@use 'sass:map';
+@use 'sass:list';
+
+$button-params: (
+  sm: (
+    32px,
+    8px,
+    14px,
+    2px,
+    var(--font-body-xs),
+  ),
+  md: (
+    44px,
+    10px,
+    16px,
+    4px,
+    var(--font-body-sm-medium),
+  ),
+  lg: (
+    56px,
+    14px,
+    24px,
+    6px,
+    var(--font-body-lg-semibold),
+  ),
+);
+
+// Основные стили кнопки
+@mixin button-appearance($backgroundColor, $textColor) {
+  background: $backgroundColor;
+  color: $textColor;
+  font: {
+    family: var(--font-family-primary);
+  }
+}
+
+@mixin button-hover($hover_background, $hover_color) {
+  &:not([data-disabled='true']):hover {
+    color: transparent;
+  }
+
+  &:not([data-disabled='true'], [data-loading='true']):hover {
+    background: $hover_background;
+    color: $hover_color;
+    border-color: $hover_color;
+    cursor: pointer;
+  }
+}
+
+@mixin button-pressed($pressed_background, $pressed_color) {
+  &:not([data-disabled='true'], [data-loading='true']):active {
+    background: $pressed_background;
+    color: $pressed_color;
+  }
+}
+
+@mixin button-disabled($disabled_background, $disabled_text) {
+  &[data-disabled='true'] {
+    background: $disabled_background;
+    color: $disabled_text;
+    border: none;
+
+    & .button__icon {
+      color: $disabled_text;
+    }
+  }
+}
+
+@mixin button-params($size_type) {
+  $params: map.get($button-params, $size_type);
+
+  @if $params {
+    height: list.nth($params, 1);
+    padding-block: list.nth($params, 2);
+    padding-inline: list.nth($params, 3);
+    border-radius: list.nth($params, 4);
+    font: list.nth($params, 5);
+  }
+}
+
+$icon-button-sizes: (
+  sm: (
+    32px,
+  ),
+  md: (
+    40px,
+  ),
+  lg: (
+    56px,
+  ),
+);
+
+@mixin icon-button-size($size_type) {
+  $size: map.get($icon-button-sizes, $size_type);
+
+  @if $size {
+    height: list.nth($size, 1);
+    width: list.nth($size, 1);
+  }
+}
+
+.button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  outline: none;
+  border: none;
+  font-weight: var(--font-weight-semibold);
+
+  & .button__icon {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  // size
+  &.size {
+    &__small {
+      font: var(--font-body-xs);
+
+      @include button-params('sm');
+    }
+
+    &__medium {
+      font: var(--font-body-sm-medium);
+
+      @include button-params('md');
+    }
+
+    &__large {
+      font: var(--font-body-lg-semibold);
+
+      @include button-params('lg');
+    }
+  }
+
+  // // shape
+  // &.shape {
+  //   &__square {
+  //     padding: 0;
+  //   }
+
+  //   &__square.size__small {
+  //     @include icon-button-size('sm');
+  //   }
+
+  //   &__square.size__medium {
+  //     @include icon-button-size('md');
+  //   }
+
+  //   &__square.size__large {
+  //     @include icon-button-size('lg');
+  //   }
+  // }
+
+  // appearence
+  &.appearence {
+    &__primary {
+      @include button-appearance(var(--green-primary), var(--neutral-900));
+      @include button-hover(var(--green-80), var(--neutral-900));
+      @include button-pressed(var(--action-600), var(--neutral-900));
+      @include button-disabled(var(--neutral-600), var(--neutral-400));
+    }
+
+    // &__secondary {
+    //   @include button-appearance(var(--neutral-200), var(--primary));
+    //   @include button-hover(var(--neutral-200), var(--primary-hover));
+    //   @include button-pressed(var(--neutral-200), var(--action-400));
+    //   @include button-disabled(var(--neutral-600), var(--neutral-400));
+    // }
+
+    &__ghost {
+      @include button-appearance(transparent, var(--white-primary));
+      @include button-hover(var(--neutral-100), var(--neutral-400));
+      @include button-pressed(var(--neutral-100), var(--neutral-400));
+      @include button-disabled(var(--neutral-600), var(--neutral-400));
+    }
+  }
+
+  &.uncontained {
+    max-block-size: none;
+    max-inline-size: none;
+    padding-block: 0;
+    padding-inline: 0;
+
+    @include button-appearance(transparent, var(--neutral-400));
+    // @include button-hover(transparent, var(--primary-hover));
+    // @include button-pressed(transparent, var(--primary-hover));
+    // @include button-disabled(none, var(--text-secondary));
+  }
+
+  // width
+  &.width {
+    &__full {
+      width: 100%;
+    }
+
+    &__fit {
+      width: fit-content;
+    }
+  }
+}

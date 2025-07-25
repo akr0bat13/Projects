@@ -1,0 +1,56 @@
+@use 'sass:map';
+@use 'sass:list';
+
+$icon-sizes: (
+  sm: (
+    16px,
+    16px,
+  ),
+  md: (
+    18px,
+    18px,
+  ),
+  lg: (
+    20px,
+    20px,
+  ),
+  xl: (
+    24px,
+    24px,
+  ),
+);
+
+@mixin icon-size($size_type) {
+  $size: map.get($icon-sizes, $size_type);
+
+  & svg {
+    width: list.nth($size, 1);
+    height: list.nth($size, 2);
+  }
+}
+
+.icon__base {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.size__small {
+    width: 16px;
+    height: 16px;
+  }
+
+  &.size__medium {
+    width: 18px;
+    height: 18px;
+  }
+
+  &.size__large {
+    width: 20px;
+    height: 20px;
+  }
+
+  &.size__extra-large {
+    width: 24px;
+    height: 24px;
+  }
+}

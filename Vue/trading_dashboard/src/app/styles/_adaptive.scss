@@ -1,0 +1,45 @@
+/* stylelint-disable  */
+
+@mixin breakpoint($point) {
+  @if $point == phone {
+    @media (width <= 480px) { @content; }
+  }
+  @else if $point == tablet {
+    @media (width <= 768px) { @content; }
+  }
+  @else if $point == desktop {
+    @media (width <= 1279px) { @content; }
+  }
+  @else if $point == wide {
+    @media (width > 1280px) { @content; }
+  }
+}
+
+// Определение брейкпоинтов
+/* stylelint-disable-next-line CssSyntaxError */
+$breakpoints: (
+  phone: 480px,
+  tablet: 768px,
+  desktop: 1279px,
+  wide: 1280px
+);
+
+// Миксин для медиазапросов
+@mixin respond-to($breakpoint-or-size) {
+  // Если передан конкретный брейкпоинт
+  @if map-has-key($breakpoints, $breakpoint-or-size) {
+    @media (min-width: map-get($breakpoints, $breakpoint-or-size)) {
+      @content;
+    }
+  }
+  // Если передано конкретное значение в пикселях
+  @else if type-of($breakpoint-or-size) == number and unit($breakpoint-or-size) == px {
+    @media (min-width: $breakpoint-or-size) {
+      @content;
+    }
+  }
+  // Если передан неверный параметр
+  @else {
+    @error "Неизвестный брейкпоинт или некорректное значение: `#{$breakpoint-or-size}`. Используйте один из брейкпоинтов (phone, tablet, desktop, wide) или передайте значение в пикселях.";
+  }
+}

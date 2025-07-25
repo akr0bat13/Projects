@@ -1,0 +1,59 @@
+:root {
+  /* =============== font family =============== */
+  --font-family-primary: 'Roboto', sans-serif;
+
+  //   /* =============== letter spacing =============== */
+  //   --letter-spacing-tight: -0.3px;
+  //   --letter-spacing-normal: 0px;
+  //   --letter-spacing-thin: 0.4px;
+  //   --letter-spacing-wider: 0.75px;
+  //   --letter-spacing-widest: 3px;
+
+  //   /* =============== font size =============== */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 40px;
+
+  //   /* =============== line height =============== */
+  --line-height-sm: 18px;
+  --line-height-md: 24px;
+  --line-height-lg: 44px;
+
+  //   /* =============== font weight =============== */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  //   /* =============== font (heading) =============== */
+  --font-heading-xl: var(--font-weight-semibold) var(--font-size-2xl) / var(--line-height-lg)
+    var(--font-family-primary);
+
+  //   /* =============== font (body) =============== */
+  --font-body-xs: var(--font-weight-normal) var(--font-size-xs) / var(--line-height-sm)
+    var(--font-family-primary);
+  --font-body-sm: var(--font-weight-normal) var(--font-size-sm) / var(--line-height-sm)
+    var(--font-family-primary);
+  --font-body-sm-medium: var(--font-weight-medium) var(--font-size-sm) / var(--line-height-sm)
+    var(--font-family-primary);
+  --font-body-sm-numbers: var(--font-weight-normal) var(--font-size-sm) / var(--line-height-sm)
+    var(--font-family-primary);
+  --font-body-md: var(--font-weight-normal) var(--font-size-md) / var(--line-height-md)
+    var(--font-family-primary);
+  --font-body-md-semibold: var(--font-weight-semibold) var(--font-size-md) / var(--line-height-md)
+    var(--font-family-primary);
+  --font-body-lg-semibold: var(--font-weight-normal) var(--font-size-lg) / var(--line-height-md)
+    var(--font-family-primary);
+  --font-body-xl-semibold: var(--font-weight-semibold) var(--font-size-xl) / var(--line-height-md)
+    var(--font-family-primary);
+  --font-body-2xl-semibold: var(--font-weight-semibold) var(--font-size-2xl) / var(--line-height-lg)
+    var(--font-family-primary);
+}

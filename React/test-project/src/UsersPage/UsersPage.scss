@@ -1,0 +1,13 @@
+.users-container {
+  display: flex;
+  gap: 20px;
+  padding-top: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.green-zone {
+  width: 100%;
+  height: 10px;
+  background-color: rgb(29 174 64 / 30%);
+}
