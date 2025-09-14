@@ -1,0 +1,37 @@
+name: Build
+on:
+  push:
+    branches:
+      - master
+jobs:
+  checkout:
+    runs-on: severyanochka-label
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install deps
+        run: npm install
+  unit-test:
+    needs: [checkout]
+    runs-on: severyanochka-label
+    steps:
+      - name: Run unit tests
+        run: npm run test:unit
+  type-check:
+    needs: [unit-test]
+    runs-on: severyanochka-label
+    steps:
+      - name: Run type check
+        run: npm run type-check
+  deploy:
+    needs: [type-check]
+    runs-on: severyanochka-label
+    steps:
+      - name: Clear cache
+        run: docker builder prune -a
+      - name: Build docker image
+        run: docker build -t severyanochka .
+      - name: Stop current fronted container
+        run: docker stop frontend
+      - name: Run container
+        run: docker run -it -p 8080:80 --rm -d --name frontend severyanochka
